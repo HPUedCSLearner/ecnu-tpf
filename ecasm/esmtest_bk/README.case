@@ -1,0 +1,59 @@
+create_newcase -case /public1/home/fio_climate_model/liuyao/wys/esmtest -res f09_g16 -compset B1850C5PMBPRP -mach bscc-a6 -pes_file ./scripts/f09g16_1024_pes_file_bscc-a2.xml
+
+
+Component set: longname (shortname) (alias) 
+  1850_CAM5%PM_CLM40%CN_CICE_POP2%ECO_RTM_SGLC_SWAV_BGC%BPRP (B_1850_CAM5_PM_BGC-BPRP) (B1850C5PMBPRP) 
+Component set Description: 
+  CAM: CLM: RTM: CICE: POP2: SGLC: SWAV: pre-industrial: cam5 physics: CAM prescribed modal aerosols: clm4.0 physics: clm4.0 cn: prognostic cice: POP2 default: POP2/Ecosystem: BGC CO2=prog, rad CO2=prog: ECO in POP: 
+Grid: 
+  a%0.9x1.25_l%0.9x1.25_oi%gx1v6_r%r05_m%gx1v6_g%null_w%null (0.9x1.25_gx1v6) 
+  ATM_GRID = 0.9x1.25  NX_ATM=288 NY_ATM=192 
+  LND_GRID = 0.9x1.25  NX_LND=288 NX_LND=192 
+  ICE_GRID = gx1v6  NX_ICE=320 NX_ICE=384 
+  OCN_GRID = gx1v6  NX_OCN=320 NX_OCN=384 
+  ROF_GRID = r05  NX_ROF=720 NX_ROF=360 
+  GLC_GRID = 0.9x1.25  NX_GLC=288 NX_GLC=192 
+  WAV_GRID = null  NX_WAV=0 NX_WAV=0 
+Grid Description: 
+  null is no grid: 0.9x1.25 is FV 1-deg grid: gx1v6 is Greenland pole v6 1-deg grid: r05 is 1/2 degree river routing grid: 
+Non-Default Options: 
+  ATM_NCPL: 48 
+  BUDGETS: TRUE 
+  CAM_CONFIG_OPTS: -phys cam5 -chem none -co2_cycle -microphys mg1.5 
+  CAM_DYCORE: fv 
+  CAM_NML_USE_CASE: 1850_cam5_pm_bgc_fioesm 
+  CCSM_BGC: CO2C 
+  CCSM_CCOST: 1 
+  CCSM_CO2_PPMV: 284.32 
+  CICE_MODE: prognostic 
+  CICE_NAMELIST_OPTS: cam5=.true. 
+  CLM_CO2_TYPE: prognostic 
+  CLM_CONFIG_OPTS: -phys clm4_0 -bgc cn 
+  CLM_NML_USE_CASE: 1850_bgcfioesm_control 
+  COMP_ATM: cam 
+  COMP_GLC: sglc 
+  COMP_ICE: cice 
+  COMP_LND: clm 
+  COMP_OCN: pop2 
+  COMP_ROF: rtm 
+  COMP_WAV: swav 
+  CPL_ALBAV: false 
+  CPL_EPBAL: off 
+  GET_REFCASE: TRUE 
+  OCN_CHL_TYPE: prognostic 
+  OCN_CO2_TYPE: prognostic 
+  OCN_COUPLING: full 
+  OCN_NCPL: 8 
+  OCN_TIGHT_COUPLING: FALSE 
+  OCN_TRACER_MODULES:  iage ecosys 
+  REST_N: 12 
+  REST_OPTION: nmonths 
+  ROF_NCPL: 8 
+  RTM_BLDNML_OPTS: -simyr 1850 
+  RUN_REFCASE: esmspinup.1234.1 
+  RUN_REFDATE: 1001-01-01 
+  RUN_STARTDATE: 0001-01-01 
+  RUN_TYPE: hybrid 
+  SCIENCE_SUPPORT: NO 
+  STOP_N: 12000 
+  STOP_OPTION: nmonths 

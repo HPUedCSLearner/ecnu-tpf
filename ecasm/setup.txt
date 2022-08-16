@@ -1,0 +1,29 @@
+Macros script already created ...skipping
+ Machine/Decomp/Pes configuration has already been done ...skipping
+ Running preview_namelist script 
+ infile is /public1/home/fio_climate_model/liuyao/wys/esmtest/Buildconf/cplconf/cesm_namelist 
+CAM writing dry deposition namelist to drv_flds_in 
+CAM writing namelist to atm_in 
+CLM configure done.
+CLM adding use_case 1850_bgcfioesm_control defaults for var hist_fincl1 with val 
+'TOTVEGC','LITTERC','GPP','AR','NPP','HR','NBP','COL_FIRE_CLOSS','LEAFC','LEAFC_STORAGE','LEAFC_XFER','FROOTC','FROOTC_STORAGE','FROOTC_XFER','AGNPP','BGNPP','CWDC','SOIL1C','SOIL2C','SOIL3C','GR','MR','NEP','WOODC'
+ 
+CLM adding use_case 1850_bgcfioesm_control defaults for var hist_fincl2 with val 
+'SNOWDP','TLAI','SOILLIQ','SOILICE','TSOI','QRUNOFF','TSA','WT','SOILWATER_10CM','SNOWLIQ','SNOWICE'
+ 
+CLM adding use_case 1850_bgcfioesm_control defaults for var hist_fincl3 with val 
+'TSA:I','SOILWATER_10CM:I','QRUNOFF:A','GPP','AR','HR'
+ 
+CLM adding use_case 1850_bgcfioesm_control defaults for var hist_mfilt with val 1,30,240 
+CLM adding use_case 1850_bgcfioesm_control defaults for var hist_nhtfrq with val 0,-24,-3 
+CLM adding use_case 1850_bgcfioesm_control defaults for var sim_year with val 1850 
+CLM adding use_case 1850_bgcfioesm_control defaults for var sim_year_range with val constant 
+CLM adding use_case 1850_bgcfioesm_control defaults for var stream_year_first_ndep with val 1850 
+CLM adding use_case 1850_bgcfioesm_control defaults for var stream_year_last_ndep with val 1850 
+CLM adding use_case 1850_bgcfioesm_control defaults for var use_case_desc with val Conditions to simulate 1850 land-use 
+CICE configure done.
+Getting init_ts_file_fmt from /public1/home/fio_climate_model/FIO-ESM/inputdata/ccsm4_init/esmspinup.1234.1/1001-01-01/rpointer.ocn.restart
+POP2 build-namelist: ocn_grid is gx1v6 
+POP2 build-namelist: ocn_tracer_modules are  iage ecosys 
+See ./CaseDoc for component namelists 
+If an old case build already exists, might want to run esmtest.clean_build before building 

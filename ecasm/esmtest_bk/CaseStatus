@@ -1,0 +1,2 @@
+create_newcase -case /public1/home/fio_climate_model/liuyao/wys/esmtest -res f09_g16 -compset B1850C5PMBPRP -mach bscc-a6 -pes_file ./scripts/f09g16_1024_pes_file_bscc-a2.xml
+case created 2022-08-16 22:17:41

@@ -1,0 +1,27 @@
+#! /bin/csh -f
+
+# -------------------------------------------------------------------------
+# USERDEFINED
+# Edit this file to add module load or other paths needed for the build
+# and run on the system.  Can also include general env settings for machine.
+# Some samples are below
+# -------------------------------------------------------------------------
+source /public1/soft/modules/4.1.2/init/csh
+#module load mpi/intel/17.0.5-cjj
+module load netcdf/4.4.1-parallel-icc17-fgl
+setenv NETCDF_PATH /public1/soft/netcdf/4.4.1-parallel-icc17
+setenv INC_NETCDF ${NETCDF_PATH}/include
+setenv LIB_NETCDF ${NETCDF_PATH}/lib
+#if !($?PERL5LIB) then
+#    setenv PERL5LIB ${HOME}/tools/perl/lib/5.24.0:${HOME}/tools/perl/lib64/5.10.0/x86_64-linux-thread-multi
+#    setenv PERL5LIB ${HOME}/tools/perl/lib64/5.10.0/x86_64-linux-thread-multi
+#else
+#    setenv PERL5LIB ${HOME}/tools/perl/lib/5.24.0:${HOME}/tools/perl/lib64/5.10.0/x86_64-linux-thread-multi:${PERL5LIB}
+#    setenv PERL5LIB ${HOME}/tools/perl/lib64/5.10.0/x86_64-linux-thread-multi:${PERL5LIB}
+#endif
+
+if !($?LD_LIBRARY_PATH) then
+    setenv LD_LIBRARY_PATH ${LIB_NETCDF}
+else
+    setenv LD_LIBRARY_PATH ${LIB_NETCDF}:${LD_LIBRARY_PATH}
+endif
