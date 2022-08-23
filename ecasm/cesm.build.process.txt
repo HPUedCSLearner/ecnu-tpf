@@ -1,0 +1,38 @@
+
+Macros
+Macros:2:# Makefile Macros generated from /public1/home/fio_climate_model/FIO-ESM/fioesm/fioesm2_0/scripts/ccsm_utils/Machines/config_compilers.xml using
+
+cesm.buildexe.csh
+CASEBUILD
+$CASEBUILD/cesm.buildexe.csh  >>& ${file_build}
+
+[fio_climate_model@ln132%bscc-a6 wysTest]$ grep -rin cmake
+Tools/Makefile:534:# Drive cmake script for cism
+Tools/Makefile:537:ifndef CMAKE_OPTS
+Tools/Makefile:538:  CMAKE_OPTS := 
+Tools/Makefile:541:# FIXEDFLAGS, so that both free & fixed code can be built (cmake
+Tools/Makefile:544:CMAKE_OPTS += -D CMAKE_Fortran_FLAGS:STRING="$(FFLAGS) $(INCLDIR)" \
+Tools/Makefile:545:              -D CMAKE_C_FLAGS:STRING="$(CFLAGS) $(INCLDIR)" \
+Tools/Makefile:546:              -D CMAKE_CXX_FLAGS:STRING="$(CXXFLAGS) $(INCLDIR)" \
+Tools/Makefile:547:              -D CMAKE_VERBOSE_MAKEFILE:BOOL=ON
+Tools/Makefile:549:# This captures the many cism-specific options to cmake
+Tools/Makefile:550:CMAKE_OPTS += $(USER_CMAKE_OPTS)
+Tools/Makefile:552:# CMake doesn't seem to like it when you define compilers via -D
+Tools/Makefile:553:# CMAKE_C_COMPILER, etc., when you rerun cmake with an existing
+Tools/Makefile:555:ifndef CMAKE_ENV_VARS
+Tools/Makefile:556:  CMAKE_ENV_VARS := 
+Tools/Makefile:558:CMAKE_ENV_VARS += CC=$(CC) \
+Tools/Makefile:562:# We declare $(GLC_DIR)/Makefile to be a phony target so that cmake is
+Tools/Makefile:568:	$(CMAKE_ENV_VARS) cmake $(CMAKE_OPTS) $(CODEROOT)/glc/cism/glimmer-cism
+
+
+LockedFiles/env_build.xml.locked:61:<entry id="GMAKE"   value="gmake"  />
+
+
+gmake  buildexe.csh (compiler sh)
+Buildconf/rtm.buildexe.csh:22:$GMAKE complib -j $GMAKE_J MODEL=rtm COMPLIB=$LIBROOT/librof.a -f $CASETOOLS/Makefile || exit 2
+Buildconf/clm.buildexe.csh:18:$GMAKE complib -j $GMAKE_J MODEL=clm COMPLIB=$LIBROOT/liblnd.a USER_CPPDEFS="$clmdefs" -f $CASETOOLS/Makefile || exit 2
+Buildconf/cice.buildexe.csh:32:gmake complib -j $GMAKE_J MODEL=cice COMPLIB=$LIBROOT/libice.a MACFILE=$CASEROOT/Macros.$MACH USER_CPPDEFS="$cicedefs" -f $CASETOOLS/Makefile || exit 2
+Buildconf/sglc.buildexe.csh:15:gmake complib -j $GMAKE_J MODEL=sglc COMPLIB=$LIBROOT/libglc.a -f $CASETOOLS/Makefile MACFILE=$CASEROOT/Macros.$MACH || exit 2
+Buildconf/buildlib.csm_share:67:my $bld = "$xmlvars{GMAKE} complib -j $xmlvars{GMAKE_J} MODEL=csm_share COMPLIB=libcsm_share.a USER_CPPDEFS=\" $multiinst_cppdefs\" -f $xmlvars{CASETOOLS}/Makefile ";
+Buildconf/swav.buildexe.csh:15:gmake complib -j $GMAKE_J MODEL=swav COMPLIB=$LIBROOT/libwav.a -f $CASETOOLS/Makefile MACFILE=$CASEROOT/Macros.$MACH || exit 2

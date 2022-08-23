@@ -19,6 +19,10 @@ https://github.com/HPUedCSLearner/ecnu-wys
 
 【HPC】
 
+[sig小组文档](https://hpc-cool.feishu.cn/docx/doxcnTlFDwRGWGRitRboqPhlNAe)
+
 [并行学习流水线](https://www.kdocs.cn/l/crR2o6G6dWZg)
 
 [CASE](https://www.cesm.ucar.edu/models/cesm1.2/)
+
+[性能建模使用说明书](https://hpc-cool.feishu.cn/docs/doccnOhEVJiZ5hiagB0rOnSYorf)
