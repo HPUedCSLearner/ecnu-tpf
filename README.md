@@ -26,3 +26,7 @@ https://github.com/HPUedCSLearner/ecnu-wys
 [CASE](https://www.cesm.ucar.edu/models/cesm1.2/)
 
 [性能建模使用说明书](https://hpc-cool.feishu.cn/docs/doccnOhEVJiZ5hiagB0rOnSYorf)
+
+[如何快速地在每个函数入口处加入相同的语句？](https://www.zhihu.com/question/56132218)
+
+[GCC的__attribute__ ((constructor))和__attribute__ ((destructor))](https://www.cnblogs.com/dylancao/p/9293447.html)
