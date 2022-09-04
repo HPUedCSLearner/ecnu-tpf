@@ -30,3 +30,5 @@ https://github.com/HPUedCSLearner/ecnu-wys
 [如何快速地在每个函数入口处加入相同的语句？](https://www.zhihu.com/question/56132218)
 
 [GCC的__attribute__ ((constructor))和__attribute__ ((destructor))](https://www.cnblogs.com/dylancao/p/9293447.html)
+
+注意探针里要的里函数，要加上 __attribute__((no_instrument_function)) 否则，无法运行
