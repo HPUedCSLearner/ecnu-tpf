@@ -38,3 +38,10 @@ https://github.com/HPUedCSLearner
 
 
 [[内存问题分析,写的比较好]](https://zhuanlan.zhihu.com/p/399999297)
+
+[c C++ Fortran 混编实例1](https://www.cnblogs.com/snake553/p/6962386.html)
+
+[c C++ Fortran 混编实例2](https://blog.csdn.net/weixin_43580880/article/details/107225688)
+
+
+gcc test.c  hash_func.cpp -lstdc++

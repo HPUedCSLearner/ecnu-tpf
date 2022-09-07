@@ -3,7 +3,7 @@
 extern void hash_int(int x);
 
 void test1() {
-    hash_int(3);
+    hash_int(123123);
 }
 
 int main() {

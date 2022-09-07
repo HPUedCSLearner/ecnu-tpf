@@ -14,6 +14,7 @@ import math
 import json
 
 case_path =  '/public1/home/fio_climate_model/FIO-ESM/fioesm/fioesm2_0'
+caseName = 'case001'
 newCase = '/case/case001'
 newCasePath = case_path + newCase
 STOP_N = '1'
@@ -32,7 +33,7 @@ def sampling(case_path):
     command = "./scripts/create_newcase -case " + newCasePath + " -res f09_g16 -compset B1850C5PMBPRP -mach bscc-a6 -pes_file ./scripts/f09g16_1024_pes_file_bscc-a2.xml"
     os.system(command)
 
-    #env_mach_pes.xml：设置组件在机器上特定的处理器布局
+    #env_mach_pes.xml：设置组件在机器上特定的处理器布局(暂无更改)
 
 
     #备份模式源码 && env_case.xml：设置算例特定的变量
@@ -62,6 +63,10 @@ def sampling(case_path):
     os.system("./cesm_setup > ./case_setup.log 2>&1")
 
     #修改Macros
+
+    #Run the build script
+    os.system("./$CASE.build > ./" + caseName + " 2>&1")
+    
     
 def main():
     sampling(case_path)
