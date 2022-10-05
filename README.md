@@ -45,3 +45,24 @@ https://github.com/HPUedCSLearner
 
 
 gcc test.c  hash_func.cpp -lstdc++
+
+##### 问题记录:
+1、插装后，采样信息文件多进程环境下的写入问题
+
+2、mpi库找不到的问题
+/public1/soft/intel/2017/compilers_and_libraries_2017.7.259/linux/mpi
+并行A6上用的MPI库
+
+问题解决:
+
+export PATH=/public1/soft/intel/2017/compilers_and_libraries_2017.7.259/linux/mpi/intel64/bin:$PATH
+
+
+常用路径:
+/public1/home/fio_climate_model/zyp/fioesm_cases/B_1024_p1_bk/timing_probe4/libprobeso
+##### 奇怪的现象:
+1、模式插装后，第一次跑起来，可以产生多个trace文件，但是，第二次跑起来的时候，就没有trace文件
+2、
+###### 已解决的问题记录:
+1、GCC插装编译选项问题，以及静态链接库的问题
+2、变频下，使用tsc作为计时条件的可行性
