@@ -43,6 +43,22 @@ https://github.com/HPUedCSLearner
 
 [c C++ Fortran 混编实例2](https://blog.csdn.net/weixin_43580880/article/details/107225688)
 
+##### 实用链接
+[字符串补0的一个简单方法](https://blog.csdn.net/weixin_44539392/article/details/107294483?spm=1001.2101.3001.6650.1&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-107294483-blog-82466210.pc_relevant_3mothn_strategy_and_data_recovery&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-107294483-blog-82466210.pc_relevant_3mothn_strategy_and_data_recovery&utm_relevant_index=2)
+
+```c
+return ("00000000" + retV).substr(retV.length());
+<==>
+return ("00000000" + retV).substr(8 - (8 - retV.length()));
+```
+
+###### 混合编程
+* python 调用 C++
+* C 调用 C++
+* Fortran C++ 互调
+
+
+
 
 gcc test.c  hash_func.cpp -lstdc++
 
@@ -60,6 +76,11 @@ export PATH=/public1/soft/intel/2017/compilers_and_libraries_2017.7.259/linux/mp
 
 常用路径:
 /public1/home/fio_climate_model/zyp/fioesm_cases/B_1024_p1_bk/timing_probe4/libprobeso
+
+-lfinstrument
+
+常用字符串:
+-finstrument-functions
 ##### 奇怪的现象:
 1、模式插装后，第一次跑起来，可以产生多个trace文件，但是，第二次跑起来的时候，就没有trace文件
 2、
