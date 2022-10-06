@@ -74,7 +74,7 @@ Thu Oct 6 19:18:27 CST 2022 /public1/home/fio_climate_model/FIO-ESM/fioesm/fioes
 ```
 1、编译共用时12min左右
 
-2、其中oce大约5min
+2、其中ocn大约5min
 
 ===>> 编译的时候，可以并行编译，加速编译时间
 

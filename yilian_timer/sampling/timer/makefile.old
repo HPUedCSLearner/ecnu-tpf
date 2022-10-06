@@ -1,0 +1,7 @@
+# oplevel0 = -O0 -shared -fPIC -w -g -D_WITHOUT_LLVM_ -DSUNWAY -I/home/export/online3/cess/esm-soft/include -I/GFPS8p/cess/wangdong/local/armadillo-8.200.2/include -L/home/export/online3/cess/esm-soft/lib 
+# CC=sw5gcc
+
+# timer.o:timer.c timer.h tauutil.h stack.h profile.h comm.h rbtree.h
+# 	$(CC) ${oplevel0} $< -o $@
+# # timer.o:timer.c 
+# # 	sw5gcc -shared -fPIC -O3 -mieee -g -w -lm -o timer.o timer.c
