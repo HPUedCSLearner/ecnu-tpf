@@ -69,9 +69,14 @@ gcc test.c  hash_func.cpp -lstdc++
 /public1/soft/intel/2017/compilers_and_libraries_2017.7.259/linux/mpi
 并行A6上用的MPI库
 
+
+/public1/soft/intel/2017/bin
+
 问题解决:
 
 export PATH=/public1/soft/intel/2017/compilers_and_libraries_2017.7.259/linux/mpi/intel64/bin:$PATH
+
+export PATH=/public1/soft/intel/2017/bin:$PATH
 
 
 常用路径:

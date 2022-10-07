@@ -42,6 +42,10 @@ case005:
 
 
 case006: 又出现了  Makefile.conf 的问题
+
+case007: 一切就是那么正常，但是就是没有生成trace文件
+
+
 ```c
 Thu Oct 6 22:05:33 CST 2022 /public1/home/fio_climate_model/FIO-ESM/fioesm/fioesm2_0/case/case006/bld/mct/mct.bldlog.221006-220528
 Copying source to CCSM EXEROOT...
