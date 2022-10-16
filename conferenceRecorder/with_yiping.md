@@ -119,19 +119,43 @@ gmake: *** No rule to make target `Makefile.conf'.  Stop.
 
 
 #### 从上述结果，设计实验，如何正确插装：
-* case017：首先先要验证自行插装可行性
+首先先要验证自行插装可行性
 
-    条件一：可以暂时不考虑gptl库,不把他编入模式中；
+    条件一：可以暂时不考虑gptl库,不把他编入模式中；(尝试通过一下几种方法)
+        
+        1、给gptl库里面的探针改名（改实现和头文件，最小程度影响原模式的运行）
+        2、直接删除timing,不知道是否会影响原模式的运行
     
     条件二：为了分析结果简单起见，只给FFLGAS添加编译选项；
 
     条件三：为了保证插装成功行，只实现一个简单的探针实现，并且使用统一编译工具链；
+
+/public1/home/fio_climate_model/FIO-ESM/fioesm/fioesm2_0/case/esm_liuyao/timing_probe_1001/libprobeso/Mpiifortran
+
+* case017：给gptl库里面的探针改名（改实现和头文件，最小程度影响原模式的运行）
+
+```c
+[fio_climate_model@ln131%bscc-a6 timing]$ grep -rin __cyg_profile_func_enter
+gptl.c:3590:void __cyg_profile_func_enter (void *this_fn,
+private.h:123:extern void __cyg_profile_func_enter (void *, void *);
+README:121:__cyg_profile_func_enter (void *this_fn, void *call_site) at function start,
+[fio_climate_model@ln131%bscc-a6 timing]$ vim +3590 gptl.c
+[fio_climate_model@ln131%bscc-a6 timing]$ vim +123 private.h
+
+[fio_climate_model@ln131%bscc-a6 timing]$ grep -rin wys
+gptl.c:3590:void __wys__cyg_profile_func_enter (void *this_fn,
+gptl.c:3596:void __wys__cyg_profile_func_exit (void *this_fn,
+private.h:123:extern void __wys__cyg_profile_func_enter (void *, void *);
+private.h:124:extern void __wys__cyg_profile_func_exit (void *, void *);
+```
+
 
 如果验证成功，我们可以得到以下结论：
 
 可以从汇编符号表角度出发，确定插装结果：
 
 1、编译选项是否生效；（每个函数入口，都会有探针符号）
+
 2、探针的实现是否是我们自己的探针实现；（通过对比`插装目标产物里面的探针实现的符号表`和`自己产生静态库的符号表`）
 #### 以上相关试验记录：
 * case012：单给CFLAGS添加 -finstrument-functions ；

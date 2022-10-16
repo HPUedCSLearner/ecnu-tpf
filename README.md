@@ -125,3 +125,20 @@ call指令的操作数是偏移 , 相对于调用后下一条指令的地址。�
 如果拆机 `已链接 可执行，反汇编器将显示调用的真实目标地址。`
 
 https://www.coder.work/article/1509767
+
+#### 紧接着的工作：
+```c
+---- 2022.10.16
+1、改变进程数，调试插装；
+2、阅读师姐的大论文，把学习插装细节，并且先自己看代码实现，然后不懂得请教师姐；
+3、输出一个汇报的进展；
+```
+
+
+#### 容易遗忘的点：
+```c
+1、 其实gptl库的一些计时实现，也是rdtsc:
+feng@wangfeng:~/ecnu/ecnu-wys/ecasm/GPTL/timing$ grep -rin tsc
+gptl.c:3615:    asm volatile("rdtsc" : "=a" (a), "=d" (d));
+gptl.c:3625:  __asm__ __volatile__("rdtsc" : "=A" (val) : );
+```
