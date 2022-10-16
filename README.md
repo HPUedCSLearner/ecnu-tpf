@@ -126,6 +126,26 @@ call指令的操作数是偏移 , 相对于调用后下一条指令的地址。�
 
 https://www.coder.work/article/1509767
 
+4、池的技术、pool tech(mem, process, thread, link)
+
+https://hkrb7870j3.feishu.cn/docx/doxcn4Qjv9EXC24N8817CyEQwwh
+
+https://www.bilibili.com/video/BV1hV4y1J7Ls?p=5&spm_id_from=pageDriver&vd_source=ddaa7cd556186574491ea632ad077d44
+
+
+https://subingwen.cn/linux/threadpool-cpp/
+
+
+5、一些解析的东西xml\json\ini
+
+6、大丙的编程 C++11新特性
+
+https://www.bilibili.com/video/BV1bX4y1G7ks/?spm_id_from=333.999.0.0&vd_source=ddaa7cd556186574491ea632ad077d44
+
+
+https://subingwen.cn/cplusplus/
+
+
 #### 紧接着的工作：
 ```c
 ---- 2022.10.16
