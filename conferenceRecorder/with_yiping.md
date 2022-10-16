@@ -89,6 +89,46 @@ Makefile:4: Makefile.conf: No such file or directory
 gmake: *** No rule to make target `Makefile.conf'.  Stop.
 ```
 
+
+
+============================================================================
+### 设计实验、从编译角度探索一下问题：
+#### （1、探索编译选项插入行为；2、为什么CFLAGS添加编译选项，导致模式无法运行；3、如何正确插装）：
+* case012：单给CFLAGS添加 -finstrument-functions ；
+* case013：单给FFLAGS添加 -finstrument-functions ；
+* case014：同时给CFLAGS、FFLAGS添加 -finstrument-functions ；
+  
+* case015：单给FFLAGS添加 -finstrument-functions； 并且链接探针实现；
+  
+------> （NOTE：与case013对照，可以探究是否真正插入探针实现）
+
+* case016:（ 什么编译选项都不加，也不链接额外的库，跟以上case做对照）
+
+
+##### 关键符号：
+```c
+nm -e file(符号表符号):
+0000000000402e10 T __cyg_profile_func_enter
+0000000000402e7f T __cyg_profile_func_exit
+
+objdump -d file(汇编符号):
+objdump -d cesm.exe > case016Assmble.txt
+grep -rin __cyg_profile_func_enter case016Assmble.txt
+
+addr2line -e **** (地址到函数名转换):
+
+```
+### 怀疑点记录：
+* 1、编译工具链不一致，导致最后连接的时候，没有真正链接成功？
+* 2、生成探针实现静态库的方法，难道不正确，是不是生成静态库的命令缺少什么参数？从而导致生成的静态库导致最后无法链接成功？
+
+GPTL: GPTL is the "General Purpose Timing Library"
+
+<__cyg_profile_func_enter>:
+
+grep -rin "<__cyg_profile_func_enter>:" case014Assmble.txt
+
+============================================================================
 ### 编译时间记录：
 
 ```c

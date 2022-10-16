@@ -58,6 +58,8 @@ return ("00000000" + retV).substr(8 - (8 - retV.length()));
 * Fortran C++ 互调
 
 
+### 使用批处理提交作业：
+srun -n 1024 $EXEROOT/cesm.exe >&! cesm.log.$LID
 
 
 gcc test.c  hash_func.cpp -lstdc++
@@ -72,19 +74,23 @@ gcc test.c  hash_func.cpp -lstdc++
 
 /public1/soft/intel/2017/bin
 
-问题解决:
+##### 问题解决:
 
 export PATH=/public1/soft/intel/2017/compilers_and_libraries_2017.7.259/linux/mpi/intel64/bin:$PATH
 
 export PATH=/public1/soft/intel/2017/bin:$PATH
 
+```c
+bash /public1/home/fio_climate_model/FIO-ESM/fioesm/fioesm2_0/case/esm_liuyao/interEnv.sh
+```
 
-常用路径:
+
+##### 常用路径:
 /public1/home/fio_climate_model/zyp/fioesm_cases/B_1024_p1_bk/timing_probe4/libprobeso
 
 -lfinstrument
 
-常用字符串:
+##### 常用字符串:
 -finstrument-functions
 ##### 奇怪的现象:
 1、模式插装后，第一次跑起来，可以产生多个trace文件，但是，第二次跑起来的时候，就没有trace文件
@@ -92,3 +98,14 @@ export PATH=/public1/soft/intel/2017/bin:$PATH
 ###### 已解决的问题记录:
 1、GCC插装编译选项问题，以及静态链接库的问题
 2、变频下，使用tsc作为计时条件的可行性
+
+
+#### 知识积累:
+
+1、 [【cmake】add_definitions ](https://www.cnblogs.com/sunbines/p/16155640.html)
+
+ 说明： 在源文件的编译中添加 -D 标志
+
+2、[ CMake菜谱（CMake Cookbook中文版）](https://www.bookstack.cn/read/CMake-Cookbook/README.md)
+
+[CmakeList.txt 中的 FortranCInterface_HEADER](https://www.bookstack.cn/read/CMake-Cookbook/content-chapter9-9.2-chinese.md)
