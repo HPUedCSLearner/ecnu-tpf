@@ -109,3 +109,19 @@ bash /public1/home/fio_climate_model/FIO-ESM/fioesm/fioesm2_0/case/esm_liuyao/in
 2、[ CMake菜谱（CMake Cookbook中文版）](https://www.bookstack.cn/read/CMake-Cookbook/README.md)
 
 [CmakeList.txt 中的 FortranCInterface_HEADER](https://www.bookstack.cn/read/CMake-Cookbook/content-chapter9-9.2-chinese.md)
+
+https://runebook.dev/zh-CN/docs/cmake/module/fortrancinterface?page=2
+
+3、[callq](https://www.coder.work/article/1509767)
+
+callq 指令只有一个操作数，而不是问题中暗示的两个。反汇编器以两种形式显示它，作为地址和作为符号+偏移量。
+
+您正在查看 的`拆解未链接` 目标文件。由于被反汇编的文件没有链接，所以显示的目标地址不是fun的地址。 .汇编器放 0 在指令的操作数字段中，并为链接器创建一个重定位记录，以填充到目标最终地址的偏移量。
+
+call指令的操作数是偏移 , 相对于调用后下一条指令的地址。因此，操作数字段中的值 0 会导致反汇编程序将下一条指令的地址显示为调用的目标。在所示的反汇编中，即地址 23。
+
+如果你让 fun一个静态函数，汇编器可能会填充函数的真实偏移量，因为它不需要重定位，你会在反汇编中看到它。 (这可能取决于您使用的确切工具和选项。)
+
+如果拆机 `已链接 可执行，反汇编器将显示调用的真实目标地址。`
+
+https://www.coder.work/article/1509767
