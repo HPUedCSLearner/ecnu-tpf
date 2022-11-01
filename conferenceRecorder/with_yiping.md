@@ -132,6 +132,8 @@ gmake: *** No rule to make target `Makefile.conf'.  Stop.
 
 /public1/home/fio_climate_model/FIO-ESM/fioesm/fioesm2_0/case/esm_liuyao/timing_probe_1001/libprobeso/Mpiifortran
 
+libfunctrace.a
+
 * case017：给gptl库里面的探针改名（改实现和头文件，最小程度影响原模式的运行）
 
 ```c
@@ -157,9 +159,99 @@ private.h:124:extern void __wys__cyg_profile_func_exit (void *, void *);
 1、编译选项是否生效；（每个函数入口，都会有探针符号）
 
 2、探针的实现是否是我们自己的探针实现；（通过对比`插装目标产物里面的探针实现的符号表`和`自己产生静态库的符号表`）
+
+==============================================================================
+
+* case18:
+完成简易的测量信息写入文件中：
+简化实验条件：
+    一：探针内容的简化；
+    二：进程数修改为8；模式天为一天
+    三：全模式穿行
+
+修改gptl.c文件
+cp  utils_timing/timing/gptl.c cases/case020/sampling/models/utils/timing/
+* case19:
+作为以上实验，不插装的对照（进程数修改为8；模式天为一天；全模式穿行；），看是否可以跑成功
+
+```c
+
+    Init Time   :      60.787 seconds 
+    Run Time    :     707.964 seconds      707.964 seconds/day 
+    Final Time  :       0.029 seconds 
+```
+* case20:
+先不插装的对照（进程数修改为8；模式天为一秒钟；全模式穿行；）
+```c
+    Init Time   :      37.386 seconds 
+    Run Time    :      14.590 seconds      700.320 seconds/day 
+    Final Time  :       0.035 seconds 
+
+```
+然后，使用简单的探针进行插装：
+```c
+    Init Time   :      38.965 seconds 
+    Run Time    :      18.170 seconds      872.160 seconds/day 
+    Final Time  :       0.040 seconds 
+
+```
+
+* case21:
+不插装的对照（进程数修改为8；模式天为一分钟；全模式穿行；）
+```c
+    Init Time   :      54.688 seconds 
+    Run Time    :      14.788 seconds      709.824 seconds/day 
+    Final Time  :       0.033 seconds
+```
+* case22:
+不插装的对照（进程数修改为8；模式天为一小时；全模式穿行；）
+```c
+    Init Time   :      37.181 seconds 
+    Run Time    :      28.718 seconds      689.232 seconds/day 
+    Final Time  :       0.047 seconds 
+```
+
+
+
+
+
+#### 组会：2022/10/30记录
+##### 问题：
+* 1、插装小实验已经成功，但是对生成的trace文件有点疑惑？
+##### 移植忆莲探针实现遇到的问题：
+* 2、师姐探针的实现，看代码的话，写文件的操作是让一个进程完成，那其他进程记录在红黑树的采样信息是怎么写到文件上的？
+* 3、将timer.c编成静态库，给test.c文件实验插装，从反汇编看，好像是没有插入成功，没有报错，好像是没有链接成功；
+    从实际的运行看，也没有成功；
+* 4、timer的实现中，tauutil.h的文件,是不是没有使用，如果使用的话 怎么使用
+* 5、timer的实现中，comm.h 的作用是区分不同模块的吗？
+
+
+
+
+
+##### Done
+小疑问：
+1、env_mach_pes.xml 中后面几个的含义是什么？
+```c
+<entry id="TOTALPES"   value="1024"  />    
+<entry id="PES_LEVEL"   value="1r"  />    
+<entry id="MAX_TASKS_PER_NODE"   value="64"  />    
+<entry id="PES_PER_NODE"   value="$MAX_TASKS_PER_NODE"  />    
+<entry id="COST_PES"   value="0"  />    
+<entry id="CCSM_PCOST"   value="-3"  />    
+<entry id="CCSM_TCOST"   value="0"  />    
+<entry id="CCSM_ESTCOST"   value="1"  />    
+```
+2、进程排布全部穿行是否这样设置：(已解决)
+
+3、lock文件修改是否有必要(已解决)
+cp env_mach_pes.xml LockedFiles/env_mach_pes.xml.locked
+
+==============================================================================
 #### 以上相关试验记录：
 * case012：单给CFLAGS添加 -finstrument-functions ；
-  
+
+
 ```c
 5828290 0000000001d64db0 <__cyg_profile_func_enter>:
 5828291  1d64db0:   55                      push   %rbp

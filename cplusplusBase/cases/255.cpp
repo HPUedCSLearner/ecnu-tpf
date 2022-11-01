@@ -11,7 +11,7 @@ struct Hero  {							// 英雄基类
 	void callback(Fn&& fn, Args&&...args) {
 		m_callback = bind(forward<Fn>(fn), forward<Args>(args)...);
 	}
-	void show() { m_callback(); }   // 调用子类的成员函数。
+	void show() { m_callback(); }   // 调用子类的成员函数。 // 基于对象，也就是，通过回调函数的方式，实现多态
 };
 
 struct XS :public Hero  {			// 西施派生类
