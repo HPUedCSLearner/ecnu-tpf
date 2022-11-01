@@ -1,0 +1,7 @@
+add_executable(main)
+#file(GLOB_RECURSE srcs *.cpp *.h)
+aux_source_directory(. srcs)
+aux_source_directory(xmlLib srcs)
+message("srcs ${srcs}")
+target_include_directories(main PUBLIC xmlLib/*)
+target_sources(main PUBLIC  ${srcs})

@@ -1,0 +1,7 @@
+# ninja log v5
+1	10	0	/home/feng/ecnu/ecnu-wys/yazi/yazi-json-main/build/CMakeFiles/cmake.verify_globs	ec5c80c9f393da1d
+1	276	1667308273265390224	json/CMakeFiles/json.dir/Parser.o	3ad4e6e2bd6c9ce9
+0	375	1667308273365393748	CMakeFiles/main.dir/main.o	5b6ae6364c9e14d1
+0	518	1667308273509398823	json/CMakeFiles/json.dir/Json.o	44263a236054675f
+518	533	1667308273525399387	json/libjson.a	6ae3bc3d02f3b0ec
+534	615	1667308273605402206	main	772ec68367aa7ab4

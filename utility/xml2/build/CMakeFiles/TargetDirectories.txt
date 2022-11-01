@@ -1,0 +1,6 @@
+/home/feng/ecnu/ecnu-wys/utility/xml2/build/CMakeFiles/main.dir
+/home/feng/ecnu/ecnu-wys/utility/xml2/build/CMakeFiles/edit_cache.dir
+/home/feng/ecnu/ecnu-wys/utility/xml2/build/CMakeFiles/rebuild_cache.dir
+/home/feng/ecnu/ecnu-wys/utility/xml2/build/xmlLib/CMakeFiles/xml.dir
+/home/feng/ecnu/ecnu-wys/utility/xml2/build/xmlLib/CMakeFiles/edit_cache.dir
+/home/feng/ecnu/ecnu-wys/utility/xml2/build/xmlLib/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,6 @@
+/home/feng/ecnu/ecnu-wys/yazi/yazi-json-main/build/CMakeFiles/main.dir
+/home/feng/ecnu/ecnu-wys/yazi/yazi-json-main/build/CMakeFiles/edit_cache.dir
+/home/feng/ecnu/ecnu-wys/yazi/yazi-json-main/build/CMakeFiles/rebuild_cache.dir
+/home/feng/ecnu/ecnu-wys/yazi/yazi-json-main/build/json/CMakeFiles/json.dir
+/home/feng/ecnu/ecnu-wys/yazi/yazi-json-main/build/json/CMakeFiles/edit_cache.dir
+/home/feng/ecnu/ecnu-wys/yazi/yazi-json-main/build/json/CMakeFiles/rebuild_cache.dir
