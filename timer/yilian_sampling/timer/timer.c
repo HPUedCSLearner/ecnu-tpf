@@ -8,7 +8,7 @@
 #include "comm.h"
 #include "stack.h"
 #include "rbtree.h"
-#include <athread.h>
+// #include <athread.h>
 #include <dlfcn.h>
 #include "mpi.h"
 

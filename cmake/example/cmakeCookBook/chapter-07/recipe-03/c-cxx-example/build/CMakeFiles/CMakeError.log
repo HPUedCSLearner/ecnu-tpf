@@ -1,0 +1,60 @@
+Performing C SOURCE FILE Test _flag_works failed with the following output:
+Change Dir: /home/feng/ecnu/ecnu-wys/cmake/example/cmakeCookBook/chapter-07/recipe-03/c-cxx-example/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_7e3a5/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_7e3a5.dir/build.make CMakeFiles/cmTC_7e3a5.dir/build
+gmake[1]: Entering directory '/home/feng/ecnu/ecnu-wys/cmake/example/cmakeCookBook/chapter-07/recipe-03/c-cxx-example/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_7e3a5.dir/src.c.o
+/usr/bin/cc -D_flag_works  -foo -o CMakeFiles/cmTC_7e3a5.dir/src.c.o -c /home/feng/ecnu/ecnu-wys/cmake/example/cmakeCookBook/chapter-07/recipe-03/c-cxx-example/build/CMakeFiles/CMakeTmp/src.c
+cc: error: unrecognized command-line option '-foo'
+gmake[1]: *** [CMakeFiles/cmTC_7e3a5.dir/build.make:78: CMakeFiles/cmTC_7e3a5.dir/src.c.o] Error 1
+gmake[1]: Leaving directory '/home/feng/ecnu/ecnu-wys/cmake/example/cmakeCookBook/chapter-07/recipe-03/c-cxx-example/build/CMakeFiles/CMakeTmp'
+gmake: *** [Makefile:127: cmTC_7e3a5/fast] Error 2
+
+
+Source file was:
+int main(void) { return 0; }
+Performing C SOURCE FILE Test _flag_works failed with the following output:
+Change Dir: /home/feng/ecnu/ecnu-wys/cmake/example/cmakeCookBook/chapter-07/recipe-03/c-cxx-example/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_67ea4/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_67ea4.dir/build.make CMakeFiles/cmTC_67ea4.dir/build
+gmake[1]: Entering directory '/home/feng/ecnu/ecnu-wys/cmake/example/cmakeCookBook/chapter-07/recipe-03/c-cxx-example/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_67ea4.dir/src.c.o
+/usr/bin/cc -D_flag_works  -wrong -o CMakeFiles/cmTC_67ea4.dir/src.c.o -c /home/feng/ecnu/ecnu-wys/cmake/example/cmakeCookBook/chapter-07/recipe-03/c-cxx-example/build/CMakeFiles/CMakeTmp/src.c
+cc: error: unrecognized command-line option '-wrong'
+gmake[1]: *** [CMakeFiles/cmTC_67ea4.dir/build.make:78: CMakeFiles/cmTC_67ea4.dir/src.c.o] Error 1
+gmake[1]: Leaving directory '/home/feng/ecnu/ecnu-wys/cmake/example/cmakeCookBook/chapter-07/recipe-03/c-cxx-example/build/CMakeFiles/CMakeTmp'
+gmake: *** [Makefile:127: cmTC_67ea4/fast] Error 2
+
+
+Source file was:
+int main(void) { return 0; }
+Performing C SOURCE FILE Test _flag_works failed with the following output:
+Change Dir: /home/feng/ecnu/ecnu-wys/cmake/example/cmakeCookBook/chapter-07/recipe-03/c-cxx-example/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_b78a8/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_b78a8.dir/build.make CMakeFiles/cmTC_b78a8.dir/build
+gmake[1]: Entering directory '/home/feng/ecnu/ecnu-wys/cmake/example/cmakeCookBook/chapter-07/recipe-03/c-cxx-example/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_b78a8.dir/src.c.o
+/usr/bin/cc -D_flag_works  -wrong -o CMakeFiles/cmTC_b78a8.dir/src.c.o -c /home/feng/ecnu/ecnu-wys/cmake/example/cmakeCookBook/chapter-07/recipe-03/c-cxx-example/build/CMakeFiles/CMakeTmp/src.c
+cc: error: unrecognized command-line option '-wrong'
+gmake[1]: *** [CMakeFiles/cmTC_b78a8.dir/build.make:78: CMakeFiles/cmTC_b78a8.dir/src.c.o] Error 1
+gmake[1]: Leaving directory '/home/feng/ecnu/ecnu-wys/cmake/example/cmakeCookBook/chapter-07/recipe-03/c-cxx-example/build/CMakeFiles/CMakeTmp'
+gmake: *** [Makefile:127: cmTC_b78a8/fast] Error 2
+
+
+Source file was:
+int main(void) { return 0; }
+Performing C++ SOURCE FILE Test _flag_works failed with the following output:
+Change Dir: /home/feng/ecnu/ecnu-wys/cmake/example/cmakeCookBook/chapter-07/recipe-03/c-cxx-example/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_a4e2f/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_a4e2f.dir/build.make CMakeFiles/cmTC_a4e2f.dir/build
+gmake[1]: Entering directory '/home/feng/ecnu/ecnu-wys/cmake/example/cmakeCookBook/chapter-07/recipe-03/c-cxx-example/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_a4e2f.dir/src.cxx.o
+/usr/bin/c++ -D_flag_works  -foo -o CMakeFiles/cmTC_a4e2f.dir/src.cxx.o -c /home/feng/ecnu/ecnu-wys/cmake/example/cmakeCookBook/chapter-07/recipe-03/c-cxx-example/build/CMakeFiles/CMakeTmp/src.cxx
+c++: error: unrecognized command-line option '-foo'
+gmake[1]: *** [CMakeFiles/cmTC_a4e2f.dir/build.make:78: CMakeFiles/cmTC_a4e2f.dir/src.cxx.o] Error 1
+gmake[1]: Leaving directory '/home/feng/ecnu/ecnu-wys/cmake/example/cmakeCookBook/chapter-07/recipe-03/c-cxx-example/build/CMakeFiles/CMakeTmp'
+gmake: *** [Makefile:127: cmTC_a4e2f/fast] Error 2
+
+
+Source file was:
+int main() { return 0; }

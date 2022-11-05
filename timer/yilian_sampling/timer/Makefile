@@ -1,16 +1,16 @@
 OPEN_ARRAY=/home/export/online1/mdt00/shisuan/swliuyao/oa/OA/build.slave
 
-oplevel3 = -O2 -w  -std=c++0x -D_WITHOUT_LLVM_ -DSUNWAY    -I/home/export/online1/mdt00/shisuan/swliuyao/oa/lib/armadillo -I/usr/sw/yyzlib/pnetcdf/include -fpermissive -faddress_align=64
+oplevel3 = -O2 -w  -std=c++0x -D_WITHOUT_LLVM_ -DSUNWAY    -fpermissive
 
-FC = mpif90 ${oplevel3} -mieee -faddress_align=64
-CC = swgcc -O2 -w -mieee -faddress_align=64
+FC = mpif90 ${oplevel3}  
+CC = gcc -O2 -w  
 
 EXT_LIB_LINK = 	-lpnetcdf  -ldl  -Wl,-rpath=${JIT_LIB}
 
 LIBS =  -lstdc++ ${EXT_LIB} ${EXT_LIB_LINK}
 
 FCFLAGS = -Wno-tabs  \
-		  -I${OPEN_ARRAY} -g -finstrument-functions \
+		  -g -finstrument-functions \
 		  -fbacktrace -ffree-line-length-0 
 
 
@@ -20,7 +20,7 @@ FCFLAGS = -Wno-tabs  \
 
 mydemo: mydemo.o timer.o
 	${FC} -o mydemo mydemo.o timer.o \
-	${EXT_LIB_LINK} ${LIBS} -I${OPEN_ARRAY} -L${OPEN_ARRAY} \
+	${EXT_LIB_LINK} ${LIBS}  \
 	-lgfortran -L. -lopenarray -lm -lm_slave -ldl -lstdc++ -L/usr/sw/yyzlib/pnetcdf/lib -lpnetcdf
 
 timer.o: timer.c
