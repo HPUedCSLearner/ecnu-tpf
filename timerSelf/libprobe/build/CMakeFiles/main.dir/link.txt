@@ -1,0 +1,1 @@
+/usr/bin//mpicc  -g -finstrument-functions CMakeFiles/main.dir/utility/test.c.o -o main  src/libinstruProbe.a 

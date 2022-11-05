@@ -1,0 +1,2 @@
+/usr/bin/ar qc libinstruProbe.a CMakeFiles/instruProbe.dir/timer.c.o
+/usr/bin/ranlib libinstruProbe.a
