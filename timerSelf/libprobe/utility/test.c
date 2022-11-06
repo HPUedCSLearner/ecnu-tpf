@@ -1,23 +1,17 @@
-
-#include <stdio.h>
-
-
-
-int do_multi(int a, int b)
+#include "mpi.h"
+#include<stdio.h>
+#include<math.h>
+int main(int argc, char *argv[])
 {
-	return a * b;
-}
- 
- 
-int do_calc(int a, int b)
-{
-	return do_multi(a, b);
-}
- 
- 
-int main()
-{
-	int a = 4, b = 5;
-	printf("result: %d\n", do_calc(a, b));
-	return 0;
+int myid,numprocs;          
+       int namelen;              
+       char processor_name[MPI_MAX_PROCESSOR_NAME];
+
+       MPI_Init(&argc, &argv);     
+       MPI_Comm_rank(MPI_COMM_WORLD,&myid);
+       MPI_Comm_size(MPI_COMM_WORLD,&numprocs);
+       MPI_Get_processor_name(processor_name,&namelen);
+       fprintf(stderr,"Hello World!Process %d of %d on %s\n",myid,numprocs,processor_name);
+       MPI_Finalize();
+       return 0;
 }

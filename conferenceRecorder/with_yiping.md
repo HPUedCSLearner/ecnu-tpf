@@ -225,7 +225,29 @@ cp  utils_timing/timing/gptl.c cases/case020/sampling/models/utils/timing/
 * 4、timer的实现中，tauutil.h的文件,是不是没有使用，如果使用的话 怎么使用
 * 5、timer的实现中，comm.h 的作用是区分不同模块的吗？
 
+#### 组会：2022/11/06记录
+/public1/home/fio_climate_model/esm_liuyao/bin/cmake-3.24.3-linux-x86_64/bin/cmake
+* 总体进展：
+  * 1、trace文件生成按照 进程号（目前非mpi进程号）- 时间 命名
+  * 2、使用师姐的探针实现，自测插装效果，能够生成文件
+* 问题：
+  * 1、使用MPI的进程号出现问题：
+  Attempting to use an MPI routine (internal_Comm_size) before initializing or after finalizing MPICH
 
+##### 一些现象：
+* 1、当我把mpiwraper编进去以后，就出现奇怪的事情了,，(-lmylib 不能正常编译，mct模块编译就报错)
+  * 此时，会报错,很奇怪的错
+  * 表象的原因，在编译mct的时候，直接要去链接-lmylib，`这个是我没有想到的，`所以，我又把链接-lmylib的操作放到了Makefile里面,但是出现了如下情况；
+* 2、如果不把gptl里面探针入口注释掉，同时加上编译选项在Macro里面，并且在Makefile里面链接探针的实现;
+  * 此时，会报错GPTL_start() : has no initialiczed (说明，这种方法链接的是原来的库里面的探针入口函数)
+  * 但是，把探针入口给就加上__wys__***， 就会出现模式无法成功运行；（`连接上自己的探针实现`，说明，自己的探针实现可能有问题）
+* 3、从只打印一个进程的log看，只有4G左右，之前八个进程疯狂打印，有三四十个G，这个也算可以说通
+* 4、加上 -no-pie 看是否可以对应上函数
+
+
+##### 为什么插入探针，模式运行不成功？？
+* 运行到一定程度什么也不输出，包括cesm本身的log，也包括探针里面的log?
+* 模式陷入了死循环，导致其出不来
 
 
 

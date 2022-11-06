@@ -1,4 +1,4 @@
-#define	SIZE	10000000
+#define	SIZE	100000000
 unsigned long long tmp;
 /*inline void init_stack(struct stack* s);
 inline void push(struct stack* s, unsigned long long data);

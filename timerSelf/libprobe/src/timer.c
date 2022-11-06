@@ -159,9 +159,9 @@ void __profile__record_time_end()
 		insert(&T[__profile__funcID],__profile__node);
 	}
 	// pop(&__profile__shell_time);
-	if(__profile__shell_time.top==0){
-		// MPI_Comm_size(MPI_COMM_WORLD, &__profile_common_size);  ---------------- > TO DO 
-		// MPI_Comm_rank(MPI_COMM_WORLD, &__profile__rank);
+	if(__profile__shell_time.top==1){
+		MPI_Comm_size(MPI_COMM_WORLD, &__profile_common_size); // ---------------- > TO DO 
+		MPI_Comm_rank(MPI_COMM_WORLD, &__profile__rank);
 		// printf("STACK is EMPTY!!%d\n",__profile_common_size);
 		__profile__input_csv();
 	}
