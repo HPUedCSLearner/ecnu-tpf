@@ -10,6 +10,7 @@
 // 妙用二：就可以打破环形调用，甚至可以测量我们探针里面使用过的接口
 /*
 
+
 假设，我们的探针实现里面使用过了perf_counter()这个接口，并且被插装的程序里面也有这个perf_counter()这个接口：
 当 main -> perf_counter()
 perf_counter() -> __cyg_profile_func_enter()
@@ -28,6 +29,9 @@ INEXIT timestack size is:2
 ##exit func: main father: (null)
 INEXIT timestack size is:0
 
+—————————— > [可以用layout asm 看了本文件里面的perf_counter使用c++的那种符号，所以不会有问题]
+那么，如果我们用llvm混淆（不一定用llvm）了我们的插装代码的符号表，理论上就可以插装任何函数
+
 -> 分析不出来了吧，还是老老实实加上 void  __attribute__((no_instrument_function))算了
 
 -> 如果可以分析出来，就分析一下，直接给这玩意儿插装__cyg_profile_func_enter，如果分析不出来了，可以直接时间一下试试
@@ -37,13 +41,20 @@ INEXIT timestack size is:0
 #include <dlfcn.h>
 #include <cxxabi.h>
 #include <string.h>
-#include <functional>
+#include <unistd.h>
 #include "perf_counter.h"
 
+#include <functional>
 #include <string>
 #include <unordered_map>
 #include <tuple>
 #include <stack>
+
+
+char timestamp[32];
+const char* timesStamp();
+char _pid[100] = {"\0"};
+const char* get_pid();
 
 void __profile__input_csv();
 #define __DEBUG_ENTER_FUNCNAME__
@@ -134,11 +145,34 @@ extern "C" void __cyg_profile_func_exit(void *func, void *fatherFunc) { // 插�
 
 void __profile__input_csv()
 {
-    char filename[1024] = "./functrace.csv";
+    char filename[1024] = "./";
+    strcat(filename, get_pid());
+    strcat(filename, "_");
+    strcat(filename, timesStamp());
+    strcat(filename,"_functrace.csv");
+    printf("%s\n", filename);
     FILE *fw;
     fw = fopen(filename, "w");
     for (const auto &callInfoKey : funcSampleInfo) {
         fprintf(fw, "%s <- %s[father] ", callInfoKey.first.first.c_str(), callInfoKey.first.second.c_str());
         fprintf(fw, "%d %lld %lld\n", std::get<0>(callInfoKey.second), std::get<1>(callInfoKey.second), std::get<2>(callInfoKey.second));
     }
+}
+
+const char* get_pid() {
+	pid_t current_id;
+	current_id = getpid();
+	sprintf(_pid, "%d", current_id);
+	return _pid;
+}
+
+
+
+const char* timesStamp()
+{
+    time_t ticks = time(NULL);
+    struct tm* ptm = localtime(&ticks);
+    memset(timestamp, 0, sizeof(timestamp));
+    strftime(timestamp, sizeof(timestamp), "%Y-%m-%d-%H-%M-%S", ptm);
+    return timestamp;
 }
