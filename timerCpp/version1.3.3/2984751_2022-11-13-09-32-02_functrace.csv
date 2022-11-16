@@ -1,7 +1,0 @@
-main <- null[father] 1 299706 585048
-CC <- main[father] 1 252 33114
-BB <- main[father] 1 43226 79112
-AA <- main[father] 1 70472 114708
-BB <- AA[father] 1 35442 68046
-CC <- BB[father] 2 614 73160
-perf_counter <- main[father] 1 232 49556
