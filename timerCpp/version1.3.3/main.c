@@ -16,8 +16,8 @@ void AA() {
 
 int main() {
     perf_counter();
-    // AA();
-    // BB();
-    // CC();
+    AA();
+    BB();
+    CC();
     return 0;
 }

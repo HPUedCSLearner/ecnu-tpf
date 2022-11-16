@@ -251,6 +251,53 @@ cp  utils_timing/timing/gptl.c cases/case020/sampling/models/utils/timing/
 
 
 
+#### 组会：2022/11/13记录
+从目前所作的一些实验看来，插装之后，模式应该是陷入了死循环
+
+#### 设计实验：
+* case025: 简单插装，只打印函数调用关系，只打印一个mpi进程
+/public1/home/fio_climate_model/esm_liuyao/cases/case025/run/cesm.log.221113-090920
+
+```c 86586 enter func: MPI_Allreduce father: mpi_allreduce_
+ 86587 exit func: MPI_Allreduce father: mpi_allreduce_
+ 86588 exit func: parutilitiesmodule_mp_parcollective1dint_ father: dyn_comp_mp_dyn_init_
+ 86589 enter func: parutilitiesmodule_mp_parcollective1dint_ father: dyn_comp_mp_dyn_init_
+ 86590 enter func: MPI_Allreduce father: mpi_allreduce_
+ 86591 exit func: MPI_Allreduce father: mpi_allreduce_
+ 86592 exit func: parutilitiesmodule_mp_parcollective1dint_ father: dyn_comp_mp_dyn_init_
+ 86593 enter func: parutilitiesmodule_mp_parcollective1dint_ father: dyn_comp_mp_dyn_init_
+ 86594 enter func: MPI_Allreduce father: mpi_allreduce_
+ 86595 exit func: MPI_Allreduce father: mpi_allreduce_
+ 86596 exit func: parutilitiesmodule_mp_parcollective1dint_ father: dyn_comp_mp_dyn_init_
+ 86597 enter func: (null) father: dyn_comp_mp_dyn_init_
+ 86598 exit func: (null) father: dyn_comp_mp_dyn_init_
+ 86599 enter func: dycore_mp_get_resolution_ father: dyn_comp_mp_dyn_init_
+ 86600 exit func: dycore_mp_get_resolution_ father: dyn_comp_mp_dyn_init_
+ 86601 enter func: (null) father: dyn_comp_mp_dyn_init_
+ 86602 enter func: shr_infnan_mod_mp_set_r8_inf_ father: (null)
+ 86603 exit func: shr_infnan_mod_mp_set_r8_inf_ father: (null)
+ 86604 enter func: shr_infnan_mod_mp_set_r8_inf_ father: (null)
+ 86605 exit func: shr_infnan_mod_mp_set_r8_inf_ father: (null)
+ 86606 enter func: shr_infnan_mod_mp_set_r8_inf_ father: (null)
+ 86607 exit func: shr_infnan_mod_mp_set_r8_inf_ father: (null)
+ 86608 enter func: shr_infnan_mod_mp_set_r8_inf_ father: (null)
+ ```
+
+试一下，只对一种语言添加flag
+* case025:
+  * 双return、双flags
+  * 单flas
+  * 
+* case026:
+* case027:
+#### 出现问题的记录：
+1、不同平台的编译器的差异
+2、会出现null的情况
+
+#### 常用字符串：
+mpiicc test/mpi1.c -L./build/src -linstruProbe -lstdc++ -ldl -rdynamic ; mpirun -n 3 ./a.out
+
+
 ##### Done
 小疑问：
 1、env_mach_pes.xml 中后面几个的含义是什么？
