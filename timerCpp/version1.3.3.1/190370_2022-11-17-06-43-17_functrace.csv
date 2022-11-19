@@ -1,0 +1,7 @@
+CC <- main[father] 1 9642 136818
+BB <- main[father] 1 235759 308530
+main <- __libc_start_main[father] 1 1036237 1498342
+AA <- main[father] 1 273637 407011
+BB <- AA[father] 1 178369 241957
+CC <- BB[father] 2 109501 346637
+perf_counter <- main[father] 1 28925 101696
