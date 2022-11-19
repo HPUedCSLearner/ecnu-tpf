@@ -38,3 +38,9 @@ docker run -d -it -p 8022:22 --name myUbuntu ubuntu-sshd:1.1
 docker commit -m -a [containerID] newImageName:[Tag]
 docker commit -m="add sshd" -a="feng" e5624a341ed7 ubuntu-sshd:1.1
 
+
+##### 配置docker过程中一些重要的心得：
+* 首先，用vscode链接Linux的时候，可以用 ssh root@127.0.0.1 -p 8022测试
+* 可以用vscode链接后，需要可以从gethub克隆代码：有点坑的是，使用public key的时候，用使用这种方法生成的 ssh-keygen -t rsa -C，后者无法下载代码
+* 可以克隆之后，发现无法push， 首先，使用ssh克隆网速快，其次，push的时候，不要使用https等克隆的仓库
+
