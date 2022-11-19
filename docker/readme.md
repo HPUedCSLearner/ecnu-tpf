@@ -21,6 +21,7 @@
 * vim /ect/ssh/sshd_config -> PermitRootLogin yes
 * ssh root@127.0.0.1 -p 8022
 
+* ssh-keygen -t rsa -C 'cjdspace-learn' (其他的公钥git clone generate errors)
 * git config --global alias.ci commit
 * git config --global alias.co checkout
 * git config --global alias.br branch
