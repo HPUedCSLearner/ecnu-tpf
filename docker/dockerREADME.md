@@ -12,7 +12,12 @@
 
 #### docker离线安装并导入镜像:
 * https://www.jianshu.com/p/1dd72a6b5ae9
-
+```bash
+docker save [images:tags] -o *.tar
+docker load -i *.tar
+docker save ubuntu-llvm15:1.4 -o ubuntu-llvm.tar #将ubuntu-llvm15:1.4的镜像导出成tar文件
+docker load -i ubuntu-llvm.tar #将tar文件导入为ubuntu-llvm15:1.4的镜像
+```
 #### others
 * vim /etc/apt/sources.list
 * apt update / apt-get update
@@ -32,16 +37,27 @@
 * 发现使用ssh比hppts带宽大，并且push的时候，也不会出问题
 
 #### docker cmd
+```bash
 docker ps
 docker images
 docker port [containerID/containName] # 查看容器端口情况
 
 docker run [images][:Tag]
 docker run -d -it -p 8022:22 --name myUbuntu ubuntu-sshd:1.1
+docker run -d -it -p 8022:22 -v D:\docker\windowsDocument:/app ubuntu-gitpush:1.2
+docker run -it -d -p 8025:22  --privileged=true ubuntu-llvm15:1.4  /sbin/init
 
 docker commit -m -a [containerID] newImageName:[Tag]
 docker commit -m="add sshd" -a="feng" e5624a341ed7 ubuntu-sshd:1.1
+```
+#### 在docker中使用systemctl:
 
+* 参考链接:[docker中无法使用systemctl](https://aoyouer.com/posts/docker-systemctl/)
+```bash
+apt install init
+docker run -it -d -p 8025:22  --privileged=true ubuntu-llvm15:1.4  /sbin/init
+systemctl status ssh
+```
 
 ##### 配置docker过程中一些重要的心得：
 * 首先，用vscode链接Linux的时候，可以用 ssh root@127.0.0.1 -p 8022测试
