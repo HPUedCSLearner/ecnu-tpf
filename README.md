@@ -2,7 +2,9 @@
 
  [xxx碎片化学习](https://kdocs.cn/l/cpnRGw8Ou4go)
 
+【bookstack】
 
+[CTF](https://www.bookstack.cn/read/CTF-All-In-One/SUMMARY.md)
 
 【Git】
 
@@ -162,3 +164,7 @@ feng@wangfeng:~/ecnu/ecnu-wys/ecasm/GPTL/timing$ grep -rin tsc
 gptl.c:3615:    asm volatile("rdtsc" : "=a" (a), "=d" (d));
 gptl.c:3625:  __asm__ __volatile__("rdtsc" : "=A" (val) : );
 ```
+
+#### 测量插装通用的点（一些一闪而过点 idea ）：
+* 如果`使用动态库`去实现我们的探针，那么每次我们更改我们的源码实现的时候，就不需要在重新编译被测项目 重新 链接我们的探针库.(   [如何使用动态库](https://blog.csdn.net/qq570437459/article/details/109002571))
+* 在适当的地方打印`调用栈`，进行调试
