@@ -6,7 +6,7 @@
 * 第二节课：https://kdocs.cn/l/ckrNBtOEAJPw?f=301
 * book stack - CMAKE-COOK: https://www.bookstack.cn/read/CMake-Cookbook/README.md
 * https://github.com/dev-cafe/cmake-cookbook
-*  
+* [官方文档cmake.org/cmake/help/latest](https://cmake.org/cmake/help/latest/)
 
 
 #### 笔记：
