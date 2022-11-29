@@ -283,13 +283,132 @@ cp  utils_timing/timing/gptl.c cases/case020/sampling/models/utils/timing/
  86608 enter func: shr_infnan_mod_mp_set_r8_inf_ father: (null)
  ```
 
+```bash
+[fio_climate_model@ln132%bscc-a6 models]$ ls
+atm  csm_share  dead_share  drv  glc  ice  lnd  ocn  rof  utils  wav
+[fio_climate_model@ln132%bscc-a6 models]$ grep -rin __cyg_profile_func_enter
+utils/timing/gptl.c:3590:void __cyg_profile_func_enter (void *this_fn,
+utils/timing/private.h:123:extern void __cyg_profile_func_enter (void *, void *);
+utils/timing/README:121:__cyg_profile_func_enter (void *this_fn, void *call_site) at function start,
+glc/cism/glimmer-cism/libgptl/gptl.c:3584:void __cyg_profile_func_enter (void *this_fn,
+glc/cism/glimmer-cism/libgptl/private.h:123:extern void __cyg_profile_func_enter (void *, void *);
+glc/cism/glimmer-cism/libgptl/README:121:__cyg_profile_func_enter (void *this_fn, void *call_site) at function start,
+[fio_climate_model@ln132%bscc-a6 models]$ pwd
+/public1/home/fio_climate_model/esm_liuyao/cases/case026/sampling/models
+
+[fio_climate_model@ln132%bscc-a6 models]$ vim +3590 utils/timing/gptl.c
+[fio_climate_model@ln132%bscc-a6 models]$ vim +123 utils/timing/private.h
+[fio_climate_model@ln132%bscc-a6 models]$ 
+[fio_climate_model@ln132%bscc-a6 models]$ vim +3584 glc/cism/glimmer-cism/libgptl/gptl.c
+[fio_climate_model@ln132%bscc-a6 models]$ vim +123 glc/cism/glimmer-cism/libgptl/private.h
+```
+
 试一下，只对一种语言添加flag
 * case025:
   * 双return、双flags
   * 单flas
   * 
 * case026:
+##### 第一次实验：双flags，空实现的探针
+###### 实验结果：跑成功
+ * 探针实现: /public1/home/fio_climate_model/esm_liuyao/probeLib/timerCppSelf/v0.0.0/build/src
+ * 文件路径: /public1/home/fio_climate_model/esm_liuyao/cases/case026/timing
+ * timing文件:ccsm_timing.case026.221126-133918
+###### 实验结论：
+* 我们可以拿到该模式所有运行时的 caller, callee的关系 (由此，按道理来说，我们可以拿到所有采样信息)
+
+
+##### 第二次实验：双flags，探针的实现 -> 添加上perf_counter()接口 (排除perf_counter()可能导致插装运行失败的情况)
+###### 实验结果：跑成功, 但是有个怪现象（模式跑完的实践是原来的一倍（原先是50s，这次是100s））
+ * 探针实现: /public1/home/fio_climate_model/esm_liuyao/probeLib/timerCppSelf/v0.0.1/build/src
+ * 文件路径: /public1/home/fio_climate_model/esm_liuyao/cases/case026/timing
+ * timing文件:ccsm_timing.case026.221126-144740
+###### 实验结论：
+* 1、对这次怪现象的猜测：可能是因为模式天数少，导致插装的开销跟原来运行的时间接近，导致出现一倍的差距
+* 2、perf_counter()不是 导致 插装运行失败的原因
+
+##### 第三次实验：只是再次验证上面的实验结果
+###### 实验结果：跑成功
+ * 探针实现: /public1/home/fio_climate_model/esm_liuyao/probeLib/timerCppSelf/v0.0.1/build/src
+ * 文件路径: /public1/home/fio_climate_model/esm_liuyao/cases/case026/timing
+ * timing文件:ccsm_timing.case026.221126-150921
+###### 实验结论：
+* 1、不是偶然的，导致出怪现象
+* 2、如果要验证上面的猜想，需要在模式天数较大的情况下，进行一组对照实验（插装的，不插装的）
+这个很重要，因为我们要确定出，差一倍的时间，[是否是每次的开销都这么大]
+
+
+##### 第四次实验：双flags，探针的实现  -> 添加上perf_counter()接口
+#####                                  ->  添加上__cxa_demangle()接口 (排除__cxa_demangle()可能导致插装运行失败的情况)
+###### 实验结果：跑失败, 模式一直出不来，scancel的时候，已经跑了20min了
+ * 探针实现: /public1/home/fio_climate_model/esm_liuyao/probeLib/timerCppSelf/v0.0.2/build/src
+ * some clues:
+  * 1、some symbles : _dl_addr \ tbk_getModuleName>: \  dladdr (__cxa_demangle的内部实现)
+  * 2、running log: cesm.log.221126-160840 (path:/public1/home/fio_climate_model/esm_liuyao/cases/case026/run)
+  * 3、cesm.exe.221126-155415Assemble.txt (path: /public1/home/fio_climate_model/esm_liuyao/cases/case026/bld)
+###### 实验结论：
+* 1、模式一直出不来，scancel的时候，已经跑了20min了
+
+##### 第五次实验：（作为第四次实验的对照）尝试调试debug、 探究失败原因
+* 本打算，找到进程号，使用gdb -p processID 进行调试，打出调用栈，探究失败原因
+* 但是，进程号一直找不到
+
+
+
+
+
+很奇怪的是:使用CMAKE输出的demo都是null
+```bash 
+-------------------------------------------------------------------------
+demo路径
+/public1/home/fio_climate_model/esm_liuyao/probeLib/timerCppSelf/v0.0.2
+-------------------------------------------------------------------------
+
+enter func: (null) father: __libc_start_main
+enter func: (null) father: (null)
+enter func: (null) father: (null)
+enter func: (null) father: (null)
+i am AA()
+enter func: (null) father: (null)
+enter func: (null) father: (null)
+i am CC()
+exit func: (null) father: (null)
+i am BB()
+exit func: (null) father: (null)
+exit func: (null) father: (null)
+exit func: (null) father: (null)
+exit func: (null) father: (null)
+result: 20
+exit func: (null) father: __libc_start_main
+-------------------------------------------------------------------------
+
+而使用下面的这个，就可以解析出来
+mpiicpc utility/test.c -g -finstrument-functions -ldl -rdynamic -Lbuild/src -linstruProbe
+-------------------------------------------------------------------------
+
+enter func: main father: __libc_start_main
+enter func: do_calc(int, int) father: main
+enter func: do_multi(int, int) father: do_calc(int, int)
+enter func: AA() father: do_multi(int, int)
+i am AA()
+enter func: BB() father: AA()
+enter func: CC() father: BB()
+i am CC()
+exit func: CC() father: BB()
+i am BB()
+exit func: BB() father: AA()
+exit func: AA() father: do_multi(int, int)
+exit func: do_multi(int, int) father: do_calc(int, int)
+exit func: do_calc(int, int) father: main
+result: 20
+exit func: main father: __libc_start_main
+-------------------------------------------------------------------------
+```
+
+
 * case027:
+
+
 #### 出现问题的记录：
 1、不同平台的编译器的差异
 2、会出现null的情况
