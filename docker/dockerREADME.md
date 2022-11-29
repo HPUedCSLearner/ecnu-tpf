@@ -10,6 +10,57 @@
 #### docker 离线安装：
 
 
+#### docker windows 更改镜像安装位置：
+* C:\Users\王枫\AppData\Local\Docker\wsl
+
+
+```bash
+PS C:\Users\王枫> wsl -l -v
+  NAME                   STATE           VERSION
+* docker-desktop-data    Running         2
+  docker-desktop         Running         2
+PS C:\Users\王枫> wsl --shutdown
+PS C:\Users\王枫> wsl --export docker-desktop-data D:\docker\dockerAppImages\docker-desktop-data.tar
+PS C:\Users\王枫> wsl --export  docker-desktop  D:\docker\dockerAppImages\docker-desktop.tar
+PS C:\Users\王枫> wsl --unregister docker-desktop-data
+正在注销...
+PS C:\Users\王枫> wsl --unregister docker-desktop
+正在注销...
+PS C:\Users\王枫> wsl --import docker-desktop-data  D:\docker\dockerAppImages\image  D:\docker\dockerAppImages\docker-desktop-data.tar
+PS C:\Users\王枫> wsl --import docker-desktop  D:\docker\dockerAppImages\bin  D:\docker\dockerAppImages\docker-desktop.tar
+PS C:\Users\王枫> wsl -l -v
+  NAME                   STATE           VERSION
+* docker-desktop-data    Stopped         2
+  docker-desktop         Running         2
+重启docker
+PS C:\Users\王枫> wsl -l -v
+  NAME                   STATE           VERSION
+* docker-desktop-data    Running         2
+  docker-desktop         Running         2
+
+
+
+  D:\docker\images-tars>docker load -i ubuntu-llvm.tar
+fb3430f8db2e: Loading layer [==================================================>]  1.854GB/1.854GB
+1122f5e490c2: Loading layer [==================================================>]  1.978GB/1.978GB
+bc01da0580e9: Loading layer [==================================================>]  3.744GB/3.744GB
+ae6b7a61f1fa: Loading layer [==================================================>]  1.495MB/1.495MB
+Loaded image: ubuntu-llvm15:1.4
+  
+
+  D:\docker\images-tars>docker images -a
+REPOSITORY      TAG       IMAGE ID       CREATED         SIZE
+ubuntu-llvm15   1.4       00fbde1a1973   4 days ago      7.59GB
+python          3.7       3e36461b4ff4   12 days ago     907MB
+ubuntu          latest    a8780b506fa4   3 weeks ago     77.8MB
+redis           latest    c2342258f8ca   4 weeks ago     117MB
+centos          latest    5d0da3dc9764   14 months ago   231MB
+  ```
+
+
+#### docker windows安装, 更换镜像安装路径：
+* 
+
 #### docker离线安装并导入镜像:
 * https://www.jianshu.com/p/1dd72a6b5ae9
 ```bash
