@@ -189,24 +189,30 @@ main(){
 
 
   hash_t *hash = hash_new();
+  char times_accTime_shlTIme[100 + 100 + 100] = {0};
+  sprintf(times_accTime_shlTIme, "%d", 300);
 
-  hash_set(hash, "name", "tj");
-  hash_set(hash, "age", "25");
-  hash_set(hash, "app", "100");
+  hash_set(hash, "name", times_accTime_shlTIme);
+  memset(times_accTime_shlTIme, 0, sizeof(times_accTime_shlTIme));
+  
+  sprintf(times_accTime_shlTIme, "%d", 3000);
+  hash_set(hash, "age", times_accTime_shlTIme);
 
-  printf("hash size is %d\n", hash_size(hash));
+  // printf("hash size is %d\n", hash_size(hash));
 
-  printf("hash value is %s\n", (const char *)hash_get(hash, "age"));
-  assert(0 == strcmp("25", hash_get(hash, "age")));
+  // printf("hash value is %s\n", (const char *)hash_get(hash, "age"));
+  // assert(0 == strcmp("25", hash_get(hash, "age")));
+
+  // hash_set(hash, "app", "10088");
+  // printf("hash value is %s\n", (const char *)hash_get(hash, "app"));
+
+  // hash_has(hash, "age");
+  // assert(1 == hash_has(hash, "age"));
+  // assert(0 == hash_has(hash, "agexxx"));
 
 
-  hash_has(hash, "age");
-  assert(1 == hash_has(hash, "age"));
-  assert(0 == hash_has(hash, "agexxx"));
-
-
-  const char *keys[2];
-  void *vals[2];
+  const char *keys[10];
+  void *vals[10];
   int n = 0;
 
   hash_each(hash, {
@@ -214,6 +220,13 @@ main(){
     vals[n] = val;
     n++;
   });
+
+  fprintf(stdout, "n is %d\n", n);
+  for (int i = 0; i < n; ++i) {
+    fprintf(stdout, "%s - %s\n", (const char *)keys[i], (const char *)vals[i] );
+  }
+
+
 
 
   return 0;

@@ -11,7 +11,10 @@ void AA() {
 }
 
 int main() {
-    AA();
+    // AA();
+    // AA();
+    BB();
+    BB();
     BB();
     return 0;
 }

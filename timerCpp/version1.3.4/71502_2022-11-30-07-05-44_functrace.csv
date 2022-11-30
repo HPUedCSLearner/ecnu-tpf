@@ -1,0 +1,8 @@
+do_calc <- main[father] 1 1150792 1291283
+do_multi <- do_calc[father] 1 1078938 1131279
+AA <- do_multi[father] 1 1002954 1054376
+CC <- main[father] 3 261929 658612
+main <- __libc_start_main[father] 1 3266888 3573352
+AA <- main[father] 1 1046111 1100747
+BB <- AA[father] 2 1710691 1859677
+CC <- BB[father] 10 338375 1400783

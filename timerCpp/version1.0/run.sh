@@ -4,4 +4,4 @@ g++ -c hook.cpp && ar -r libhook.a hook.o
 gcc main.c -o main  -g -finstrument-functions -lhook -lstdc++ -L.  -ldl -rdynamic -no-pie
 ./main
 
-rm -rf ./*.o ./*.out ./main
+rm -rf ./*.o ./*.out 

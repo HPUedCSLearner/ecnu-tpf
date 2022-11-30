@@ -1,0 +1,2 @@
+/usr/bin/ar qc libinstruProbe.a  CMakeFiles/instruProbe.dir/timer.c.o CMakeFiles/instruProbe.dir/mpiwrapper.c.o
+/usr/bin/ranlib libinstruProbe.a

@@ -338,6 +338,8 @@ glc/cism/glimmer-cism/libgptl/README:121:__cyg_profile_func_enter (void *this_fn
 这个很重要，因为我们要确定出，差一倍的时间，[是否是每次的开销都这么大]
 
 
+
+关键实验 (如果解决了这个问题，就可以使用C++，实现探针了)
 ##### 第四次实验：双flags，探针的实现  -> 添加上perf_counter()接口
 #####                                  ->  添加上__cxa_demangle()接口 (排除__cxa_demangle()可能导致插装运行失败的情况)
 ###### 实验结果：跑失败, 模式一直出不来，scancel的时候，已经跑了20min了
@@ -354,6 +356,29 @@ glc/cism/glimmer-cism/libgptl/README:121:__cyg_profile_func_enter (void *this_fn
 * 但是，进程号一直找不到
 
 
+##### 第六次实验：添加 时间栈
+###### 实验结果：跑成功
+ * 探针实现: /public1/home/fio_climate_model/esm_liuyao/probeLib/timerCppSelf/v0.0.3/build/src
+ * running log: /public1/home/fio_climate_model/esm_liuyao/cases/case026/logs/221129-102614Log
+
+```bash
+##wys funcTimeStack_maxDepth is 1862
+##wys funcAddrStack_maxDepth is 931
+##wys funcTimeStack_maxDepth is 1862
+##wys funcAddrStack_maxDepth is 931
+##wys funcTimeStack_maxDepth is 1862
+##wys funcAddrStack_maxDepth is 931
+##wys funcTimeStack_maxDepth is 1862
+##wys funcAddrStack_maxDepth is 931
+##wys funcTimeStack_maxDepth is 1862
+##wys funcAddrStack_maxDepth is 931
+##wys funcTimeStack_maxDepth is 1862
+##wys funcAddrStack_maxDepth is 931
+##wys funcTimeStack_maxDepth is 1862
+##wys funcAddrStack_maxDepth is 931
+##wys funcTimeStack_maxDepth is 1862
+##wys funcAddrStack_maxDepth is 931
+```
 
 
 
