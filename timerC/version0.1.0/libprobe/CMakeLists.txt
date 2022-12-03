@@ -1,7 +1,7 @@
 set(TOOLCHAIN_DIR "/usr/bin/")
 set(CMAKE_C_COMPILER ${TOOLCHAIN_DIR}/mpicc)
 
-set(CMAKE_C_FLAGS "${CMAKE_CXX_FLAGS} -g -finstrument-functions  -ldl -rdynamic") # 这边的flags也会作用在链接阶段
+set(CMAKE_C_FLAGS "${CMAKE_CXX_FLAGS} -g -finstrument-functions -no-pie  -ldl -rdynamic") # 这边的flags也会作用在链接阶段
 
 cmake_minimum_required(VERSION 3.15)
 project(Build_timer_project LANGUAGES C CXX Fortran)

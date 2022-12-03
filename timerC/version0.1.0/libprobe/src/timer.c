@@ -172,6 +172,7 @@ void __cyg_profile_func_exit(void *func, void *caller) {
     #ifdef __DEBUG_EXIT_FUNCNAME__
     fprintf(stdout, "caller_callee: not store key\n");
     #endif
+    memset(times_accTime_shlTIme, 0, sizeof(times_accTime_shlTIme));
     sprintf(times_accTime_shlTIme, "%d:%lld:%lld", 1, acc_end_time - pop(&funcTimeStk), perf_counter() - pop(&funcTimeStk));
 
     char* new_times_accTime_shlTIme = (char *)malloc(sizeof(times_accTime_shlTIme) + 1);
