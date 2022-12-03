@@ -1,0 +1,10 @@
+./func_trace.sh build/main trace.csv a.out
+
+do_multi,do_calc,1,467387,468305
+CC,BB,10,318862,621195
+AA,do_multi,1,426295,427214
+CC,main,3,153348,510774
+do_calc,main,1,508249,509167
+AA,main,1,647593,648740
+BB,AA,2,830093,852591
+main,??,1,1872532,1873450

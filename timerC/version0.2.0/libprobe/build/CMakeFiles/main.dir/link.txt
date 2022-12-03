@@ -1,0 +1,1 @@
+/usr/bin//mpicc  -g -finstrument-functions -no-pie  -ldl -rdynamic   CMakeFiles/main.dir/testSrcs/test.c.o  -o main  src/libinstruProbe.a 
