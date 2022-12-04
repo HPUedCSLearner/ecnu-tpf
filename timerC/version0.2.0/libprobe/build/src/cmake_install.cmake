@@ -1,4 +1,4 @@
-# Install script for directory: /home/maple/myplace/github/ecnu-tpf/timerC/version0.1.2/libprobe/src
+# Install script for directory: /home/maple/myplace/github/ecnu-tpf/timerC/version0.2.0/libprobe/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

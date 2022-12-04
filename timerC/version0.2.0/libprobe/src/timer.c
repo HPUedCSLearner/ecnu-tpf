@@ -24,7 +24,7 @@
 // #define __DEBUG_EXIT_FUNCNAME__
 // #define __DEBUG_STACK_SIZE__
 // #define __DEBUG_PRINT__
-#define __DEBUG_TRACEEND__
+// #define __DEBUG_TRACEEND__
 
 
 #define __DEBUG_FUNCNAME__ // dladdr 应该只能在cpp上编译通过
@@ -91,6 +91,11 @@ struct stack funcDddrStk;
 
 hash_t *hash = NULL;
 
+int __profile__rank = 0;
+int __profile_common_size;
+
+void __profile__input_csv();
+
 void __attribute__((constructor)) traceBegin(void) {
 	hash = hash_new();
   init_stack(&funcTimeStk);
@@ -104,16 +109,16 @@ void __attribute__((destructor)) traceEnd(void) {
 	  fprintf(stdout, "funcDddrStk size is : %d\n", stackSzie(&funcDddrStk));
     #endif
 
-    const char **keys = (const char **)malloc(hash_size(hash));
-    const char **vals = (const char **)malloc(hash_size(hash));
-    int n = 0;
-    hash_each(hash, {
-      keys[n] = key;
-      vals[n] = val;
-      n++;
-    });
-  
   #ifdef __DEBUG_TRACEEND__
+  const char **keys = (const char **)malloc(hash_size(hash));
+  const char **vals = (const char **)malloc(hash_size(hash));
+  int n = 0;
+  hash_each(hash, {
+    keys[n] = key;
+    vals[n] = val;
+    n++;
+  }); 
+  
 	fprintf(stdout, "n is %d\n", n);
   for (int i = 0; i < n; ++i) {
     fprintf(stdout, "%s %s\n", (const char *)keys[i], (const char *)vals[i] );
@@ -122,6 +127,8 @@ void __attribute__((destructor)) traceEnd(void) {
 
 
   // need to free MEM  ------------------> TO DO
+
+  __profile__input_csv();
 
 // naive print info
   // const char *keys[30];
@@ -139,6 +146,44 @@ void __attribute__((destructor)) traceEnd(void) {
   //   fprintf(stdout, "%s - %s\n", (const char *)keys[i], (const char *)vals[i] );
   // }
 	// #endif
+}
+
+void __profile__input_csv()
+{
+	if(__profile__rank != 0) return;
+	char buf[1024];  
+	FILE *fw;     
+	char filename[1024] = "./out", number[10];
+	strcat(filename,"_time.csv");
+	printf("%s\n",filename);
+	fw = fopen(filename, "w");
+	
+  // const char **keys = (const char **)malloc(hash_size(hash));
+  // const char **vals = (const char **)malloc(hash_size(hash));
+  // int n = 0;
+  // hash_each(hash, {
+  //   keys[n] = key;
+  //   vals[n] = val;
+  //   n++;
+  // });
+  
+  const char *keys[3000];
+  void *vals[3000];
+  int n = 0;
+
+  hash_each(hash, {
+    keys[n] = key;
+    vals[n] = val;
+    n++;
+  });
+
+  for (int i = 0; i < n; ++i) {
+    fprintf(fw, "%s %s\n", (const char *)keys[i], (const char *)vals[i] );
+  }
+
+  // need to free MEM  ------------------> TO DO
+
+  fclose(fw);
 }
 
 void __cyg_profile_func_enter(void *func, void *caller) {
