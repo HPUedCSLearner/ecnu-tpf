@@ -380,7 +380,69 @@ glc/cism/glimmer-cism/libgptl/README:121:__cyg_profile_func_enter (void *this_fn
 ##wys funcAddrStack_maxDepth is 931
 ```
 
+* case026:
+##### 第七次实验：基于hash的探针实现
+###### 实验结果：跑成功
+ * 探针实现: /public1/home/fio_climate_model/esm_liuyao/probeLib/timerCHash/cyproject/libprobe/build/src
+ * 文件路径: /public1/home/fio_climate_model/esm_liuyao/cases/case026/timing
+ * timing文件:ccsm_timing.case026.221126-133918
+###### 实验结论：
+* 我们可以拿到该模式所有运行时的 caller, callee的关系 (由此，按道理来说，我们可以拿到所有采样信息)
 
+
+当把代码 写到
+在后处理中：发现funcTimeStk size is : 1160717855 出现了问题
+
+```c
+void __cyg_profile_func_enter(void *func, void *caller) {
+  unsigned long long shell_start_time = perf_counter();
+  push(&funcTimeStk, shell_start_time);
+  push(&funcDddrStk, func);
+  unsigned long long acc_start_time = perf_counter();
+  push(&funcTimeStk, acc_start_time);
+	
+}
+
+325 cesm.exe           00000000018C84FC  shr_infnan_mod_mp         333  shr_infnan_mod.F90
+326 cesm.exe           0000000000DA186B  dyn_compdyn_init_         623  dyn_comp.F90
+327 cesm.exe           0000000000DA0436  dyn_comp_mp_dyn_i         525  dyn_comp.F90
+328 cesm.exe           00000000004D779D  inital_mp_cam_ini          36  inital.F90
+329 cesm.exe           0000000000495B32  cam_comp_mp_cam_i         164  cam_comp.F90
+330 cesm.exe           00000000004938BC  atm_comp_mct_mp_a         279  atm_comp_mct.F90
+331 cesm.exe           0000000000436060  ccsm_comp_mod_mp_        1064  ccsm_comp_mod.F90
+332 cesm.exe           0000000000438202  MAIN__                     90  ccsm_driver.F90
+333 cesm.exe           000000000041619E  Unknown               Unknown  Unknown
+334 libc-2.17.so       00002B809F408555  __libc_start_main     Unknown  Unknown
+335 cesm.exe           00000000004160A9  Unknown               Unknown  Unknown
+336 hash size is : 0
+337 funcTimeStk size is : 1160717855
+338 funcDddrStk size is : 50000
+339 my __profile__rank is : 0
+
+
+hash size is : 0
+funcTimeStk size is : 1165225319
+funcDddrStk size is : 50000
+my __profile__rank is : 0
+forrtl: severe (174): SIGSEGV, segmentation fault occurred
+
+
+/public1/home/fio_climate_model/esm_liuyao/cases/case026/run/cesm.log.221207-214118
+/public1/home/fio_climate_model/esm_liuyao/cases/case026/run/cesm.log.221207-223043
+
+severe (174): SIGSEGV, segmentation fault occurred
+函数调用栈溢出
+当我们使用的push的时候，并且是源码里面的第一个push
+猜测：说明，在模式运行的某个时刻的时候，里面的函数（可以看打印日志的地方）调用了push（可以看源码； 可以看反汇编）
+
+如果是，我们把原来模式里面的函数，给替换掉了，那么问题肯定就大了
+
+解决方法：
+1、使用 __attribute__(no_instrument_function) 属性，声明不插装
+2、混淆我们的函数实现，避免与被测函数重名
+
+
+```
 
 很奇怪的是:使用CMAKE输出的demo都是null
 ```bash 
