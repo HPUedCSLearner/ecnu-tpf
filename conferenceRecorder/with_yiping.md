@@ -390,6 +390,17 @@ glc/cism/glimmer-cism/libgptl/README:121:__cyg_profile_func_enter (void *this_fn
 * 我们可以拿到该模式所有运行时的 caller, callee的关系 (由此，按道理来说，我们可以拿到所有采样信息)
 
 
+
+
+
+## 20220-12-11，组会报告：
+#### 像老师所说的，下班晚上回来跑几把模式，早上上班看看结果
+期间发现，最近这周提交的作业需要很长时间，才被分到资源，
+有天晚上回来较早，本来上多跑几把，但是八点多提交作业后，十一点多还没跑起来，第二天早上看了一下才跑完
+
+#### 首先，发现了之前探针为什么失败
+在日志中发现：forrtl: severe (174): SIGSEGV, segmentation fault occurred
+
 当把代码 写到
 在后处理中：发现funcTimeStk size is : 1160717855 出现了问题
 
@@ -439,10 +450,122 @@ severe (174): SIGSEGV, segmentation fault occurred
 
 解决方法：
 1、使用 __attribute__(no_instrument_function) 属性，声明不插装
-2、混淆我们的函数实现，避免与被测函数重名
+2、混淆我们的函数实现，避免与被测函数重名；
 
 
 ```
+##  发生了一个从来都没有发生的现象
+#### 后来就编译不过了？以为我的探针有问题
+cat /public1/home/fio_climate_model/esm_liuyao/cases/case027/bld/cesm.bldlog.221210-212003
+
+##### （发现问题，只要加上插装flags 就会出现这个错误，我人麻了，破防了）
+
+R_X86_64_PC32 against symbol `seq_comm_mct_mp_num_inst_max_' （以前从来没有出现过，这周六就出现了这个问题，环境有问题吗？？）
+
+cat /public1/home/fio_climate_model/esm_liuyao/cases/case027/bld/cesm.bldlog.221210-212003
+最新的一次build：
+ /public1/home/fio_climate_model/esm_liuyao/cases/case027/bld/cesm.bldlog.221211-093947
+
+```bash
+[fio_climate_model@ln132%bscc-a6 libprobe]$  cat /public1/home/fio_climate_model/esm_liuyao/cases/case027/bld/cesm.bldlog.221210-212003
+Sat Dec 10 21:20:20 CST 2022 /public1/home/fio_climate_model/esm_liuyao/cases/case027/bld/cesm.bldlog.221210-212003
+-------------------------------------------------------------------------
+ Building a single executable version of CESM 
+-------------------------------------------------------------------------
+/public1/home/fio_climate_model/esm_liuyao/cases/case027/Tools/mkSrcfiles 
+cp -f /public1/home/fio_climate_model/esm_liuyao/cases/case027/bld/cesm/obj/Filepath /public1/home/fio_climate_model/esm_liuyao/cases/case027/bld/cesm/obj/Deppath
+/public1/home/fio_climate_model/esm_liuyao/cases/case027/Tools/mkDepends  Deppath Srcfiles > /public1/home/fio_climate_model/esm_liuyao/cases/case027/bld/cesm/obj/Depends
+/public1/home/fio_climate_model/esm_liuyao/cases/case027/Tools/mkSrcfiles 
+mpiifort  -o /public1/home/fio_climate_model/esm_liuyao/cases/case027/bld/cesm.exe ccsm_comp_mod.o ccsm_driver.o mrg_mod.o seq_avdata_mod.o seq_diag_mct.o seq_domain_mct.o seq_flux_mct.o seq_frac_mct.o seq_hist_mod.o seq_map_esmf.o seq_mald/lib/ -latm  -L/public1/home/fio_climate_model/esm_liuyao/cases/case027/bld/lib/ -lice  -L/public1/home/fio_climate_model/esm_liuyao/cases/case027/bld/lib/ -llnd  -L/public1/home/fio_climate_model/esm_liuyao/cases/case027/bld/lib/ -locnate_model/esm_liuyao/cases/case027/bld/lib/ -lglc  -L/public1/home/fio_climate_model/esm_liuyao/cases/case027/bld/lib/ -lwav -L/public1/home/fio_climate_model/esm_liuyao/cases/case027/bld/lib -lcsm_share  -L/public1/home/fio_climate_model7/bld/mct/mpeu -lmpeu -L/public1/home/fio_climate_model/esm_liuyao/cases/case027/bld/pio -lpio -lgptl -L/public1/soft/netcdf/4.4.1-parallel-icc17/lib -lnetcdff -lnetcdf   -mcmodel=large 
+ccsm_comp_mod.o: In function `ccsm_comp_mod_mp_ccsm_pre_init_':
+/public1/home/fio_climate_model/esm_liuyao/cases/case027/sampling/models/drv/driver/ccsm_comp_mod.F90:571:(.text+0x40c): relocation truncated to fit: R_X86_64_PC32 against symbol `seq_comm_mct_mp_cplid_' defined in COMMON section in /publ
+ccsm_comp_mod.o: In function `ccsm_comp_mod_mp_ccsm_init_':
+/public1/home/fio_climate_model/esm_liuyao/cases/case027/sampling/models/drv/driver/ccsm_comp_mod.F90:1330:(.text+0xfb02): relocation truncated to fit: R_X86_64_PC32 against symbol `seq_comm_mct_mp_num_inst_max_' defined in COMMON section
+/public1/home/fio_climate_model/esm_liuyao/cases/case027/sampling/models/drv/driver/ccsm_comp_mod.F90:1332:(.text+0xfb34): relocation truncated to fit: R_X86_64_PC32 against symbol `seq_comm_mct_mp_num_inst_max_' defined in COMMON section
+/public1/home/fio_climate_model/esm_liuyao/cases/case027/sampling/models/drv/driver/ccsm_comp_mod.F90:1334:(.text+0xfb66): relocation truncated to fit: R_X86_64_PC32 against symbol `seq_comm_mct_mp_num_inst_max_' defined in COMMON section
+/public1/home/fio_climate_model/esm_liuyao/cases/case027/sampling/models/drv/driver/ccsm_comp_mod.F90:1336:(.text+0xfb98): relocation truncated to fit: R_X86_64_PC32 against symbol `seq_comm_mct_mp_num_inst_max_' defined in COMMON section
+/public1/home/fio_climate_model/esm_liuyao/cases/case027/sampling/models/drv/driver/ccsm_comp_mod.F90:1338:(.text+0xfbca): relocation truncated to fit: R_X86_64_PC32 against symbol `seq_comm_mct_mp_num_inst_max_' defined in COMMON section
+/public1/home/fio_climate_model/esm_liuyao/cases/case027/sampling/models/drv/driver/ccsm_comp_mod.F90:1340:(.text+0xfbfc): relocation truncated to fit: R_X86_64_PC32 against symbol `seq_comm_mct_mp_num_inst_max_' defined in COMMON section
+/public1/home/fio_climate_model/esm_liuyao/cases/case027/sampling/models/drv/driver/ccsm_comp_mod.F90:1342:(.text+0xfc2e): relocation truncated to fit: R_X86_64_PC32 against symbol `seq_comm_mct_mp_num_inst_max_' defined in COMMON section
+/public1/home/fio_climate_model/esm_liuyao/cases/case027/sampling/models/drv/driver/ccsm_comp_mod.F90:1371:(.text+0x1001d): relocation truncated to fit: R_X86_64_PC32 against symbol `seq_timemgr_mod_mp_seq_timemgr_histavg_type_' defined iseq_timemgr_mod.o)
+/public1/home/fio_climate_model/esm_liuyao/cases/case027/sampling/models/drv/driver/ccsm_comp_mod.F90:1936:(.text+0x1c6fd): relocation truncated to fit: R_X86_64_PC32 against symbol `seq_comm_mct_mp_num_inst_xao_' defined in COMMON sectio
+/public1/home/fio_climate_model/esm_liuyao/cases/case027/sampling/models/drv/driver/ccsm_comp_mod.F90:1936:(.text+0x1c714): additional relocation overflows omitted from the output
+gmake: *** [/public1/home/fio_climate_model/esm_liuyao/cases/case027/bld/cesm.exe] Error 1
+[fio_climate_model@ln132%bscc-a6 libprobe]$ R_X86_64_PC32
+bash: R_X86_64_PC32: command not found...
+```
+
+##### 网上问题解决方法一：
+https://www.coder.work/article/6329758
+
+您得到的错误由链接器返回，因为静态分配 block 的大小超出了 32 位寻址指令可以寻址的范围，即 2 GB。这与您使用 32 位还是 64 位整数索引数组无关 - `问题与静态分配数组的总大小有关`。这在这里详细解释:
+
+gfortran for dummies: What does mcmodel=medium do exactly?
+
+如您所见，为了解决此问题，您可以使用 -mcmodel=medium 编译您的代码。或 -mcmodel=large .然后允许使用大于 2 GB 的静态分配数组。
+
+##### 网上问题解决方法二：
+https://blog.csdn.net/qq_41035283/article/details/119614206
+
+链接库中使用了libglog.so与libgflags.a，`编译时动态库与静态库不能混用`。
+
+重新编译了gflags生成动态库libgflags.so，然后加入cmake的target_link_libraries中，问题解决。
+
+
+
+
+#### 组会：2022/11/12记录
+修改gptl源码：
+```bash
+[fio_climate_model@ln132%bscc-a6 models]$ grep -rin __cyg_profile_func_enter
+utils/timing/gptl.c:3590:void __cyg_profile_func_enter (void *this_fn,
+utils/timing/private.h:123:extern void __cyg_profile_func_enter (void *, void *);
+utils/timing/README:121:__cyg_profile_func_enter (void *this_fn, void *call_site) at function start,
+glc/cism/glimmer-cism/libgptl/gptl.c:3584:void __cyg_profile_func_enter (void *this_fn,
+glc/cism/glimmer-cism/libgptl/private.h:123:extern void __cyg_profile_func_enter (void *, void *);
+glc/cism/glimmer-cism/libgptl/README:121:__cyg_profile_func_enter (void *this_fn, void *call_site) at function start,
+[fio_climate_model@ln132%bscc-a6 models]$ pwd
+/public1/home/fio_climate_model/zyp/tmp/case30/sampling/models
+
+vim +3590 utils/timing/gptl.c
+vim +123 utils/timing/private.h
+vim +3584 glc/cism/glimmer-cism/libgptl/gptl.c
+vim +123 glc/cism/glimmer-cism/libgptl/private.h
+
+```
+
+
+
+hash size is : 0
+funcTimeStk size is : 0
+funcDddrStk size is : 0
+maxDepthTimeStk is : 931
+maxDepthDddrStk is : 1862
+my __profile__rank is : 0
+hash size is : 0
+funcTimeStk size is : 0
+funcDddrStk size is : 0
+maxDepthTimeStk is : 931
+maxDepthDddrStk is : 1862
+my __profile__rank is : 0
+
+/public1/home/fio_climate_model/zyp/tmp/case30/run/cesm.log.221212-224941
+
+
+#### 设计实验：
+* case025: 简单插装，只打印函数调用关系，只打印一个mpi进程
+/public1/home/fio_climate_model/esm_liuyao/cases/case025/run/cesm.log.221113-090920
+
+
+
+
+
+
+
+
+
+
+
 
 很奇怪的是:使用CMAKE输出的demo都是null
 ```bash 
