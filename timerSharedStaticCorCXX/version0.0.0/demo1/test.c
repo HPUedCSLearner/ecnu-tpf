@@ -1,9 +1,20 @@
 #include <stdio.h>
-#include "max.h"
 
-int main(int argc, char *argv[])
+int do_multi(int a, int b)
 {
-    int a = 10, b = -2, c = 100;
-    printf("max among 10, -2 and 100 is %d.\n", max(a, b, c));
-    return 0;
+	return a * b;
+}
+ 
+ 
+int do_calc(int a, int b)
+{
+	return do_multi(a, b);
+}
+ 
+ 
+int main()
+{
+	int a = 4, b = 5;
+	printf("result: %d\n", do_calc(a, b));
+	return 0;
 }
