@@ -514,7 +514,7 @@ https://blog.csdn.net/qq_41035283/article/details/119614206
 
 
 
-#### 组会：2022/11/12记录
+#### 组会：2022/12/12记录
 修改gptl源码：
 ```bash
 [fio_climate_model@ln132%bscc-a6 models]$ grep -rin __cyg_profile_func_enter
@@ -535,7 +535,7 @@ vim +123 glc/cism/glimmer-cism/libgptl/private.h
 ```
 
 
-
+###### 实验结果之一：
 hash size is : 0
 funcTimeStk size is : 0
 funcDddrStk size is : 0
@@ -550,6 +550,60 @@ maxDepthDddrStk is : 1862
 my __profile__rank is : 0
 
 /public1/home/fio_climate_model/zyp/tmp/case30/run/cesm.log.221212-224941
+
+###### 实验结果之一：
+/public1/home/fio_climate_model/zyp/tmp/case032
+证明了，加入-finstrument-functions 后就会 出现R_X86_64_PC32的问题，无法构建通过；
+
+### 模式适配以动态库桩
+库地址： /public1/home/fio_climate_model/esm_liuyao/probeLib/timerShared/version0.0.1
+插入探针库：
+686 $(EXEC_SE): $(OBJS) $(ULIBDEP)
+687     $(LD) -o $(EXEC_SE) $(OBJS) $(CLIBS) $(ULIBS) $(SLIBS) $(MLIBS) $(LDFLAGS) -L/public1/home/fio_climate_model/esm_liuyao/probeLib/timerShared/version0.0.1/probelib -lprobe -L/public1/home/fio_climate_model/esm_liuyao/probeLib/timerShared/version0.0.1/probelib/sharedlib -lprobeImpl 
+
+
+
+Model did not complete - see /public1/home/fio_climate_model/zyp/tmp/case033/run/cesm.log.221215-092213
+[fio_climate_model@ln132%bscc-a6 case033]$ 
+[fio_climate_model@ln132%bscc-a6 case033]$ 
+[fio_climate_model@ln132%bscc-a6 case033]$ tail -F /public1/home/fio_climate_model/zyp/tmp/case033/run/cesm.log.221215-092213 
+/public1/home/fio_climate_model/zyp/tmp/case033/bld/cesm.exe: error while loading shared libraries: libprobeImpl.so: cannot open shared object file: No such file or directory
+/public1/home/fio_climate_model/zyp/tmp/case033/bld/cesm.exe: error while loading shared libraries: libprobeImpl.so: cannot open shared object file: No such file or directory
+/public1/home/fio_climate_model/zyp/tmp/case033/bld/cesm.exe: error while loading shared libraries: libprobeImpl.so: cannot open shared object file: No such file or directory
+/public1/home/fio_climate_model/zyp/tmp/case033/bld/cesm.exe: error while loading shared libraries: libprobeImpl.so: cannot open shared object file: No such file or directory
+/public1/home/fio_climate_model/zyp/tmp/case033/bld/cesm.exe: error while loading shared libraries: libprobeImpl.so: cannot open shared object file: No such file or directory
+/public1/home/fio_climate_model/zyp/tmp/case033/bld/cesm.exe: error while loading shared libraries: libprobeImpl.so: cannot open shared object file: No such file or directory
+/public1/home/fio_climate_model/zyp/tmp/case033/bld/cesm.exe: error while loading shared libraries: libprobeImpl.so: cannot open shared object file: No such file or directory
+/public1/home/fio_climate_model/zyp/tmp/case033/bld/cesm.exe: error while loading shared libraries: libprobeImpl.so: cannot open shared object file: No such file or directory
+srun: error: ga1603: tasks 0-7: Exited with exit code 127
+
+
+
+遇到问题：
+一些动态库找不到
+```bash
+	linux-vdso.so.1 =>  (0x00007ffe166a9000)
+	libprobeImpl.so => probelib/sharedlib/libprobeImpl.so (0x00002b751fcac000)
+	libmpifort.so.12 => /public1/soft/intel/2017/compilers_and_libraries_2017.7.259/linux/mpi/intel64/lib/libmpifort.so.12 (0x00002b751feae000)
+	libmpi.so.12 => /public1/soft/intel/2017/compilers_and_libraries_2017.7.259/linux/mpi/intel64/lib/debug_mt/libmpi.so.12 (0x00002b7520257000)
+	libdl.so.2 => /lib64/libdl.so.2 (0x00002b752139c000)
+	librt.so.1 => /lib64/librt.so.1 (0x00002b75215a0000)
+	libpthread.so.0 => /lib64/libpthread.so.0 (0x00002b75217a8000)
+	libm.so.6 => /lib64/libm.so.6 (0x00002b75219c4000)
+	libgcc_s.so.1 => /lib64/libgcc_s.so.1 (0x00002b7521cc6000)
+	libc.so.6 => /lib64/libc.so.6 (0x00002b7521edc000)
+	/lib64/ld-linux-x86-64.so.2 (0x00002b751fa88000)
+	libimf.so => not found
+	libsvml.so => not found
+	libirng.so => not found
+	libintlc.so.5 => not found
+  ```
+
+
+问题解决：
+https://blog.csdn.net/airings/article/details/9110785
+export LD_LIBRARY_PATH=/public1/soft/intel/2017/compilers_and_libraries/linux/lib/intel64:$LD_LIBRARY_PATH
+
 
 
 #### 设计实验：
