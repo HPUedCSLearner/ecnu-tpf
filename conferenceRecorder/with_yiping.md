@@ -562,7 +562,7 @@ my __profile__rank is : 0
 687     $(LD) -o $(EXEC_SE) $(OBJS) $(CLIBS) $(ULIBS) $(SLIBS) $(MLIBS) $(LDFLAGS) -L/public1/home/fio_climate_model/esm_liuyao/probeLib/timerShared/version0.0.1/probelib -lprobe -L/public1/home/fio_climate_model/esm_liuyao/probeLib/timerShared/version0.0.1/probelib/sharedlib -lprobeImpl 
 
 
-
+### /public1/home/fio_climate_model/zyp/tmp/case033
 Model did not complete - see /public1/home/fio_climate_model/zyp/tmp/case033/run/cesm.log.221215-092213
 [fio_climate_model@ln132%bscc-a6 case033]$ 
 [fio_climate_model@ln132%bscc-a6 case033]$ 
@@ -578,6 +578,8 @@ Model did not complete - see /public1/home/fio_climate_model/zyp/tmp/case033/run
 srun: error: ga1603: tasks 0-7: Exited with exit code 127
 
 
+
+export LD_LIBRARY_PATH=/public1/home/fio_climate_model/esm_liuyao/probeLib/timerShared/version0.0.1/probelib/sharedlib:/public1/soft/intel/2017/compilers_and_libraries/linux/lib/intel64:$LD_LIBRARY_PATH 
 
 遇到问题：
 一些动态库找不到
@@ -598,6 +600,25 @@ srun: error: ga1603: tasks 0-7: Exited with exit code 127
 	libirng.so => not found
 	libintlc.so.5 => not found
   ```
+
+### 动态库里面 不允许使用 inline 关键字？？ （inline 是C++ 的 关键字？？? -lstdc++?）
+但是 stack.h 里面有inline的关键字
+/public1/home/fio_climate_model/esm_liuyao/probeLib/timerShared/version0.0.1/probelib/sharedlibVersion0.1.2
+```bash
+[fio_climate_model@ln131%bscc-a6 version0.0.1]$ . run.sh 
+__self__traceBegin
+result: 20
+__self__traceEnd
+funcTimeStk size is : 3
+funcDddrStk size is : 0
+maxDepthTimeStk is : 0
+maxDepthDddrStk is : 0
+[fio_climate_model@ln131%bscc-a6 version0.0.1]$ . run.sh 
+__self__traceBegin
+Segmentation fault (core dumped)
+[fio_climate_model@ln131%bscc-a6 version0.0.1]$ pwd
+/public1/home/fio_climate_model/esm_liuyao/probeLib/timerShared/version0.0.1
+```
 
 
 问题解决：

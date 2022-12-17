@@ -2,6 +2,8 @@
 # hash
 
   C hash implementation based on khash.
+  
+  https://github.com/clibs/hash
 
 ## Installation
 
