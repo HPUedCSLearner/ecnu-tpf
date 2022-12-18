@@ -626,6 +626,112 @@ https://blog.csdn.net/airings/article/details/9110785
 export LD_LIBRARY_PATH=/public1/soft/intel/2017/compilers_and_libraries/linux/lib/intel64:$LD_LIBRARY_PATH
 
 
+  PATH=
+  /public1/soft/netcdf/4.4.1-parallel-icc17/bin:
+  /public1/soft/hdf5/1.8.13-parallel-icc17/bin:
+  /public1/soft/intel/2017/compilers_and_libraries_2017.7.259/linux/mpi/intel64/bin:
+  /public1/soft/intel/2017/compilers_and_libraries_2017.7.259/linux/debugger/gdb/intel64_mic/bin:
+  /public1/soft/intel/2017/compilers_and_libraries_2017.7.259/linux/bin/intel64:
+  /public1/soft/modules/4.1.2/bin:
+  /public1/clurm/bin:
+  /usr/lib64/qt-3.3/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:
+  /usr/sbin:
+  /opt/ibutils/bin:/public1/home/fio_climate_model/.local/bin:
+  /public1/home/fio_climate_model/bin
+
+#### 组会：2022/12/18记录
+（/public1/home/fio_climate_model/esm_liuyao/probeLib/timerShared/version0.0.1/probelib/sharedlibVersion0.1.2）
+
+###### case034 使用的探针位置
+case位置：/public1/home/fio_climate_model/zyp/tmp/case034
+探针位置：/public1/home/fio_climate_model/esm_liuyao/probeLib/timerShared/version0.1.0-cpp
+不同版本的探针：/public1/home/fio_climate_model/esm_liuyao/probeLib/timerShared/version0.1.0-cpp/probelib/sharedlibVersion0.0.1
+
+
+链接库： (先连接静态库，插入探针标记； 后链接动态库，更换不同探针的功能)
+ -L/public1/home/fio_climate_model/esm_liuyao/probeLib/timerShared/version0.1.0-cpp/probelib -lprobe 
+ -L/public1/home/fio_climate_model/esm_liuyao/probeLib/timerShared/version0.1.0-cpp/probelib/sharedlib -lprobeImpl -lhook 
+
+在case.submit的窗口，执行 一下，添加环境变量（或者写到脚本里面）
+export LD_LIBRARY_PATH=/public1/home/fio_climate_model/esm_liuyao/probeLib/timerShared/version0.1.0-cpp/probelib/sharedlib
+export LD_LIBRARY_PATH=/public1/soft/intel/2017/compilers_and_libraries/linux/lib/intel64:$LD_LIBRARY_PATH
+
+
+### 此时的大前提： 只给Fortran插装
+#### 不同版本的探针
+######  版本一：证明了 c++ 的stack 可以使用
+/public1/home/fio_climate_model/esm_liuyao/probeLib/timerShared/version0.1.0-cpp/probelib/sharedlibVersion0.0.1
+######  版本一.1：证明了 c++ 的stack 可以使用 (并且加上了perf_counter())
+/public1/home/fio_climate_model/esm_liuyao/probeLib/timerShared/version0.1.0-cpp/probelib/sharedlibVersion0.0.2
+
+######  版本二 ：证明了 c++ 的map tuple 可以使用 
+/public1/home/fio_climate_model/esm_liuyao/probeLib/timerShared/version0.1.0-cpp/probelib/sharedlibVersion0.0.3
+并且产生了trace信息
+/public1/home/fio_climate_model/zyp/tmp/case034/logs/cesm.log.221218-005439
+vim cesm.log.221218-005439
+
+######  版本三：基本实现了对于Fortran的测量，并且可以后处理地址
+/public1/home/fio_climate_model/esm_liuyao/probeLib/timerShared/version0.1.0-cpp/probelib/sharedlibVersion0.0.3
+并且产生了trace信息
+/public1/home/fio_climate_model/zyp/tmp/case034/logs/cesm.log.221218-005439
+vim cesm.log.221218-005439
+
+
+
+
+
+
+解决问题：
+[fio_climate_model@ln132%bscc-a6 bld]$ ldd cesm.exe
+	linux-vdso.so.1 =>  (0x00007ffcfb813000)
+	libnetcdff.so.6 => not found
+	libnetcdf.so.11 => not found
+	libprobeImpl.so => not found
+	libhook.so => not found
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+vim /public1/home/fio_climate_model/zyp/tmp/case034/run/cesm.log.221217-230158
+--------------------------------------------------
+  1 /public1/home/fio_climate_model/zyp/tmp/case034/bld/cesm.exe: error while loading shared libraries: libprobeImpl.so: cannot open shared object file: No such file or directory
+  2 /public1/home/fio_climate_model/zyp/tmp/case034/bld/cesm.exe: error while loading shared libraries: libprobeImpl.so: cannot open shared object file: No such file or directory
+  3 /public1/home/fio_climate_model/zyp/tmp/case034/bld/cesm.exe: error while loading shared libraries: libprobeImpl.so: cannot open shared object file: No such file or directory
+  4 /public1/home/fio_climate_model/zyp/tmp/case034/bld/cesm.exe: error while loading shared libraries: libprobeImpl.so: cannot open shared object file: No such file or directory
+  5 /public1/home/fio_climate_model/zyp/tmp/case034/bld/cesm.exe: error while loading shared libraries: libprobeImpl.so: cannot open shared object file: No such file or directory
+  6 /public1/home/fio_climate_model/zyp/tmp/case034/bld/cesm.exe: error while loading shared libraries: libprobeImpl.so: cannot open shared object file: No such file or directory
+  7 /public1/home/fio_climate_model/zyp/tmp/case034/bld/cesm.exe: error while loading shared libraries: libprobeImpl.so: cannot open shared object file: No such file or directory
+  8 /public1/home/fio_climate_model/zyp/tmp/case034/bld/cesm.exe: error while loading shared libraries: libprobeImpl.so: cannot open shared object file: No such file or directory
+  9 srun: error: ga0710: tasks 0-7: Exited with exit code 127
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+
+
+
+
+##### 修改gptl 源码：
+
+/public1/home/fio_climate_model/zyp/tmp/case034/sampling/models/glc/cism/glimmer-cism/libgptl
+/public1/home/fio_climate_model/zyp/tmp/case034/sampling/models/utils/timing
+sed 's/__cyg/__wys__cyg/g' gptl.c private.h -i
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #### 设计实验：
 * case025: 简单插装，只打印函数调用关系，只打印一个mpi进程
