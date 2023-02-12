@@ -671,13 +671,15 @@ export LD_LIBRARY_PATH=/public1/soft/intel/2017/compilers_and_libraries/linux/li
 vim cesm.log.221218-005439
 
 ######  版本三：基本实现了对于Fortran的测量，并且可以后处理地址
-/public1/home/fio_climate_model/esm_liuyao/probeLib/timerShared/version0.1.0-cpp/probelib/sharedlibVersion0.0.3
+/public1/home/fio_climate_model/esm_liuyao/probeLib/timerShared/version0.1.0-cpp/probelib/sharedlibVersion0.0.4
 并且产生了trace信息
 /public1/home/fio_climate_model/zyp/tmp/case034/logs/cesm.log.221218-005439
 vim cesm.log.221218-005439
 
 
-
+### 待解决问题：
+1、可以测量fortran的，需要wrapper
+2、可以测量c/c++
 
 
 
@@ -715,20 +717,60 @@ sed 's/__cyg/__wys__cyg/g' gptl.c private.h -i
 
 
 
+#### 组会：2022/12/30记录
+
+目标：实现fortran的插装;
+mpiwrapper的插装; 通信函数的插装；
+
+###### 步骤一：找到之前可以编译的mpiwrapper
+
+[fio_climate_model@ln132%bscc-a6 version0.2.0]$ grep -rin mpiwrapper.c
+src/CMakeLists.txt:5:add_library( instruProbe STATIC timer.c mpiwrapper.c)
+[fio_climate_model@ln132%bscc-a6 version0.2.0]$ 
+[fio_climate_model@ln132%bscc-a6 version0.2.0]$ 
+[fio_climate_model@ln132%bscc-a6 version0.2.0]$ 
+[fio_climate_model@ln132%bscc-a6 version0.2.0]$ 
+[fio_climate_model@ln132%bscc-a6 version0.2.0]$ pwd
+/public1/home/fio_climate_model/esm_liuyao/probeLib/timerCHash/version0.2.0
+
+###### 步骤二：选中一个case
+/public1/home/fio_climate_model/zyp/tmp/case036
+
+tag: 修改gptl 源码
+###### 步骤三：使用原来的动态库
+
+/public1/home/fio_climate_model/esm_liuyao/probeLib/timerShared/version0.1.0-cpp/probelib/sharedlibVersion0.0.4
+
+直接copy放到case036里面
+case位置：
+/public1/home/fio_climate_model/zyp/tmp/case036
+
+
+######  run Error :
+fio_climate_model@ln132%bscc-a6 case036]$ cat /public1/home/fio_climate_model/zyp/tmp/case036/run/cesm.log.221230-184226
+/public1/home/fio_climate_model/zyp/tmp/case036/bld/cesm.exe: error while loading shared libraries: libprobeImpl.so: cannot open shared object file: No such file or directory
+/public1/home/fio_climate_model/zyp/tmp/case036/bld/cesm.exe: error while loading shared libraries: libprobeImpl.so: cannot open shared object file: No such file or directory
 
 
 
+-L/public1/home/fio_climate_model/zyp/tmp/case036    /timerShared/version0.1.0-cpp/probelib -lprobe -L/public1/home/fio_climate_model/zyp/tmp/case036/timerShared/version0.1.0-cpp/pr    obelib/sharedlib -lprobeImpl -lhook 
 
 
+export LD_LIBRARY_PATH=/public1/home/fio_climate_model/zyp/tmp/case036/timerShared/version0.1.0-cpp/probelib/sharedlib
+export LD_LIBRARY_PATH=/public1/soft/intel/2017/compilers_and_libraries/linux/lib/intel64:$LD_LIBRARY_PATH
+
+######  给结果调整格式 :
+awk -v FS=',' '{printf "%-60s%-60s%-10s%-20s%-20s\n" ,$1 ,$2, $3, $4, $5}' 26711__2022-12-30__18-52-50_functrace.csv.tx
 
 
+去重：
+排序：
+统计：
 
 
-
-
-
-
-
+#### 组会：2022/01/08记录
+###### 二进制符号表分析
+=================================================================================================
 
 
 
@@ -1093,3 +1135,31 @@ Thu Oct 6 19:18:27 CST 2022 /public1/home/fio_climate_model/FIO-ESM/fioesm/fioes
 ===>> 编译的时候，可以并行编译，加速编译时间
 
 gcc test2.c -finstrument-functions -L. -lfinstrument
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#### 组会：2023/02/04记录
+之前的问题，使用addr2line后处理特别慢:
+##### 主要工作方向：
+区分模块，采样：
+
+
+
+
+* 区分模式
+4.4.2.1 区分module的手动插桩
+https://hpc-cool.feishu.cn/file/boxcnq4LhufvA33MIkahp4bXT6g
+ccsm_comp_mod.F90
+ccsm_driver.F90
