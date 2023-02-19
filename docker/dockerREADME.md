@@ -1,3 +1,40 @@
+[toc]
+#### docker 在window搭建开发环境：
+安装时候的坑:     wsl2安装；虚拟机BIOS设置；
+
+常用的开发环境:   gcc g++ cmake ninja git ssh vim htop net-tools openssh-server init...
+
+
+##### docker 常用开发环境搭建流程：
+运行容器                  docker run -it -d --name xxx ubuntu:tag
+进入交互式命令行          sudo docker exec -it 775c7c9ee1e1 /bin/bash
+可以进多个终端
+当我们是使用apt的时候，发现不行
+需要换源，但是新的ubuntu系统没有vim，所以需要指定路径映射，在window改好换源的文件，然后在Linux里面替换
+（清华源官方：https://mirror.tuna.tsinghua.edu.cn/help/ubuntu/）
+docker run -it -d -p 8023:22 -v F:\docker\docker-windows:/app --name xxx ubuntu:tag
+更新源：apt update 
+发现失败：Certificate verification failed
+失败原因及解决方法：https://blog.csdn.net/Moolight_shadow/article/details/119511642
+git key配置(满足git pull && git push 的开发需求)
+ssh 配置（满足git信任机器的需求 && 远程登陆的需求）
+
+git pull 
+
+目的: 把这个电脑上的docker镜像放到另一个电脑上，快速部署开发环境
+
+
+###### Docker容器进入的4种方式
+[文件链接](https://www.cnblogs.com/xhyan/p/6593075.html)
+进入Docker容器比较常见的几种做法如下：
+* 使用docker attach
+* 使用SSH
+* 使用nsenter
+* 使用exec
+
+
+
+
 
 #### docker 常用官方网站:
 * https://hub.docker.com/
@@ -58,9 +95,6 @@ centos          latest    5d0da3dc9764   14 months ago   231MB
   ```
 
 
-#### docker windows安装, 更换镜像安装路径：
-* 
-
 #### docker离线安装并导入镜像:
 * https://www.jianshu.com/p/1dd72a6b5ae9
 ```bash
@@ -69,7 +103,7 @@ docker load -i *.tar
 docker save ubuntu-llvm15:1.4 -o ubuntu-llvm.tar #将ubuntu-llvm15:1.4的镜像导出成tar文件
 docker load -i ubuntu-llvm.tar #将tar文件导入为ubuntu-llvm15:1.4的镜像
 ```
-#### others
+#### SSH 配置 && ssh-keygen
 * vim /etc/apt/sources.list
 * apt update / apt-get update
 * apt install openssh-server vim gcc g++ cmake ninja(seems no)
@@ -100,6 +134,8 @@ docker run -it -d -p 8025:22  --privileged=true ubuntu-llvm15:1.4  /sbin/init
 
 docker commit -m -a [containerID] newImageName:[Tag]
 docker commit -m="add sshd" -a="feng" e5624a341ed7 ubuntu-sshd:1.1
+
+进入交互式命令行          sudo docker exec -it 775c7c9ee1e1 /bin/bash
 ```
 #### 在docker中使用systemctl:
 

@@ -1138,18 +1138,6 @@ gcc test2.c -finstrument-functions -L. -lfinstrument
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 #### 组会：2023/02/04记录
 之前的问题，使用addr2line后处理特别慢:
 ##### 主要工作方向：
@@ -1158,8 +1146,37 @@ gcc test2.c -finstrument-functions -L. -lfinstrument
 
 
 
+
+
+
+
+
+
+
+
+#### 组会：2023/02/12记录
 * 区分模式
-4.4.2.1 区分module的手动插桩
-https://hpc-cool.feishu.cn/file/boxcnq4LhufvA33MIkahp4bXT6g
-ccsm_comp_mod.F90
-ccsm_driver.F90
+###### 参考师兄 <<4.4.2.1 区分module的手动插桩>>
+* 文档链接: https://hpc-cool.feishu.cn/file/boxcnq4LhufvA33MIkahp4bXT6g
+* 修改这个文件 ```ccsm_comp_mod.F90```
+为了统计各函数在不同分类模式下的运行时间，在ccsm_comp_mod.F90中，在IF（iamin_***ID）语句后，插入CALL PUSH_MODULEID("iamin_***ID")，并在该IF段落的ENDIF前，插入CALL POP_MODULEID()。
+
+###### https://hpc-cool.feishu.cn/file/boxcn1GVdrB2WEN6R2PUgFYGW3e 中描述了一下文件的主要作用：
+* 进程布局配置文件 (```env_mach_pes.xml```)
+* ccsm流程（```ccsm_driver.F90```）
+* coupler流程（```ccsm_comp_mod.F90```）
+
+
+###### 在模式中实践:
+* ```ccsm_comp_mod.F90```文件的路径:
+/public1/home/fio_climate_model/zyp/tmp/case036/sampling/models/drv/driver/ccsm_comp_mod.F90
+遇到问题:
+找不到文档中的模块插入点
+疑似的： if (iamin_LNDID
+
+###### ccsm流程: ccsm_driver.F90
+
+*    call ccsm_init()
+*    call ccsm_run()
+*    call ccsm_final()
+
