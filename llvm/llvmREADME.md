@@ -1,3 +1,5 @@
+[toc]
+
 ## bookstack :
 * https://www.bookstack.cn/explore?cid=270&tab=popular
 * https://www.bookstack.cn/books/llvm-guide-zh
@@ -40,3 +42,7 @@ cmake -G Ninja  -DCMAKE_BUILD_TYPE=Release \
 cmake -B build -G Ninja -DCMAKE_VERBOSE_MAKEFILE=ON
 cmake --build build
 ```
+
+#### llvm 工具链
+<!-- [![Star History Chart](https://api.star-history.com/svg?repos=guodongxiaren/README&type=Date)](https://star-history.com/#guodongxiaren/README&Date) -->
+ ![alt:当照片加载失败，显示此内容](./images/llvm-toolchain.png "llvm 工具链")
