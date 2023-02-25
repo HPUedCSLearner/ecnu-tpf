@@ -21,7 +21,24 @@ ssh 配置（满足git信任机器的需求 && 远程登陆的需求）
 
 git pull 
 
-目的: 把这个电脑上的docker镜像放到另一个电脑上，快速部署开发环境
+##### 多个Windows或多个平台连接的问题:
+使用 ssh root@127.0.0.1 -p 8022登录报错:
+ssh: could not reserve hostname docker-paltform:XXXXXX
+问题: 配置好的dockers镜像，使用docker save -> docker load到另一台电脑上，发现自己的台式机可以登陆上，笔记本就是登录不上，怀疑笔记本有问题，怀疑docker版本问题，怀疑ssh的konwhost文件，更新到同版本还是不行？
+
+最后总结：
+* windows平台和Linux平台登陆的命令的有差别
+* 使用vscode连接的方式有
+  username@ip:port
+  ssh username@ip:port
+  ssh username#ip -p port
+* 使用终端登录的方式
+  ssh username@ip:port
+  ssh username@ip -p port
+* 在使用docker容器时候，可以采用登录的ip地址有[127.0.0.1][192.168.2.58(本机IP)]
+多试试，之前登录不上，就可以登陆上了
+
+```目的```: 把这个电脑上的docker镜像放到另一个电脑上，快速部署开发环境
 
 
 ###### Docker容器进入的4种方式
