@@ -2,7 +2,10 @@
 #### docker 在window搭建开发环境：
 安装时候的坑:     wsl2安装；虚拟机BIOS设置；
 
-常用的开发环境:   gcc g++ cmake ninja git ssh vim htop net-tools openssh-server init...
+常用的开发环境:   gcc g++ cmake ninja git ssh vim htop net-tools openssh-server init...  
+一些其他的开发环境：sqlite3/gdb/unzip/...
+并行的环境:mpi/openMp/cuda...(暂时没有安装)
+
 
 
 ##### docker 常用开发环境搭建流程：

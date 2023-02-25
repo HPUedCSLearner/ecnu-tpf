@@ -1,4 +1,4 @@
-
+[toc]
 
 /public1/soft/intel/2017/compilers_and_libraries_2017.7.259/linux/mpi
 @花 并行A6上用的MPI库
