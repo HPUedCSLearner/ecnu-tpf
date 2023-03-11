@@ -1,5 +1,22 @@
 module ccsm_comp_mod
 
+
+!#define MODULE_CPL 0
+!#define MODULE_ATM 1
+!#define MODULE_LND 2
+!#define MODULE_ICE 3
+!#define MODULE_OCN 4
+!#define MODULE_GLC 5
+!#define MODULE_WRF 6
+!#define MODULE_GEA 7
+!#define MODULE_CPLATM 8
+!#define MODULE_CPLLND 9
+!#define MODULE_CPLICE 10
+!#define MODULE_CPLOCN 11
+!#define MODULE_CPLGLC 12
+!#define MODULE_CPLWRF 13
+!#define MODULE_CPLGEA 14
+
 !-------------------------------------------------------------------------------
 !
 ! Purpose: Main program for NCAR CCSM4/cpl7. Can have different
@@ -760,6 +777,7 @@ subroutine ccsm_pre_init()
    !--------------------------------------------------------------------------
 
    if (iamroot_CPLID) then
+      CALL PUSH_MODULEID(MODULE_CPL)
       inquire(file='cpl_modelio.nml',exist=exists)      
       if (exists) then
          logunit = shr_file_getUnit()
@@ -767,6 +785,7 @@ subroutine ccsm_pre_init()
          call shr_file_setLogUnit(logunit)
          loglevel = 1
          call shr_file_setLogLevel(loglevel)
+      CALL POP_MODULEID()
       endif
    else
       loglevel = 0
