@@ -63,12 +63,15 @@ private:
             bool deQuequed;
             while (!m_pool->m_shutdown)
             {
-                std::unique_lock<std::mutex> lock(m_pool->m_conditionalMutex);
-                if (m_pool->m_taskSafeQue.empty()) {
-                    m_pool->m_conditoinalLock.wait(lock);
+                {
+                    std::unique_lock<std::mutex> lock(m_pool->m_conditionalMutex);
+                    if (m_pool->m_taskSafeQue.empty()) {
+                        m_pool->m_conditoinalLock.wait(lock); // wait 的实现，是分上下两部分的
+                    }
+                    deQuequed = m_pool->m_taskSafeQue.deQueue(func);
                 }
-                deQuequed = m_pool->m_taskSafeQue.deQueue(func);
                 if (deQuequed) {
+                    std::cout << "thread " << m_id << " doing this work :";
                     func();
                 }
             }

@@ -39,16 +39,16 @@ int multiply_return(const int a, const int b)
 
 void example()
 {
-    ThreadPool pool(3);
+    ThreadPool pool(30);
     pool.init();
 
     // 提交乘法操作，总共30个
-    // for (int i = 1; i <= 3; ++i) {
-    //     for (int j = 1; j <= 10; ++j)
-    //     {
-    //         pool.submit(multiply, i, j);
-    //     }
-    // }
+    for (int i = 1; i <= 30; ++i) {
+        for (int j = 1; j <= 10; ++j)
+        {
+            pool.submit(multiply, i, j);
+        }
+    }
 
     // 使用ref传递的输出参数提交函数
     int output_ref;
