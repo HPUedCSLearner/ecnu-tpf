@@ -1,16 +1,14 @@
 #### 课件链接：
 
 * 源地址：https://github.com/parallel101/course
-* 第一节课：https://www.kdocs.cn/l/cvrPbu4kDR0H?f=301
-* 第二节课：https://kdocs.cn/l/ckrNBtOEAJPw?f=301
+* 第一节课：[01-学C++从CMake学起 (kdocs.cn)](https://www.kdocs.cn/l/cseylGSYkGVR)
+* 第二节课：[11-现代 CMake 进阶指南 (kdocs.cn)](https://www.kdocs.cn/l/ckl5Eq90YFvJ)
+* 第三节课：[16-现代 CMake 模块化项目管理指南 (kdocs.cn)](https://www.kdocs.cn/l/cjlXZXtPlPcu)
 * book stack - CMAKE-COOK: https://www.bookstack.cn/read/CMake-Cookbook/README.md
 * https://github.com/dev-cafe/cmake-cookbook
 * [官方文档cmake.org/cmake/help/latest](https://cmake.org/cmake/help/latest/)
 
-
 ### 现代cmake语法
-
-
 
 #### 笔记：
 

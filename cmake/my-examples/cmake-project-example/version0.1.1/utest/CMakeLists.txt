@@ -5,4 +5,4 @@ add_executable(gtestMain ${srcs})
 find_package(GTest REQUIRED) # -- Up-to-date: /usr/local/lib/cmake/GTest/GTestConfig.cmake   -- Up-to-date: /usr/local/lib/libgtest.a
 target_link_libraries(gtestMain PUBLIC GTest::gtest GTest::gmock)
 
-target_link_libraries(gtestMain PUBLIC utiles)
+target_link_libraries(gtestMain PUBLIC utiles) # 要给utiles这个库写单元测试，那么直接连接这个库就可以了（1、public属性可是直接使用其头文件；2、刚好可以链接它）
