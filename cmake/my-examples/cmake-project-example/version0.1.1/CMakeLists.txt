@@ -12,3 +12,5 @@ project(threadPool LANGUAGES CXX)
 
 add_subdirectory(utiles)
 add_subdirectory(threadPool)
+add_subdirectory(utest)
+
