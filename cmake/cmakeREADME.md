@@ -1,6 +1,5 @@
-
-
 #### 课件链接：
+
 * 源地址：https://github.com/parallel101/course
 * 第一节课：https://www.kdocs.cn/l/cvrPbu4kDR0H?f=301
 * 第二节课：https://kdocs.cn/l/ckrNBtOEAJPw?f=301
@@ -9,7 +8,12 @@
 * [官方文档cmake.org/cmake/help/latest](https://cmake.org/cmake/help/latest/)
 
 
+### 现代cmake语法
+
+
+
 #### 笔记：
+
 ```cmake
 add_executable()
 target_sources()
@@ -19,6 +23,7 @@ aux_source_directory()
 
 PUBLIC、GLOB、CONFIGURE_DEPENDS、GLOB_RECURSE、
 ```
+
 ```cmake
 
 11 - 01

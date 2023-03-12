@@ -1,7 +1,8 @@
-// test.cpp
 #include <iostream>
 #include <random>
-#include "thread_pool.h"
+#include <memory>
+
+#include<threadPool/threadPool.h>
 
 
 std::random_device rd; // 真实随机数产生器
@@ -39,36 +40,37 @@ int multiply_return(const int a, const int b)
 
 void example()
 {
-    ThreadPool pool(300);
-    pool.init();
+    std::shared_ptr<threadPool::ThreadPool> pool = std::make_shared<threadPool::ThreadPool>(300);
+    pool->init();
 
     // 提交乘法操作，总共30个
-    for (int i = 1; i <= 30; ++i) {
+    for (int i = 1; i <= 3; ++i) {
         for (int j = 1; j <= 100; ++j)
         {
-            pool.submit(multiply, i, j);
+            pool->submit(multiply, i, j);
         }
     }
 
     // 使用ref传递的输出参数提交函数
     int output_ref;
-    auto future1 = pool.submit(multiply_output, std::ref(output_ref), 5, 6);
+    auto future1 = pool->submit(multiply_output, std::ref(output_ref), 5, 6);
     // 等待乘法输出完成
     future1.get();
     std::cout << "Last operation result is equals to " << output_ref << std::endl;
 
 
     // 使用return参数提交函数
-    auto future2 = pool.submit(multiply_return, 5, 3);
+    auto future2 = pool->submit(multiply_return, 5, 3);
     // 等待乘法输出完成
     int res = future2.get();
     std::cout << "Last operation result is equals to " << res << std::endl;
 
-    pool.shutdown();
+    pool->shutdown();
 }
 
-int main()
-{
+
+
+int main() {
     example();
     return 0;
 }
