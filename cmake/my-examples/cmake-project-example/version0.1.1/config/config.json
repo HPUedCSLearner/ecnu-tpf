@@ -1,0 +1,7 @@
+{
+    "threadPool":{
+        "threads":90,
+        "i":30,
+        "j":30
+    }
+}

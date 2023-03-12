@@ -5,5 +5,7 @@ target_include_directories(main PUBLIC include)
 set(CMAKE_BUILD_TYPE DEBUG)
 
 find_package(spdlog REQUIRED)
+find_package(RapidJSON REQUIRED)
+
 target_link_libraries(main PRIVATE spdlog::spdlog)
 target_link_libraries(main PUBLIC utiles)
