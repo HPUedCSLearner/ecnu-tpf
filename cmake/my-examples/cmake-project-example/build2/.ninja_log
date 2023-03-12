@@ -1,6 +1,0 @@
-# ninja log v5
-1	482	1678583988277504639	threadPool/CMakeFiles/main.dir/src/threadPool.cpp.o	9b27f0854cc31913
-1	879	1678584237337413459	threadPool/CMakeFiles/main.dir/src/main.cpp.o	ef83188e7bbfa71
-879	920	1678584237377413458	threadPool/main	e253aba133aced21
-1	1406	1678584337002037864	threadPool/CMakeFiles/main.dir/src/main.cpp.o	ef83188e7bbfa71
-1406	1450	1678584337052037863	threadPool/main	e253aba133aced21
