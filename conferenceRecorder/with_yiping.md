@@ -3,7 +3,6 @@
 /public1/soft/intel/2017/compilers_and_libraries_2017.7.259/linux/mpi
 @花 并行A6上用的MPI库
 
-
 LLVM是一个**模块化的**、**可重复使用**的**编译器和工具的集合**，提供了与编译器相关的扩展支持，可以用做多用语言的编译器后台。Clang和Flang是支持C/C++和Fortran编译器，与LLVM一起构成完整的工具链，支持多种操作系统和硬件架构，可代替GCC编译系统。由于LLVM采用模块化的库架构设计，因此，它很容易嵌入到各种应用程序中。通过LLVM可以实现对程序中函数的插装。
 
 由于LLVM采用模块化的库架构设计，因此，它**可以选择执行特定的优化方法**，而不像传统的编译器优化器，他们通常是由大量高度耦合的代码组成，很难拆分成容易理解和使用的小模块，而LLVM则可以通过库来自定义优化方法，而无需担心其他依赖该优化方法的组件，也无需知道整个系统是如何工作的。
@@ -11,26 +10,27 @@ LLVM是一个**模块化的**、**可重复使用**的**编译器和工具的集
 **LLVM 的Pass框架**是LLVM系统的一个很重要的部分。Pass可以**对源代码进行分析、优化或者转化的工作**，它是**对编译器的补充**。所有LLVM Pass都是Pass类的子类，它们通过**重写从Pass继承的虚拟方法来实现功能**。根据编写的Pass的不同功能需求，我们应该从ModulePass，CallGraphSCCPass，FunctionPass或LoopPass或RegionPass类继承，这些类可以实现**对中间文件中各个模块的分析、优化和转化**。当实现了自定义Pass后，我们**通过特定的编译指令将Pass源文件编译成动态链接库，然后用优化器将Pass编译成的动态链接库运行在由源文件通过LLVM生成的中间文件上，实现对其进行分析、优化或者转化，产生新的中间文件**。这样，新的中间文件就是原来的中间文件经过分析、优化或者转化后的中间文件。
 
 ##### 想看探针里的printf有两种方法
+
 1、还是之前的cp，但是不要复制在同一目录下，换到算例目录下，如：cp ./cesm.log.$LID ../test.log
 2、在探针里直接将printf写入某文件里，文件名以进程号开头避免写冲突
 这个方法也可以解决之前探针写文件因多进程导致的写冲突问题，中间所有计时都是插入红黑树中，最后0号进程写入文件里，如果你想看多个进程写文件，可以把文件名以进程号开头避免写冲突
 
 ### 进展汇报：
 
-
 ### 试验记录：
-case001:  
+
+case001:
 1、证明了，自动采用脚本可以接受参数名字，创建不同的case，然后跑通;
 （并且验证了，running log 在任务跑完之后，log会压缩归档到archive下面一份，还有logs下面一份）
 
 2、验证，删除archive, timing, 然后cleanBuild, Build, submit任务，的可行性；
 
-case002: 
+case002:
 1、验证一下插装打印log,是否可以找到 - ERROR
 
 case003:
 1、验证只加上编译选项，其他什么也不改，是否会跑成功 - ERROR
-2、验证只加上编译选项，同时加上链接库的选项-L 
+2、验证只加上编译选项，同时加上链接库的选项-L
 
 case004:
 1、通过case003 、 case004分别给FFlags ，CFlags添加编译选项  -finstrument-functions
@@ -40,18 +40,16 @@ case004:
 case005:
 1、验证过，编译选项加在前面，其他什么都没有该，还是不行
 
-
 case006: 又出现了  Makefile.conf 的问题
 
 case007: 一切就是那么正常，但是就是没有生成trace文件
 
-case008: 
+case008:
 只改了模式天数，其他什么也没有改,的基础上，进行添加编译选项，插装 - 未找到文件
 
 case009:
 
-1、尝试统一工具链，全部采用 inter的工具链`（使用inter的编译器，编译插装静态库）`
-
+1、尝试统一工具链，全部采用 inter的工具链 `（使用inter的编译器，编译插装静态库）`
 
 2、修改文件产位置 为./
 
@@ -61,10 +59,8 @@ case009:
 2、放弃C
 
 3、两个方向，插装C； 不插装C，解决问题
- 
+
 4、形成一个手册
-
-
 
 all 没有trance文件
 
@@ -89,17 +85,17 @@ Makefile:4: Makefile.conf: No such file or directory
 gmake: *** No rule to make target `Makefile.conf'.  Stop.
 ```
 
-
-
 ============================================================================
+
 ### 设计实验、从编译角度探索一下问题：
+
 #### （1、探索编译选项插入行为；2、为什么CFLAGS添加编译选项，导致模式无法运行；3、如何正确插装）：
+
 * case012：单给CFLAGS添加 -finstrument-functions ；
 * case013：单给FFLAGS添加 -finstrument-functions ；
 * case014：同时给CFLAGS、FFLAGS添加 -finstrument-functions ；
-  
 * case015：单给FFLAGS添加 -finstrument-functions； 并且链接探针实现；
-  
+
 ------> （NOTE：与case013对照，可以探究是否真正插入探针实现）
 
 * case016:（ 什么编译选项都不加，也不链接额外的库，跟以上case做对照）
@@ -114,18 +110,18 @@ gmake: *** No rule to make target `Makefile.conf'.  Stop.
 
 <4>、单给FFLAGS添加 -finstrument-functions； 并且链接探针实现；---- >   从反汇编代码可以看出来，探针的实现并不是我们自己的实现；
 
-<5>、从（case16: 什么编译选项都不加，也不链接额外的库，跟以上case做对照） ---- > 
+<5>、从（case16: 什么编译选项都不加，也不链接额外的库，跟以上case做对照） ---- >
  从反汇编代码可以看出来，只是有GPTL库对探针的定义，但是没有插装；
 
-
 #### 从上述结果，设计实验，如何正确插装：
+
 首先先要验证自行插装可行性
 
     条件一：可以暂时不考虑gptl库,不把他编入模式中；(尝试通过一下几种方法)
-        
-        1、给gptl库里面的探针改名（改实现和头文件，最小程度影响原模式的运行）
+
+    1、给gptl库里面的探针改名（改实现和头文件，最小程度影响原模式的运行）
         2、直接删除timing,不知道是否会影响原模式的运行
-    
+
     条件二：为了分析结果简单起见，只给FFLGAS添加编译选项；
 
     条件三：为了保证插装成功行，只实现一个简单的探针实现，并且使用统一编译工具链；
@@ -151,28 +147,28 @@ private.h:123:extern void __wys__cyg_profile_func_enter (void *, void *);
 private.h:124:extern void __wys__cyg_profile_func_exit (void *, void *);
 ```
 
-
 如果验证成功，我们可以得到以下结论：
 
 可以从汇编符号表角度出发，确定插装结果：
 
 1、编译选项是否生效；（每个函数入口，都会有探针符号）
 
-2、探针的实现是否是我们自己的探针实现；（通过对比`插装目标产物里面的探针实现的符号表`和`自己产生静态库的符号表`）
+2、探针的实现是否是我们自己的探针实现；（通过对比 `插装目标产物里面的探针实现的符号表`和 `自己产生静态库的符号表`）
 
 ==============================================================================
 
 * case18:
-完成简易的测量信息写入文件中：
-简化实验条件：
-    一：探针内容的简化；
-    二：进程数修改为8；模式天为一天
-    三：全模式穿行
+  完成简易的测量信息写入文件中：
+  简化实验条件：
+  一：探针内容的简化；
+  二：进程数修改为8；模式天为一天
+  三：全模式穿行
 
 修改gptl.c文件
 cp  utils_timing/timing/gptl.c cases/case020/sampling/models/utils/timing/
+
 * case19:
-作为以上实验，不插装的对照（进程数修改为8；模式天为一天；全模式穿行；），看是否可以跑成功
+  作为以上实验，不插装的对照（进程数修改为8；模式天为一天；全模式穿行；），看是否可以跑成功
 
 ```c
 
@@ -180,15 +176,19 @@ cp  utils_timing/timing/gptl.c cases/case020/sampling/models/utils/timing/
     Run Time    :     707.964 seconds      707.964 seconds/day 
     Final Time  :       0.029 seconds 
 ```
+
 * case20:
-先不插装的对照（进程数修改为8；模式天为一秒钟；全模式穿行；）
+  先不插装的对照（进程数修改为8；模式天为一秒钟；全模式穿行；）
+
 ```c
     Init Time   :      37.386 seconds 
     Run Time    :      14.590 seconds      700.320 seconds/day 
     Final Time  :       0.035 seconds 
 
 ```
+
 然后，使用简单的探针进行插装：
+
 ```c
     Init Time   :      38.965 seconds 
     Run Time    :      18.170 seconds      872.160 seconds/day 
@@ -197,44 +197,50 @@ cp  utils_timing/timing/gptl.c cases/case020/sampling/models/utils/timing/
 ```
 
 * case21:
-不插装的对照（进程数修改为8；模式天为一分钟；全模式穿行；）
+  不插装的对照（进程数修改为8；模式天为一分钟；全模式穿行；）
+
 ```c
     Init Time   :      54.688 seconds 
     Run Time    :      14.788 seconds      709.824 seconds/day 
     Final Time  :       0.033 seconds
 ```
+
 * case22:
-不插装的对照（进程数修改为8；模式天为一小时；全模式穿行；）
+  不插装的对照（进程数修改为8；模式天为一小时；全模式穿行；）
+
 ```c
     Init Time   :      37.181 seconds 
     Run Time    :      28.718 seconds      689.232 seconds/day 
     Final Time  :       0.047 seconds 
 ```
 
-
-
-
-
 #### 组会：2022/10/30记录
+
 ##### 问题：
+
 * 1、插装小实验已经成功，但是对生成的trace文件有点疑惑？
+
 ##### 移植忆莲探针实现遇到的问题：
+
 * 2、师姐探针的实现，看代码的话，写文件的操作是让一个进程完成，那其他进程记录在红黑树的采样信息是怎么写到文件上的？
 * 3、将timer.c编成静态库，给test.c文件实验插装，从反汇编看，好像是没有插入成功，没有报错，好像是没有链接成功；
-    从实际的运行看，也没有成功；
+  从实际的运行看，也没有成功；
 * 4、timer的实现中，tauutil.h的文件,是不是没有使用，如果使用的话 怎么使用
 * 5、timer的实现中，comm.h 的作用是区分不同模块的吗？
 
 #### 组会：2022/11/06记录
+
 /public1/home/fio_climate_model/esm_liuyao/bin/cmake-3.24.3-linux-x86_64/bin/cmake
+
 * 总体进展：
   * 1、trace文件生成按照 进程号（目前非mpi进程号）- 时间 命名
   * 2、使用师姐的探针实现，自测插装效果，能够生成文件
 * 问题：
   * 1、使用MPI的进程号出现问题：
-  Attempting to use an MPI routine (internal_Comm_size) before initializing or after finalizing MPICH
+    Attempting to use an MPI routine (internal_Comm_size) before initializing or after finalizing MPICH
 
 ##### 一些现象：
+
 * 1、当我把mpiwraper编进去以后，就出现奇怪的事情了,，(-lmylib 不能正常编译，mct模块编译就报错)
   * 此时，会报错,很奇怪的错
   * 表象的原因，在编译mct的时候，直接要去链接-lmylib，`这个是我没有想到的，`所以，我又把链接-lmylib的操作放到了Makefile里面,但是出现了如下情况；
@@ -244,21 +250,21 @@ cp  utils_timing/timing/gptl.c cases/case020/sampling/models/utils/timing/
 * 3、从只打印一个进程的log看，只有4G左右，之前八个进程疯狂打印，有三四十个G，这个也算可以说通
 * 4、加上 -no-pie 看是否可以对应上函数
 
-
 ##### 为什么插入探针，模式运行不成功？？
+
 * 运行到一定程度什么也不输出，包括cesm本身的log，也包括探针里面的log?
 * 模式陷入了死循环，导致其出不来
 
-
-
 #### 组会：2022/11/13记录
+
 从目前所作的一些实验看来，插装之后，模式应该是陷入了死循环
 
 #### 设计实验：
-* case025: 简单插装，只打印函数调用关系，只打印一个mpi进程
-/public1/home/fio_climate_model/esm_liuyao/cases/case025/run/cesm.log.221113-090920
 
-```c 86586 enter func: MPI_Allreduce father: mpi_allreduce_
+* case025: 简单插装，只打印函数调用关系，只打印一个mpi进程
+  /public1/home/fio_climate_model/esm_liuyao/cases/case025/run/cesm.log.221113-090920
+
+```c
  86587 exit func: MPI_Allreduce father: mpi_allreduce_
  86588 exit func: parutilitiesmodule_mp_parcollective1dint_ father: dyn_comp_mp_dyn_init_
  86589 enter func: parutilitiesmodule_mp_parcollective1dint_ father: dyn_comp_mp_dyn_init_
@@ -281,7 +287,7 @@ cp  utils_timing/timing/gptl.c cases/case020/sampling/models/utils/timing/
  86606 enter func: shr_infnan_mod_mp_set_r8_inf_ father: (null)
  86607 exit func: shr_infnan_mod_mp_set_r8_inf_ father: (null)
  86608 enter func: shr_infnan_mod_mp_set_r8_inf_ father: (null)
- ```
+```
 
 ```bash
 [fio_climate_model@ln132%bscc-a6 models]$ ls
@@ -304,62 +310,81 @@ glc/cism/glimmer-cism/libgptl/README:121:__cyg_profile_func_enter (void *this_fn
 ```
 
 试一下，只对一种语言添加flag
+
 * case025:
   * 双return、双flags
   * 单flas
   * 
 * case026:
+
 ##### 第一次实验：双flags，空实现的探针
+
 ###### 实验结果：跑成功
- * 探针实现: /public1/home/fio_climate_model/esm_liuyao/probeLib/timerCppSelf/v0.0.0/build/src
- * 文件路径: /public1/home/fio_climate_model/esm_liuyao/cases/case026/timing
- * timing文件:ccsm_timing.case026.221126-133918
+
+* 探针实现: /public1/home/fio_climate_model/esm_liuyao/probeLib/timerCppSelf/v0.0.0/build/src
+* 文件路径: /public1/home/fio_climate_model/esm_liuyao/cases/case026/timing
+* timing文件:ccsm_timing.case026.221126-133918
+
 ###### 实验结论：
+
 * 我们可以拿到该模式所有运行时的 caller, callee的关系 (由此，按道理来说，我们可以拿到所有采样信息)
 
-
 ##### 第二次实验：双flags，探针的实现 -> 添加上perf_counter()接口 (排除perf_counter()可能导致插装运行失败的情况)
+
 ###### 实验结果：跑成功, 但是有个怪现象（模式跑完的实践是原来的一倍（原先是50s，这次是100s））
- * 探针实现: /public1/home/fio_climate_model/esm_liuyao/probeLib/timerCppSelf/v0.0.1/build/src
- * 文件路径: /public1/home/fio_climate_model/esm_liuyao/cases/case026/timing
- * timing文件:ccsm_timing.case026.221126-144740
+
+* 探针实现: /public1/home/fio_climate_model/esm_liuyao/probeLib/timerCppSelf/v0.0.1/build/src
+* 文件路径: /public1/home/fio_climate_model/esm_liuyao/cases/case026/timing
+* timing文件:ccsm_timing.case026.221126-144740
+
 ###### 实验结论：
+
 * 1、对这次怪现象的猜测：可能是因为模式天数少，导致插装的开销跟原来运行的时间接近，导致出现一倍的差距
 * 2、perf_counter()不是 导致 插装运行失败的原因
 
 ##### 第三次实验：只是再次验证上面的实验结果
+
 ###### 实验结果：跑成功
- * 探针实现: /public1/home/fio_climate_model/esm_liuyao/probeLib/timerCppSelf/v0.0.1/build/src
- * 文件路径: /public1/home/fio_climate_model/esm_liuyao/cases/case026/timing
- * timing文件:ccsm_timing.case026.221126-150921
+
+* 探针实现: /public1/home/fio_climate_model/esm_liuyao/probeLib/timerCppSelf/v0.0.1/build/src
+* 文件路径: /public1/home/fio_climate_model/esm_liuyao/cases/case026/timing
+* timing文件:ccsm_timing.case026.221126-150921
+
 ###### 实验结论：
+
 * 1、不是偶然的，导致出怪现象
 * 2、如果要验证上面的猜想，需要在模式天数较大的情况下，进行一组对照实验（插装的，不插装的）
-这个很重要，因为我们要确定出，差一倍的时间，[是否是每次的开销都这么大]
-
-
+  这个很重要，因为我们要确定出，差一倍的时间，[是否是每次的开销都这么大]
 
 关键实验 (如果解决了这个问题，就可以使用C++，实现探针了)
+
 ##### 第四次实验：双flags，探针的实现  -> 添加上perf_counter()接口
-#####                                  ->  添加上__cxa_demangle()接口 (排除__cxa_demangle()可能导致插装运行失败的情况)
+
+##### ->  添加上__cxa_demangle()接口 (排除__cxa_demangle()可能导致插装运行失败的情况)
+
 ###### 实验结果：跑失败, 模式一直出不来，scancel的时候，已经跑了20min了
- * 探针实现: /public1/home/fio_climate_model/esm_liuyao/probeLib/timerCppSelf/v0.0.2/build/src
- * some clues:
-  * 1、some symbles : _dl_addr \ tbk_getModuleName>: \  dladdr (__cxa_demangle的内部实现)
-  * 2、running log: cesm.log.221126-160840 (path:/public1/home/fio_climate_model/esm_liuyao/cases/case026/run)
-  * 3、cesm.exe.221126-155415Assemble.txt (path: /public1/home/fio_climate_model/esm_liuyao/cases/case026/bld)
+
+* 探针实现: /public1/home/fio_climate_model/esm_liuyao/probeLib/timerCppSelf/v0.0.2/build/src
+* some clues:
+* 1、some symbles : _dl_addr \ tbk_getModuleName>: \  dladdr (__cxa_demangle的内部实现)
+* 2、running log: cesm.log.221126-160840 (path:/public1/home/fio_climate_model/esm_liuyao/cases/case026/run)
+* 3、cesm.exe.221126-155415Assemble.txt (path: /public1/home/fio_climate_model/esm_liuyao/cases/case026/bld)
+
 ###### 实验结论：
+
 * 1、模式一直出不来，scancel的时候，已经跑了20min了
 
 ##### 第五次实验：（作为第四次实验的对照）尝试调试debug、 探究失败原因
+
 * 本打算，找到进程号，使用gdb -p processID 进行调试，打出调用栈，探究失败原因
 * 但是，进程号一直找不到
 
-
 ##### 第六次实验：添加 时间栈
+
 ###### 实验结果：跑成功
- * 探针实现: /public1/home/fio_climate_model/esm_liuyao/probeLib/timerCppSelf/v0.0.3/build/src
- * running log: /public1/home/fio_climate_model/esm_liuyao/cases/case026/logs/221129-102614Log
+
+* 探针实现: /public1/home/fio_climate_model/esm_liuyao/probeLib/timerCppSelf/v0.0.3/build/src
+* running log: /public1/home/fio_climate_model/esm_liuyao/cases/case026/logs/221129-102614Log
 
 ```bash
 ##wys funcTimeStack_maxDepth is 1862
@@ -381,24 +406,28 @@ glc/cism/glimmer-cism/libgptl/README:121:__cyg_profile_func_enter (void *this_fn
 ```
 
 * case026:
+
 ##### 第七次实验：基于hash的探针实现
+
 ###### 实验结果：跑成功
- * 探针实现: /public1/home/fio_climate_model/esm_liuyao/probeLib/timerCHash/cyproject/libprobe/build/src
- * 文件路径: /public1/home/fio_climate_model/esm_liuyao/cases/case026/timing
- * timing文件:ccsm_timing.case026.221126-133918
+
+* 探针实现: /public1/home/fio_climate_model/esm_liuyao/probeLib/timerCHash/cyproject/libprobe/build/src
+* 文件路径: /public1/home/fio_climate_model/esm_liuyao/cases/case026/timing
+* timing文件:ccsm_timing.case026.221126-133918
+
 ###### 实验结论：
+
 * 我们可以拿到该模式所有运行时的 caller, callee的关系 (由此，按道理来说，我们可以拿到所有采样信息)
 
-
-
-
-
 ## 20220-12-11，组会报告：
+
 #### 像老师所说的，下班晚上回来跑几把模式，早上上班看看结果
+
 期间发现，最近这周提交的作业需要很长时间，才被分到资源，
 有天晚上回来较早，本来上多跑几把，但是八点多提交作业后，十一点多还没跑起来，第二天早上看了一下才跑完
 
 #### 首先，发现了之前探针为什么失败
+
 在日志中发现：forrtl: severe (174): SIGSEGV, segmentation fault occurred
 
 当把代码 写到
@@ -411,7 +440,7 @@ void __cyg_profile_func_enter(void *func, void *caller) {
   push(&funcDddrStk, func);
   unsigned long long acc_start_time = perf_counter();
   push(&funcTimeStk, acc_start_time);
-	
+
 }
 
 325 cesm.exe           00000000018C84FC  shr_infnan_mod_mp         333  shr_infnan_mod.F90
@@ -454,8 +483,11 @@ severe (174): SIGSEGV, segmentation fault occurred
 
 
 ```
-##  发生了一个从来都没有发生的现象
+
+## 发生了一个从来都没有发生的现象
+
 #### 后来就编译不过了？以为我的探针有问题
+
 cat /public1/home/fio_climate_model/esm_liuyao/cases/case027/bld/cesm.bldlog.221210-212003
 
 ##### （发现问题，只要加上插装flags 就会出现这个错误，我人麻了，破防了）
@@ -496,6 +528,7 @@ bash: R_X86_64_PC32: command not found...
 ```
 
 ##### 网上问题解决方法一：
+
 https://www.coder.work/article/6329758
 
 您得到的错误由链接器返回，因为静态分配 block 的大小超出了 32 位寻址指令可以寻址的范围，即 2 GB。这与您使用 32 位还是 64 位整数索引数组无关 - `问题与静态分配数组的总大小有关`。这在这里详细解释:
@@ -505,17 +538,17 @@ gfortran for dummies: What does mcmodel=medium do exactly?
 如您所见，为了解决此问题，您可以使用 -mcmodel=medium 编译您的代码。或 -mcmodel=large .然后允许使用大于 2 GB 的静态分配数组。
 
 ##### 网上问题解决方法二：
+
 https://blog.csdn.net/qq_41035283/article/details/119614206
 
 链接库中使用了libglog.so与libgflags.a，`编译时动态库与静态库不能混用`。
 
 重新编译了gflags生成动态库libgflags.so，然后加入cmake的target_link_libraries中，问题解决。
 
-
-
-
 #### 组会：2022/12/12记录
+
 修改gptl源码：
+
 ```bash
 [fio_climate_model@ln132%bscc-a6 models]$ grep -rin __cyg_profile_func_enter
 utils/timing/gptl.c:3590:void __cyg_profile_func_enter (void *this_fn,
@@ -534,8 +567,8 @@ vim +123 glc/cism/glimmer-cism/libgptl/private.h
 
 ```
 
-
 ###### 实验结果之一：
+
 hash size is : 0
 funcTimeStk size is : 0
 funcDddrStk size is : 0
@@ -552,21 +585,23 @@ my __profile__rank is : 0
 /public1/home/fio_climate_model/zyp/tmp/case30/run/cesm.log.221212-224941
 
 ###### 实验结果之一：
+
 /public1/home/fio_climate_model/zyp/tmp/case032
 证明了，加入-finstrument-functions 后就会 出现R_X86_64_PC32的问题，无法构建通过；
 
 ### 模式适配以动态库桩
+
 库地址： /public1/home/fio_climate_model/esm_liuyao/probeLib/timerShared/version0.0.1
 插入探针库：
 686 $(EXEC_SE): $(OBJS) $(ULIBDEP)
-687     $(LD) -o $(EXEC_SE) $(OBJS) $(CLIBS) $(ULIBS) $(SLIBS) $(MLIBS) $(LDFLAGS) -L/public1/home/fio_climate_model/esm_liuyao/probeLib/timerShared/version0.0.1/probelib -lprobe -L/public1/home/fio_climate_model/esm_liuyao/probeLib/timerShared/version0.0.1/probelib/sharedlib -lprobeImpl 
-
+687     $(LD) -o $(EXEC_SE) $(OBJS) $(CLIBS) $(ULIBS) $(SLIBS) $(MLIBS) $(LDFLAGS) -L/public1/home/fio_climate_model/esm_liuyao/probeLib/timerShared/version0.0.1/probelib -lprobe -L/public1/home/fio_climate_model/esm_liuyao/probeLib/timerShared/version0.0.1/probelib/sharedlib -lprobeImpl
 
 ### /public1/home/fio_climate_model/zyp/tmp/case033
+
 Model did not complete - see /public1/home/fio_climate_model/zyp/tmp/case033/run/cesm.log.221215-092213
-[fio_climate_model@ln132%bscc-a6 case033]$ 
-[fio_climate_model@ln132%bscc-a6 case033]$ 
-[fio_climate_model@ln132%bscc-a6 case033]$ tail -F /public1/home/fio_climate_model/zyp/tmp/case033/run/cesm.log.221215-092213 
+[fio_climate_model@ln132%bscc-a6 case033]$
+[fio_climate_model@ln132%bscc-a6 case033]$
+[fio_climate_model@ln132%bscc-a6 case033]$ tail -F /public1/home/fio_climate_model/zyp/tmp/case033/run/cesm.log.221215-092213
 /public1/home/fio_climate_model/zyp/tmp/case033/bld/cesm.exe: error while loading shared libraries: libprobeImpl.so: cannot open shared object file: No such file or directory
 /public1/home/fio_climate_model/zyp/tmp/case033/bld/cesm.exe: error while loading shared libraries: libprobeImpl.so: cannot open shared object file: No such file or directory
 /public1/home/fio_climate_model/zyp/tmp/case033/bld/cesm.exe: error while loading shared libraries: libprobeImpl.so: cannot open shared object file: No such file or directory
@@ -577,12 +612,11 @@ Model did not complete - see /public1/home/fio_climate_model/zyp/tmp/case033/run
 /public1/home/fio_climate_model/zyp/tmp/case033/bld/cesm.exe: error while loading shared libraries: libprobeImpl.so: cannot open shared object file: No such file or directory
 srun: error: ga1603: tasks 0-7: Exited with exit code 127
 
-
-
-export LD_LIBRARY_PATH=/public1/home/fio_climate_model/esm_liuyao/probeLib/timerShared/version0.0.1/probelib/sharedlib:/public1/soft/intel/2017/compilers_and_libraries/linux/lib/intel64:$LD_LIBRARY_PATH 
+export LD_LIBRARY_PATH=/public1/home/fio_climate_model/esm_liuyao/probeLib/timerShared/version0.0.1/probelib/sharedlib:/public1/soft/intel/2017/compilers_and_libraries/linux/lib/intel64:$LD_LIBRARY_PATH
 
 遇到问题：
 一些动态库找不到
+
 ```bash
 	linux-vdso.so.1 =>  (0x00007ffe166a9000)
 	libprobeImpl.so => probelib/sharedlib/libprobeImpl.so (0x00002b751fcac000)
@@ -599,11 +633,13 @@ export LD_LIBRARY_PATH=/public1/home/fio_climate_model/esm_liuyao/probeLib/timer
 	libsvml.so => not found
 	libirng.so => not found
 	libintlc.so.5 => not found
-  ```
+```
 
 ### 动态库里面 不允许使用 inline 关键字？？ （inline 是C++ 的 关键字？？? -lstdc++?）
+
 但是 stack.h 里面有inline的关键字
 /public1/home/fio_climate_model/esm_liuyao/probeLib/timerShared/version0.0.1/probelib/sharedlibVersion0.1.2
+
 ```bash
 [fio_climate_model@ln131%bscc-a6 version0.0.1]$ . run.sh 
 __self__traceBegin
@@ -620,11 +656,9 @@ Segmentation fault (core dumped)
 /public1/home/fio_climate_model/esm_liuyao/probeLib/timerShared/version0.0.1
 ```
 
-
 问题解决：
 https://blog.csdn.net/airings/article/details/9110785
 export LD_LIBRARY_PATH=/public1/soft/intel/2017/compilers_and_libraries/linux/lib/intel64:$LD_LIBRARY_PATH
-
 
   PATH=
   /public1/soft/netcdf/4.4.1-parallel-icc17/bin:
@@ -640,48 +674,53 @@ export LD_LIBRARY_PATH=/public1/soft/intel/2017/compilers_and_libraries/linux/li
   /public1/home/fio_climate_model/bin
 
 #### 组会：2022/12/18记录
+
 （/public1/home/fio_climate_model/esm_liuyao/probeLib/timerShared/version0.0.1/probelib/sharedlibVersion0.1.2）
 
 ###### case034 使用的探针位置
+
 case位置：/public1/home/fio_climate_model/zyp/tmp/case034
 探针位置：/public1/home/fio_climate_model/esm_liuyao/probeLib/timerShared/version0.1.0-cpp
 不同版本的探针：/public1/home/fio_climate_model/esm_liuyao/probeLib/timerShared/version0.1.0-cpp/probelib/sharedlibVersion0.0.1
 
-
 链接库： (先连接静态库，插入探针标记； 后链接动态库，更换不同探针的功能)
- -L/public1/home/fio_climate_model/esm_liuyao/probeLib/timerShared/version0.1.0-cpp/probelib -lprobe 
- -L/public1/home/fio_climate_model/esm_liuyao/probeLib/timerShared/version0.1.0-cpp/probelib/sharedlib -lprobeImpl -lhook 
+ -L/public1/home/fio_climate_model/esm_liuyao/probeLib/timerShared/version0.1.0-cpp/probelib -lprobe
+ -L/public1/home/fio_climate_model/esm_liuyao/probeLib/timerShared/version0.1.0-cpp/probelib/sharedlib -lprobeImpl -lhook
 
 在case.submit的窗口，执行 一下，添加环境变量（或者写到脚本里面）
 export LD_LIBRARY_PATH=/public1/home/fio_climate_model/esm_liuyao/probeLib/timerShared/version0.1.0-cpp/probelib/sharedlib
 export LD_LIBRARY_PATH=/public1/soft/intel/2017/compilers_and_libraries/linux/lib/intel64:$LD_LIBRARY_PATH
 
-
 ### 此时的大前提： 只给Fortran插装
+
 #### 不同版本的探针
-######  版本一：证明了 c++ 的stack 可以使用
+
+###### 版本一：证明了 c++ 的stack 可以使用
+
 /public1/home/fio_climate_model/esm_liuyao/probeLib/timerShared/version0.1.0-cpp/probelib/sharedlibVersion0.0.1
-######  版本一.1：证明了 c++ 的stack 可以使用 (并且加上了perf_counter())
+
+###### 版本一.1：证明了 c++ 的stack 可以使用 (并且加上了perf_counter())
+
 /public1/home/fio_climate_model/esm_liuyao/probeLib/timerShared/version0.1.0-cpp/probelib/sharedlibVersion0.0.2
 
-######  版本二 ：证明了 c++ 的map tuple 可以使用 
+###### 版本二 ：证明了 c++ 的map tuple 可以使用
+
 /public1/home/fio_climate_model/esm_liuyao/probeLib/timerShared/version0.1.0-cpp/probelib/sharedlibVersion0.0.3
 并且产生了trace信息
 /public1/home/fio_climate_model/zyp/tmp/case034/logs/cesm.log.221218-005439
 vim cesm.log.221218-005439
 
-######  版本三：基本实现了对于Fortran的测量，并且可以后处理地址
+###### 版本三：基本实现了对于Fortran的测量，并且可以后处理地址
+
 /public1/home/fio_climate_model/esm_liuyao/probeLib/timerShared/version0.1.0-cpp/probelib/sharedlibVersion0.0.4
 并且产生了trace信息
 /public1/home/fio_climate_model/zyp/tmp/case034/logs/cesm.log.221218-005439
 vim cesm.log.221218-005439
 
-
 ### 待解决问题：
+
 1、可以测量fortran的，需要wrapper
 2、可以测量c/c++
-
-
 
 解决问题：
 [fio_climate_model@ln132%bscc-a6 bld]$ ldd cesm.exe
@@ -690,9 +729,10 @@ vim cesm.log.221218-005439
 	libnetcdf.so.11 => not found
 	libprobeImpl.so => not found
 	libhook.so => not found
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
 vim /public1/home/fio_climate_model/zyp/tmp/case034/run/cesm.log.221217-230158
---------------------------------------------------
+------------------------------------------------------------------------------
+
   1 /public1/home/fio_climate_model/zyp/tmp/case034/bld/cesm.exe: error while loading shared libraries: libprobeImpl.so: cannot open shared object file: No such file or directory
   2 /public1/home/fio_climate_model/zyp/tmp/case034/bld/cesm.exe: error while loading shared libraries: libprobeImpl.so: cannot open shared object file: No such file or directory
   3 /public1/home/fio_climate_model/zyp/tmp/case034/bld/cesm.exe: error while loading shared libraries: libprobeImpl.so: cannot open shared object file: No such file or directory
@@ -702,20 +742,12 @@ vim /public1/home/fio_climate_model/zyp/tmp/case034/run/cesm.log.221217-230158
   7 /public1/home/fio_climate_model/zyp/tmp/case034/bld/cesm.exe: error while loading shared libraries: libprobeImpl.so: cannot open shared object file: No such file or directory
   8 /public1/home/fio_climate_model/zyp/tmp/case034/bld/cesm.exe: error while loading shared libraries: libprobeImpl.so: cannot open shared object file: No such file or directory
   9 srun: error: ga0710: tasks 0-7: Exited with exit code 127
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
-
-
-
-
 
 ##### 修改gptl 源码：
 
 /public1/home/fio_climate_model/zyp/tmp/case034/sampling/models/glc/cism/glimmer-cism/libgptl
 /public1/home/fio_climate_model/zyp/tmp/case034/sampling/models/utils/timing
 sed 's/__cyg/__wys__cyg/g' gptl.c private.h -i
-
-
 
 #### 组会：2022/12/30记录
 
@@ -726,17 +758,19 @@ mpiwrapper的插装; 通信函数的插装；
 
 [fio_climate_model@ln132%bscc-a6 version0.2.0]$ grep -rin mpiwrapper.c
 src/CMakeLists.txt:5:add_library( instruProbe STATIC timer.c mpiwrapper.c)
-[fio_climate_model@ln132%bscc-a6 version0.2.0]$ 
-[fio_climate_model@ln132%bscc-a6 version0.2.0]$ 
-[fio_climate_model@ln132%bscc-a6 version0.2.0]$ 
-[fio_climate_model@ln132%bscc-a6 version0.2.0]$ 
+[fio_climate_model@ln132%bscc-a6 version0.2.0]$
+[fio_climate_model@ln132%bscc-a6 version0.2.0]$
+[fio_climate_model@ln132%bscc-a6 version0.2.0]$
+[fio_climate_model@ln132%bscc-a6 version0.2.0]$
 [fio_climate_model@ln132%bscc-a6 version0.2.0]$ pwd
 /public1/home/fio_climate_model/esm_liuyao/probeLib/timerCHash/version0.2.0
 
 ###### 步骤二：选中一个case
+
 /public1/home/fio_climate_model/zyp/tmp/case036
 
 tag: 修改gptl 源码
+
 ###### 步骤三：使用原来的动态库
 
 /public1/home/fio_climate_model/esm_liuyao/probeLib/timerShared/version0.1.0-cpp/probelib/sharedlibVersion0.0.4
@@ -745,53 +779,39 @@ tag: 修改gptl 源码
 case位置：
 /public1/home/fio_climate_model/zyp/tmp/case036
 
+###### run Error :
 
-######  run Error :
 fio_climate_model@ln132%bscc-a6 case036]$ cat /public1/home/fio_climate_model/zyp/tmp/case036/run/cesm.log.221230-184226
 /public1/home/fio_climate_model/zyp/tmp/case036/bld/cesm.exe: error while loading shared libraries: libprobeImpl.so: cannot open shared object file: No such file or directory
 /public1/home/fio_climate_model/zyp/tmp/case036/bld/cesm.exe: error while loading shared libraries: libprobeImpl.so: cannot open shared object file: No such file or directory
 
-
-
--L/public1/home/fio_climate_model/zyp/tmp/case036    /timerShared/version0.1.0-cpp/probelib -lprobe -L/public1/home/fio_climate_model/zyp/tmp/case036/timerShared/version0.1.0-cpp/pr    obelib/sharedlib -lprobeImpl -lhook 
-
+-L/public1/home/fio_climate_model/zyp/tmp/case036    /timerShared/version0.1.0-cpp/probelib -lprobe -L/public1/home/fio_climate_model/zyp/tmp/case036/timerShared/version0.1.0-cpp/pr    obelib/sharedlib -lprobeImpl -lhook
 
 export LD_LIBRARY_PATH=/public1/home/fio_climate_model/zyp/tmp/case036/timerShared/version0.1.0-cpp/probelib/sharedlib
 export LD_LIBRARY_PATH=/public1/soft/intel/2017/compilers_and_libraries/linux/lib/intel64:$LD_LIBRARY_PATH
 
-######  给结果调整格式 :
-awk -v FS=',' '{printf "%-60s%-60s%-10s%-20s%-20s\n" ,$1 ,$2, $3, $4, $5}' 26711__2022-12-30__18-52-50_functrace.csv.tx
+###### 给结果调整格式 :
 
+awk -v FS=',' '{printf "%-60s%-60s%-10s%-20s%-20s\n" ,$1 ,$2, $3, $4, $5}' 26711__2022-12-30__18-52-50_functrace.csv.tx
 
 去重：
 排序：
 统计：
 
-
 #### 组会：2022/01/08记录
+
 ###### 二进制符号表分析
+
 =================================================================================================
 
-
-
-
 #### 设计实验：
+
 * case025: 简单插装，只打印函数调用关系，只打印一个mpi进程
-/public1/home/fio_climate_model/esm_liuyao/cases/case025/run/cesm.log.221113-090920
-
-
-
-
-
-
-
-
-
-
-
+  /public1/home/fio_climate_model/esm_liuyao/cases/case025/run/cesm.log.221113-090920
 
 很奇怪的是:使用CMAKE输出的demo都是null
-```bash 
+
+```bash
 -------------------------------------------------------------------------
 demo路径
 /public1/home/fio_climate_model/esm_liuyao/probeLib/timerCppSelf/v0.0.2
@@ -838,40 +858,43 @@ exit func: main father: __libc_start_main
 -------------------------------------------------------------------------
 ```
 
-
 * case027:
 
-
 #### 出现问题的记录：
+
 1、不同平台的编译器的差异
 2、会出现null的情况
 
 #### 常用字符串：
+
 mpiicc test/mpi1.c -L./build/src -linstruProbe -lstdc++ -ldl -rdynamic ; mpirun -n 3 ./a.out
 
-
 ##### Done
+
 小疑问：
 1、env_mach_pes.xml 中后面几个的含义是什么？
+
 ```c
-<entry id="TOTALPES"   value="1024"  />    
-<entry id="PES_LEVEL"   value="1r"  />    
-<entry id="MAX_TASKS_PER_NODE"   value="64"  />    
-<entry id="PES_PER_NODE"   value="$MAX_TASKS_PER_NODE"  />    
-<entry id="COST_PES"   value="0"  />    
-<entry id="CCSM_PCOST"   value="-3"  />    
-<entry id="CCSM_TCOST"   value="0"  />    
-<entry id="CCSM_ESTCOST"   value="1"  />    
+<entry id="TOTALPES"   value="1024"  />  
+<entry id="PES_LEVEL"   value="1r"  />  
+<entry id="MAX_TASKS_PER_NODE"   value="64"  />  
+<entry id="PES_PER_NODE"   value="$MAX_TASKS_PER_NODE"  />  
+<entry id="COST_PES"   value="0"  />  
+<entry id="CCSM_PCOST"   value="-3"  />  
+<entry id="CCSM_TCOST"   value="0"  />  
+<entry id="CCSM_ESTCOST"   value="1"  />  
 ```
+
 2、进程排布全部穿行是否这样设置：(已解决)
 
 3、lock文件修改是否有必要(已解决)
 cp env_mach_pes.xml LockedFiles/env_mach_pes.xml.locked
 
 ==============================================================================
-#### 以上相关试验记录：
-* case012：单给CFLAGS添加 -finstrument-functions ；
 
+#### 以上相关试验记录：
+
+* case012：单给CFLAGS添加 -finstrument-functions ；
 
 ```c
 5828290 0000000001d64db0 <__cyg_profile_func_enter>:
@@ -904,6 +927,7 @@ cp env_mach_pes.xml LockedFiles/env_mach_pes.xml.locked
 ```
 
 * case013：单给FFLAGS添加 -finstrument-functions ；
+
 ```c
 5539462 0000000001c1ce00 <__cyg_profile_func_enter>:
 5539463  1c1ce00:   41 55                   push   %r13
@@ -926,6 +950,7 @@ cp env_mach_pes.xml LockedFiles/env_mach_pes.xml.locked
 ```
 
 * case014：同时给CFLAGS、FFLAGS添加 -finstrument-functions ；
+
 ```c
 5531178 0000000001c15280 <__cyg_profile_func_enter>:
 5531179  1c15280:   55                      push   %rbp
@@ -952,8 +977,9 @@ cp env_mach_pes.xml LockedFiles/env_mach_pes.xml.locked
 
 
 ```
-  
+
 * case015：单给FFLAGS添加 -finstrument-functions； 并且链接探针实现；
+
 ```c
 5531178 0000000001c15280 <__cyg_profile_func_enter>:
 5531179  1c15280:   55                      push   %rbp
@@ -977,7 +1003,7 @@ cp env_mach_pes.xml LockedFiles/env_mach_pes.xml.locked
 6546
 
 ```
-  
+
 ------> （NOTE：与case013对照，可以探究是否真正插入探针实现）
 
 * case016:（ 什么编译选项都不加，也不链接额外的库，跟以上case做对照）
@@ -1014,8 +1040,8 @@ cp env_mach_pes.xml LockedFiles/env_mach_pes.xml.locked
 
 ```
 
-
 ##### 关键符号：
+
 ```c
 nm -e file(符号表符号):
 0000000000402e10 T __cyg_profile_func_enter
@@ -1028,13 +1054,16 @@ grep -rin __cyg_profile_func_enter case016Assmble.txt
 addr2line -e **** (地址到函数名转换):
 
 ```
+
 ### 怀疑点记录：
+
 * 1、编译工具链不一致，导致最后连接的时候，没有真正链接成功？
 * 2、生成探针实现静态库的方法，难道不正确，是不是生成静态库的命令缺少什么参数？从而导致生成的静态库导致最后无法链接成功？
 
 ##### GPTL
 
 GPTL: GPTL is the "`General Purpose Timing Library`"
+
 ```c
 
 gtplBuildLog
@@ -1112,6 +1141,7 @@ GPTLstop_instr: GPTLinitialize has not been called
 grep -rin "<__cyg_profile_func_enter>:" case014Assmble.txt
 
 ============================================================================
+
 ### 编译时间记录：
 
 ```c
@@ -1128,6 +1158,7 @@ Thu Oct 6 19:18:20 CST 2022 /public1/home/fio_climate_model/FIO-ESM/fioesm/fioes
 Thu Oct 6 19:18:20 CST 2022 /public1/home/fio_climate_model/FIO-ESM/fioesm/fioesm2_0/case/case001/bld/rof.bldlog.221006-190640
 Thu Oct 6 19:18:27 CST 2022 /public1/home/fio_climate_model/FIO-ESM/fioesm/fioesm2_0/case/case001/bld/cesm.bldlog.221006-190640
 ```
+
 1、编译共用时12min左右
 
 2、其中ocn大约5min
@@ -1136,43 +1167,37 @@ Thu Oct 6 19:18:27 CST 2022 /public1/home/fio_climate_model/FIO-ESM/fioesm/fioes
 
 gcc test2.c -finstrument-functions -L. -lfinstrument
 
-
-
 #### 组会：2023/02/04记录
+
 之前的问题，使用addr2line后处理特别慢:
+
 ##### 主要工作方向：
+
 区分模块，采样：
 
-
-
-
-
-
-
-
-
-
-
-
 #### 组会：2023/02/12记录
+
 * 区分模式
+
 ###### 参考师兄 <<4.4.2.1 区分module的手动插桩>>
+
 * 文档链接: https://hpc-cool.feishu.cn/file/boxcnq4LhufvA33MIkahp4bXT6g
-* 修改这个文件 ```ccsm_comp_mod.F90```
-为了统计各函数在不同分类模式下的运行时间，在ccsm_comp_mod.F90中，在IF（iamin_***ID）语句后，插入CALL PUSH_MODULEID("iamin_***ID")，并在该IF段落的ENDIF前，插入CALL POP_MODULEID()。
+* 修改这个文件 ``ccsm_comp_mod.F90``
+  为了统计各函数在不同分类模式下的运行时间，在ccsm_comp_mod.F90中，在IF（iamin_***ID）语句后，插入CALL PUSH_MODULEID("iamin_***ID")，并在该IF段落的ENDIF前，插入CALL POP_MODULEID()。
 
 ###### https://hpc-cool.feishu.cn/file/boxcn1GVdrB2WEN6R2PUgFYGW3e 中描述了一下文件的主要作用：
-* 进程布局配置文件 (```env_mach_pes.xml```)
-* ccsm流程（```ccsm_driver.F90```）
-* coupler流程（```ccsm_comp_mod.F90```）
 
+* 进程布局配置文件 (``env_mach_pes.xml``)
+* ccsm流程（``ccsm_driver.F90``）
+* coupler流程（``ccsm_comp_mod.F90``）
 
 ###### 在模式中实践:
-* ```ccsm_comp_mod.F90```文件的路径:
-/public1/home/fio_climate_model/zyp/tmp/case036/sampling/models/drv/driver/ccsm_comp_mod.F90
-遇到问题:
-找不到文档中的模块插入点
-疑似的： if (iamin_LNDID
+
+* ``ccsm_comp_mod.F90``文件的路径:
+  /public1/home/fio_climate_model/zyp/tmp/case036/sampling/models/drv/driver/ccsm_comp_mod.F90
+  遇到问题:
+  找不到文档中的模块插入点
+  疑似的： if (iamin_LNDID
 
 ###### ccsm流程: ccsm_driver.F90
 
@@ -1180,11 +1205,23 @@ gcc test2.c -finstrument-functions -L. -lfinstrument
 *    call ccsm_run()
 *    call ccsm_final()
 
-
-
-
-
-
 #### 组会：2023/02/26记录
 
+在case.submit的窗口，执行 一下，添加环境变量（或者写到脚本里面）
+export LD_LIBRARY_PATH=/public1/home/fio_climate_model/zyp/tmp/case036/timerShared/version0.1.0-cpp/probelib/sharedlib
+export LD_LIBRARY_PATH=/public1/soft/intel/2017/compilers_and_libraries/linux/lib/intel64:$LD_LIBRARY_PATH
 
+/public1/home/fio_climate_model/zyp/tmp/case036/timerShared/version0.1.0-cpp/probelib/sharedlib
+
+
+
+
+
+
+
+
+
+
+
+
+### end
