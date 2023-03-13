@@ -49,3 +49,12 @@ TEST(QuickTest, printTsc) {
     ss << myPerf::Perf::getTsc();
     std::cout << ss.str() << std::endl;
 }
+
+
+TEST(QuickTest, printTscCpuHz) {
+    std::cout << myPerf::Perf::getConstCpuHz();
+    std::cout << myPerf::Perf::getConstCpuHz();
+    std::cout << myPerf::Perf::getConstCpuHz();
+    std::cout << myPerf::Perf::getConstCpuHz();
+    std::cout << myPerf::Perf::getConstCpuHz();
+}
