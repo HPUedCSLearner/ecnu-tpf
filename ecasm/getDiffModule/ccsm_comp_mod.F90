@@ -139,6 +139,15 @@ module ccsm_comp_mod
    integer          :: MODULE_CPLWRF=13!13
    integer          :: MODULE_CPLGEA=14!14
 
+   integer          :: MODULE_ROF=15
+	integer          :: MODULE_WAV=16
+	integer          :: CPLALLOCNID=17
+	  
+	integer          :: CPLALLROFID=18
+	integer          :: MODULE_CPLROF=19
+	
+	integer          :: CPLALLGLCID=20
+
    !--- domain area correction factors (only defined on cpl pes) ---
 
    type AreaCorrectFactor
@@ -2726,6 +2735,7 @@ subroutine ccsm_run()
       endif
 
       if (iamroot_CPLID) then
+         CALL PUSH_MODULEID(MODULE_CPL)
          if (loglevel > 1) then
             write(logunit,102) ' Alarm_state: model date = ',ymd,tod, &
                ' aliogrw run alarms = ',  atmrun_alarm, lndrun_alarm, &
@@ -2736,6 +2746,7 @@ subroutine ccsm_run()
                          t3hr_alarm, t6hr_alarm, t12hr_alarm, t24hr_alarm
             call shr_sys_flush(logunit)
          endif
+         CALL POP_MODULEID()
       endif
 
       call t_drvstopf  ('DRIVER_CLOCK_ADVANCE',cplrun=.true.)
@@ -2746,6 +2757,7 @@ subroutine ccsm_run()
       !----------------------------------------------------------
 
       if (iamin_CPLID .and. (ice_present.or.ocn_present) .and. atm_present) then
+         CALL PUSH_MODULEID(MODULE_CPL)
          if (run_barriers) then
             call t_drvstartf ('DRIVER_OCNPREP_BARRIER')
             call mpi_barrier(mpicom_CPLID,ierr)
@@ -2765,6 +2777,7 @@ subroutine ccsm_run()
          call t_drvstopf  ('driver_ocnprep_atm2ocn')
          if (drv_threading) call seq_comm_setnthreads(nthreads_GLOID)
          call t_drvstopf  ('DRIVER_OCNPREP',cplrun=.true.)
+         CALL POP_MODULEID()
       endif
 
       !----------------------------------------------------------
@@ -2778,17 +2791,28 @@ subroutine ccsm_run()
          !----------------------------------------------------
 
          if (iamin_CPLALLOCNID .and. cpl2ocn_first) then
+            CALL PUSH_MODULEID(MODULE_CPLOCN)
             ! want to know the time the ocean pes waited for the cpl pes
             !   at the first ocnrun_alarm, min ocean wait is wait time
             ! do not use t_barrierf here since it can be "off", use mpi_barrier
             do eoi = 1,num_inst_ocn
-               if (iamin_OCNID(eoi)) call t_drvstartf ('DRIVER_C2O_INITWAIT')
+               if (iamin_OCNID(eoi)) then
+                  CALL PUSH_MODULEID(MODULE_OCN)
+                  call t_drvstartf ('DRIVER_C2O_INITWAIT')
+                  CALL POP_MODULEID()
+               endif
+
             enddo
             call mpi_barrier(mpicom_CPLALLOCNID,ierr)
             do eoi = 1,num_inst_ocn
-               if (iamin_OCNID(eoi)) call t_drvstopf  ('DRIVER_C2O_INITWAIT')
+               if (iamin_OCNID(eoi)) then
+                  CALL PUSH_MODULEID(MODULE_OCN)
+                  call t_drvstopf  ('DRIVER_C2O_INITWAIT')
+                  CALL POP_MODULEID()
+               endif
             enddo
             cpl2ocn_first = .false.
+            CALL POP_MODULEID()
          endif
 
          !----------------------------------------------------
@@ -2800,6 +2824,7 @@ subroutine ccsm_run()
          !----------------------------------------------------
 
          if (iamin_CPLID .and. ocn_prognostic) then
+            CALL PUSH_MODULEID(MODULE_CPL)
             if (run_barriers) then
                call t_drvstartf ('DRIVER_OCNPREP_BARRIER')
                call mpi_barrier(mpicom_CPLID,ierr)
@@ -2869,12 +2894,14 @@ subroutine ccsm_run()
             endif
             if (drv_threading) call seq_comm_setnthreads(nthreads_GLOID)
             call t_drvstopf  ('DRIVER_OCNPREP',cplrun=.true.)
+            CALL POP_MODULEID()
          endif
 
          !----------------------------------------------------
          ! cpl -> ocn
          !----------------------------------------------------
          if (iamin_CPLALLOCNID .and. ocn_prognostic) then
+            CALL PUSH_MODULEID(MODULE_CPLOCN)
             if (run_barriers) then
                call t_drvstartf ('DRIVER_C2O_BARRIER')
                call mpi_barrier(mpicom_CPLALLOCNID,ierr)
@@ -2892,6 +2919,7 @@ subroutine ccsm_run()
             call seq_infodata_exchange(infodata,CPLALLOCNID,'cpl2ocn_run')
             call t_drvstopf  ('driver_c2o_infoexch')
             call t_drvstopf  ('DRIVER_C2O',cplcom=.true.)
+            CALL POP_MODULEID()
          endif
       endif
   
@@ -2906,6 +2934,7 @@ subroutine ccsm_run()
          !----------------------------------------------------
 
          if (iamin_CPLID) then
+            CALL PUSH_MODULEID(MODULE_CPL)
             if (run_barriers) then
                call t_drvstartf ('DRIVER_LNDPREP_BARRIER')
                call mpi_barrier(mpicom_CPLID,ierr)
@@ -2972,6 +3001,7 @@ subroutine ccsm_run()
 
             if (drv_threading) call seq_comm_setnthreads(nthreads_GLOID)
             call t_drvstopf  ('DRIVER_LNDPREP',cplrun=.true.)
+            CALL POP_MODULEID()
          endif
 
          !----------------------------------------------------
@@ -2979,6 +3009,7 @@ subroutine ccsm_run()
          !----------------------------------------------------
 
          if (iamin_CPLALLLNDID) then
+            CALL PUSH_MODULEID(MODULE_CPLLND)
             if (run_barriers) then
                call t_drvstartf ('DRIVER_C2L_BARRIER')
                call mpi_barrier(mpicom_CPLALLLNDID,ierr)
@@ -3008,6 +3039,7 @@ subroutine ccsm_run()
                call t_drvstopf  ('driver_c2l_infoexch')
             endif
             call t_drvstopf  ('DRIVER_C2L',cplcom=.true.)
+            CALL POP_MODULEID()
          endif
 
 
@@ -3027,6 +3059,7 @@ subroutine ccsm_run()
          !----------------------------------------------------
 
          if (iamin_CPLID .and. ice_prognostic) then
+         CALL PUSH_MODULEID(MODULE_CPL)
             if (run_barriers) then
                call t_drvstartf ('DRIVER_ICEPREP_BARRIER')
                call mpi_barrier(mpicom_CPLID,ierr)
@@ -3065,6 +3098,7 @@ subroutine ccsm_run()
             endif
             if (drv_threading) call seq_comm_setnthreads(nthreads_GLOID)
             call t_drvstopf  ('DRIVER_ICEPREP',cplrun=.true.)
+            CALL POP_MODULEID()
          endif
 
          !----------------------------------------------------
@@ -3072,6 +3106,7 @@ subroutine ccsm_run()
          !----------------------------------------------------
 
          if (iamin_CPLALLICEID .and. ice_prognostic) then
+            CALL PUSH_MODULEID(MODULE_CPLICE)
             if (run_barriers) then
                call t_drvstartf ('DRIVER_C2I_BARRIER')
                call mpi_barrier(mpicom_CPLALLICEID,ierr)
@@ -3089,6 +3124,7 @@ subroutine ccsm_run()
             call seq_infodata_exchange(infodata,CPLALLICEID,'cpl2ice_run')
             call t_drvstopf  ('driver_c2i_infoexch')
             call t_drvstopf  ('DRIVER_C2I',cplcom=.true.)
+            CALL POP_MODULEID()
          endif
 
       endif
@@ -3098,6 +3134,8 @@ subroutine ccsm_run()
       !----------------------------------------------------------
 
       if (wav_present .and. wavrun_alarm) then
+         CALL PUSH_MODULEID(MODULE_WRF)
+      
 
          !----------------------------------------------------------
          ! wav Prep
@@ -3150,6 +3188,7 @@ subroutine ccsm_run()
             endif
             if (drv_threading) call seq_comm_setnthreads(nthreads_GLOID)
             call t_drvstopf  ('DRIVER_WAVPREP',cplrun=.true.)
+            CALL POP_MODULEID()
          end if
 
          !----------------------------------------------------------
@@ -3157,6 +3196,7 @@ subroutine ccsm_run()
          !----------------------------------------------------------
 
          if (iamin_CPLALLWAVID .and. wav_prognostic) then
+            CALL PUSH_MODULEID(MODULE_CPLWRF)
             if (run_barriers) then
                call t_drvstartf ('DRIVER_C2W_BARRIER')
                call mpi_barrier(mpicom_CPLALLWAVID,ierr)
@@ -3174,6 +3214,7 @@ subroutine ccsm_run()
             call seq_infodata_exchange(infodata,CPLALLWAVID,'cpl2wav_run')
             call t_drvstopf  ('driver_c2w_infoexch')
             call t_drvstopf  ('DRIVER_C2W',cplcom=.true.)
+            CALL POP_MODULEID()
          endif
       end if
 
@@ -3188,6 +3229,7 @@ subroutine ccsm_run()
          !----------------------------------------------------
 
          if (iamin_CPLID .and. rof_prognostic) then
+            CALL PUSH_MODULEID(MODULE_CPL)
             if (run_barriers) then
                call t_drvstartf ('DRIVER_ROFPREP_BARRIER')
                call mpi_barrier(mpicom_CPLID,ierr)
@@ -3225,6 +3267,7 @@ subroutine ccsm_run()
             end if
             if (drv_threading) call seq_comm_setnthreads(nthreads_GLOID)
             call t_drvstopf  ('DRIVER_ROFPREP',cplrun=.true.)
+            CALL POP_MODULEID()
          end if
 
          !----------------------------------------------------
@@ -3232,6 +3275,7 @@ subroutine ccsm_run()
          !----------------------------------------------------
 
          if (iamin_CPLALLROFID .and. rof_prognostic) then
+            CALL PUSH_MODULEID(MODULE_CPL)
             if (run_barriers) then
                call t_drvstartf ('DRIVER_C2R_BARRIER')
                call mpi_barrier(mpicom_CPLALLROFID,ierr)
@@ -3249,6 +3293,7 @@ subroutine ccsm_run()
             call seq_infodata_exchange(infodata,CPLALLROFID,'cpl2rof_run')
             call t_drvstopf  ('driver_c2r_infoexch')
             call t_drvstopf  ('DRIVER_C2R',cplcom=.true.)
+            CALL POP_MODULEID()
          end if
 
       end if
@@ -3258,6 +3303,7 @@ subroutine ccsm_run()
       !----------------------------------------------------------
 
       if (ice_present .and. icerun_alarm) then
+         CALL PUSH_MODULEID(MODULE_ICE)
          do eii = 1,num_inst_ice
             if (iamin_ICEID(eii)) then
                if (run_barriers) then
@@ -3283,6 +3329,7 @@ subroutine ccsm_run()
                endif
             endif
          enddo
+         CALL POP_MODULEID()
       endif
 
       !----------------------------------------------------------
@@ -3290,6 +3337,7 @@ subroutine ccsm_run()
       !----------------------------------------------------------
 
       if ((lnd_present .or. sno_present) .and. lndrun_alarm) then
+         CALL PUSH_MODULEID(MODULE_LND)
          do eli = 1,num_inst_lnd
             if (iamin_LNDID(eli)) then
                if (run_barriers) then
@@ -3318,6 +3366,7 @@ subroutine ccsm_run()
                endif
             endif   ! iamin_LNDID(eli)
          enddo   ! eli
+         CALL POP_MODULEID()
       endif   ! lnd_present or sno_present and lndrun_alarm
 
       !----------------------------------------------------------
@@ -3325,6 +3374,7 @@ subroutine ccsm_run()
       !----------------------------------------------------------
 
       if (rof_present .and. rofrun_alarm) then
+         CALL PUSH_MODULEID(MODULE_ROF)
          do eri = 1,num_inst_rof
             if (iamin_ROFID(eri)) then
                if (run_barriers) then
@@ -3350,6 +3400,7 @@ subroutine ccsm_run()
                endif
             end if
          enddo
+         CALL POP_MODULEID()
       end if 
 
       !----------------------------------------------------------
@@ -3357,6 +3408,7 @@ subroutine ccsm_run()
       !----------------------------------------------------------
 
       if (wav_present .and. wavrun_alarm) then
+         CALL PUSH_MODULEID(MODULE_WAV)
          do ewi = 1,num_inst_wav
             if (iamin_WAVID(ewi)) then
                if (run_barriers) then
@@ -3382,6 +3434,7 @@ subroutine ccsm_run()
                endif
             endif
          enddo
+         CALL POP_MODULEID()
       end if
 
       !----------------------------------------------------------
@@ -3392,6 +3445,7 @@ subroutine ccsm_run()
       if (ocn_present .and. ocnrun_alarm) then
          do eoi = 1,num_inst_ocn
             if (iamin_OCNID(eoi)) then
+               CALL PUSH_MODULEID(MODULE_OCN)
                if (run_barriers) then
                   call t_drvstartf ('DRIVER_OCN_RUN_BARRIER')
                   call mpi_barrier(mpicom_OCNID(eoi),ierr)
@@ -3413,6 +3467,7 @@ subroutine ccsm_run()
                   write(logunit,107) ' rstamp ocn_run_time: model date = ', &
                      ymd,tod,' avg dt = ',cktime_acc(5)/cktime_cnt(5),' dt = ',cktime
                endif
+               CALL POP_MODULEID()
             endif
          enddo
       endif
@@ -3424,6 +3479,7 @@ subroutine ccsm_run()
 
       if (ocean_tight_coupling) then
       if (iamin_CPLALLOCNID) then
+         CALL PUSH_MODULEID(CPLALLOCNID)
       if (ocn_present .and. ocnnext_alarm) then
          if (run_barriers) then
             call t_drvstartf ('DRIVER_O2CT_BARRIER')
@@ -3433,18 +3489,23 @@ subroutine ccsm_run()
          call t_drvstartf ('DRIVER_O2CT',cplcom=.true.,barrier=mpicom_CPLALLOCNID)
          do eoi = 1,num_inst_ocn
             if (iamin_CPLOCNID(eoi)) then
+               CALL PUSH_MODULEID(MODULE_CPLOCN)
                call t_drvstartf ('driver_o2ct_ocno2ocnx',barrier=mpicom_CPLOCNID(eoi))
                call seq_map_map(mapper_Co2x(eoi), o2x_oo(eoi), o2x_ox(eoi), msgtag=CPLOCNID(eoi)*100+eoi*10+4)
                call t_drvstopf  ('driver_o2ct_ocno2ocnx')
+               CALL POP_MODULEID()
             endif
          enddo
          if (iamin_CPLOCNID(ens1)) then
+            CALL PUSH_MODULEID(MODULE_CPLOCN)
             call t_drvstartf ('driver_o2ct_infoexch',barrier=mpicom_CPLOCNID(ens1))
             call seq_infodata_exchange(infodata,CPLOCNID(ens1),'ocn2cpl_run')
             call t_drvstopf  ('driver_o2ct_infoexch')
+            CALL POP_MODULEID()
          endif
          call t_drvstopf  ('DRIVER_O2CT',cplcom=.true.)
          if (iamin_CPLID) then
+            CALL PUSH_MODULEID(MODULE_CPL)
             if (run_barriers) then
                call t_drvstartf ('DRIVER_OCNPOSTT_BARRIER')
                call mpi_barrier(mpicom_CPLID,ierr)
@@ -3461,8 +3522,10 @@ subroutine ccsm_run()
             endif
             if (drv_threading) call seq_comm_setnthreads(nthreads_GLOID)
             call t_drvstopf  ('DRIVER_OCNPOSTT',cplrun=.true.)
+            CALL POP_MODULEID()
          endif
       endif
+         CALL POP_MODULEID()
       endif
       endif
 
@@ -3471,6 +3534,7 @@ subroutine ccsm_run()
       !----------------------------------------------------------
 
       if (ocn_present .and. iamin_CPLID) then
+         CALL PUSH_MODULEID(MODULE_CPL)
          if (run_barriers) then
             call t_drvstartf ('DRIVER_ATMOCNP_BARRIER')
             call mpi_barrier(mpicom_CPLID,ierr)
@@ -3552,6 +3616,7 @@ subroutine ccsm_run()
          
          if (drv_threading) call seq_comm_setnthreads(nthreads_GLOID)
          call t_drvstopf  ('DRIVER_ATMOCNP',cplrun=.true.)
+         CALL POP_MODULEID()
       endif
 
       !----------------------------------------------------------
@@ -3560,6 +3625,7 @@ subroutine ccsm_run()
 
       if ((lnd_present.or.sno_present) .and. lndrun_alarm) then
       if (iamin_CPLALLLNDID) then
+         CALL PUSH_MODULEID(MODULE_CPLLND)
 
          do eli = 1,num_inst_lnd
             if (run_barriers) then
@@ -3568,6 +3634,7 @@ subroutine ccsm_run()
                call t_drvstopf ('DRIVER_L2C_BARRIER')
             endif
             call t_drvstartf ('DRIVER_L2C',cplcom=.true.,barrier=mpicom_CPLALLLNDID)
+            CALL PUSH_MODULEID(MODULE_CPLLND)
             if (iamin_CPLLNDID(eli)) then
                if (lnd_present) then
                   call t_drvstartf ('driver_l2c_lndl2lndx',barrier=mpicom_CPLLNDID(eli))
@@ -3587,9 +3654,11 @@ subroutine ccsm_run()
                call seq_infodata_exchange(infodata,CPLLNDID(ens1),'lnd2cpl_run')
                call t_drvstopf  ('driver_l2c_infoexch')
             endif
+            CALL POP_MODULEID()
             call t_drvstopf  ('DRIVER_L2C',cplcom=.true.)
 
             if (iamin_CPLID) then
+               CALL PUSH_MODULEID(MODULE_CPL)
                if (run_barriers) then
                   call t_drvstartf ('DRIVER_LNDPOST_BARRIER')
                   call mpi_barrier(mpicom_CPLID,ierr)
@@ -3613,6 +3682,7 @@ subroutine ccsm_run()
 
                if (drv_threading) call seq_comm_setnthreads(nthreads_GLOID)
                call t_drvstopf  ('DRIVER_LNDPOST',cplrun=.true.)
+               CALL POP_MODULEID()
             endif
          enddo   ! eli
       endif   ! CPLALLLNDID
@@ -3641,6 +3711,7 @@ subroutine ccsm_run()
 
       if (sno_present .and. glcrun_alarm) then
          if (iamin_CPLID .and. glc_prognostic) then
+            CALL PUSH_MODULEID(MODULE_CPL)
             if (run_barriers) then
                call t_drvstartf ('DRIVER_GLCPREP_BARRIER')
                call mpi_barrier(mpicom_CPLID,ierr)
@@ -3675,6 +3746,7 @@ subroutine ccsm_run()
 
             if (drv_threading) call seq_comm_setnthreads(nthreads_GLOID)
             call t_drvstopf  ('DRIVER_GLCPREP',cplrun=.true.)
+            CALL POP_MODULEID()
          endif
 
          !----------------------------------------------------
@@ -3682,6 +3754,7 @@ subroutine ccsm_run()
          !----------------------------------------------------
 
          if (iamin_CPLALLGLCID .and. glc_prognostic) then
+            CALL PUSH_MODULEID(MODULE_CPL)
             if (run_barriers) then
                call t_drvstartf ('DRIVER_C2G_BARRIER')
                call mpi_barrier(mpicom_CPLALLGLCID,ierr)
@@ -3690,15 +3763,18 @@ subroutine ccsm_run()
             call t_drvstartf ('DRIVER_C2G',cplcom=.true.,barrier=mpicom_CPLALLGLCID)
             do egi = 1,num_inst_glc
                if (iamin_CPLGLCID(egi)) then
+                  CALL PUSH_MODULEID(MODULE_CPLGLC)
                   call t_drvstartf ('driver_c2g_glcx2glcg',barrier=mpicom_CPLGLCID(egi))
                   call seq_map_map(mapper_Cx2g(egi), x2g_gx(egi), x2g_gg(egi), msgtag=CPLGLCID(egi)*100+egi*10+2)
                   call t_drvstopf  ('driver_c2g_glcx2glcg')
+                  CALL POP_MODULEID()
                endif
             enddo
             call t_drvstartf ('driver_c2g_infoexch',barrier=mpicom_CPLALLGLCID)
             call seq_infodata_exchange(infodata,CPLALLGLCID,'cpl2glc_run')
             call t_drvstopf  ('driver_c2g_infoexch')
             call t_drvstopf  ('DRIVER_C2G',cplcom=.true.)
+            CALL POP_MODULEID()
          endif
       endif
 
@@ -3708,6 +3784,7 @@ subroutine ccsm_run()
 
       if (rof_present .and. rofrun_alarm) then
       if (iamin_CPLALLROFID) then
+         CALL PUSH_MODULEID(CPLALLROFID)
          if (run_barriers) then
             call t_drvstartf ('DRIVER_R2C_BARRIER')
             call mpi_barrier(mpicom_CPLALLROFID,ierr)
@@ -3716,15 +3793,19 @@ subroutine ccsm_run()
          call t_drvstartf ('DRIVER_R2C',cplcom=.true., barrier=mpicom_CPLALLROFID)
          do eri = 1,num_inst_rof
             if (iamin_CPLROFID(eri)) then
+               CALL PUSH_MODULEID(MODULE_CPLROF)
                call t_drvstartf ('driver_r2c_rofr2rofx',barrier=mpicom_CPLROFID(eri))
                call seq_map_map(mapper_Cr2x(eri), r2x_rr(eri), r2x_rx(eri), msgtag=CPLROFID(eri)*100+eri*10+4)
                call t_drvstopf ('driver_r2c_rofr2rofx')
+               CALL POP_MODULEID()
             end if
          enddo
          if (iamin_CPLROFID(ens1)) then
+            CALL PUSH_MODULEID(MODULE_CPLROF)
             call t_drvstartf ('driver_r2c_infoexch',barrier=mpicom_CPLROFID(ens1))
             call seq_infodata_exchange(infodata,CPLROFID(ens1),'rof2cpl_run')
             call t_drvstopf  ('driver_r2c_infoexch')
+            CALL POP_MODULEID()
          endif
          call t_drvstopf  ('DRIVER_R2C',cplcom=.true.)
 
@@ -3777,6 +3858,7 @@ subroutine ccsm_run()
       ! consistent with the ocean coupling
 
       if (iamin_CPLID .and. do_budgets) then
+         CALL PUSH_MODULEID(MODULE_CPL)
          if (run_barriers) then
             call t_drvstartf ('DRIVER_BUDGET1_BARRIER')
             call mpi_barrier(mpicom_CPLID,ierr)
@@ -3797,6 +3879,7 @@ subroutine ccsm_run()
             call seq_diag_ice_mct(dom_ix, fractions_ix(ens1), x2i_i=x2i_ix(ens1))
          endif
          call t_drvstopf  ('DRIVER_BUDGET1',cplrun=.true.,budget=.true.)
+         CALL POP_MODULEID()
       endif
 
       !----------------------------------------------------------
@@ -3805,6 +3888,7 @@ subroutine ccsm_run()
 
       if (ice_present .and. icerun_alarm) then
       if (iamin_CPLALLICEID) then
+         CALL PUSH_MODULEID(MODULE_CPLICE)
          if (run_barriers) then
             call t_drvstartf ('DRIVER_I2C_BARRIER')
             call mpi_barrier(mpicom_CPLALLICEID,ierr)
@@ -3826,6 +3910,7 @@ subroutine ccsm_run()
          call t_drvstopf  ('DRIVER_I2C',cplcom=.true.)
 
          if (iamin_CPLID) then
+            CALL PUSH_MODULEID(MODULE_CPL)
             if (run_barriers) then
                call t_drvstartf ('DRIVER_ICEPOST_BARRIER')
                call mpi_barrier(mpicom_CPLID,ierr)
@@ -3842,7 +3927,9 @@ subroutine ccsm_run()
             endif
             if (drv_threading) call seq_comm_setnthreads(nthreads_GLOID)
             call t_drvstopf  ('DRIVER_ICEPOST',cplrun=.true.)
+            CALL POP_MODULEID()
          endif
+         CALL POP_MODULEID()
       endif   ! CPLALLICEID
       endif   ! run alarm, ice_present
 
@@ -3851,6 +3938,7 @@ subroutine ccsm_run()
       !----------------------------------------------------------
 
       if (iamin_CPLID) then
+         CALL PUSH_MODULEID(MODULE_CPL)
          if (run_barriers) then
             call t_drvstartf ('DRIVER_FRACSET_BARRIER')
             call mpi_barrier(mpicom_CPLID,ierr)
@@ -3872,6 +3960,7 @@ subroutine ccsm_run()
          call t_drvstopf  ('driver_fracset_fracset')
          if (drv_threading) call seq_comm_setnthreads(nthreads_GLOID)
          call t_drvstopf  ('DRIVER_FRACSET',cplrun=.true.)
+         CALL POP_MODULEID()
       endif
 
       !----------------------------------------------------------
@@ -3879,6 +3968,7 @@ subroutine ccsm_run()
       !----------------------------------------------------------
 
       if (ocn_present .and. iamin_CPLID) then
+         CALL PUSH_MODULEID(MODULE_CPL)
          ! Compute atm/ocn fluxes (virtual "recv" from ocn)
          if (trim(aoflux_grid) == 'atm') then
             if (run_barriers) then
@@ -3923,6 +4013,7 @@ subroutine ccsm_run()
             if (drv_threading) call seq_comm_setnthreads(nthreads_GLOID)
             call t_drvstopf  ('DRIVER_ATMOCNQ',cplrun=.true.)
          endif
+         CALL POP_MODULEID()
       endif
 
       !----------------------------------------------------------
@@ -3936,6 +4027,7 @@ subroutine ccsm_run()
          !----------------------------------------------------------
 
          if (iamin_CPLID .and. atm_prognostic) then
+            CALL PUSH_MODULEID(MODULE_CPL)
             if (run_barriers) then
                call t_drvstartf ('DRIVER_ATMPREP_BARRIER')
                call mpi_barrier(mpicom_CPLID,ierr)
@@ -4024,6 +4116,7 @@ subroutine ccsm_run()
             endif
             call t_drvstopf  ('DRIVER_ATMPREP',cplrun=.true.)
             if (drv_threading) call seq_comm_setnthreads(nthreads_GLOID)
+            CALL POP_MODULEID()
          endif  ! CPLID
 
          !----------------------------------------------------------
@@ -4032,6 +4125,7 @@ subroutine ccsm_run()
 
          if (iamin_CPLALLATMID) then
          if (atm_prognostic) then
+            CALL PUSH_MODULEID(MODULE_CPLATM)
             if (run_barriers) then
                call t_drvstartf ('DRIVER_C2A_BARRIER')
                call mpi_barrier(mpicom_CPLALLATMID,ierr)
@@ -4049,6 +4143,7 @@ subroutine ccsm_run()
             call seq_infodata_exchange(infodata,CPLALLATMID,'cpl2atm_run')
             call t_drvstopf  ('driver_c2a_infoexch')
             call t_drvstopf  ('DRIVER_C2A',cplcom=.true.)
+            CALL POP_MODULEID()
          endif
          endif
 
@@ -4060,6 +4155,7 @@ subroutine ccsm_run()
 
       if (.not.ocean_tight_coupling) then
       if (ocn_present .and. ocnrun_alarm) then
+         CALL PUSH_MODULEID(MODULE_OCN)
          do eoi = 1,num_inst_ocn
             if (iamin_OCNID(eoi)) then
                if (run_barriers) then
@@ -4085,6 +4181,7 @@ subroutine ccsm_run()
                endif
             endif
          enddo
+         CALL POP_MODULEID()
       endif
       endif
  
@@ -4093,6 +4190,7 @@ subroutine ccsm_run()
       !----------------------------------------------------------
 
       if (atm_present .and. atmrun_alarm) then
+         CALL PUSH_MODULEID(MODULE_ATM)
          do eai = 1,num_inst_atm
             if (iamin_ATMID(eai)) then
                if (run_barriers) then
@@ -4118,6 +4216,7 @@ subroutine ccsm_run()
                endif
             endif
          enddo
+         CALL POP_MODULEID()
       endif
 
       !----------------------------------------------------------
@@ -4125,6 +4224,7 @@ subroutine ccsm_run()
       !----------------------------------------------------------
 
       if (glc_present .and. glcrun_alarm) then
+         CALL PUSH_MODULEID(MODULE_GLC)
          do egi = 1,num_inst_glc
             if (iamin_GLCID(egi)) then
                if (run_barriers) then
@@ -4150,6 +4250,7 @@ subroutine ccsm_run()
                endif
             endif
          enddo
+         CALL POP_MODULEID()
       endif
  
       !----------------------------------------------------------
@@ -4158,27 +4259,34 @@ subroutine ccsm_run()
 
       if (wav_present .and. wavrun_alarm) then
       if (iamin_CPLALLWAVID) then
+         CALL PUSH_MODULEID(MODULE_WAV)
          if (run_barriers) then
             call t_drvstartf ('DRIVER_W2C_BARRIER')
             call mpi_barrier(mpicom_CPLALLWAVID,ierr)
             call t_drvstopf ('DRIVER_W2C_BARRIER')
          endif
+         CALL POP_MODULEID()
          call t_drvstartf ('DRIVER_W2C',cplcom=.true.,barrier=mpicom_CPLALLWAVID)
          do ewi = 1,num_inst_wav
             if (iamin_CPLWAVID(ewi)) then
+               CALL PUSH_MODULEID(MODULE_WAV)
                call t_drvstartf ('driver_w2c_wavw2wavx',barrier=mpicom_CPLWAVID(ewi))
                call seq_map_map(mapper_Cw2x(ewi), w2x_ww(ewi), w2x_wx(ewi))
                call t_drvstopf  ('driver_w2c_wavw2wavx')
+               CALL POP_MODULEID()
             endif
          enddo
          if (iamin_CPLWAVID(ens1)) then
+            CALL PUSH_MODULEID(MODULE_WAV)
             call t_drvstartf ('driver_w2c_infoexch',barrier=mpicom_CPLWAVID(ens1))
             call seq_infodata_exchange(infodata,CPLWAVID(ens1),'wav2cpl_run')
             call t_drvstopf  ('driver_w2c_infoexch')
+            CALL POP_MODULEID()
          endif
          call t_drvstopf  ('DRIVER_W2C',cplcom=.true.)
 
          if (iamin_CPLID) then
+            CALL PUSH_MODULEID(MODULE_CPL)
             if (run_barriers) then
                call t_drvstartf ('DRIVER_WAVPOST_BARRIER')
                call mpi_barrier(mpicom_CPLID,ierr)
@@ -4195,6 +4303,7 @@ subroutine ccsm_run()
             endif
             if (drv_threading) call seq_comm_setnthreads(nthreads_GLOID)
             call t_drvstopf  ('DRIVER_WAVPOST',cplrun=.true.)
+            CALL POP_MODULEID()
          endif
       endif   ! CPLALLWAVID
       endif   ! run alarm, wav_present
@@ -4205,27 +4314,34 @@ subroutine ccsm_run()
 
       if (glc_present .and. glcrun_alarm) then
       if (iamin_CPLALLGLCID) then
+         CALL PUSH_MODULEID(MODULE_CPLGLC)
          if (run_barriers) then
             call t_drvstartf ('DRIVER_G2C_BARRIER')
             call mpi_barrier(mpicom_CPLALLGLCID,ierr)
             call t_drvstopf ('DRIVER_G2C_BARRIER')
          endif
+         CALL POP_MODULEID()
          call t_drvstartf ('DRIVER_G2C',cplcom=.true.,barrier=mpicom_CPLALLGLCID)
          do egi = 1,num_inst_glc
             if (iamin_CPLGLCID(egi)) then
+               CALL PUSH_MODULEID(MODULE_CPLGLC)
                call t_drvstartf ('driver_g2c_glcg2glcx',barrier=mpicom_CPLGLCID(egi))
                call seq_map_map(mapper_Cg2x(egi), g2x_gg(egi), g2x_gx(egi), msgtag=CPLGLCID(egi)*100+egi*10+4)
                call t_drvstopf  ('driver_g2c_glcg2glcx')
+               CALL POP_MODULEID()
             endif
          enddo
          if (iamin_CPLGLCID(ens1)) then
+            CALL PUSH_MODULEID(MODULE_CPLGLC)
             call t_drvstartf ('driver_g2c_infoexch',barrier=mpicom_CPLGLCID(ens1))
             call seq_infodata_exchange(infodata,CPLGLCID(ens1),'glc2cpl_run')
             call t_drvstopf  ('driver_g2c_infoexch')
+            CALL POP_MODULEID()
          endif
          call t_drvstopf  ('DRIVER_G2C',cplcom=.true.)
 
          if (iamin_CPLID) then
+            CALL PUSH_MODULEID(MODULE_CPL)
             if (run_barriers) then
                call t_drvstartf ('DRIVER_GLCPOST_BARRIER')
                call mpi_barrier(mpicom_CPLID,ierr)
@@ -4259,6 +4375,7 @@ subroutine ccsm_run()
 
             if (drv_threading) call seq_comm_setnthreads(nthreads_GLOID)
             call t_drvstopf  ('DRIVER_GLCPOST',cplrun=.true.)
+            CALL POP_MODULEID()
          endif
       endif   ! CPLALLGLCID
       endif   ! run alarm, glc_present
@@ -4269,6 +4386,7 @@ subroutine ccsm_run()
 
       if (atm_present .and. atmrun_alarm) then
       if (iamin_CPLALLATMID) then
+         CALL PUSH_MODULEID(MODULE_CPLATM)
          if (run_barriers) then
             call t_drvstartf ('DRIVER_A2C_BARRIER')
             call mpi_barrier(mpicom_CPLALLATMID,ierr)
@@ -4282,14 +4400,18 @@ subroutine ccsm_run()
                call t_drvstopf  ('driver_a2c_atma2atmx')
             endif
          enddo
+         CALL POP_MODULEID()
          if (iamin_CPLATMID(ens1)) then
+            CALL PUSH_MODULEID(MODULE_CPLATM)
             call t_drvstartf ('driver_a2c_infoexch',barrier=mpicom_CPLATMID(ens1))
             call seq_infodata_exchange(infodata,CPLATMID(ens1),'atm2cpl_run')
             call t_drvstopf  ('driver_a2c_infoexch')
+            CALL POP_MODULEID()
          endif
          call t_drvstopf  ('DRIVER_A2C',cplcom=.true.)
 
          if (iamin_CPLID) then
+            CALL PUSH_MODULEID(MODULE_CPL)
             if (run_barriers) then
                call t_drvstartf ('DRIVER_ATMPOST_BARRIER')
                call mpi_barrier(mpicom_CPLID,ierr)
@@ -4306,6 +4428,7 @@ subroutine ccsm_run()
             endif
             if (drv_threading) call seq_comm_setnthreads(nthreads_GLOID)
             call t_drvstopf  ('DRIVER_ATMPOST',cplrun=.true.)
+            CALL POP_MODULEID()
          endif
       endif ! CPLALLATMID
       endif ! run alarm
@@ -4315,6 +4438,7 @@ subroutine ccsm_run()
       !----------------------------------------------------------
 
       if (iamin_CPLID .and. do_budgets) then
+         CALL PUSH_MODULEID(MODULE_CPL)
          if (run_barriers) then
             call t_drvstartf ('DRIVER_BUDGET2_BARRIER')
             call mpi_barrier(mpicom_CPLID,ierr)
@@ -4338,6 +4462,7 @@ subroutine ccsm_run()
             budget_daily, budget_month, budget_ann, budget_ltann, budget_ltend)
          call seq_diag_zero_mct(EClock=EClock_d)
          call t_drvstopf  ('DRIVER_BUDGETF',cplrun=.true.,budget=.true.)
+         CALL POP_MODULEID()
       endif
 
       !----------------------------------------------------------
@@ -4346,6 +4471,7 @@ subroutine ccsm_run()
 
       if (.not.ocean_tight_coupling) then
       if (iamin_CPLALLOCNID) then
+         CALL PUSH_MODULEID(MODULE_CPLOCN)
       if (ocn_present .and. ocnnext_alarm) then
          if (run_barriers) then
             call t_drvstartf ('DRIVER_O2C_BARRIER')
@@ -4364,10 +4490,12 @@ subroutine ccsm_run()
             call t_drvstartf ('driver_o2c_infoexch',barrier=mpicom_CPLOCNID(ens1))
             call seq_infodata_exchange(infodata,CPLOCNID(ens1),'ocn2cpl_run')
             call t_drvstopf  ('driver_o2c_infoexch')
+            CALL POP_MODULEID()
          endif
          call t_drvstopf  ('DRIVER_O2C',cplcom=.true.)
 
          if (iamin_CPLID) then
+            CALL PUSH_MODULEID(MODULE_CPL)
             if (run_barriers) then
                call t_drvstartf ('DRIVER_OCNPOST_BARRIER')
                call mpi_barrier(mpicom_CPLID,ierr)
@@ -4384,6 +4512,7 @@ subroutine ccsm_run()
             endif
             if (drv_threading) call seq_comm_setnthreads(nthreads_GLOID)
             call t_drvstopf  ('DRIVER_OCNPOST',cplrun=.true.)
+            CALL POP_MODULEID()
          endif
       endif
       endif
@@ -4393,6 +4522,7 @@ subroutine ccsm_run()
       ! Save driver level restart information
       !----------------------------------------------------------
 
+      CALL PUSH_MODULEID(MODULE_CPL)
       if ( restart_alarm .and. iamin_CPLID) then
          if (run_barriers) then
             call t_drvstartf ('DRIVER_RESTART_BARRIER')
@@ -4409,12 +4539,14 @@ subroutine ccsm_run()
          if (drv_threading) call seq_comm_setnthreads(nthreads_GLOID)
          call t_drvstopf  ('DRIVER_RESTART',cplrun=.true.)
       endif
+      CALL POP_MODULEID()
 
       !----------------------------------------------------------
       ! Write history file, only AVs on CPLID
       !----------------------------------------------------------
 
       if (iamin_CPLID) then
+         CALL PUSH_MODULEID(MODULE_CPL)
 
          if (run_barriers) then
             call t_drvstartf ('DRIVER_HISTORY_BARRIER')
@@ -4495,6 +4627,7 @@ subroutine ccsm_run()
             enddo
          endif
          call t_drvstopf  ('DRIVER_HISTORY',cplrun=.true.)
+         CALL POP_MODULEID()
 
       end if
 
@@ -4502,6 +4635,7 @@ subroutine ccsm_run()
       call t_drvstartf ('DRIVER_TSTAMP_WRITE',cplrun=.true.)
       if (tod == 0 .or. info_debug > 1) then
          if (iamroot_CPLID) then
+            CALL PUSH_MODULEID(MODULE_CPL)
             call date_and_time(dstr,tstr)
             Time_estep = mpi_wtime()
             cktime = time_estep-time_bstep
@@ -4513,6 +4647,7 @@ subroutine ccsm_run()
                ' avg dt = ',cktime_acc(1)/cktime_cnt(1),' dt = ',cktime 
             Time_bstep = mpi_wtime()
             call shr_sys_flush(logunit)
+            CALL POP_MODULEID()
          endif
       endif
       if (tod == 0 .or. info_debug > 1) then
@@ -4529,9 +4664,11 @@ subroutine ccsm_run()
       endif
       if (info_debug > 1) then
          if (iamroot_CPLID) then
+            CALL PUSH_MODULEID(MODULE_CPL)
             call seq_infodata_GetData(infodata,nextsw_cday=nextsw_cday)
 !            write(logunit,106) ' nextsw_cday = ',nextsw_cday
             write(logunit,*) '  nextsw_cday = ',nextsw_cday
+            CALL POP_MODULEID()
          endif
       endif
       call t_drvstopf  ('DRIVER_TSTAMP_WRITE',cplrun=.true.)
@@ -4587,6 +4724,7 @@ subroutine ccsm_final()
    call seq_timemgr_EClockGetData( EClock_d, stepno=endstep)
    call shr_mem_getusage(msize,mrss)
 
+   CALL PUSH_MODULEID(MODULE_WAV)
    do ewi = 1,num_inst_wav
       if (iamin_WAVID(ewi)) then
          if (drv_threading) call seq_comm_setnthreads(nthreads_WAVID)
@@ -4594,7 +4732,9 @@ subroutine ccsm_final()
          if (drv_threading) call seq_comm_setnthreads(nthreads_GLOID)
       end if
    enddo
+   CALL POP_MODULEID()
 
+   CALL PUSH_MODULEID(MODULE_ATM)
    do eai = 1,num_inst_atm
       if (iamin_ATMID(eai)) then
          if (drv_threading) call seq_comm_setnthreads(nthreads_ATMID)
@@ -4602,7 +4742,9 @@ subroutine ccsm_final()
          if (drv_threading) call seq_comm_setnthreads(nthreads_GLOID)
       end if
    enddo
+   CALL POP_MODULEID()
 
+   CALL PUSH_MODULEID(MODULE_LND)
    do eli = 1,num_inst_lnd
       if (iamin_LNDID(eli)) then
          if (drv_threading) call seq_comm_setnthreads(nthreads_LNDID)
@@ -4611,7 +4753,9 @@ subroutine ccsm_final()
          if (drv_threading) call seq_comm_setnthreads(nthreads_GLOID)
       end if
    enddo
+   CALL POP_MODULEID()
 
+   CALL PUSH_MODULEID(MODULE_ROF)
    do eri = 1,num_inst_rof
       if (iamin_ROFID(eri)) then
          if (drv_threading) call seq_comm_setnthreads(nthreads_ROFID)
@@ -4619,7 +4763,9 @@ subroutine ccsm_final()
          if (drv_threading) call seq_comm_setnthreads(nthreads_GLOID)
       end if
    enddo
+   CALL POP_MODULEID()
 
+   CALL PUSH_MODULEID(MODULE_ICE)
    do eii = 1,num_inst_ice
       if (iamin_ICEID(eii)) then
          if (drv_threading) call seq_comm_setnthreads(nthreads_ICEID)
@@ -4627,7 +4773,9 @@ subroutine ccsm_final()
          if (drv_threading) call seq_comm_setnthreads(nthreads_GLOID)
       end if
    enddo
+   CALL POP_MODULEID()
 
+   CALL PUSH_MODULEID(MODULE_OCN)
    do eoi = 1,num_inst_ocn
       if (iamin_OCNID(eoi)) then
          if (drv_threading) call seq_comm_setnthreads(nthreads_OCNID)
@@ -4635,7 +4783,9 @@ subroutine ccsm_final()
          if (drv_threading) call seq_comm_setnthreads(nthreads_GLOID)
       end if
    enddo
+   CALL POP_MODULEID()
 
+   CALL PUSH_MODULEID(MODULE_GLC)
    do egi = 1,num_inst_glc
       if (iamin_GLCID(egi)) then
          if (drv_threading) call seq_comm_setnthreads(nthreads_GLCID)
@@ -4643,6 +4793,7 @@ subroutine ccsm_final()
          if (drv_threading) call seq_comm_setnthreads(nthreads_GLOID)
       end if
    enddo
+   CALL POP_MODULEID()
 
    !------------------------------------------------------------------------
    ! End the run cleanly
@@ -4655,6 +4806,7 @@ subroutine ccsm_final()
    call shr_mpi_min(mrss,mrss0,mpicom_GLOID,'driver mrss0',all=.true.)
    call shr_mpi_max(mrss,mrss1,mpicom_GLOID,'driver mrss1',all=.true.)
    if (iamroot_CPLID )then
+      CALL PUSH_MODULEID(MODULE_CPL)
       call seq_timemgr_EClockGetData( EClock_d, curr_ymd=ymd, curr_tod=tod, dtime=dtime)
       write(logunit,'(//)')
       write(logunit,FormatA) subname, 'SUCCESSFUL TERMINATION OF CPL7-CCSM'
@@ -4672,6 +4824,7 @@ subroutine ccsm_final()
       write(logunit,FormatR) subname,' pes max memory last usage (MB)  = ',msize1
       write(logunit,'(//)')
       close(logunit)
+      CALL POP_MODULEID()
    endif
 
    call t_stopf  ('DRIVER_FINAL')
