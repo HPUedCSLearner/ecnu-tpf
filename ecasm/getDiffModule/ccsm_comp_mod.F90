@@ -141,13 +141,11 @@ module ccsm_comp_mod
 
    integer          :: MODULE_ROF=15
 	integer          :: MODULE_WAV=16
-	integer          :: CPLALLOCNID=17
+	integer          :: TMP_CPLALLOCNID=17
 	  
-	integer          :: CPLALLROFID=18
+	integer          :: TMP_CPLALLROFID=18
 	integer          :: MODULE_CPLROF=19
 	
-	integer          :: CPLALLGLCID=20
-
    !--- domain area correction factors (only defined on cpl pes) ---
 
    type AreaCorrectFactor
@@ -3479,7 +3477,7 @@ subroutine ccsm_run()
 
       if (ocean_tight_coupling) then
       if (iamin_CPLALLOCNID) then
-         CALL PUSH_MODULEID(CPLALLOCNID)
+         CALL PUSH_MODULEID(TMP_CPLALLOCNID)
       if (ocn_present .and. ocnnext_alarm) then
          if (run_barriers) then
             call t_drvstartf ('DRIVER_O2CT_BARRIER')
@@ -3784,7 +3782,7 @@ subroutine ccsm_run()
 
       if (rof_present .and. rofrun_alarm) then
       if (iamin_CPLALLROFID) then
-         CALL PUSH_MODULEID(CPLALLROFID)
+         CALL PUSH_MODULEID(TMP_CPLALLROFID)
          if (run_barriers) then
             call t_drvstartf ('DRIVER_R2C_BARRIER')
             call mpi_barrier(mpicom_CPLALLROFID,ierr)

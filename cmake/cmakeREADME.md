@@ -4,11 +4,36 @@
 * 第一节课：[01-学C++从CMake学起 (kdocs.cn)](https://www.kdocs.cn/l/cseylGSYkGVR)
 * 第二节课：[11-现代 CMake 进阶指南 (kdocs.cn)](https://www.kdocs.cn/l/ckl5Eq90YFvJ)
 * 第三节课：[16-现代 CMake 模块化项目管理指南 (kdocs.cn)](https://www.kdocs.cn/l/cjlXZXtPlPcu)
-* [book stack - CMAKE-COOK:]( https://www.bookstack.cn/read/CMake-Cookbook/README.md)
+* [book stack - CMAKE-COOK:](https://www.bookstack.cn/read/CMake-Cookbook/README.md)
 * [github-dev-cafe](https://github.com/dev-cafe/cmake-cookbook)
 * [官方文档cmake.org/cmake/help/latest](https://cmake.org/cmake/help/latest/)
+* [Index of /files/v3.25 (cmake.org)](https://cmake.org/files/v3.25/)
 
 ### 现代cmake语法
+
+##### cmake设置语言标准
+
+[CMake 设置语言标准](https://blog.csdn.net/weixin_39766005/article/details/122481172)
+
+```cmake
+#启用C++14
+set_target_properties(lib
+  PROPERTIES
+    CXX_STANDARD 14
+    CXX_EXTENSIONS OFF
+    CXX_STANDARD_REQUIRED ON
+    POSITION_INDEPENDENT_CODE 1
+  )
+
+
+  cmake -DCMAKE_CXX_STANDARD=17 ...
+```
+
+上述代码为库设置了CXX_STANDARD 、CXX_EXTENSIONS和CXX_STANDARD_REQUIRED 属性。还设置了POSITION_INDEPENDENT_CODE 属性，以避免在使用一些编译器构建DSO时出现问题。
+
+CXX_STANDARD会设置我们想要的标准。
+CXX_EXTENSIONS告诉CMake，只启用 ISO C++ 标准的编译器标志，而不使用特定编译器的扩展。
+CXX_STANDARD_REQUIRED指定所选标准的版本。如果这个版本不可用，CMake将停止配置并出现错误。当这个属性被设置为 OFF 时，CMake将寻找下一个标准的最新版本，直到一个合适的标志，这意味着，首先查找 C++ 20，然后是C++17，然后是C++14，然后是C++11 ，然后是 C++98 。
 
 #### 笔记：
 
