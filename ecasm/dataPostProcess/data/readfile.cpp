@@ -29,6 +29,7 @@ class ParseAddr
 public:
     ParseAddr(const std::shared_ptr<AddrMapName>& mapPtr, const std::string& filename);
     bool parse();
+    bool parseToFile(const std::string filename);
 private:
     ParseAddr();
 private:
@@ -73,6 +74,31 @@ bool ParseAddr::parse()
     return true;
 }
 
+bool ParseAddr::parseToFile(const std::string filename)
+{
+    std::ofstream fout;
+    fout.open(filename, std::ios::out | std::ios::trunc);
+    if (!fout.is_open()) {
+        std::cerr << "open file " << filename << "Error" << std::endl;
+        return false;
+    }
+
+    m_fin.open(m_filename, std::ios::in);
+    if (!m_fin.is_open()) {
+        std::cerr << "open file " << m_filename << "Error" << std::endl;
+        return false;
+    }
+
+    std::string s1;
+    while(m_fin >> s1) {
+        fout << m_funcMapPtr->getFuncName(s1) << std::endl;
+    }
+    m_fin.close();
+    fout.close();
+
+    return true;
+
+}
 std::string filename {"./addFuncName.txt.txt"};
 void example1()
 
@@ -126,13 +152,38 @@ void example3() {
     parsePtr->parse();
 }
 
+void example4()
+{
+    auto addrMapNamePtr = std::make_shared<AddrMapName>("./funcData.txt.txt.txt");
+    if (!addrMapNamePtr->init()) {
+        return;
+    }
+
+    std::string parseFilename {"131015__2023-03-17__16-04-11_functrace.csv"};
+    auto parsePtr = std::make_shared<ParseAddr>(addrMapNamePtr, parseFilename);
+
+    parsePtr->parseToFile("./parseToFile.out");    
+}
+
 int main()
 {
     // example1();
     // example2();
-    example3();
+    // example3();
+    example4();
     return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
