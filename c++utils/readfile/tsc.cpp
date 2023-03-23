@@ -45,4 +45,12 @@ uint64_t TSC::getOneSecondTsc()
     return (tick2 - tick1) * 2;
 }
 
+uint64_t TSC::getOneNanoTsc() // 测量的东西越小，误差越大
+{
+    auto tick1 = TSC::getTsc();
+    std::this_thread::sleep_for(std::chrono::nanoseconds(100));
+    auto tick2 = TSC::getTsc();
+    return (tick2 - tick1) / 100;
+}
+
 }
