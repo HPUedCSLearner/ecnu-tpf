@@ -68,6 +68,29 @@ void test7()
     std::cout << MyUtils::TSC::getAvrgOneSecondTsc() << std::endl;
 }
 
+void test8()
+{
+    std::cout << MyUtils::TSC::getTscDiff() << std::endl;
+    std::cout << MyUtils::TSC::getTscDiff() << std::endl;
+    std::cout << MyUtils::TSC::getTscDiff() << std::endl;
+    std::cout << MyUtils::TSC::getTscDiff() << std::endl;
+    std::cout << MyUtils::TSC::getTscDiff() << std::endl;
+}
+
+void test9()
+{
+    std::cout << MyUtils::TSC::getTicksPerNano() << std::endl;
+    std::cout << MyUtils::TSC::getTicksPerNano() << std::endl;
+    std::cout << MyUtils::TSC::getTicksPerNano() << std::endl;
+    std::cout << MyUtils::TSC::getTicksPerNano() << std::endl;
+    std::cout << MyUtils::TSC::getTicksPerNano() << std::endl;
+}
+
+void test10()
+{
+    test8();
+    test9();
+}
 int main()
 {
     // test1();
@@ -76,6 +99,9 @@ int main()
     // test4();
     // test5();
     // test6();
-    test7();
+    // test7();
+    // test8();
+    // test9();
+    test10();
     return 0;
 }

@@ -48,9 +48,21 @@ uint64_t TSC::getOneSecondTsc()
 uint64_t TSC::getOneNanoTsc() // 测量的东西越小，误差越大
 {
     auto tick1 = TSC::getTsc();
-    std::this_thread::sleep_for(std::chrono::nanoseconds(100));
+    std::this_thread::sleep_for(std::chrono::nanoseconds(1));
     auto tick2 = TSC::getTsc();
-    return (tick2 - tick1) / 100;
+    return (tick2 - tick1);
+}
+
+uint64_t TSC::getTscDiff()
+{
+    auto tick1 = TSC::getTsc();
+    auto tick2 = TSC::getTsc();
+    return tick2 - tick1;
+}
+
+double TSC::getTicksPerNano()
+{
+    return static_cast<double>(getAvrgOneSecondTsc()) / 1e9;
 }
 
 }
