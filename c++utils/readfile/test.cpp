@@ -5,6 +5,9 @@
 #include <memory>
 #include <iostream>
 
+
+#include <fstream>
+
 void test1()
 {
     auto rdfPtr = std::make_shared<MyUtils::ReadFile>("config.txt");
@@ -91,6 +94,34 @@ void test10()
     test8();
     test9();
 }
+
+void test11()
+{
+    auto rdfPtr = std::make_shared<MyUtils::ReadFile>("a.out.txt.txt.txt");
+    rdfPtr->init();
+    rdfPtr->showMap();
+    std::cout << rdfPtr->getValue("profilefile") << std::endl;
+}
+
+
+
+void test12() // test for read hex文本数据
+{
+    std::string filename {"test.txt"};
+    std::ifstream ifile;
+    ifile.open(filename, std::ios::in);
+    if (!ifile.is_open()) {
+        std::cerr << "open file " << filename << "Error" << std::endl;
+    }
+    uint64_t int1;
+    std::string str1;
+    std::string str2;
+    ifile >> str1 >> str2;
+    std::cout << str1 << std::endl;
+    std::cout << std::atoi(str1.c_str()) << std::endl;
+    std::cout << str2 << std::endl;
+}
+
 int main()
 {
     // test1();
@@ -102,6 +133,8 @@ int main()
     // test7();
     // test8();
     // test9();
-    test10();
+    // test10();
+    // test11();
+    test12();
     return 0;
 }

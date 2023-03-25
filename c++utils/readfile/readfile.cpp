@@ -44,6 +44,7 @@ void ReadFile::showMap()
     for (auto & item : m_map) {
         std::cout << item.first << " " << item.second << std::endl;
     }
+    std::cout << "this map size is " << m_map.size() << std::endl;
 }
 
 const std::string& ReadFile::getValue(const std::string& key)
