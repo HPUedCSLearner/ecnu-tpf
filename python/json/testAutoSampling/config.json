@@ -1,0 +1,11 @@
+{
+    "casePath": "./hello/hello",
+    "sampleTimes": [
+        {
+            "caseName": "Case-Serial-8-Process-1-days",
+            "ProcessN": 8,
+            "stopN": 1,
+            "stopN-unit": "days"
+        }
+    ]
+}
