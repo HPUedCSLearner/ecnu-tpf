@@ -1,0 +1,51 @@
+
+
+
+   integer          :: MODULE_CPL=0
+   integer          :: MODULE_LND=1
+   integer          :: MODULE_ROF=2
+   integer          :: MODULE_ICE=3
+   integer          :: MODULE_ATM=4
+   integer          :: MODULE_OCN=5
+   integer          :: MODULE_GLC=6
+   integer          :: MODULE_WAV=7
+   integer          :: MODULE_CPLLND=8
+   integer          :: MODULE_CPLROF=9
+   integer          :: MODULE_CPLICE=10
+   integer          :: MODULE_CPLATM=11
+   integer          :: MODULE_CPLOCN=12
+   integer          :: MODULE_CPLGLC=13
+   integer          :: MODULE_CPLWAV=14
+   integer          :: MODULE_UNDEFINE=15
+   
+   
+grep -rin MODULE_CPL ./ccsm_comp_mod.F90 | wc -l
+grep -rin MODULE_LND ./ccsm_comp_mod.F90 | wc -l
+grep -rin MODULE_ROF ./ccsm_comp_mod.F90 | wc -l
+grep -rin MODULE_ICE ./ccsm_comp_mod.F90 | wc -l
+grep -rin MODULE_ATM ./ccsm_comp_mod.F90 | wc -l
+grep -rin MODULE_GLC ./ccsm_comp_mod.F90 | wc -l
+grep -rin MODULE_WAV ./ccsm_comp_mod.F90 | wc -l
+grep -rin MODULE_CPLLND ./ccsm_comp_mod.F90 | wc -l
+grep -rin MODULE_CPLROF ./ccsm_comp_mod.F90 | wc -l
+grep -rin MODULE_CPLICE ./ccsm_comp_mod.F90 | wc -l
+grep -rin MODULE_CPLATM ./ccsm_comp_mod.F90 | wc -l
+grep -rin MODULE_CPLOCN ./ccsm_comp_mod.F90 | wc -l
+grep -rin MODULE_CPLGLC ./ccsm_comp_mod.F90 | wc -l
+grep -rin MODULE_CPLWAV ./ccsm_comp_mod.F90 | wc -l
+
+
+64
+3
+4
+3
+3
+3
+4
+4
+5
+3
+5
+9
+6
+5

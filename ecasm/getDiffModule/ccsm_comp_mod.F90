@@ -123,28 +123,22 @@ module ccsm_comp_mod
    integer          :: lsize_g
    integer          :: lsize_w
    
-   integer          :: MODULE_CPL=0!0
-   integer          :: MODULE_ATM=1
-   integer          :: MODULE_LND=2
+   integer          :: MODULE_CPL=0
+   integer          :: MODULE_LND=1
+   integer          :: MODULE_ROF=2
    integer          :: MODULE_ICE=3
-   integer          :: MODULE_OCN=4
-   integer          :: MODULE_GLC=5
-   integer          :: MODULE_WRF=6
-   integer          :: MODULE_GEA=7
-   integer          :: MODULE_CPLATM=8!8
-   integer          :: MODULE_CPLLND=9!9
-   integer          :: MODULE_CPLICE=10!10
-   integer          :: MODULE_CPLOCN=11!11
-   integer          :: MODULE_CPLGLC=12!12
-   integer          :: MODULE_CPLWRF=13!13
-   integer          :: MODULE_CPLGEA=14!14
-
-   integer          :: MODULE_ROF=15
-	integer          :: MODULE_WAV=16
-	integer          :: TMP_CPLALLOCNID=17
-	  
-	integer          :: TMP_CPLALLROFID=18
-	integer          :: MODULE_CPLROF=19
+   integer          :: MODULE_ATM=4
+   integer          :: MODULE_OCN=5
+   integer          :: MODULE_GLC=6
+   integer          :: MODULE_WAV=7
+   integer          :: MODULE_CPLLND=8
+   integer          :: MODULE_CPLROF=9
+   integer          :: MODULE_CPLICE=10
+   integer          :: MODULE_CPLATM=11
+   integer          :: MODULE_CPLOCN=12
+   integer          :: MODULE_CPLGLC=13
+   integer          :: MODULE_CPLWAV=14
+   integer          :: MODULE_UNDEFINE=15
 	
    !--- domain area correction factors (only defined on cpl pes) ---
 
@@ -3057,7 +3051,7 @@ subroutine ccsm_run()
          !----------------------------------------------------
 
          if (iamin_CPLID .and. ice_prognostic) then
-         CALL PUSH_MODULEID(MODULE_CPL)
+            CALL PUSH_MODULEID(MODULE_CPL)
             if (run_barriers) then
                call t_drvstartf ('DRIVER_ICEPREP_BARRIER')
                call mpi_barrier(mpicom_CPLID,ierr)
@@ -3132,7 +3126,7 @@ subroutine ccsm_run()
       !----------------------------------------------------------
 
       if (wav_present .and. wavrun_alarm) then
-         CALL PUSH_MODULEID(MODULE_WRF)
+         CALL PUSH_MODULEID(MODULE_WAV)
       
 
          !----------------------------------------------------------
@@ -3186,15 +3180,15 @@ subroutine ccsm_run()
             endif
             if (drv_threading) call seq_comm_setnthreads(nthreads_GLOID)
             call t_drvstopf  ('DRIVER_WAVPREP',cplrun=.true.)
-            CALL POP_MODULEID()
          end if
+         CALL POP_MODULEID()
 
          !----------------------------------------------------------
          ! cpl -> wav
          !----------------------------------------------------------
 
          if (iamin_CPLALLWAVID .and. wav_prognostic) then
-            CALL PUSH_MODULEID(MODULE_CPLWRF)
+            CALL PUSH_MODULEID(MODULE_CPLWAV)
             if (run_barriers) then
                call t_drvstartf ('DRIVER_C2W_BARRIER')
                call mpi_barrier(mpicom_CPLALLWAVID,ierr)
@@ -3227,7 +3221,7 @@ subroutine ccsm_run()
          !----------------------------------------------------
 
          if (iamin_CPLID .and. rof_prognostic) then
-            CALL PUSH_MODULEID(MODULE_CPL)
+            CALL PUSH_MODULEID(MODULE_ROF)
             if (run_barriers) then
                call t_drvstartf ('DRIVER_ROFPREP_BARRIER')
                call mpi_barrier(mpicom_CPLID,ierr)
@@ -3273,7 +3267,7 @@ subroutine ccsm_run()
          !----------------------------------------------------
 
          if (iamin_CPLALLROFID .and. rof_prognostic) then
-            CALL PUSH_MODULEID(MODULE_CPL)
+            CALL PUSH_MODULEID(MODULE_CPLROF)
             if (run_barriers) then
                call t_drvstartf ('DRIVER_C2R_BARRIER')
                call mpi_barrier(mpicom_CPLALLROFID,ierr)
@@ -3477,7 +3471,7 @@ subroutine ccsm_run()
 
       if (ocean_tight_coupling) then
       if (iamin_CPLALLOCNID) then
-         CALL PUSH_MODULEID(TMP_CPLALLOCNID)
+         CALL PUSH_MODULEID(MODULE_CPLOCN)
       if (ocn_present .and. ocnnext_alarm) then
          if (run_barriers) then
             call t_drvstartf ('DRIVER_O2CT_BARRIER')
@@ -3683,6 +3677,7 @@ subroutine ccsm_run()
                CALL POP_MODULEID()
             endif
          enddo   ! eli
+         CALL POP_MODULEID()
       endif   ! CPLALLLNDID
 
       if (iamin_CPLID .and. lnd_present) then
@@ -3752,7 +3747,7 @@ subroutine ccsm_run()
          !----------------------------------------------------
 
          if (iamin_CPLALLGLCID .and. glc_prognostic) then
-            CALL PUSH_MODULEID(MODULE_CPL)
+            CALL PUSH_MODULEID(MODULE_CPLGLC)
             if (run_barriers) then
                call t_drvstartf ('DRIVER_C2G_BARRIER')
                call mpi_barrier(mpicom_CPLALLGLCID,ierr)
@@ -3782,7 +3777,7 @@ subroutine ccsm_run()
 
       if (rof_present .and. rofrun_alarm) then
       if (iamin_CPLALLROFID) then
-         CALL PUSH_MODULEID(TMP_CPLALLROFID)
+         CALL PUSH_MODULEID(MODULE_CPLROF)
          if (run_barriers) then
             call t_drvstartf ('DRIVER_R2C_BARRIER')
             call mpi_barrier(mpicom_CPLALLROFID,ierr)
@@ -3808,6 +3803,7 @@ subroutine ccsm_run()
          call t_drvstopf  ('DRIVER_R2C',cplcom=.true.)
 
          if (iamin_CPLID) then
+            CALL PUSH_MODULEID(MODULE_CPL)
             if (run_barriers) then
                call t_drvstartf ('DRIVER_ROFPOST_BARRIER')
                call mpi_barrier(mpicom_CPLID,ierr)
@@ -3840,7 +3836,9 @@ subroutine ccsm_run()
                call t_drvstopf ('driver_rofpost_raccum')
             endif
                call t_drvstopf  ('DRIVER_ROFPOST', cplrun=.true.)
+            CALL POP_MODULEID()
          endif ! CPLID
+         CALL POP_MODULEID()
       endif  ! CPLALLROFID
       endif  ! (rof_present .and. rofrun_alarm)
       
@@ -4257,17 +4255,16 @@ subroutine ccsm_run()
 
       if (wav_present .and. wavrun_alarm) then
       if (iamin_CPLALLWAVID) then
-         CALL PUSH_MODULEID(MODULE_WAV)
+         CALL PUSH_MODULEID(MODULE_CPLWAV)
          if (run_barriers) then
             call t_drvstartf ('DRIVER_W2C_BARRIER')
             call mpi_barrier(mpicom_CPLALLWAVID,ierr)
             call t_drvstopf ('DRIVER_W2C_BARRIER')
          endif
-         CALL POP_MODULEID()
          call t_drvstartf ('DRIVER_W2C',cplcom=.true.,barrier=mpicom_CPLALLWAVID)
          do ewi = 1,num_inst_wav
             if (iamin_CPLWAVID(ewi)) then
-               CALL PUSH_MODULEID(MODULE_WAV)
+               CALL PUSH_MODULEID(MODULE_CPLWAV)
                call t_drvstartf ('driver_w2c_wavw2wavx',barrier=mpicom_CPLWAVID(ewi))
                call seq_map_map(mapper_Cw2x(ewi), w2x_ww(ewi), w2x_wx(ewi))
                call t_drvstopf  ('driver_w2c_wavw2wavx')
@@ -4275,7 +4272,7 @@ subroutine ccsm_run()
             endif
          enddo
          if (iamin_CPLWAVID(ens1)) then
-            CALL PUSH_MODULEID(MODULE_WAV)
+            CALL PUSH_MODULEID(MODULE_CPLWAV)
             call t_drvstartf ('driver_w2c_infoexch',barrier=mpicom_CPLWAVID(ens1))
             call seq_infodata_exchange(infodata,CPLWAVID(ens1),'wav2cpl_run')
             call t_drvstopf  ('driver_w2c_infoexch')
@@ -4303,6 +4300,7 @@ subroutine ccsm_run()
             call t_drvstopf  ('DRIVER_WAVPOST',cplrun=.true.)
             CALL POP_MODULEID()
          endif
+         CALL POP_MODULEID()
       endif   ! CPLALLWAVID
       endif   ! run alarm, wav_present
 
@@ -4318,7 +4316,6 @@ subroutine ccsm_run()
             call mpi_barrier(mpicom_CPLALLGLCID,ierr)
             call t_drvstopf ('DRIVER_G2C_BARRIER')
          endif
-         CALL POP_MODULEID()
          call t_drvstartf ('DRIVER_G2C',cplcom=.true.,barrier=mpicom_CPLALLGLCID)
          do egi = 1,num_inst_glc
             if (iamin_CPLGLCID(egi)) then
@@ -4375,6 +4372,7 @@ subroutine ccsm_run()
             call t_drvstopf  ('DRIVER_GLCPOST',cplrun=.true.)
             CALL POP_MODULEID()
          endif
+         CALL POP_MODULEID()
       endif   ! CPLALLGLCID
       endif   ! run alarm, glc_present
 
@@ -4392,13 +4390,14 @@ subroutine ccsm_run()
          endif
          call t_drvstartf ('DRIVER_A2C',cplcom=.true.,barrier=mpicom_CPLALLATMID)
          do eai = 1,num_inst_atm
-            if (iamin_CPLATMID(eai)) then
+            if (iamin_CPLATMID(eai)) 
+               CALL PUSH_MODULEID(MODULE_CPLATM)
                call t_drvstartf ('driver_a2c_atma2atmx',barrier=mpicom_CPLATMID(eai))
                call seq_map_map(mapper_Ca2x(eai), a2x_aa(eai), a2x_ax(eai), msgtag=CPLATMID(eai)*100+eai*10+4)
                call t_drvstopf  ('driver_a2c_atma2atmx')
+               CALL POP_MODULEID()
             endif
          enddo
-         CALL POP_MODULEID()
          if (iamin_CPLATMID(ens1)) then
             CALL PUSH_MODULEID(MODULE_CPLATM)
             call t_drvstartf ('driver_a2c_infoexch',barrier=mpicom_CPLATMID(ens1))
@@ -4428,6 +4427,7 @@ subroutine ccsm_run()
             call t_drvstopf  ('DRIVER_ATMPOST',cplrun=.true.)
             CALL POP_MODULEID()
          endif
+         CALL POP_MODULEID()
       endif ! CPLALLATMID
       endif ! run alarm
 
@@ -4479,12 +4479,15 @@ subroutine ccsm_run()
          call t_drvstartf ('DRIVER_O2C',cplcom=.true.,barrier=mpicom_CPLALLOCNID)
          do eoi = 1,num_inst_ocn
             if (iamin_CPLOCNID(eoi)) then
+               CALL PUSH_MODULEID(MODULE_CPLOCN)
                call t_drvstartf ('driver_o2c_ocno2ocnx',barrier=mpicom_CPLOCNID(eoi))
                call seq_map_map(mapper_Co2x(eoi), o2x_oo(eoi), o2x_ox(eoi), msgtag=CPLOCNID(eoi)*100+eoi*10+6)
                call t_drvstopf  ('driver_o2c_ocno2ocnx')
+               CALL POP_MODULEID()
             endif
          enddo
          if (iamin_CPLOCNID(ens1)) then
+            CALL PUSH_MODULEID(MODULE_CPLOCN)
             call t_drvstartf ('driver_o2c_infoexch',barrier=mpicom_CPLOCNID(ens1))
             call seq_infodata_exchange(infodata,CPLOCNID(ens1),'ocn2cpl_run')
             call t_drvstopf  ('driver_o2c_infoexch')
@@ -4513,6 +4516,7 @@ subroutine ccsm_run()
             CALL POP_MODULEID()
          endif
       endif
+         CALL POP_MODULEID()
       endif
       endif
 
