@@ -1,0 +1,23 @@
+{
+    "casePath": "/public1/home/fio_climate_model/zyp/tmp/",
+    "sampleTimes": [
+        {
+            "caseName": "case-serial-8-process-100-nhours",
+            "ProcessN": "8",
+            "stopN": "100",
+            "stopN-unit": "nhours"
+        },
+		{
+            "caseName": "case-serial-16-process-100-nhours",
+            "ProcessN": "16",
+            "stopN": "100",
+            "stopN-unit": "nhours"
+        },
+		{
+            "caseName": "case-serial-32-process-100-nhours",
+            "ProcessN": "32",
+            "stopN": "100",
+            "stopN-unit": "nhours"
+        }
+    ]
+}

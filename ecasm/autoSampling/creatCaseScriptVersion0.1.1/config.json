@@ -1,0 +1,25 @@
+{
+    "casePath": "/public1/home/fio_climate_model/zyp/tmp/",
+    "modifyGptl": {
+        "item1": "./sampling/models/utils/timing/gptl.c",
+        "item2": "./sampling/models/utils/timing/private.h",
+        "item3": "./sampling/models/glc/cism/glimmer-cism/libgptl/gptl.c",
+        "item4": "./sampling/models/glc/cism/glimmer-cism/libgptl/private.h"
+    },
+    "libconfig": {
+        "staticLibPath": "-L /public1/home/fio_climate_model/zyp/tmp/case036/timerShared/version0.1.0-cpp/probelib",
+        "staticLibName": "-l probe",
+        "sharedLibPath": "-L /public1/home/fio_climate_model/zyp/tmp/case036/timerShared/version0.1.0-cpp/probelib/sharedlib",
+        "sharedLibName": "-l probeImpl -l hook"
+    },
+    "sampleTimes": [
+        {
+            "isCreate": "True",
+            "isInstrument": "True",
+            "caseName": "case-Test-serial-8-process-1-nhours",
+            "ProcessN": "8",
+            "stopN": "1",
+            "stopN-unit": "nhours"
+        }
+    ]
+}

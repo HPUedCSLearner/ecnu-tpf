@@ -1,0 +1,55 @@
+#
+# Makefile Macros generated from /public1/home/fio_climate_model/zyp/tmp/case-Test-serial-8-process-1-nhours/sampling/scripts/ccsm_utils/Machines/config_compilers.xml using
+# COMPILER=intel
+# OS=LINUX
+# MACH=bscc-a6
+#
+CPPDEFS+= -DFORTRANUNDERSCORE -DNO_R16 -DLINUX -DCPRINTEL 
+
+SLIBS+=-L${NETCDF_PATH}/lib -lnetcdff -lnetcdf
+
+CFLAGS:= -fp-model precise 
+
+CXX_LDFLAGS:= -cxxlib 
+
+CXX_LINKER:=FORTRAN
+
+FC_AUTO_R8:= -r8 
+
+FFLAGS:= -fp-model source -convert big_endian -assume byterecl -ftz -traceback -g -finstrument-functions -mcmodel=medium 
+
+FFLAGS_NOOPT:= -O0 
+
+FIXEDFLAGS:= -fixed -132 
+
+FREEFLAGS:= -free 
+
+MPICC:= mpiicc  
+
+MPICXX:= mpiicpc 
+
+MPIFC:= mpiifort 
+
+SCC:= icc 
+
+SCXX:= icpc 
+
+SFC:= ifort 
+
+SUPPORTS_CXX:=TRUE
+
+ifeq ($(DEBUG), TRUE) 
+   FFLAGS += -g -CU -check pointers -fpe0 
+endif
+
+ifeq ($(compile_threaded), true) 
+   LDFLAGS += -openmp 
+   CFLAGS += -openmp 
+   FFLAGS += -openmp 
+endif
+
+ifeq ($(MODEL), cam) 
+   CFLAGS += -O1 
+   FFLAGS += -O1 
+endif
+
