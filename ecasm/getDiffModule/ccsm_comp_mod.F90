@@ -4390,7 +4390,7 @@ subroutine ccsm_run()
          endif
          call t_drvstartf ('DRIVER_A2C',cplcom=.true.,barrier=mpicom_CPLALLATMID)
          do eai = 1,num_inst_atm
-            if (iamin_CPLATMID(eai)) 
+            if (iamin_CPLATMID(eai)) then
                CALL PUSH_MODULEID(MODULE_CPLATM)
                call t_drvstartf ('driver_a2c_atma2atmx',barrier=mpicom_CPLATMID(eai))
                call seq_map_map(mapper_Ca2x(eai), a2x_aa(eai), a2x_ax(eai), msgtag=CPLATMID(eai)*100+eai*10+4)

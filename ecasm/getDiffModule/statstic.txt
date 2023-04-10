@@ -19,6 +19,11 @@
    integer          :: MODULE_UNDEFINE=15
    
    
+   const char* moduleName[] {  "MODULE_CPL", "MODULE_LND", "MODULE_ROF", "MODULE_ICE", "MODULE_ATM", "MODULE_OCN",
+						    "MODULE_GLC", "MODULE_WAV", "MODULE_CPLLND", "MODULE_CPLROF", "MODULE_CPLICE",
+						    "MODULE_CPLATM", "MODULE_CPLOCN", "MODULE_CPLGLC", "MODULE_CPLWAV", "MODULE_UNDEFINE"
+						};
+
 grep -rin MODULE_CPL ./ccsm_comp_mod.F90 | wc -l
 grep -rin MODULE_LND ./ccsm_comp_mod.F90 | wc -l
 grep -rin MODULE_ROF ./ccsm_comp_mod.F90 | wc -l
