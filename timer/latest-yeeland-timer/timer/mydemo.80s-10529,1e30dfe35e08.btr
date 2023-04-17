@@ -1,0 +1,8 @@
+
+mydemo:10529 terminated with signal 11 at PC=55d31d561825 SP=7fffcbde24c0.  Backtrace:
+./mydemo(+0x5825)[0x55d31d561825]
+./mydemo(+0x5ca4)[0x55d31d561ca4]
+./mydemo(+0x5226)[0x55d31d561226]
+/lib/x86_64-linux-gnu/libc.so.6(+0x29d90)[0x7fed4662ed90]
+/lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0x80)[0x7fed4662ee40]
+./mydemo(+0x5255)[0x55d31d561255]

@@ -2,7 +2,7 @@ OPEN_ARRAY=/home/export/online1/mdt00/shisuan/swliuyao/oa/OA/build.slave
 
 oplevel3 = -O2 -w  -std=c++0x -D_WITHOUT_LLVM_ -DSUNWAY    -fpermissive
 
-FC = mpif90 ${oplevel3}  
+FC = gfortran ${oplevel3}  
 CC = gcc -O2 -w  
 
 EXT_LIB_LINK = 	-lpnetcdf  -ldl  -Wl,-rpath=${JIT_LIB}
