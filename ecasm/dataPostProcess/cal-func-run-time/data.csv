@@ -1,0 +1,39 @@
+
+seq_diag_mct_mp_seq_diag_ice_mct_  ccsm_comp_mod_mp_ccsm_run_ 576 11627967 11662302
+micro_mg1_5_mp_micro_mg_tend_    micro_mg_cammicro_mg_cam_tend_mp_micro_mg1_5_tend_intr_   1160   8829002149   8829071509
+tp_core_mp_lmppm_    tp_core_mp_fyppm_   19720   79411010   80580623
+carma_flags_mod_mp_carma_readnl_    runtime_opts_mp_read_namelist_   1   749605   749672
+time_management_mp_init_time_flag_    ocn_comp_mct_mp_ocn_init_mct_   5   13014   13317
+time_management_mp_init_time_flag_    ice_mp_init_ice_   1   8034   8101
+time_management_mp_init_time_flag_    ecosys_mod_mp_ecosys_init_   1   3760   3838
+time_management_mp_init_time_flag_    movie_mp_init_movie_   1   3189   3233
+time_management_mp_init_time_flag_    restart_mp_init_restart_   2   3233   3357
+time_management_mp_init_time_flag_    diagnostics_mp_init_diagnostics_   3   8605   8796
+time_management_mp_init_time_flag_    time_management_mp_init_time1_   1   5975   6042
+time_management_mp_init_time_flag_    tavg_mp_init_tavg_   10   19359   19930
+time_management_mp_init_time_flag_    forcing_coupled_mp_pop_init_coupled_   1   2294   2360
+time_management_mp_init_time_flag_    history_mp_init_history_   1   3144   3211
+ccsm_comp_mod_mp_t_drvstartf_    ccsm_comp_mod_mp_ccsm_run_   17652   28978140   30041086
+ice_distribution_mp_create_local_block_ids_    ice_domain_mp_init_domain_distribution_   1   10093   10150
+sat_hist_mp_is_satfile_    cam_history_mp_wshist_   113   29241   36031
+sat_hist_mp_is_satfile_    cam_history_mp_h_define_   134   7016   15128
+sat_hist_mp_sat_hist_readnl_    runtime_opts_mp_read_namelist_   1   1099128   1099173
+sat_hist_mp_sat_hist_readnl_    time_management_mp_init_time_flag_   1   128   1173
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

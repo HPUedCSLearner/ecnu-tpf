@@ -1,0 +1,5 @@
+function:MPI_Init, called by function:main, 1, 19256706, 19256859
+function:MPI_Finalize, called by function:main, 1, 773216, 773336
+function:_Z8do_multiii, called by function:_Z7do_calcii, 1, 514, 569
+function:_Z7do_calcii, called by function:main, 1, 941, 1040
+function:main, called by function:??, 1, 20079766, 60292200
