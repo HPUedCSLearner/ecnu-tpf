@@ -21,6 +21,6 @@ int main(){
         sayhello();
     }
     saynihao();
-    // MPI_Finalize();
+    MPI_Finalize();
     return 0;
 }

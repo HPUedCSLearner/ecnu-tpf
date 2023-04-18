@@ -10,8 +10,8 @@ int do_multi(int a, int b)
  
 int do_calc(int a, int b)
 {
-	std::stack<int> st;
-	st.push(23);
+	// std::stack<int> st;
+	// st.push(23);
 	return do_multi(a, b);
 }
  
@@ -25,7 +25,7 @@ int main()
 
 	int a = 4, b = 5;
 	printf("result: %d\n", do_calc(a, b));
-	// MPI_Finalize();
+	MPI_Finalize();
 	return 0;
 
 	

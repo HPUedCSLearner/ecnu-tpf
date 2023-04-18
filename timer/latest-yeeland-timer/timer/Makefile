@@ -10,7 +10,8 @@ mydemo: mydemo.o timer.o mpiwrapper.o mpiwrapper_f.o
 timer.o: timer.c
 	-${CC} -c -o $@ $<
 
-mydemo.o: test.c
+# mydemo.o: test.c
+mydemo.o: mydemo.c
 	$(CC) -g -finstrument-functions -c -o $@ $<
 
 mpiwrapper.o: mpiwrapper.c

@@ -25,15 +25,17 @@ struct stack __profile__time;//记录开始计时函数起始时间的栈
 
 extern int __profile__rank;//记录当前处在哪个rank中（多进程）
 
-int __profile_common_size;
+extern int __profile_common_size; // record  mpi size
 
-struct node *T[9000];//函数运行信息记录节点
+
+
+struct node *T[HASH_TABLE_SIZE];//函数运行信息记录节点
 
 extern void init_stack(struct stack* s);
 extern void push(struct stack* s, unsigned long long data);
 extern unsigned long long pop(struct stack* s);
 
-unsigned long addr2int[9001]; //记录函数地址的哈希值
+unsigned long addr2int[HASH_TABLE_SIZE + 1]; //记录函数地址的哈希值
 
 //int_to_string 转换
 char * myitoa (int n, char *s)
@@ -73,7 +75,7 @@ unsigned long long __profile__record_time_begin()
 	if(__profile__time.sta[__profile__time.top]!=-1&&__profile__time.top==0){
 		init_stack(&__profile__time);
 		int i;
-		for(i=0;i<9000;i++)
+		for(i=0;i<HASH_TABLE_SIZE;i++)
 		{
 			T[i]=NULL;
 		}
@@ -119,8 +121,8 @@ void __profile__record_time_end()
 	}
 
 	if(__profile__time.top==0){
-		MPI_Comm_size(MPI_COMM_WORLD, &__profile_common_size);
-		MPI_Comm_rank(MPI_COMM_WORLD, &__profile__rank);
+		// MPI_Comm_size(MPI_COMM_WORLD, &__profile_common_size);
+		// MPI_Comm_rank(MPI_COMM_WORLD, &__profile__rank);
 		// printf("STACK is EMPTY!!%d\n",__profile_common_size);
 		__profile__input_csv();
 	}
@@ -140,7 +142,7 @@ void __profile__input_csv()
 	// printf("%s\n",filename);
 	fw = fopen(filename, "w");
 	int i,j;
-	for(i=1;i<9000+1;i++)
+	for(i=1;i<HASH_TABLE_SIZE+1;i++)
 	{
 		if(T[i]==NULL)continue;
 		inorder(T[i],i,fw);
@@ -152,11 +154,12 @@ void __attribute__((no_instrument_function)) debug_log(const char *format,...);
 void __attribute__((no_instrument_function)) __cyg_profile_func_enter(void*, void*);
 void __attribute__((no_instrument_function)) __cyg_profile_func_exit(void*, void*);
 
-#define MOD (unsigned long)(9000)
-unsigned long addr2int[9001];
+// #define HASH_TABLE_SIZE (unsigned long)(90000)
+
+// unsigned long addr2int[HASH_TABLE_SIZE + 1];
 
 int getHashId(unsigned long oriId){
-	int tmp=oriId%MOD;
+	int tmp=oriId%HASH_TABLE_SIZE;
 	// printf("oriId:%ld\n",oriId);
 	if(tmp==0)tmp++;
 	while(addr2int[tmp]!=oriId){
@@ -165,16 +168,16 @@ int getHashId(unsigned long oriId){
 			return tmp;
 		}	
 		tmp++;
-		if(tmp>9000)tmp=1;
+		if(tmp > HASH_TABLE_SIZE)tmp=1;
 	}
 	return tmp;
 }
 void  __attribute__((no_instrument_function))
 __cyg_profile_func_enter(void *this, void *call)
 {
-	printf("#yes enter:%p %p\n",call,this);
+	//printf("#yes enter:%p %p\n",call,this);
 	int funId=getHashId((unsigned long)this), faFuncId=getHashId((unsigned long)call);
-	printf("#yes enter:%d %d\n",funId,faFuncId);
+	//printf("#yes enter:%d %d\n",funId,faFuncId);
 	__profile__funcID=funId;
 	__profile__fatherID=faFuncId;
 	__profile__record_time_begin();

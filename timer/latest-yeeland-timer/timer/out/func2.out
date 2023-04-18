@@ -1,0 +1,6 @@
+function:saynihao, called by function:sayhello, 20, 9265, 10284
+function:saynihao, called by function:main, 1, 416, 470
+function:sayhello, called by function:main, 20, 49033, 50118
+function:main, called by function:??, 1, 30300612, 85211898
+function:MPI_Init, called by function:main, 1, 28684665, 28684741
+function:MPI_Finalize, called by function:main, 1, 1557362, 1557417

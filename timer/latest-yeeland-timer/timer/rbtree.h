@@ -3,6 +3,7 @@
 #include<stdlib.h>
 // #include<athread.h>
 #include "perf_counter.h"
+#include "stack.h"
 
 //A Red-Black tree node structure
 #define MAX_MODULE 16
@@ -11,7 +12,8 @@ extern struct stack __profile__module_stack;
 
 extern struct stack __profile__time; 
 
-extern unsigned long addr2int[9001];
+// extern unsigned long addr2int[9001];
+extern unsigned long addr2int[HASH_TABLE_SIZE + 1];
 
 struct fatherNode
 {

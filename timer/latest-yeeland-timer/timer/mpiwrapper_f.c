@@ -21,7 +21,7 @@ MPI_Fint TAU_MPI_Request_c2f(MPI_Request c_request) {
 
 #define TAU_MPI_CART_CREATE
 
-int __profile__rank;
+int __profile__f__rank;
 void  mpi_allgather_( sendbuf, sendcount, sendtype, recvbuf, recvcount, recvtype, comm , ierr)
 void * sendbuf;
 MPI_Fint *sendcount;
@@ -2968,35 +2968,35 @@ void  mpi_init_( ierr)
 MPI_Fint *ierr; 
 {
   *ierr = MPI_Init( 0, (char ***)0);
-  MPI_Comm_rank(MPI_COMM_WORLD, &__profile__rank);
+  MPI_Comm_rank(MPI_COMM_WORLD, &__profile__f__rank);
 }
 
 void  mpi_init__( ierr)
 MPI_Fint *ierr;
 {
   mpi_init_( ierr);
-  MPI_Comm_rank(MPI_COMM_WORLD, &__profile__rank);
+  MPI_Comm_rank(MPI_COMM_WORLD, &__profile__f__rank);
 }
 
 void  MPI_INIT( ierr)
 MPI_Fint *ierr;
 {
   mpi_init_( ierr);
-  MPI_Comm_rank(MPI_COMM_WORLD, &__profile__rank);
+  MPI_Comm_rank(MPI_COMM_WORLD, &__profile__f__rank);
 }
 
 void  MPI_INIT_( ierr)
 MPI_Fint *ierr;
 {
   mpi_init_( ierr);
-  MPI_Comm_rank(MPI_COMM_WORLD, &__profile__rank);
+  MPI_Comm_rank(MPI_COMM_WORLD, &__profile__f__rank);
 }
 
 void  mpi_init( ierr)
 MPI_Fint *ierr;
 {
   mpi_init_( ierr);
-  MPI_Comm_rank(MPI_COMM_WORLD, &__profile__rank);
+  MPI_Comm_rank(MPI_COMM_WORLD, &__profile__f__rank);
 }
 
 /******************************************************/

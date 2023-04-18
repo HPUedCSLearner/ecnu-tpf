@@ -1,3 +1,8 @@
+#ifndef __stack_h__
+#define __stack_h__
+
+#define HASH_TABLE_SIZE (unsigned long)(90000)
+
 #define	SIZE	10000000
 unsigned long long tmp;
 /*inline void init_stack(struct stack* s);
@@ -53,3 +58,6 @@ void destory(struct stack *s)
 	s->top = -1;
 	memset(s->sta, 0, sizeof(s->sta));
 }
+
+
+#endif

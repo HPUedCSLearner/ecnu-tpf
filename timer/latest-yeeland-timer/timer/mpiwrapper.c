@@ -3,6 +3,11 @@
 #include <stdlib.h>
 #include <string.h>
 
+
+int __profile__rank;//记录当前处在哪个rank中（多进程）
+
+int __profile_common_size; // record  mpi size
+
 // #define DEBUG 1
 /******************************************************************
 *                                                                 *
@@ -36,6 +41,8 @@ char *** argv;
   PROFILE_STOP(0,0);
   #endif
 
+    MPI_Comm_size(MPI_COMM_WORLD, &__profile_common_size);
+    MPI_Comm_rank(MPI_COMM_WORLD, &__profile__rank);
   return returnVal;
 }
 
