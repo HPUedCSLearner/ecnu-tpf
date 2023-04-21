@@ -51,38 +51,64 @@ void test1()
 
 void testHashMap()
 {
+    // HASH_MAP hashmap;
+    // hash_map_init(&hashmap);
+    // // hash_map_show(&hashmap);
+
+    // printf("size of (ULL): %ld\n", sizeof(ULL));
+
+    // ULL key = 0x0101010101010101;
+    // printf("hash(key) %lld\n", hash(key));
+
+    // NODE_Ptr nodeptr = get_node(&hashmap.nodeMemPool);
+    // nodeptr->key.funcAddr = 0x0101010101010101;
+    // nodeptr->key.faterAddr = 0xab10101;
+    // nodeptr->val.times = 0;
+    // nodeptr->val.acctime = 456456;
+    // nodeptr->val.sheltime = 789798;
+
+    // hash_map_insert(&hashmap, nodeptr);
+
+    // NODE_Ptr p;
+    // int collision_step;
+    // hash_map_find_key(&hashmap, nodeptr, p, &collision_step);
+
+
+
+    // NODE_Ptr nodeptr1 = get_node(&hashmap.nodeMemPool);
+    // make_node(nodeptr1, 0x0101010101010101, 0xab10101a, 0, 456456, 789798);
+    // hash_map_find_key(&hashmap, nodeptr, p, &collision_step);
+
+
+    // // show_node(nodeptr);  
+    // // show_node(nodeptr1);  
+
+    // hash_map_show(&hashmap);
+}
+
+void testHashMap1()
+{
     HASH_MAP hashmap;
     hash_map_init(&hashmap);
-
+    // hash_map_show(&hashmap);
     NODE_Ptr nodeptr1 = get_node(&hashmap.nodeMemPool);
     make_node(nodeptr1, 0x0101010101010101, 0xab10101a, 1, 456456, 789798);
-    assert(NULL == hash_map_find_key(&hashmap, nodeptr1));
-
-    hash_map_insert(&hashmap, nodeptr1);
-    assert(NULL != hash_map_find_key(&hashmap, nodeptr1));
-
+    show_node(nodeptr1);
     NODE_Ptr nodeptr2 = get_node(&hashmap.nodeMemPool);
-    make_node(nodeptr2, 0x0101010101010101, 0xab10101a, 3, 1, 1);
-    hash_map_insert(&hashmap, nodeptr2);
+    make_node(nodeptr2, 0x0101010101010101, 0xab10101a, 1, 456456, 789798);
+    show_node(nodeptr2);
 
-    show_node(hash_map_find_key(&hashmap, nodeptr1));
-
-    // 下面的测试，可以测出碰撞, 从而调整hash函数，以及hash表size
-    int thredhold = 100000;
-    for (int i = 0; i < thredhold; ++i) {
-        NODE_Ptr nodeptr = get_node(&hashmap.nodeMemPool);
-        make_node(nodeptr, 0x0101010101010101 + i * i , 0xab10101a + i * 2 , 3, 1, 1);
-        hash_map_insert(&hashmap, nodeptr);
-    }  
+    hash_map_insert(&hashmap, nodeptr1);   
+    hash_map_insert(&hashmap, nodeptr2);   
 
     hash_map_show(&hashmap);
-    hash_map_destory(&hashmap);
 }
 
 int main()
-{             
+{
     // test();
     // test1();
-    testHashMap();
+    // testHashMap();
+    testHashMap1();
     return 0;
 }
