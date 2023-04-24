@@ -26,6 +26,8 @@ void hash_map_insert(HASH_MAP* hashmap, NODE* node);
 bool is_key_equeue(KEY key1, KEY key2);
 ULL hash(ULL key);
 void hash_map_destory(HASH_MAP* hashmap);
+void print_hash_map_node(HASH_MAP* hashmap);
+void save_hash_map_node_to_file(HASH_MAP* hashmap, const char* filename);
 
 
 

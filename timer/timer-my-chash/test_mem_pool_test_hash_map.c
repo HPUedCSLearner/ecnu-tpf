@@ -1,10 +1,13 @@
 #include "mem_pool.h"
 
 #include "hash_table.h"
+#include "stack.h"
 
 #include <assert.h>
 #include <stdio.h>
 
+
+#include "get_pid_time.h"
 
 void test()
 {
@@ -79,10 +82,80 @@ void testHashMap()
     hash_map_destory(&hashmap);
 }
 
+void test_stack()
+{
+    Stack stk;
+    stack_init(&stk);
+    get_stack_top_data(&stk);
+
+    stack_push(&stk, 1);
+    assert(get_stack_top_ptr(&stk) == 0);
+
+    stack_push(&stk, 2);
+    stack_push(&stk, 3);
+    stack_push(&stk, 4);
+    assert(get_stack_top_ptr(&stk) == 3);
+
+
+    stack_pop(&stk);
+    stack_pop(&stk);
+    assert(get_stack_top_ptr(&stk) == 1);
+    assert(get_stack_top_data(&stk) == 2);
+    assert(is_stack_empty(&stk) == false);
+    assert(is_stack_full(&stk) == false);
+
+    assert(is_stack_full(&stk) == false);
+
+    stack_push(&stk, 3);
+    stack_push(&stk, 4);
+    stack_push(&stk, 3);
+    stack_push(&stk, 4);
+    stack_push(&stk, 3);
+    stack_push(&stk, 4);
+    stack_push(&stk, 3);
+    stack_push(&stk, 4);
+    stack_push(&stk, 4);
+    stack_push(&stk, 4);
+    stack_push(&stk, 4);
+    assert(get_stack_top_ptr(&stk) == DEFAULT_STACK_SIZE - 1);
+    assert(get_stack_top_data(&stk) == 4);
+    assert(is_stack_empty(&stk) == false);
+    assert(is_stack_full(&stk) == true);
+
+    stack_pop(&stk);
+    stack_pop(&stk);
+    stack_pop(&stk);
+    stack_pop(&stk);
+    stack_pop(&stk);
+    stack_pop(&stk);
+    stack_pop(&stk);
+    stack_pop(&stk);
+    stack_pop(&stk);
+    stack_pop(&stk);
+    stack_pop(&stk);
+    assert(get_stack_top_ptr(&stk) == - 1);
+    assert(is_stack_empty(&stk) == true);
+    assert(is_stack_full(&stk) == false);
+
+
+
+}
+
+
+void test_get_file_name()
+{
+    char buf[BUF_SIZE] = {0};
+    get_self_file_name(buf);
+    printf("buf:%s\n", buf);
+}
+
+
 int main()
 {             
     // test();
     // test1();
-    testHashMap();
+    // testHashMap();
+    // test_stack();
+    test_get_file_name();
     return 0;
 }

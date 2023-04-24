@@ -152,27 +152,70 @@ NODE_Ptr hash_map_find_key(HASH_MAP* hashmap, const NODE* node)
     }
 }
 
+void print_hash_map_node(HASH_MAP* hashmap)
+{
+    int i, j;
+    for (i = 0; i < HASH_TABLE_SIZE; ++i) {
+        for(j = 0; j < HASH_TABLE_SIZE; ++j) {
+            if (hashmap->node[i][j] == NULL) {
+                continue;
+            }
+            NODE_Ptr first_node = hashmap->node[i][j];
+            while(first_node != NULL) {
+                printf("funcAddr:%p \t", (void*)first_node->key.funcAddr);
+                printf("faterAddr:%p \t", (void*)first_node->key.faterAddr);
+                printf("times:%d \t", first_node->val.times);
+                printf("acctime:%lld \t", (ULL)first_node->val.acctime);
+                printf("sheltime:%lld \t", (ULL)first_node->val.sheltime);
+                printf("\n");
+                first_node = first_node->next;
+            }
+        }
+    }
+}
 
+void save_hash_map_node_to_file(HASH_MAP* hashmap, const char* filename)
+{
+    FILE *fw = NULL;
+    fw = fopen(filename, "w");
+    if (fw == NULL) {
+        printf("[ERROR]: open file %s error, when save hash map node to file\n", filename);
+        return;
+    }
+    fprintf(fw, "funcAddr\tfaterAddr\ttimes\tacctime\tsheltime\n");
+    int i, j;
+    for (i = 0; i < HASH_TABLE_SIZE; ++i) {
+        for(j = 0; j < HASH_TABLE_SIZE; ++j) {
+            if (hashmap->node[i][j] == NULL) {
+                continue;
+            }
+            NODE_Ptr first_node = hashmap->node[i][j];
+            while(first_node != NULL) {
+                fprintf(fw, "%p \t", (void*)first_node->key.funcAddr);
+                fprintf(fw, "%p \t", (void*)first_node->key.faterAddr);
+                fprintf(fw, "%d \t\t", first_node->val.times);
+                fprintf(fw, "%lld \t\t", (ULL)first_node->val.acctime);
+                fprintf(fw, "%lld \t", (ULL)first_node->val.sheltime);
+                fprintf(fw, "\n");
+                first_node = first_node->next;
+            }
+        }
+    }
+    fclose(fw);
+}
 
 
 void make_node(NODE_Ptr nodeptr, ULL funcAddr, ULL faterAddr, int times, ULL acctime, ULL sheltime)
 {
-    printf("step 1\n");
     if (nodeptr == NULL) {
         return;
     }
-    printf("step 2\n");
-    printf("key.funcAddr %lld\n", funcAddr);
-    printf("key.funcAddr %lld\n", nodeptr->key.funcAddr);
     nodeptr->key.funcAddr = funcAddr;
-    printf("step 3\n");
     nodeptr->key.faterAddr = faterAddr;
-    printf("step 4\n");
     nodeptr->val.times = times;
     nodeptr->val.acctime = acctime;
     nodeptr->val.sheltime = sheltime;
     nodeptr->next = NULL;
-    printf("step 6\n");
 }
 
 void show_node(NODE_Ptr nodeptr)

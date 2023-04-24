@@ -152,6 +152,27 @@ NODE_Ptr hash_map_find_key(HASH_MAP* hashmap, const NODE* node)
     }
 }
 
+void print_hash_map_node(HASH_MAP* hashmap)
+{
+    int i, j;
+    for (i = 0; i < HASH_TABLE_SIZE; ++i) {
+        for(j = 0; j < HASH_TABLE_SIZE; ++j) {
+            if (hashmap->node[i][j] == NULL) {
+                continue;
+            }
+            NODE_Ptr first_node = hashmap->node[i][j];
+            while(first_node != NULL) {
+                printf("funcAddr:%p \t", (void*)first_node->key.funcAddr);
+                printf("faterAddr:%p \t", (void*)first_node->key.faterAddr);
+                printf("times:%d \t", first_node->val.times);
+                printf("acctime:%lld \t", (ULL)first_node->val.acctime);
+                printf("sheltime:%lld \t", (ULL)first_node->val.sheltime);
+                printf("\n");
+                first_node = first_node->next;
+            }
+        }
+    }
+}
 
 
 
