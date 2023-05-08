@@ -1,0 +1,3469 @@
+
+main:     file format elf64-x86-64
+
+
+Disassembly of section .init:
+
+0000000000403000 <_init>:
+  403000:	f3 0f 1e fa          	endbr64 
+  403004:	48 83 ec 08          	sub    $0x8,%rsp
+  403008:	48 8b 05 e9 5f 00 00 	mov    0x5fe9(%rip),%rax        # 408ff8 <__gmon_start__@Base>
+  40300f:	48 85 c0             	test   %rax,%rax
+  403012:	74 02                	je     403016 <_init+0x16>
+  403014:	ff d0                	call   *%rax
+  403016:	48 83 c4 08          	add    $0x8,%rsp
+  40301a:	c3                   	ret    
+
+Disassembly of section .plt:
+
+0000000000403020 <.plt>:
+  403020:	ff 35 e2 5f 00 00    	push   0x5fe2(%rip)        # 409008 <_GLOBAL_OFFSET_TABLE_+0x8>
+  403026:	f2 ff 25 e3 5f 00 00 	bnd jmp *0x5fe3(%rip)        # 409010 <_GLOBAL_OFFSET_TABLE_+0x10>
+  40302d:	0f 1f 00             	nopl   (%rax)
+  403030:	f3 0f 1e fa          	endbr64 
+  403034:	68 00 00 00 00       	push   $0x0
+  403039:	f2 e9 e1 ff ff ff    	bnd jmp 403020 <_init+0x20>
+  40303f:	90                   	nop
+  403040:	f3 0f 1e fa          	endbr64 
+  403044:	68 01 00 00 00       	push   $0x1
+  403049:	f2 e9 d1 ff ff ff    	bnd jmp 403020 <_init+0x20>
+  40304f:	90                   	nop
+  403050:	f3 0f 1e fa          	endbr64 
+  403054:	68 02 00 00 00       	push   $0x2
+  403059:	f2 e9 c1 ff ff ff    	bnd jmp 403020 <_init+0x20>
+  40305f:	90                   	nop
+  403060:	f3 0f 1e fa          	endbr64 
+  403064:	68 03 00 00 00       	push   $0x3
+  403069:	f2 e9 b1 ff ff ff    	bnd jmp 403020 <_init+0x20>
+  40306f:	90                   	nop
+  403070:	f3 0f 1e fa          	endbr64 
+  403074:	68 04 00 00 00       	push   $0x4
+  403079:	f2 e9 a1 ff ff ff    	bnd jmp 403020 <_init+0x20>
+  40307f:	90                   	nop
+  403080:	f3 0f 1e fa          	endbr64 
+  403084:	68 05 00 00 00       	push   $0x5
+  403089:	f2 e9 91 ff ff ff    	bnd jmp 403020 <_init+0x20>
+  40308f:	90                   	nop
+  403090:	f3 0f 1e fa          	endbr64 
+  403094:	68 06 00 00 00       	push   $0x6
+  403099:	f2 e9 81 ff ff ff    	bnd jmp 403020 <_init+0x20>
+  40309f:	90                   	nop
+  4030a0:	f3 0f 1e fa          	endbr64 
+  4030a4:	68 07 00 00 00       	push   $0x7
+  4030a9:	f2 e9 71 ff ff ff    	bnd jmp 403020 <_init+0x20>
+  4030af:	90                   	nop
+  4030b0:	f3 0f 1e fa          	endbr64 
+  4030b4:	68 08 00 00 00       	push   $0x8
+  4030b9:	f2 e9 61 ff ff ff    	bnd jmp 403020 <_init+0x20>
+  4030bf:	90                   	nop
+  4030c0:	f3 0f 1e fa          	endbr64 
+  4030c4:	68 09 00 00 00       	push   $0x9
+  4030c9:	f2 e9 51 ff ff ff    	bnd jmp 403020 <_init+0x20>
+  4030cf:	90                   	nop
+  4030d0:	f3 0f 1e fa          	endbr64 
+  4030d4:	68 0a 00 00 00       	push   $0xa
+  4030d9:	f2 e9 41 ff ff ff    	bnd jmp 403020 <_init+0x20>
+  4030df:	90                   	nop
+  4030e0:	f3 0f 1e fa          	endbr64 
+  4030e4:	68 0b 00 00 00       	push   $0xb
+  4030e9:	f2 e9 31 ff ff ff    	bnd jmp 403020 <_init+0x20>
+  4030ef:	90                   	nop
+  4030f0:	f3 0f 1e fa          	endbr64 
+  4030f4:	68 0c 00 00 00       	push   $0xc
+  4030f9:	f2 e9 21 ff ff ff    	bnd jmp 403020 <_init+0x20>
+  4030ff:	90                   	nop
+
+Disassembly of section .plt.sec:
+
+0000000000403100 <_ZSt17__throw_bad_allocv@plt>:
+  403100:	f3 0f 1e fa          	endbr64 
+  403104:	f2 ff 25 0d 5f 00 00 	bnd jmp *0x5f0d(%rip)        # 409018 <_ZSt17__throw_bad_allocv@GLIBCXX_3.4>
+  40310b:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+
+0000000000403110 <__cxa_begin_catch@plt>:
+  403110:	f3 0f 1e fa          	endbr64 
+  403114:	f2 ff 25 05 5f 00 00 	bnd jmp *0x5f05(%rip)        # 409020 <__cxa_begin_catch@CXXABI_1.3>
+  40311b:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+
+0000000000403120 <_ZSt20__throw_length_errorPKc@plt>:
+  403120:	f3 0f 1e fa          	endbr64 
+  403124:	f2 ff 25 fd 5e 00 00 	bnd jmp *0x5efd(%rip)        # 409028 <_ZSt20__throw_length_errorPKc@GLIBCXX_3.4>
+  40312b:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+
+0000000000403130 <__cyg_profile_func_exit@plt>:
+  403130:	f3 0f 1e fa          	endbr64 
+  403134:	f2 ff 25 f5 5e 00 00 	bnd jmp *0x5ef5(%rip)        # 409030 <__cyg_profile_func_exit@Base>
+  40313b:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+
+0000000000403140 <_ZSt28__throw_bad_array_new_lengthv@plt>:
+  403140:	f3 0f 1e fa          	endbr64 
+  403144:	f2 ff 25 ed 5e 00 00 	bnd jmp *0x5eed(%rip)        # 409038 <_ZSt28__throw_bad_array_new_lengthv@GLIBCXX_3.4.29>
+  40314b:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+
+0000000000403150 <_Znwm@plt>:
+  403150:	f3 0f 1e fa          	endbr64 
+  403154:	f2 ff 25 e5 5e 00 00 	bnd jmp *0x5ee5(%rip)        # 409040 <_Znwm@GLIBCXX_3.4>
+  40315b:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+
+0000000000403160 <_ZdlPvm@plt>:
+  403160:	f3 0f 1e fa          	endbr64 
+  403164:	f2 ff 25 dd 5e 00 00 	bnd jmp *0x5edd(%rip)        # 409048 <_ZdlPvm@CXXABI_1.3.9>
+  40316b:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+
+0000000000403170 <__stack_chk_fail@plt>:
+  403170:	f3 0f 1e fa          	endbr64 
+  403174:	f2 ff 25 d5 5e 00 00 	bnd jmp *0x5ed5(%rip)        # 409050 <__stack_chk_fail@GLIBC_2.4>
+  40317b:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+
+0000000000403180 <__cxa_rethrow@plt>:
+  403180:	f3 0f 1e fa          	endbr64 
+  403184:	f2 ff 25 cd 5e 00 00 	bnd jmp *0x5ecd(%rip)        # 409058 <__cxa_rethrow@CXXABI_1.3>
+  40318b:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+
+0000000000403190 <memmove@plt>:
+  403190:	f3 0f 1e fa          	endbr64 
+  403194:	f2 ff 25 c5 5e 00 00 	bnd jmp *0x5ec5(%rip)        # 409060 <memmove@GLIBC_2.2.5>
+  40319b:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+
+00000000004031a0 <__cxa_end_catch@plt>:
+  4031a0:	f3 0f 1e fa          	endbr64 
+  4031a4:	f2 ff 25 bd 5e 00 00 	bnd jmp *0x5ebd(%rip)        # 409068 <__cxa_end_catch@CXXABI_1.3>
+  4031ab:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+
+00000000004031b0 <_Unwind_Resume@plt>:
+  4031b0:	f3 0f 1e fa          	endbr64 
+  4031b4:	f2 ff 25 b5 5e 00 00 	bnd jmp *0x5eb5(%rip)        # 409070 <_Unwind_Resume@GCC_3.0>
+  4031bb:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+
+00000000004031c0 <__cyg_profile_func_enter@plt>:
+  4031c0:	f3 0f 1e fa          	endbr64 
+  4031c4:	f2 ff 25 ad 5e 00 00 	bnd jmp *0x5ead(%rip)        # 409078 <__cyg_profile_func_enter@Base>
+  4031cb:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+
+Disassembly of section .text:
+
+00000000004031d0 <_start>:
+  4031d0:	f3 0f 1e fa          	endbr64 
+  4031d4:	31 ed                	xor    %ebp,%ebp
+  4031d6:	49 89 d1             	mov    %rdx,%r9
+  4031d9:	5e                   	pop    %rsi
+  4031da:	48 89 e2             	mov    %rsp,%rdx
+  4031dd:	48 83 e4 f0          	and    $0xfffffffffffffff0,%rsp
+  4031e1:	50                   	push   %rax
+  4031e2:	54                   	push   %rsp
+  4031e3:	45 31 c0             	xor    %r8d,%r8d
+  4031e6:	31 c9                	xor    %ecx,%ecx
+  4031e8:	48 c7 c7 29 33 40 00 	mov    $0x403329,%rdi
+  4031ef:	ff 15 fb 5d 00 00    	call   *0x5dfb(%rip)        # 408ff0 <__libc_start_main@GLIBC_2.34>
+  4031f5:	f4                   	hlt    
+  4031f6:	66 2e 0f 1f 84 00 00 	cs nopw 0x0(%rax,%rax,1)
+  4031fd:	00 00 00 
+
+0000000000403200 <_dl_relocate_static_pie>:
+  403200:	f3 0f 1e fa          	endbr64 
+  403204:	c3                   	ret    
+  403205:	66 2e 0f 1f 84 00 00 	cs nopw 0x0(%rax,%rax,1)
+  40320c:	00 00 00 
+  40320f:	90                   	nop
+
+0000000000403210 <deregister_tm_clones>:
+  403210:	b8 98 90 40 00       	mov    $0x409098,%eax
+  403215:	48 3d 98 90 40 00    	cmp    $0x409098,%rax
+  40321b:	74 13                	je     403230 <deregister_tm_clones+0x20>
+  40321d:	b8 00 00 00 00       	mov    $0x0,%eax
+  403222:	48 85 c0             	test   %rax,%rax
+  403225:	74 09                	je     403230 <deregister_tm_clones+0x20>
+  403227:	bf 98 90 40 00       	mov    $0x409098,%edi
+  40322c:	ff e0                	jmp    *%rax
+  40322e:	66 90                	xchg   %ax,%ax
+  403230:	c3                   	ret    
+  403231:	66 66 2e 0f 1f 84 00 	data16 cs nopw 0x0(%rax,%rax,1)
+  403238:	00 00 00 00 
+  40323c:	0f 1f 40 00          	nopl   0x0(%rax)
+
+0000000000403240 <register_tm_clones>:
+  403240:	be 98 90 40 00       	mov    $0x409098,%esi
+  403245:	48 81 ee 98 90 40 00 	sub    $0x409098,%rsi
+  40324c:	48 89 f0             	mov    %rsi,%rax
+  40324f:	48 c1 ee 3f          	shr    $0x3f,%rsi
+  403253:	48 c1 f8 03          	sar    $0x3,%rax
+  403257:	48 01 c6             	add    %rax,%rsi
+  40325a:	48 d1 fe             	sar    %rsi
+  40325d:	74 11                	je     403270 <register_tm_clones+0x30>
+  40325f:	b8 00 00 00 00       	mov    $0x0,%eax
+  403264:	48 85 c0             	test   %rax,%rax
+  403267:	74 07                	je     403270 <register_tm_clones+0x30>
+  403269:	bf 98 90 40 00       	mov    $0x409098,%edi
+  40326e:	ff e0                	jmp    *%rax
+  403270:	c3                   	ret    
+  403271:	66 66 2e 0f 1f 84 00 	data16 cs nopw 0x0(%rax,%rax,1)
+  403278:	00 00 00 00 
+  40327c:	0f 1f 40 00          	nopl   0x0(%rax)
+
+0000000000403280 <__do_global_dtors_aux>:
+  403280:	f3 0f 1e fa          	endbr64 
+  403284:	80 3d 0d 5e 00 00 00 	cmpb   $0x0,0x5e0d(%rip)        # 409098 <completed.0>
+  40328b:	75 13                	jne    4032a0 <__do_global_dtors_aux+0x20>
+  40328d:	55                   	push   %rbp
+  40328e:	48 89 e5             	mov    %rsp,%rbp
+  403291:	e8 7a ff ff ff       	call   403210 <deregister_tm_clones>
+  403296:	c6 05 fb 5d 00 00 01 	movb   $0x1,0x5dfb(%rip)        # 409098 <completed.0>
+  40329d:	5d                   	pop    %rbp
+  40329e:	c3                   	ret    
+  40329f:	90                   	nop
+  4032a0:	c3                   	ret    
+  4032a1:	66 66 2e 0f 1f 84 00 	data16 cs nopw 0x0(%rax,%rax,1)
+  4032a8:	00 00 00 00 
+  4032ac:	0f 1f 40 00          	nopl   0x0(%rax)
+
+00000000004032b0 <frame_dummy>:
+  4032b0:	f3 0f 1e fa          	endbr64 
+  4032b4:	eb 8a                	jmp    403240 <register_tm_clones>
+
+00000000004032b6 <_Z2BBv>:
+  4032b6:	f3 0f 1e fa          	endbr64 
+  4032ba:	55                   	push   %rbp
+  4032bb:	48 89 e5             	mov    %rsp,%rbp
+  4032be:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  4032c2:	48 89 c6             	mov    %rax,%rsi
+  4032c5:	48 8d 05 ea ff ff ff 	lea    -0x16(%rip),%rax        # 4032b6 <_Z2BBv>
+  4032cc:	48 89 c7             	mov    %rax,%rdi
+  4032cf:	e8 ec fe ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  4032d4:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  4032d8:	48 89 c6             	mov    %rax,%rsi
+  4032db:	48 8d 05 d4 ff ff ff 	lea    -0x2c(%rip),%rax        # 4032b6 <_Z2BBv>
+  4032e2:	48 89 c7             	mov    %rax,%rdi
+  4032e5:	e8 46 fe ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  4032ea:	90                   	nop
+  4032eb:	5d                   	pop    %rbp
+  4032ec:	c3                   	ret    
+
+00000000004032ed <_Z2AAv>:
+  4032ed:	f3 0f 1e fa          	endbr64 
+  4032f1:	55                   	push   %rbp
+  4032f2:	48 89 e5             	mov    %rsp,%rbp
+  4032f5:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  4032f9:	48 89 c6             	mov    %rax,%rsi
+  4032fc:	48 8d 05 ea ff ff ff 	lea    -0x16(%rip),%rax        # 4032ed <_Z2AAv>
+  403303:	48 89 c7             	mov    %rax,%rdi
+  403306:	e8 b5 fe ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  40330b:	e8 a6 ff ff ff       	call   4032b6 <_Z2BBv>
+  403310:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  403314:	48 89 c6             	mov    %rax,%rsi
+  403317:	48 8d 05 cf ff ff ff 	lea    -0x31(%rip),%rax        # 4032ed <_Z2AAv>
+  40331e:	48 89 c7             	mov    %rax,%rdi
+  403321:	e8 0a fe ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  403326:	90                   	nop
+  403327:	5d                   	pop    %rbp
+  403328:	c3                   	ret    
+
+0000000000403329 <main>:
+  403329:	f3 0f 1e fa          	endbr64 
+  40332d:	55                   	push   %rbp
+  40332e:	48 89 e5             	mov    %rsp,%rbp
+  403331:	53                   	push   %rbx
+  403332:	48 83 ec 78          	sub    $0x78,%rsp
+  403336:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax
+  40333d:	00 00 
+  40333f:	48 89 45 e8          	mov    %rax,-0x18(%rbp)
+  403343:	31 c0                	xor    %eax,%eax
+  403345:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  403349:	48 89 c6             	mov    %rax,%rsi
+  40334c:	48 8d 05 d6 ff ff ff 	lea    -0x2a(%rip),%rax        # 403329 <main>
+  403353:	48 89 c7             	mov    %rax,%rdi
+  403356:	e8 65 fe ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  40335b:	48 8d 45 90          	lea    -0x70(%rbp),%rax
+  40335f:	48 89 c7             	mov    %rax,%rdi
+  403362:	e8 23 02 00 00       	call   40358a <_ZNSt5stackIiSt5dequeIiSaIiEEEC1IS2_vEEv>
+  403367:	c7 45 8c 01 00 00 00 	movl   $0x1,-0x74(%rbp)
+  40336e:	48 8d 55 8c          	lea    -0x74(%rbp),%rdx
+  403372:	48 8d 45 90          	lea    -0x70(%rbp),%rax
+  403376:	48 89 d6             	mov    %rdx,%rsi
+  403379:	48 89 c7             	mov    %rax,%rdi
+  40337c:	e8 95 03 00 00       	call   403716 <_ZNSt5stackIiSt5dequeIiSaIiEEE4pushEOi>
+  403381:	e8 67 ff ff ff       	call   4032ed <_Z2AAv>
+  403386:	e8 2b ff ff ff       	call   4032b6 <_Z2BBv>
+  40338b:	bb 00 00 00 00       	mov    $0x0,%ebx
+  403390:	48 8d 45 90          	lea    -0x70(%rbp),%rax
+  403394:	48 89 c7             	mov    %rax,%rdi
+  403397:	e8 28 01 00 00       	call   4034c4 <_ZNSt5stackIiSt5dequeIiSaIiEEED1Ev>
+  40339c:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  4033a0:	48 89 c6             	mov    %rax,%rsi
+  4033a3:	48 8d 05 7f ff ff ff 	lea    -0x81(%rip),%rax        # 403329 <main>
+  4033aa:	48 89 c7             	mov    %rax,%rdi
+  4033ad:	e8 7e fd ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  4033b2:	89 d8                	mov    %ebx,%eax
+  4033b4:	48 8b 55 e8          	mov    -0x18(%rbp),%rdx
+  4033b8:	64 48 2b 14 25 28 00 	sub    %fs:0x28,%rdx
+  4033bf:	00 00 
+  4033c1:	74 44                	je     403407 <main+0xde>
+  4033c3:	eb 3d                	jmp    403402 <main+0xd9>
+  4033c5:	f3 0f 1e fa          	endbr64 
+  4033c9:	48 89 c3             	mov    %rax,%rbx
+  4033cc:	48 8d 45 90          	lea    -0x70(%rbp),%rax
+  4033d0:	48 89 c7             	mov    %rax,%rdi
+  4033d3:	e8 ec 00 00 00       	call   4034c4 <_ZNSt5stackIiSt5dequeIiSaIiEEED1Ev>
+  4033d8:	eb 07                	jmp    4033e1 <main+0xb8>
+  4033da:	f3 0f 1e fa          	endbr64 
+  4033de:	48 89 c3             	mov    %rax,%rbx
+  4033e1:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  4033e5:	48 89 c6             	mov    %rax,%rsi
+  4033e8:	48 8d 05 3a ff ff ff 	lea    -0xc6(%rip),%rax        # 403329 <main>
+  4033ef:	48 89 c7             	mov    %rax,%rdi
+  4033f2:	e8 39 fd ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  4033f7:	48 89 d8             	mov    %rbx,%rax
+  4033fa:	48 89 c7             	mov    %rax,%rdi
+  4033fd:	e8 ae fd ff ff       	call   4031b0 <_Unwind_Resume@plt>
+  403402:	e8 69 fd ff ff       	call   403170 <__stack_chk_fail@plt>
+  403407:	48 8b 5d f8          	mov    -0x8(%rbp),%rbx
+  40340b:	c9                   	leave  
+  40340c:	c3                   	ret    
+
+000000000040340d <_ZnwmPv>:
+  40340d:	f3 0f 1e fa          	endbr64 
+  403411:	55                   	push   %rbp
+  403412:	48 89 e5             	mov    %rsp,%rbp
+  403415:	53                   	push   %rbx
+  403416:	48 83 ec 18          	sub    $0x18,%rsp
+  40341a:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+  40341e:	48 89 75 e0          	mov    %rsi,-0x20(%rbp)
+  403422:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  403426:	48 89 c6             	mov    %rax,%rsi
+  403429:	48 8d 05 dd ff ff ff 	lea    -0x23(%rip),%rax        # 40340d <_ZnwmPv>
+  403430:	48 89 c7             	mov    %rax,%rdi
+  403433:	e8 88 fd ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  403438:	48 8b 5d e0          	mov    -0x20(%rbp),%rbx
+  40343c:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  403440:	48 89 c6             	mov    %rax,%rsi
+  403443:	48 8d 05 c3 ff ff ff 	lea    -0x3d(%rip),%rax        # 40340d <_ZnwmPv>
+  40344a:	48 89 c7             	mov    %rax,%rdi
+  40344d:	e8 de fc ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  403452:	48 89 d8             	mov    %rbx,%rax
+  403455:	48 8b 5d f8          	mov    -0x8(%rbp),%rbx
+  403459:	c9                   	leave  
+  40345a:	c3                   	ret    
+
+000000000040345b <_ZSt16__deque_buf_sizem>:
+  40345b:	f3 0f 1e fa          	endbr64 
+  40345f:	55                   	push   %rbp
+  403460:	48 89 e5             	mov    %rsp,%rbp
+  403463:	53                   	push   %rbx
+  403464:	48 83 ec 18          	sub    $0x18,%rsp
+  403468:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+  40346c:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  403470:	48 89 c6             	mov    %rax,%rsi
+  403473:	48 8d 05 e1 ff ff ff 	lea    -0x1f(%rip),%rax        # 40345b <_ZSt16__deque_buf_sizem>
+  40347a:	48 89 c7             	mov    %rax,%rdi
+  40347d:	e8 3e fd ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  403482:	48 81 7d e8 ff 01 00 	cmpq   $0x1ff,-0x18(%rbp)
+  403489:	00 
+  40348a:	77 13                	ja     40349f <_ZSt16__deque_buf_sizem+0x44>
+  40348c:	b8 00 02 00 00       	mov    $0x200,%eax
+  403491:	ba 00 00 00 00       	mov    $0x0,%edx
+  403496:	48 f7 75 e8          	divq   -0x18(%rbp)
+  40349a:	48 89 c3             	mov    %rax,%rbx
+  40349d:	eb 05                	jmp    4034a4 <_ZSt16__deque_buf_sizem+0x49>
+  40349f:	bb 01 00 00 00       	mov    $0x1,%ebx
+  4034a4:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  4034a8:	48 89 c6             	mov    %rax,%rsi
+  4034ab:	48 8d 05 a9 ff ff ff 	lea    -0x57(%rip),%rax        # 40345b <_ZSt16__deque_buf_sizem>
+  4034b2:	48 89 c7             	mov    %rax,%rdi
+  4034b5:	e8 76 fc ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  4034ba:	48 89 d8             	mov    %rbx,%rax
+  4034bd:	48 8b 5d f8          	mov    -0x8(%rbp),%rbx
+  4034c1:	c9                   	leave  
+  4034c2:	c3                   	ret    
+  4034c3:	90                   	nop
+
+00000000004034c4 <_ZNSt5stackIiSt5dequeIiSaIiEEED1Ev>:
+  4034c4:	f3 0f 1e fa          	endbr64 
+  4034c8:	55                   	push   %rbp
+  4034c9:	48 89 e5             	mov    %rsp,%rbp
+  4034cc:	48 83 ec 10          	sub    $0x10,%rsp
+  4034d0:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+  4034d4:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  4034d8:	48 89 c6             	mov    %rax,%rsi
+  4034db:	48 8d 05 e2 ff ff ff 	lea    -0x1e(%rip),%rax        # 4034c4 <_ZNSt5stackIiSt5dequeIiSaIiEEED1Ev>
+  4034e2:	48 89 c7             	mov    %rax,%rdi
+  4034e5:	e8 d6 fc ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  4034ea:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+  4034ee:	48 89 c7             	mov    %rax,%rdi
+  4034f1:	e8 60 01 00 00       	call   403656 <_ZNSt5dequeIiSaIiEED1Ev>
+  4034f6:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  4034fa:	48 89 c6             	mov    %rax,%rsi
+  4034fd:	48 8d 05 c0 ff ff ff 	lea    -0x40(%rip),%rax        # 4034c4 <_ZNSt5stackIiSt5dequeIiSaIiEEED1Ev>
+  403504:	48 89 c7             	mov    %rax,%rdi
+  403507:	e8 24 fc ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  40350c:	90                   	nop
+  40350d:	c9                   	leave  
+  40350e:	c3                   	ret    
+  40350f:	90                   	nop
+
+0000000000403510 <_ZNSt5dequeIiSaIiEEC1Ev>:
+  403510:	f3 0f 1e fa          	endbr64 
+  403514:	55                   	push   %rbp
+  403515:	48 89 e5             	mov    %rsp,%rbp
+  403518:	53                   	push   %rbx
+  403519:	48 83 ec 18          	sub    $0x18,%rsp
+  40351d:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+  403521:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  403525:	48 89 c6             	mov    %rax,%rsi
+  403528:	48 8d 05 e1 ff ff ff 	lea    -0x1f(%rip),%rax        # 403510 <_ZNSt5dequeIiSaIiEEC1Ev>
+  40352f:	48 89 c7             	mov    %rax,%rdi
+  403532:	e8 89 fc ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  403537:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  40353b:	48 89 c7             	mov    %rax,%rdi
+  40353e:	e8 ab 02 00 00       	call   4037ee <_ZNSt11_Deque_baseIiSaIiEEC1Ev>
+  403543:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  403547:	48 89 c6             	mov    %rax,%rsi
+  40354a:	48 8d 05 bf ff ff ff 	lea    -0x41(%rip),%rax        # 403510 <_ZNSt5dequeIiSaIiEEC1Ev>
+  403551:	48 89 c7             	mov    %rax,%rdi
+  403554:	e8 d7 fb ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  403559:	eb 28                	jmp    403583 <_ZNSt5dequeIiSaIiEEC1Ev+0x73>
+  40355b:	f3 0f 1e fa          	endbr64 
+  40355f:	48 89 c3             	mov    %rax,%rbx
+  403562:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  403566:	48 89 c6             	mov    %rax,%rsi
+  403569:	48 8d 05 a0 ff ff ff 	lea    -0x60(%rip),%rax        # 403510 <_ZNSt5dequeIiSaIiEEC1Ev>
+  403570:	48 89 c7             	mov    %rax,%rdi
+  403573:	e8 b8 fb ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  403578:	48 89 d8             	mov    %rbx,%rax
+  40357b:	48 89 c7             	mov    %rax,%rdi
+  40357e:	e8 2d fc ff ff       	call   4031b0 <_Unwind_Resume@plt>
+  403583:	48 8b 5d f8          	mov    -0x8(%rbp),%rbx
+  403587:	c9                   	leave  
+  403588:	c3                   	ret    
+  403589:	90                   	nop
+
+000000000040358a <_ZNSt5stackIiSt5dequeIiSaIiEEEC1IS2_vEEv>:
+  40358a:	f3 0f 1e fa          	endbr64 
+  40358e:	55                   	push   %rbp
+  40358f:	48 89 e5             	mov    %rsp,%rbp
+  403592:	53                   	push   %rbx
+  403593:	48 83 ec 18          	sub    $0x18,%rsp
+  403597:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+  40359b:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  40359f:	48 89 c6             	mov    %rax,%rsi
+  4035a2:	48 8d 05 e1 ff ff ff 	lea    -0x1f(%rip),%rax        # 40358a <_ZNSt5stackIiSt5dequeIiSaIiEEEC1IS2_vEEv>
+  4035a9:	48 89 c7             	mov    %rax,%rdi
+  4035ac:	e8 0f fc ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  4035b1:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  4035b5:	48 c7 00 00 00 00 00 	movq   $0x0,(%rax)
+  4035bc:	48 c7 40 08 00 00 00 	movq   $0x0,0x8(%rax)
+  4035c3:	00 
+  4035c4:	48 c7 40 10 00 00 00 	movq   $0x0,0x10(%rax)
+  4035cb:	00 
+  4035cc:	48 c7 40 18 00 00 00 	movq   $0x0,0x18(%rax)
+  4035d3:	00 
+  4035d4:	48 c7 40 20 00 00 00 	movq   $0x0,0x20(%rax)
+  4035db:	00 
+  4035dc:	48 c7 40 28 00 00 00 	movq   $0x0,0x28(%rax)
+  4035e3:	00 
+  4035e4:	48 c7 40 30 00 00 00 	movq   $0x0,0x30(%rax)
+  4035eb:	00 
+  4035ec:	48 c7 40 38 00 00 00 	movq   $0x0,0x38(%rax)
+  4035f3:	00 
+  4035f4:	48 c7 40 40 00 00 00 	movq   $0x0,0x40(%rax)
+  4035fb:	00 
+  4035fc:	48 c7 40 48 00 00 00 	movq   $0x0,0x48(%rax)
+  403603:	00 
+  403604:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  403608:	48 89 c7             	mov    %rax,%rdi
+  40360b:	e8 00 ff ff ff       	call   403510 <_ZNSt5dequeIiSaIiEEC1Ev>
+  403610:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  403614:	48 89 c6             	mov    %rax,%rsi
+  403617:	48 8d 05 6c ff ff ff 	lea    -0x94(%rip),%rax        # 40358a <_ZNSt5stackIiSt5dequeIiSaIiEEEC1IS2_vEEv>
+  40361e:	48 89 c7             	mov    %rax,%rdi
+  403621:	e8 0a fb ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  403626:	eb 28                	jmp    403650 <_ZNSt5stackIiSt5dequeIiSaIiEEEC1IS2_vEEv+0xc6>
+  403628:	f3 0f 1e fa          	endbr64 
+  40362c:	48 89 c3             	mov    %rax,%rbx
+  40362f:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  403633:	48 89 c6             	mov    %rax,%rsi
+  403636:	48 8d 05 4d ff ff ff 	lea    -0xb3(%rip),%rax        # 40358a <_ZNSt5stackIiSt5dequeIiSaIiEEEC1IS2_vEEv>
+  40363d:	48 89 c7             	mov    %rax,%rdi
+  403640:	e8 eb fa ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  403645:	48 89 d8             	mov    %rbx,%rax
+  403648:	48 89 c7             	mov    %rax,%rdi
+  40364b:	e8 60 fb ff ff       	call   4031b0 <_Unwind_Resume@plt>
+  403650:	48 8b 5d f8          	mov    -0x8(%rbp),%rbx
+  403654:	c9                   	leave  
+  403655:	c3                   	ret    
+
+0000000000403656 <_ZNSt5dequeIiSaIiEED1Ev>:
+  403656:	f3 0f 1e fa          	endbr64 
+  40365a:	55                   	push   %rbp
+  40365b:	48 89 e5             	mov    %rsp,%rbp
+  40365e:	53                   	push   %rbx
+  40365f:	48 83 ec 68          	sub    $0x68,%rsp
+  403663:	48 89 7d 98          	mov    %rdi,-0x68(%rbp)
+  403667:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax
+  40366e:	00 00 
+  403670:	48 89 45 e8          	mov    %rax,-0x18(%rbp)
+  403674:	31 c0                	xor    %eax,%eax
+  403676:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  40367a:	48 89 c6             	mov    %rax,%rsi
+  40367d:	48 8d 05 d2 ff ff ff 	lea    -0x2e(%rip),%rax        # 403656 <_ZNSt5dequeIiSaIiEED1Ev>
+  403684:	48 89 c7             	mov    %rax,%rdi
+  403687:	e8 34 fb ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  40368c:	48 8b 45 98          	mov    -0x68(%rbp),%rax
+  403690:	48 89 c7             	mov    %rax,%rdi
+  403693:	e8 40 03 00 00       	call   4039d8 <_ZNSt11_Deque_baseIiSaIiEE19_M_get_Tp_allocatorEv>
+  403698:	48 89 c3             	mov    %rax,%rbx
+  40369b:	48 8d 45 c0          	lea    -0x40(%rbp),%rax
+  40369f:	48 8b 55 98          	mov    -0x68(%rbp),%rdx
+  4036a3:	48 89 d6             	mov    %rdx,%rsi
+  4036a6:	48 89 c7             	mov    %rax,%rdi
+  4036a9:	e8 cc 02 00 00       	call   40397a <_ZNSt5dequeIiSaIiEE3endEv>
+  4036ae:	48 8d 45 a0          	lea    -0x60(%rbp),%rax
+  4036b2:	48 8b 55 98          	mov    -0x68(%rbp),%rdx
+  4036b6:	48 89 d6             	mov    %rdx,%rsi
+  4036b9:	48 89 c7             	mov    %rax,%rdi
+  4036bc:	e8 5b 02 00 00       	call   40391c <_ZNSt5dequeIiSaIiEE5beginEv>
+  4036c1:	48 8d 55 c0          	lea    -0x40(%rbp),%rdx
+  4036c5:	48 8d 75 a0          	lea    -0x60(%rbp),%rsi
+  4036c9:	48 8b 45 98          	mov    -0x68(%rbp),%rax
+  4036cd:	48 89 d9             	mov    %rbx,%rcx
+  4036d0:	48 89 c7             	mov    %rax,%rdi
+  4036d3:	e8 4a 03 00 00       	call   403a22 <_ZNSt5dequeIiSaIiEE15_M_destroy_dataESt15_Deque_iteratorIiRiPiES5_RKS0_>
+  4036d8:	48 8b 45 98          	mov    -0x68(%rbp),%rax
+  4036dc:	48 89 c7             	mov    %rax,%rdi
+  4036df:	e8 a0 01 00 00       	call   403884 <_ZNSt11_Deque_baseIiSaIiEED1Ev>
+  4036e4:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  4036e8:	48 89 c6             	mov    %rax,%rsi
+  4036eb:	48 8d 05 64 ff ff ff 	lea    -0x9c(%rip),%rax        # 403656 <_ZNSt5dequeIiSaIiEED1Ev>
+  4036f2:	48 89 c7             	mov    %rax,%rdi
+  4036f5:	e8 36 fa ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  4036fa:	90                   	nop
+  4036fb:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  4036ff:	64 48 2b 04 25 28 00 	sub    %fs:0x28,%rax
+  403706:	00 00 
+  403708:	74 05                	je     40370f <_ZNSt5dequeIiSaIiEED1Ev+0xb9>
+  40370a:	e8 61 fa ff ff       	call   403170 <__stack_chk_fail@plt>
+  40370f:	48 8b 5d f8          	mov    -0x8(%rbp),%rbx
+  403713:	c9                   	leave  
+  403714:	c3                   	ret    
+  403715:	90                   	nop
+
+0000000000403716 <_ZNSt5stackIiSt5dequeIiSaIiEEE4pushEOi>:
+  403716:	f3 0f 1e fa          	endbr64 
+  40371a:	55                   	push   %rbp
+  40371b:	48 89 e5             	mov    %rsp,%rbp
+  40371e:	53                   	push   %rbx
+  40371f:	48 83 ec 18          	sub    $0x18,%rsp
+  403723:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+  403727:	48 89 75 e0          	mov    %rsi,-0x20(%rbp)
+  40372b:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  40372f:	48 89 c6             	mov    %rax,%rsi
+  403732:	48 8d 05 dd ff ff ff 	lea    -0x23(%rip),%rax        # 403716 <_ZNSt5stackIiSt5dequeIiSaIiEEE4pushEOi>
+  403739:	48 89 c7             	mov    %rax,%rdi
+  40373c:	e8 7f fa ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  403741:	48 8b 5d e8          	mov    -0x18(%rbp),%rbx
+  403745:	48 8b 45 e0          	mov    -0x20(%rbp),%rax
+  403749:	48 89 c7             	mov    %rax,%rdi
+  40374c:	e8 3f 03 00 00       	call   403a90 <_ZSt4moveIRiEONSt16remove_referenceIT_E4typeEOS2_>
+  403751:	48 89 c6             	mov    %rax,%rsi
+  403754:	48 89 df             	mov    %rbx,%rdi
+  403757:	e8 7e 03 00 00       	call   403ada <_ZNSt5dequeIiSaIiEE9push_backEOi>
+  40375c:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  403760:	48 89 c6             	mov    %rax,%rsi
+  403763:	48 8d 05 ac ff ff ff 	lea    -0x54(%rip),%rax        # 403716 <_ZNSt5stackIiSt5dequeIiSaIiEEE4pushEOi>
+  40376a:	48 89 c7             	mov    %rax,%rdi
+  40376d:	e8 be f9 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  403772:	eb 28                	jmp    40379c <_ZNSt5stackIiSt5dequeIiSaIiEEE4pushEOi+0x86>
+  403774:	f3 0f 1e fa          	endbr64 
+  403778:	48 89 c3             	mov    %rax,%rbx
+  40377b:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  40377f:	48 89 c6             	mov    %rax,%rsi
+  403782:	48 8d 05 8d ff ff ff 	lea    -0x73(%rip),%rax        # 403716 <_ZNSt5stackIiSt5dequeIiSaIiEEE4pushEOi>
+  403789:	48 89 c7             	mov    %rax,%rdi
+  40378c:	e8 9f f9 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  403791:	48 89 d8             	mov    %rbx,%rax
+  403794:	48 89 c7             	mov    %rax,%rdi
+  403797:	e8 14 fa ff ff       	call   4031b0 <_Unwind_Resume@plt>
+  40379c:	48 8b 5d f8          	mov    -0x8(%rbp),%rbx
+  4037a0:	c9                   	leave  
+  4037a1:	c3                   	ret    
+
+00000000004037a2 <_ZNSt11_Deque_baseIiSaIiEE11_Deque_implD1Ev>:
+  4037a2:	f3 0f 1e fa          	endbr64 
+  4037a6:	55                   	push   %rbp
+  4037a7:	48 89 e5             	mov    %rsp,%rbp
+  4037aa:	48 83 ec 10          	sub    $0x10,%rsp
+  4037ae:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+  4037b2:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  4037b6:	48 89 c6             	mov    %rax,%rsi
+  4037b9:	48 8d 05 e2 ff ff ff 	lea    -0x1e(%rip),%rax        # 4037a2 <_ZNSt11_Deque_baseIiSaIiEE11_Deque_implD1Ev>
+  4037c0:	48 89 c7             	mov    %rax,%rdi
+  4037c3:	e8 f8 f9 ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  4037c8:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+  4037cc:	48 89 c7             	mov    %rax,%rdi
+  4037cf:	e8 ee 03 00 00       	call   403bc2 <_ZNSaIiED1Ev>
+  4037d4:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  4037d8:	48 89 c6             	mov    %rax,%rsi
+  4037db:	48 8d 05 c0 ff ff ff 	lea    -0x40(%rip),%rax        # 4037a2 <_ZNSt11_Deque_baseIiSaIiEE11_Deque_implD1Ev>
+  4037e2:	48 89 c7             	mov    %rax,%rdi
+  4037e5:	e8 46 f9 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  4037ea:	90                   	nop
+  4037eb:	c9                   	leave  
+  4037ec:	c3                   	ret    
+  4037ed:	90                   	nop
+
+00000000004037ee <_ZNSt11_Deque_baseIiSaIiEEC1Ev>:
+  4037ee:	f3 0f 1e fa          	endbr64 
+  4037f2:	55                   	push   %rbp
+  4037f3:	48 89 e5             	mov    %rsp,%rbp
+  4037f6:	53                   	push   %rbx
+  4037f7:	48 83 ec 18          	sub    $0x18,%rsp
+  4037fb:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+  4037ff:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  403803:	48 89 c6             	mov    %rax,%rsi
+  403806:	48 8d 05 e1 ff ff ff 	lea    -0x1f(%rip),%rax        # 4037ee <_ZNSt11_Deque_baseIiSaIiEEC1Ev>
+  40380d:	48 89 c7             	mov    %rax,%rdi
+  403810:	e8 ab f9 ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  403815:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  403819:	48 89 c7             	mov    %rax,%rdi
+  40381c:	e8 49 03 00 00       	call   403b6a <_ZNSt11_Deque_baseIiSaIiEE11_Deque_implC1Ev>
+  403821:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  403825:	be 00 00 00 00       	mov    $0x0,%esi
+  40382a:	48 89 c7             	mov    %rax,%rdi
+  40382d:	e8 dc 03 00 00       	call   403c0e <_ZNSt11_Deque_baseIiSaIiEE17_M_initialize_mapEm>
+  403832:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  403836:	48 89 c6             	mov    %rax,%rsi
+  403839:	48 8d 05 ae ff ff ff 	lea    -0x52(%rip),%rax        # 4037ee <_ZNSt11_Deque_baseIiSaIiEEC1Ev>
+  403840:	48 89 c7             	mov    %rax,%rdi
+  403843:	e8 e8 f8 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  403848:	eb 34                	jmp    40387e <_ZNSt11_Deque_baseIiSaIiEEC1Ev+0x90>
+  40384a:	f3 0f 1e fa          	endbr64 
+  40384e:	48 89 c3             	mov    %rax,%rbx
+  403851:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  403855:	48 89 c7             	mov    %rax,%rdi
+  403858:	e8 45 ff ff ff       	call   4037a2 <_ZNSt11_Deque_baseIiSaIiEE11_Deque_implD1Ev>
+  40385d:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  403861:	48 89 c6             	mov    %rax,%rsi
+  403864:	48 8d 05 83 ff ff ff 	lea    -0x7d(%rip),%rax        # 4037ee <_ZNSt11_Deque_baseIiSaIiEEC1Ev>
+  40386b:	48 89 c7             	mov    %rax,%rdi
+  40386e:	e8 bd f8 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  403873:	48 89 d8             	mov    %rbx,%rax
+  403876:	48 89 c7             	mov    %rax,%rdi
+  403879:	e8 32 f9 ff ff       	call   4031b0 <_Unwind_Resume@plt>
+  40387e:	48 8b 5d f8          	mov    -0x8(%rbp),%rbx
+  403882:	c9                   	leave  
+  403883:	c3                   	ret    
+
+0000000000403884 <_ZNSt11_Deque_baseIiSaIiEED1Ev>:
+  403884:	f3 0f 1e fa          	endbr64 
+  403888:	55                   	push   %rbp
+  403889:	48 89 e5             	mov    %rsp,%rbp
+  40388c:	48 83 ec 10          	sub    $0x10,%rsp
+  403890:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+  403894:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  403898:	48 89 c6             	mov    %rax,%rsi
+  40389b:	48 8d 05 e2 ff ff ff 	lea    -0x1e(%rip),%rax        # 403884 <_ZNSt11_Deque_baseIiSaIiEED1Ev>
+  4038a2:	48 89 c7             	mov    %rax,%rdi
+  4038a5:	e8 16 f9 ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  4038aa:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+  4038ae:	48 8b 00             	mov    (%rax),%rax
+  4038b1:	48 85 c0             	test   %rax,%rax
+  4038b4:	74 41                	je     4038f7 <_ZNSt11_Deque_baseIiSaIiEED1Ev+0x73>
+  4038b6:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+  4038ba:	48 8b 40 48          	mov    0x48(%rax),%rax
+  4038be:	48 8d 50 08          	lea    0x8(%rax),%rdx
+  4038c2:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+  4038c6:	48 8b 48 28          	mov    0x28(%rax),%rcx
+  4038ca:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+  4038ce:	48 89 ce             	mov    %rcx,%rsi
+  4038d1:	48 89 c7             	mov    %rax,%rdi
+  4038d4:	e8 5b 05 00 00       	call   403e34 <_ZNSt11_Deque_baseIiSaIiEE16_M_destroy_nodesEPPiS3_>
+  4038d9:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+  4038dd:	48 8b 50 08          	mov    0x8(%rax),%rdx
+  4038e1:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+  4038e5:	48 8b 08             	mov    (%rax),%rcx
+  4038e8:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+  4038ec:	48 89 ce             	mov    %rcx,%rsi
+  4038ef:	48 89 c7             	mov    %rax,%rdi
+  4038f2:	e8 b3 05 00 00       	call   403eaa <_ZNSt11_Deque_baseIiSaIiEE17_M_deallocate_mapEPPim>
+  4038f7:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+  4038fb:	48 89 c7             	mov    %rax,%rdi
+  4038fe:	e8 9f fe ff ff       	call   4037a2 <_ZNSt11_Deque_baseIiSaIiEE11_Deque_implD1Ev>
+  403903:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  403907:	48 89 c6             	mov    %rax,%rsi
+  40390a:	48 8d 05 73 ff ff ff 	lea    -0x8d(%rip),%rax        # 403884 <_ZNSt11_Deque_baseIiSaIiEED1Ev>
+  403911:	48 89 c7             	mov    %rax,%rdi
+  403914:	e8 17 f8 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  403919:	90                   	nop
+  40391a:	c9                   	leave  
+  40391b:	c3                   	ret    
+
+000000000040391c <_ZNSt5dequeIiSaIiEE5beginEv>:
+  40391c:	f3 0f 1e fa          	endbr64 
+  403920:	55                   	push   %rbp
+  403921:	48 89 e5             	mov    %rsp,%rbp
+  403924:	48 83 ec 10          	sub    $0x10,%rsp
+  403928:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+  40392c:	48 89 75 f0          	mov    %rsi,-0x10(%rbp)
+  403930:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  403934:	48 89 c6             	mov    %rax,%rsi
+  403937:	48 8d 05 de ff ff ff 	lea    -0x22(%rip),%rax        # 40391c <_ZNSt5dequeIiSaIiEE5beginEv>
+  40393e:	48 89 c7             	mov    %rax,%rdi
+  403941:	e8 7a f8 ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  403946:	48 8b 45 f0          	mov    -0x10(%rbp),%rax
+  40394a:	48 8d 50 10          	lea    0x10(%rax),%rdx
+  40394e:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+  403952:	48 89 d6             	mov    %rdx,%rsi
+  403955:	48 89 c7             	mov    %rax,%rdi
+  403958:	e8 ed 05 00 00       	call   403f4a <_ZNSt15_Deque_iteratorIiRiPiEC1ERKS2_>
+  40395d:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  403961:	48 89 c6             	mov    %rax,%rsi
+  403964:	48 8d 05 b1 ff ff ff 	lea    -0x4f(%rip),%rax        # 40391c <_ZNSt5dequeIiSaIiEE5beginEv>
+  40396b:	48 89 c7             	mov    %rax,%rdi
+  40396e:	e8 bd f7 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  403973:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+  403977:	c9                   	leave  
+  403978:	c3                   	ret    
+  403979:	90                   	nop
+
+000000000040397a <_ZNSt5dequeIiSaIiEE3endEv>:
+  40397a:	f3 0f 1e fa          	endbr64 
+  40397e:	55                   	push   %rbp
+  40397f:	48 89 e5             	mov    %rsp,%rbp
+  403982:	48 83 ec 10          	sub    $0x10,%rsp
+  403986:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+  40398a:	48 89 75 f0          	mov    %rsi,-0x10(%rbp)
+  40398e:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  403992:	48 89 c6             	mov    %rax,%rsi
+  403995:	48 8d 05 de ff ff ff 	lea    -0x22(%rip),%rax        # 40397a <_ZNSt5dequeIiSaIiEE3endEv>
+  40399c:	48 89 c7             	mov    %rax,%rdi
+  40399f:	e8 1c f8 ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  4039a4:	48 8b 45 f0          	mov    -0x10(%rbp),%rax
+  4039a8:	48 8d 50 30          	lea    0x30(%rax),%rdx
+  4039ac:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+  4039b0:	48 89 d6             	mov    %rdx,%rsi
+  4039b3:	48 89 c7             	mov    %rax,%rdi
+  4039b6:	e8 8f 05 00 00       	call   403f4a <_ZNSt15_Deque_iteratorIiRiPiEC1ERKS2_>
+  4039bb:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  4039bf:	48 89 c6             	mov    %rax,%rsi
+  4039c2:	48 8d 05 b1 ff ff ff 	lea    -0x4f(%rip),%rax        # 40397a <_ZNSt5dequeIiSaIiEE3endEv>
+  4039c9:	48 89 c7             	mov    %rax,%rdi
+  4039cc:	e8 5f f7 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  4039d1:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+  4039d5:	c9                   	leave  
+  4039d6:	c3                   	ret    
+  4039d7:	90                   	nop
+
+00000000004039d8 <_ZNSt11_Deque_baseIiSaIiEE19_M_get_Tp_allocatorEv>:
+  4039d8:	f3 0f 1e fa          	endbr64 
+  4039dc:	55                   	push   %rbp
+  4039dd:	48 89 e5             	mov    %rsp,%rbp
+  4039e0:	53                   	push   %rbx
+  4039e1:	48 83 ec 18          	sub    $0x18,%rsp
+  4039e5:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+  4039e9:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  4039ed:	48 89 c6             	mov    %rax,%rsi
+  4039f0:	48 8d 05 e1 ff ff ff 	lea    -0x1f(%rip),%rax        # 4039d8 <_ZNSt11_Deque_baseIiSaIiEE19_M_get_Tp_allocatorEv>
+  4039f7:	48 89 c7             	mov    %rax,%rdi
+  4039fa:	e8 c1 f7 ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  4039ff:	48 8b 5d e8          	mov    -0x18(%rbp),%rbx
+  403a03:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  403a07:	48 89 c6             	mov    %rax,%rsi
+  403a0a:	48 8d 05 c7 ff ff ff 	lea    -0x39(%rip),%rax        # 4039d8 <_ZNSt11_Deque_baseIiSaIiEE19_M_get_Tp_allocatorEv>
+  403a11:	48 89 c7             	mov    %rax,%rdi
+  403a14:	e8 17 f7 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  403a19:	48 89 d8             	mov    %rbx,%rax
+  403a1c:	48 8b 5d f8          	mov    -0x8(%rbp),%rbx
+  403a20:	c9                   	leave  
+  403a21:	c3                   	ret    
+
+0000000000403a22 <_ZNSt5dequeIiSaIiEE15_M_destroy_dataESt15_Deque_iteratorIiRiPiES5_RKS0_>:
+  403a22:	f3 0f 1e fa          	endbr64 
+  403a26:	55                   	push   %rbp
+  403a27:	48 89 e5             	mov    %rsp,%rbp
+  403a2a:	48 83 ec 50          	sub    $0x50,%rsp
+  403a2e:	48 89 7d c8          	mov    %rdi,-0x38(%rbp)
+  403a32:	48 89 75 c0          	mov    %rsi,-0x40(%rbp)
+  403a36:	48 89 55 b8          	mov    %rdx,-0x48(%rbp)
+  403a3a:	48 89 4d b0          	mov    %rcx,-0x50(%rbp)
+  403a3e:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax
+  403a45:	00 00 
+  403a47:	48 89 45 f8          	mov    %rax,-0x8(%rbp)
+  403a4b:	31 c0                	xor    %eax,%eax
+  403a4d:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  403a51:	48 89 c6             	mov    %rax,%rsi
+  403a54:	48 8d 05 c7 ff ff ff 	lea    -0x39(%rip),%rax        # 403a22 <_ZNSt5dequeIiSaIiEE15_M_destroy_dataESt15_Deque_iteratorIiRiPiES5_RKS0_>
+  403a5b:	48 89 c7             	mov    %rax,%rdi
+  403a5e:	e8 5d f7 ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  403a63:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  403a67:	48 89 c6             	mov    %rax,%rsi
+  403a6a:	48 8d 05 b1 ff ff ff 	lea    -0x4f(%rip),%rax        # 403a22 <_ZNSt5dequeIiSaIiEE15_M_destroy_dataESt15_Deque_iteratorIiRiPiES5_RKS0_>
+  403a71:	48 89 c7             	mov    %rax,%rdi
+  403a74:	e8 b7 f6 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  403a79:	90                   	nop
+  403a7a:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+  403a7e:	64 48 2b 04 25 28 00 	sub    %fs:0x28,%rax
+  403a85:	00 00 
+  403a87:	74 05                	je     403a8e <_ZNSt5dequeIiSaIiEE15_M_destroy_dataESt15_Deque_iteratorIiRiPiES5_RKS0_+0x6c>
+  403a89:	e8 e2 f6 ff ff       	call   403170 <__stack_chk_fail@plt>
+  403a8e:	c9                   	leave  
+  403a8f:	c3                   	ret    
+
+0000000000403a90 <_ZSt4moveIRiEONSt16remove_referenceIT_E4typeEOS2_>:
+  403a90:	f3 0f 1e fa          	endbr64 
+  403a94:	55                   	push   %rbp
+  403a95:	48 89 e5             	mov    %rsp,%rbp
+  403a98:	53                   	push   %rbx
+  403a99:	48 83 ec 18          	sub    $0x18,%rsp
+  403a9d:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+  403aa1:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  403aa5:	48 89 c6             	mov    %rax,%rsi
+  403aa8:	48 8d 05 e1 ff ff ff 	lea    -0x1f(%rip),%rax        # 403a90 <_ZSt4moveIRiEONSt16remove_referenceIT_E4typeEOS2_>
+  403aaf:	48 89 c7             	mov    %rax,%rdi
+  403ab2:	e8 09 f7 ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  403ab7:	48 8b 5d e8          	mov    -0x18(%rbp),%rbx
+  403abb:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  403abf:	48 89 c6             	mov    %rax,%rsi
+  403ac2:	48 8d 05 c7 ff ff ff 	lea    -0x39(%rip),%rax        # 403a90 <_ZSt4moveIRiEONSt16remove_referenceIT_E4typeEOS2_>
+  403ac9:	48 89 c7             	mov    %rax,%rdi
+  403acc:	e8 5f f6 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  403ad1:	48 89 d8             	mov    %rbx,%rax
+  403ad4:	48 8b 5d f8          	mov    -0x8(%rbp),%rbx
+  403ad8:	c9                   	leave  
+  403ad9:	c3                   	ret    
+
+0000000000403ada <_ZNSt5dequeIiSaIiEE9push_backEOi>:
+  403ada:	f3 0f 1e fa          	endbr64 
+  403ade:	55                   	push   %rbp
+  403adf:	48 89 e5             	mov    %rsp,%rbp
+  403ae2:	53                   	push   %rbx
+  403ae3:	48 83 ec 18          	sub    $0x18,%rsp
+  403ae7:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+  403aeb:	48 89 75 e0          	mov    %rsi,-0x20(%rbp)
+  403aef:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  403af3:	48 89 c6             	mov    %rax,%rsi
+  403af6:	48 8d 05 dd ff ff ff 	lea    -0x23(%rip),%rax        # 403ada <_ZNSt5dequeIiSaIiEE9push_backEOi>
+  403afd:	48 89 c7             	mov    %rax,%rdi
+  403b00:	e8 bb f6 ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  403b05:	48 8b 45 e0          	mov    -0x20(%rbp),%rax
+  403b09:	48 89 c7             	mov    %rax,%rdi
+  403b0c:	e8 7f ff ff ff       	call   403a90 <_ZSt4moveIRiEONSt16remove_referenceIT_E4typeEOS2_>
+  403b11:	48 89 c2             	mov    %rax,%rdx
+  403b14:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  403b18:	48 89 d6             	mov    %rdx,%rsi
+  403b1b:	48 89 c7             	mov    %rax,%rdi
+  403b1e:	e8 a9 04 00 00       	call   403fcc <_ZNSt5dequeIiSaIiEE12emplace_backIJiEEERiDpOT_>
+  403b23:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  403b27:	48 89 c6             	mov    %rax,%rsi
+  403b2a:	48 8d 05 a9 ff ff ff 	lea    -0x57(%rip),%rax        # 403ada <_ZNSt5dequeIiSaIiEE9push_backEOi>
+  403b31:	48 89 c7             	mov    %rax,%rdi
+  403b34:	e8 f7 f5 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  403b39:	eb 28                	jmp    403b63 <_ZNSt5dequeIiSaIiEE9push_backEOi+0x89>
+  403b3b:	f3 0f 1e fa          	endbr64 
+  403b3f:	48 89 c3             	mov    %rax,%rbx
+  403b42:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  403b46:	48 89 c6             	mov    %rax,%rsi
+  403b49:	48 8d 05 8a ff ff ff 	lea    -0x76(%rip),%rax        # 403ada <_ZNSt5dequeIiSaIiEE9push_backEOi>
+  403b50:	48 89 c7             	mov    %rax,%rdi
+  403b53:	e8 d8 f5 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  403b58:	48 89 d8             	mov    %rbx,%rax
+  403b5b:	48 89 c7             	mov    %rax,%rdi
+  403b5e:	e8 4d f6 ff ff       	call   4031b0 <_Unwind_Resume@plt>
+  403b63:	48 8b 5d f8          	mov    -0x8(%rbp),%rbx
+  403b67:	c9                   	leave  
+  403b68:	c3                   	ret    
+  403b69:	90                   	nop
+
+0000000000403b6a <_ZNSt11_Deque_baseIiSaIiEE11_Deque_implC1Ev>:
+  403b6a:	f3 0f 1e fa          	endbr64 
+  403b6e:	55                   	push   %rbp
+  403b6f:	48 89 e5             	mov    %rsp,%rbp
+  403b72:	48 83 ec 10          	sub    $0x10,%rsp
+  403b76:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+  403b7a:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  403b7e:	48 89 c6             	mov    %rax,%rsi
+  403b81:	48 8d 05 e2 ff ff ff 	lea    -0x1e(%rip),%rax        # 403b6a <_ZNSt11_Deque_baseIiSaIiEE11_Deque_implC1Ev>
+  403b88:	48 89 c7             	mov    %rax,%rdi
+  403b8b:	e8 30 f6 ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  403b90:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+  403b94:	48 89 c7             	mov    %rax,%rdi
+  403b97:	e8 28 05 00 00       	call   4040c4 <_ZNSaIiEC1Ev>
+  403b9c:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+  403ba0:	48 89 c7             	mov    %rax,%rdi
+  403ba3:	e8 68 05 00 00       	call   404110 <_ZNSt11_Deque_baseIiSaIiEE16_Deque_impl_dataC1Ev>
+  403ba8:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  403bac:	48 89 c6             	mov    %rax,%rsi
+  403baf:	48 8d 05 b4 ff ff ff 	lea    -0x4c(%rip),%rax        # 403b6a <_ZNSt11_Deque_baseIiSaIiEE11_Deque_implC1Ev>
+  403bb6:	48 89 c7             	mov    %rax,%rdi
+  403bb9:	e8 72 f5 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  403bbe:	90                   	nop
+  403bbf:	c9                   	leave  
+  403bc0:	c3                   	ret    
+  403bc1:	90                   	nop
+
+0000000000403bc2 <_ZNSaIiED1Ev>:
+  403bc2:	f3 0f 1e fa          	endbr64 
+  403bc6:	55                   	push   %rbp
+  403bc7:	48 89 e5             	mov    %rsp,%rbp
+  403bca:	48 83 ec 10          	sub    $0x10,%rsp
+  403bce:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+  403bd2:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  403bd6:	48 89 c6             	mov    %rax,%rsi
+  403bd9:	48 8d 05 e2 ff ff ff 	lea    -0x1e(%rip),%rax        # 403bc2 <_ZNSaIiED1Ev>
+  403be0:	48 89 c7             	mov    %rax,%rdi
+  403be3:	e8 d8 f5 ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  403be8:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+  403bec:	48 89 c7             	mov    %rax,%rdi
+  403bef:	e8 92 05 00 00       	call   404186 <_ZN9__gnu_cxx13new_allocatorIiED1Ev>
+  403bf4:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  403bf8:	48 89 c6             	mov    %rax,%rsi
+  403bfb:	48 8d 05 c0 ff ff ff 	lea    -0x40(%rip),%rax        # 403bc2 <_ZNSaIiED1Ev>
+  403c02:	48 89 c7             	mov    %rax,%rdi
+  403c05:	e8 26 f5 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  403c0a:	90                   	nop
+  403c0b:	c9                   	leave  
+  403c0c:	c3                   	ret    
+  403c0d:	90                   	nop
+
+0000000000403c0e <_ZNSt11_Deque_baseIiSaIiEE17_M_initialize_mapEm>:
+  403c0e:	f3 0f 1e fa          	endbr64 
+  403c12:	55                   	push   %rbp
+  403c13:	48 89 e5             	mov    %rsp,%rbp
+  403c16:	53                   	push   %rbx
+  403c17:	48 83 ec 48          	sub    $0x48,%rsp
+  403c1b:	48 89 7d b8          	mov    %rdi,-0x48(%rbp)
+  403c1f:	48 89 75 b0          	mov    %rsi,-0x50(%rbp)
+  403c23:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax
+  403c2a:	00 00 
+  403c2c:	48 89 45 e8          	mov    %rax,-0x18(%rbp)
+  403c30:	31 c0                	xor    %eax,%eax
+  403c32:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  403c36:	48 89 c6             	mov    %rax,%rsi
+  403c39:	48 8d 05 ce ff ff ff 	lea    -0x32(%rip),%rax        # 403c0e <_ZNSt11_Deque_baseIiSaIiEE17_M_initialize_mapEm>
+  403c40:	48 89 c7             	mov    %rax,%rdi
+  403c43:	e8 78 f5 ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  403c48:	bf 04 00 00 00       	mov    $0x4,%edi
+  403c4d:	e8 09 f8 ff ff       	call   40345b <_ZSt16__deque_buf_sizem>
+  403c52:	48 89 c1             	mov    %rax,%rcx
+  403c55:	48 8b 45 b0          	mov    -0x50(%rbp),%rax
+  403c59:	ba 00 00 00 00       	mov    $0x0,%edx
+  403c5e:	48 f7 f1             	div    %rcx
+  403c61:	48 83 c0 01          	add    $0x1,%rax
+  403c65:	48 89 45 d0          	mov    %rax,-0x30(%rbp)
+  403c69:	48 8b 45 d0          	mov    -0x30(%rbp),%rax
+  403c6d:	48 83 c0 02          	add    $0x2,%rax
+  403c71:	48 89 45 c8          	mov    %rax,-0x38(%rbp)
+  403c75:	48 c7 45 c0 08 00 00 	movq   $0x8,-0x40(%rbp)
+  403c7c:	00 
+  403c7d:	48 8d 55 c8          	lea    -0x38(%rbp),%rdx
+  403c81:	48 8d 45 c0          	lea    -0x40(%rbp),%rax
+  403c85:	48 89 d6             	mov    %rdx,%rsi
+  403c88:	48 89 c7             	mov    %rax,%rdi
+  403c8b:	e8 35 05 00 00       	call   4041c5 <_ZSt3maxImERKT_S2_S2_>
+  403c90:	48 8b 10             	mov    (%rax),%rdx
+  403c93:	48 8b 45 b8          	mov    -0x48(%rbp),%rax
+  403c97:	48 89 50 08          	mov    %rdx,0x8(%rax)
+  403c9b:	48 8b 45 b8          	mov    -0x48(%rbp),%rax
+  403c9f:	48 8b 50 08          	mov    0x8(%rax),%rdx
+  403ca3:	48 8b 45 b8          	mov    -0x48(%rbp),%rax
+  403ca7:	48 89 d6             	mov    %rdx,%rsi
+  403caa:	48 89 c7             	mov    %rax,%rdi
+  403cad:	e8 7a 05 00 00       	call   40422c <_ZNSt11_Deque_baseIiSaIiEE15_M_allocate_mapEm>
+  403cb2:	48 8b 55 b8          	mov    -0x48(%rbp),%rdx
+  403cb6:	48 89 02             	mov    %rax,(%rdx)
+  403cb9:	48 8b 45 b8          	mov    -0x48(%rbp),%rax
+  403cbd:	48 8b 10             	mov    (%rax),%rdx
+  403cc0:	48 8b 45 b8          	mov    -0x48(%rbp),%rax
+  403cc4:	48 8b 40 08          	mov    0x8(%rax),%rax
+  403cc8:	48 2b 45 d0          	sub    -0x30(%rbp),%rax
+  403ccc:	48 d1 e8             	shr    %rax
+  403ccf:	48 c1 e0 03          	shl    $0x3,%rax
+  403cd3:	48 01 d0             	add    %rdx,%rax
+  403cd6:	48 89 45 d8          	mov    %rax,-0x28(%rbp)
+  403cda:	48 8b 45 d0          	mov    -0x30(%rbp),%rax
+  403cde:	48 8d 14 c5 00 00 00 	lea    0x0(,%rax,8),%rdx
+  403ce5:	00 
+  403ce6:	48 8b 45 d8          	mov    -0x28(%rbp),%rax
+  403cea:	48 01 d0             	add    %rdx,%rax
+  403ced:	48 89 45 e0          	mov    %rax,-0x20(%rbp)
+  403cf1:	48 8b 55 e0          	mov    -0x20(%rbp),%rdx
+  403cf5:	48 8b 4d d8          	mov    -0x28(%rbp),%rcx
+  403cf9:	48 8b 45 b8          	mov    -0x48(%rbp),%rax
+  403cfd:	48 89 ce             	mov    %rcx,%rsi
+  403d00:	48 89 c7             	mov    %rax,%rdi
+  403d03:	e8 fe 05 00 00       	call   404306 <_ZNSt11_Deque_baseIiSaIiEE15_M_create_nodesEPPiS3_>
+  403d08:	48 8b 45 b8          	mov    -0x48(%rbp),%rax
+  403d0c:	48 8d 50 10          	lea    0x10(%rax),%rdx
+  403d10:	48 8b 45 d8          	mov    -0x28(%rbp),%rax
+  403d14:	48 89 c6             	mov    %rax,%rsi
+  403d17:	48 89 d7             	mov    %rdx,%rdi
+  403d1a:	e8 b5 06 00 00       	call   4043d4 <_ZNSt15_Deque_iteratorIiRiPiE11_M_set_nodeEPS1_>
+  403d1f:	48 8b 45 b8          	mov    -0x48(%rbp),%rax
+  403d23:	48 83 c0 30          	add    $0x30,%rax
+  403d27:	48 8b 55 e0          	mov    -0x20(%rbp),%rdx
+  403d2b:	48 83 ea 08          	sub    $0x8,%rdx
+  403d2f:	48 89 d6             	mov    %rdx,%rsi
+  403d32:	48 89 c7             	mov    %rax,%rdi
+  403d35:	e8 9a 06 00 00       	call   4043d4 <_ZNSt15_Deque_iteratorIiRiPiE11_M_set_nodeEPS1_>
+  403d3a:	48 8b 45 b8          	mov    -0x48(%rbp),%rax
+  403d3e:	48 8b 50 18          	mov    0x18(%rax),%rdx
+  403d42:	48 8b 45 b8          	mov    -0x48(%rbp),%rax
+  403d46:	48 89 50 10          	mov    %rdx,0x10(%rax)
+  403d4a:	48 8b 45 b8          	mov    -0x48(%rbp),%rax
+  403d4e:	48 8b 58 38          	mov    0x38(%rax),%rbx
+  403d52:	bf 04 00 00 00       	mov    $0x4,%edi
+  403d57:	e8 ff f6 ff ff       	call   40345b <_ZSt16__deque_buf_sizem>
+  403d5c:	48 89 c1             	mov    %rax,%rcx
+  403d5f:	48 8b 45 b0          	mov    -0x50(%rbp),%rax
+  403d63:	ba 00 00 00 00       	mov    $0x0,%edx
+  403d68:	48 f7 f1             	div    %rcx
+  403d6b:	48 89 d1             	mov    %rdx,%rcx
+  403d6e:	48 89 c8             	mov    %rcx,%rax
+  403d71:	48 c1 e0 02          	shl    $0x2,%rax
+  403d75:	48 8d 14 03          	lea    (%rbx,%rax,1),%rdx
+  403d79:	48 8b 45 b8          	mov    -0x48(%rbp),%rax
+  403d7d:	48 89 50 30          	mov    %rdx,0x30(%rax)
+  403d81:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  403d85:	48 89 c6             	mov    %rax,%rsi
+  403d88:	48 8d 05 7f fe ff ff 	lea    -0x181(%rip),%rax        # 403c0e <_ZNSt11_Deque_baseIiSaIiEE17_M_initialize_mapEm>
+  403d8f:	48 89 c7             	mov    %rax,%rdi
+  403d92:	e8 99 f3 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  403d97:	90                   	nop
+  403d98:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  403d9c:	64 48 2b 04 25 28 00 	sub    %fs:0x28,%rax
+  403da3:	00 00 
+  403da5:	0f 84 83 00 00 00    	je     403e2e <_ZNSt11_Deque_baseIiSaIiEE17_M_initialize_mapEm+0x220>
+  403dab:	eb 7c                	jmp    403e29 <_ZNSt11_Deque_baseIiSaIiEE17_M_initialize_mapEm+0x21b>
+  403dad:	f3 0f 1e fa          	endbr64 
+  403db1:	48 89 c7             	mov    %rax,%rdi
+  403db4:	e8 57 f3 ff ff       	call   403110 <__cxa_begin_catch@plt>
+  403db9:	48 8b 45 b8          	mov    -0x48(%rbp),%rax
+  403dbd:	48 8b 50 08          	mov    0x8(%rax),%rdx
+  403dc1:	48 8b 45 b8          	mov    -0x48(%rbp),%rax
+  403dc5:	48 8b 08             	mov    (%rax),%rcx
+  403dc8:	48 8b 45 b8          	mov    -0x48(%rbp),%rax
+  403dcc:	48 89 ce             	mov    %rcx,%rsi
+  403dcf:	48 89 c7             	mov    %rax,%rdi
+  403dd2:	e8 d3 00 00 00       	call   403eaa <_ZNSt11_Deque_baseIiSaIiEE17_M_deallocate_mapEPPim>
+  403dd7:	48 8b 45 b8          	mov    -0x48(%rbp),%rax
+  403ddb:	48 c7 00 00 00 00 00 	movq   $0x0,(%rax)
+  403de2:	48 8b 45 b8          	mov    -0x48(%rbp),%rax
+  403de6:	48 c7 40 08 00 00 00 	movq   $0x0,0x8(%rax)
+  403ded:	00 
+  403dee:	e8 8d f3 ff ff       	call   403180 <__cxa_rethrow@plt>
+  403df3:	f3 0f 1e fa          	endbr64 
+  403df7:	48 89 c3             	mov    %rax,%rbx
+  403dfa:	e8 a1 f3 ff ff       	call   4031a0 <__cxa_end_catch@plt>
+  403dff:	eb 07                	jmp    403e08 <_ZNSt11_Deque_baseIiSaIiEE17_M_initialize_mapEm+0x1fa>
+  403e01:	f3 0f 1e fa          	endbr64 
+  403e05:	48 89 c3             	mov    %rax,%rbx
+  403e08:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  403e0c:	48 89 c6             	mov    %rax,%rsi
+  403e0f:	48 8d 05 f8 fd ff ff 	lea    -0x208(%rip),%rax        # 403c0e <_ZNSt11_Deque_baseIiSaIiEE17_M_initialize_mapEm>
+  403e16:	48 89 c7             	mov    %rax,%rdi
+  403e19:	e8 12 f3 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  403e1e:	48 89 d8             	mov    %rbx,%rax
+  403e21:	48 89 c7             	mov    %rax,%rdi
+  403e24:	e8 87 f3 ff ff       	call   4031b0 <_Unwind_Resume@plt>
+  403e29:	e8 42 f3 ff ff       	call   403170 <__stack_chk_fail@plt>
+  403e2e:	48 8b 5d f8          	mov    -0x8(%rbp),%rbx
+  403e32:	c9                   	leave  
+  403e33:	c3                   	ret    
+
+0000000000403e34 <_ZNSt11_Deque_baseIiSaIiEE16_M_destroy_nodesEPPiS3_>:
+  403e34:	f3 0f 1e fa          	endbr64 
+  403e38:	55                   	push   %rbp
+  403e39:	48 89 e5             	mov    %rsp,%rbp
+  403e3c:	48 83 ec 30          	sub    $0x30,%rsp
+  403e40:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+  403e44:	48 89 75 e0          	mov    %rsi,-0x20(%rbp)
+  403e48:	48 89 55 d8          	mov    %rdx,-0x28(%rbp)
+  403e4c:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  403e50:	48 89 c6             	mov    %rax,%rsi
+  403e53:	48 8d 05 da ff ff ff 	lea    -0x26(%rip),%rax        # 403e34 <_ZNSt11_Deque_baseIiSaIiEE16_M_destroy_nodesEPPiS3_>
+  403e5a:	48 89 c7             	mov    %rax,%rdi
+  403e5d:	e8 5e f3 ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  403e62:	48 8b 45 e0          	mov    -0x20(%rbp),%rax
+  403e66:	48 89 45 f8          	mov    %rax,-0x8(%rbp)
+  403e6a:	eb 1b                	jmp    403e87 <_ZNSt11_Deque_baseIiSaIiEE16_M_destroy_nodesEPPiS3_+0x53>
+  403e6c:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+  403e70:	48 8b 10             	mov    (%rax),%rdx
+  403e73:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  403e77:	48 89 d6             	mov    %rdx,%rsi
+  403e7a:	48 89 c7             	mov    %rax,%rdi
+  403e7d:	e8 d2 05 00 00       	call   404454 <_ZNSt11_Deque_baseIiSaIiEE18_M_deallocate_nodeEPi>
+  403e82:	48 83 45 f8 08       	addq   $0x8,-0x8(%rbp)
+  403e87:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+  403e8b:	48 3b 45 d8          	cmp    -0x28(%rbp),%rax
+  403e8f:	72 db                	jb     403e6c <_ZNSt11_Deque_baseIiSaIiEE16_M_destroy_nodesEPPiS3_+0x38>
+  403e91:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  403e95:	48 89 c6             	mov    %rax,%rsi
+  403e98:	48 8d 05 95 ff ff ff 	lea    -0x6b(%rip),%rax        # 403e34 <_ZNSt11_Deque_baseIiSaIiEE16_M_destroy_nodesEPPiS3_>
+  403e9f:	48 89 c7             	mov    %rax,%rdi
+  403ea2:	e8 89 f2 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  403ea7:	90                   	nop
+  403ea8:	c9                   	leave  
+  403ea9:	c3                   	ret    
+
+0000000000403eaa <_ZNSt11_Deque_baseIiSaIiEE17_M_deallocate_mapEPPim>:
+  403eaa:	f3 0f 1e fa          	endbr64 
+  403eae:	55                   	push   %rbp
+  403eaf:	48 89 e5             	mov    %rsp,%rbp
+  403eb2:	48 83 ec 30          	sub    $0x30,%rsp
+  403eb6:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+  403eba:	48 89 75 e0          	mov    %rsi,-0x20(%rbp)
+  403ebe:	48 89 55 d8          	mov    %rdx,-0x28(%rbp)
+  403ec2:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax
+  403ec9:	00 00 
+  403ecb:	48 89 45 f8          	mov    %rax,-0x8(%rbp)
+  403ecf:	31 c0                	xor    %eax,%eax
+  403ed1:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  403ed5:	48 89 c6             	mov    %rax,%rsi
+  403ed8:	48 8d 05 cb ff ff ff 	lea    -0x35(%rip),%rax        # 403eaa <_ZNSt11_Deque_baseIiSaIiEE17_M_deallocate_mapEPPim>
+  403edf:	48 89 c7             	mov    %rax,%rdi
+  403ee2:	e8 d9 f2 ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  403ee7:	48 8d 45 f7          	lea    -0x9(%rbp),%rax
+  403eeb:	48 8b 55 e8          	mov    -0x18(%rbp),%rdx
+  403eef:	48 89 d6             	mov    %rdx,%rsi
+  403ef2:	48 89 c7             	mov    %rax,%rdi
+  403ef5:	e8 be 05 00 00       	call   4044b8 <_ZNKSt11_Deque_baseIiSaIiEE20_M_get_map_allocatorEv>
+  403efa:	48 8b 55 d8          	mov    -0x28(%rbp),%rdx
+  403efe:	48 8b 4d e0          	mov    -0x20(%rbp),%rcx
+  403f02:	48 8d 45 f7          	lea    -0x9(%rbp),%rax
+  403f06:	48 89 ce             	mov    %rcx,%rsi
+  403f09:	48 89 c7             	mov    %rax,%rdi
+  403f0c:	e8 56 06 00 00       	call   404567 <_ZNSt16allocator_traitsISaIPiEE10deallocateERS1_PS0_m>
+  403f11:	48 8d 45 f7          	lea    -0x9(%rbp),%rax
+  403f15:	48 89 c7             	mov    %rax,%rdi
+  403f18:	e8 ff 05 00 00       	call   40451c <_ZNSaIPiED1Ev>
+  403f1d:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  403f21:	48 89 c6             	mov    %rax,%rsi
+  403f24:	48 8d 05 7f ff ff ff 	lea    -0x81(%rip),%rax        # 403eaa <_ZNSt11_Deque_baseIiSaIiEE17_M_deallocate_mapEPPim>
+  403f2b:	48 89 c7             	mov    %rax,%rdi
+  403f2e:	e8 fd f1 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  403f33:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+  403f37:	64 48 2b 04 25 28 00 	sub    %fs:0x28,%rax
+  403f3e:	00 00 
+  403f40:	74 05                	je     403f47 <_ZNSt11_Deque_baseIiSaIiEE17_M_deallocate_mapEPPim+0x9d>
+  403f42:	e8 29 f2 ff ff       	call   403170 <__stack_chk_fail@plt>
+  403f47:	c9                   	leave  
+  403f48:	c3                   	ret    
+  403f49:	90                   	nop
+
+0000000000403f4a <_ZNSt15_Deque_iteratorIiRiPiEC1ERKS2_>:
+  403f4a:	f3 0f 1e fa          	endbr64 
+  403f4e:	55                   	push   %rbp
+  403f4f:	48 89 e5             	mov    %rsp,%rbp
+  403f52:	48 83 ec 10          	sub    $0x10,%rsp
+  403f56:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+  403f5a:	48 89 75 f0          	mov    %rsi,-0x10(%rbp)
+  403f5e:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  403f62:	48 89 c6             	mov    %rax,%rsi
+  403f65:	48 8d 05 de ff ff ff 	lea    -0x22(%rip),%rax        # 403f4a <_ZNSt15_Deque_iteratorIiRiPiEC1ERKS2_>
+  403f6c:	48 89 c7             	mov    %rax,%rdi
+  403f6f:	e8 4c f2 ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  403f74:	48 8b 45 f0          	mov    -0x10(%rbp),%rax
+  403f78:	48 8b 10             	mov    (%rax),%rdx
+  403f7b:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+  403f7f:	48 89 10             	mov    %rdx,(%rax)
+  403f82:	48 8b 45 f0          	mov    -0x10(%rbp),%rax
+  403f86:	48 8b 50 08          	mov    0x8(%rax),%rdx
+  403f8a:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+  403f8e:	48 89 50 08          	mov    %rdx,0x8(%rax)
+  403f92:	48 8b 45 f0          	mov    -0x10(%rbp),%rax
+  403f96:	48 8b 50 10          	mov    0x10(%rax),%rdx
+  403f9a:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+  403f9e:	48 89 50 10          	mov    %rdx,0x10(%rax)
+  403fa2:	48 8b 45 f0          	mov    -0x10(%rbp),%rax
+  403fa6:	48 8b 50 18          	mov    0x18(%rax),%rdx
+  403faa:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+  403fae:	48 89 50 18          	mov    %rdx,0x18(%rax)
+  403fb2:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  403fb6:	48 89 c6             	mov    %rax,%rsi
+  403fb9:	48 8d 05 8a ff ff ff 	lea    -0x76(%rip),%rax        # 403f4a <_ZNSt15_Deque_iteratorIiRiPiEC1ERKS2_>
+  403fc0:	48 89 c7             	mov    %rax,%rdi
+  403fc3:	e8 68 f1 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  403fc8:	90                   	nop
+  403fc9:	c9                   	leave  
+  403fca:	c3                   	ret    
+  403fcb:	90                   	nop
+
+0000000000403fcc <_ZNSt5dequeIiSaIiEE12emplace_backIJiEEERiDpOT_>:
+  403fcc:	f3 0f 1e fa          	endbr64 
+  403fd0:	55                   	push   %rbp
+  403fd1:	48 89 e5             	mov    %rsp,%rbp
+  403fd4:	53                   	push   %rbx
+  403fd5:	48 83 ec 18          	sub    $0x18,%rsp
+  403fd9:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+  403fdd:	48 89 75 e0          	mov    %rsi,-0x20(%rbp)
+  403fe1:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  403fe5:	48 89 c6             	mov    %rax,%rsi
+  403fe8:	48 8d 05 dd ff ff ff 	lea    -0x23(%rip),%rax        # 403fcc <_ZNSt5dequeIiSaIiEE12emplace_backIJiEEERiDpOT_>
+  403fef:	48 89 c7             	mov    %rax,%rdi
+  403ff2:	e8 c9 f1 ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  403ff7:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  403ffb:	48 8b 50 30          	mov    0x30(%rax),%rdx
+  403fff:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  404003:	48 8b 40 40          	mov    0x40(%rax),%rax
+  404007:	48 83 e8 04          	sub    $0x4,%rax
+  40400b:	48 39 c2             	cmp    %rax,%rdx
+  40400e:	74 3c                	je     40404c <_ZNSt5dequeIiSaIiEE12emplace_backIJiEEERiDpOT_+0x80>
+  404010:	48 8b 45 e0          	mov    -0x20(%rbp),%rax
+  404014:	48 89 c7             	mov    %rax,%rdi
+  404017:	e8 a9 05 00 00       	call   4045c5 <_ZSt7forwardIiEOT_RNSt16remove_referenceIS0_E4typeE>
+  40401c:	48 89 c2             	mov    %rax,%rdx
+  40401f:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  404023:	48 8b 48 30          	mov    0x30(%rax),%rcx
+  404027:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  40402b:	48 89 ce             	mov    %rcx,%rsi
+  40402e:	48 89 c7             	mov    %rax,%rdi
+  404031:	e8 d9 05 00 00       	call   40460f <_ZNSt16allocator_traitsISaIiEE9constructIiJiEEEvRS0_PT_DpOT0_>
+  404036:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  40403a:	48 8b 40 30          	mov    0x30(%rax),%rax
+  40403e:	48 8d 50 04          	lea    0x4(%rax),%rdx
+  404042:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  404046:	48 89 50 30          	mov    %rdx,0x30(%rax)
+  40404a:	eb 1e                	jmp    40406a <_ZNSt5dequeIiSaIiEE12emplace_backIJiEEERiDpOT_+0x9e>
+  40404c:	48 8b 45 e0          	mov    -0x20(%rbp),%rax
+  404050:	48 89 c7             	mov    %rax,%rdi
+  404053:	e8 6d 05 00 00       	call   4045c5 <_ZSt7forwardIiEOT_RNSt16remove_referenceIS0_E4typeE>
+  404058:	48 89 c2             	mov    %rax,%rdx
+  40405b:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  40405f:	48 89 d6             	mov    %rdx,%rsi
+  404062:	48 89 c7             	mov    %rax,%rdi
+  404065:	e8 0e 06 00 00       	call   404678 <_ZNSt5dequeIiSaIiEE16_M_push_back_auxIJiEEEvDpOT_>
+  40406a:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  40406e:	48 89 c7             	mov    %rax,%rdi
+  404071:	e8 28 07 00 00       	call   40479e <_ZNSt5dequeIiSaIiEE4backEv>
+  404076:	48 89 c3             	mov    %rax,%rbx
+  404079:	90                   	nop
+  40407a:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  40407e:	48 89 c6             	mov    %rax,%rsi
+  404081:	48 8d 05 44 ff ff ff 	lea    -0xbc(%rip),%rax        # 403fcc <_ZNSt5dequeIiSaIiEE12emplace_backIJiEEERiDpOT_>
+  404088:	48 89 c7             	mov    %rax,%rdi
+  40408b:	e8 a0 f0 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  404090:	48 89 d8             	mov    %rbx,%rax
+  404093:	eb 28                	jmp    4040bd <_ZNSt5dequeIiSaIiEE12emplace_backIJiEEERiDpOT_+0xf1>
+  404095:	f3 0f 1e fa          	endbr64 
+  404099:	48 89 c3             	mov    %rax,%rbx
+  40409c:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  4040a0:	48 89 c6             	mov    %rax,%rsi
+  4040a3:	48 8d 05 22 ff ff ff 	lea    -0xde(%rip),%rax        # 403fcc <_ZNSt5dequeIiSaIiEE12emplace_backIJiEEERiDpOT_>
+  4040aa:	48 89 c7             	mov    %rax,%rdi
+  4040ad:	e8 7e f0 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  4040b2:	48 89 d8             	mov    %rbx,%rax
+  4040b5:	48 89 c7             	mov    %rax,%rdi
+  4040b8:	e8 f3 f0 ff ff       	call   4031b0 <_Unwind_Resume@plt>
+  4040bd:	48 8b 5d f8          	mov    -0x8(%rbp),%rbx
+  4040c1:	c9                   	leave  
+  4040c2:	c3                   	ret    
+  4040c3:	90                   	nop
+
+00000000004040c4 <_ZNSaIiEC1Ev>:
+  4040c4:	f3 0f 1e fa          	endbr64 
+  4040c8:	55                   	push   %rbp
+  4040c9:	48 89 e5             	mov    %rsp,%rbp
+  4040cc:	48 83 ec 10          	sub    $0x10,%rsp
+  4040d0:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+  4040d4:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  4040d8:	48 89 c6             	mov    %rax,%rsi
+  4040db:	48 8d 05 e2 ff ff ff 	lea    -0x1e(%rip),%rax        # 4040c4 <_ZNSaIiEC1Ev>
+  4040e2:	48 89 c7             	mov    %rax,%rdi
+  4040e5:	e8 d6 f0 ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  4040ea:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+  4040ee:	48 89 c7             	mov    %rax,%rdi
+  4040f1:	e8 40 07 00 00       	call   404836 <_ZN9__gnu_cxx13new_allocatorIiEC1Ev>
+  4040f6:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  4040fa:	48 89 c6             	mov    %rax,%rsi
+  4040fd:	48 8d 05 c0 ff ff ff 	lea    -0x40(%rip),%rax        # 4040c4 <_ZNSaIiEC1Ev>
+  404104:	48 89 c7             	mov    %rax,%rdi
+  404107:	e8 24 f0 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  40410c:	90                   	nop
+  40410d:	c9                   	leave  
+  40410e:	c3                   	ret    
+  40410f:	90                   	nop
+
+0000000000404110 <_ZNSt11_Deque_baseIiSaIiEE16_Deque_impl_dataC1Ev>:
+  404110:	f3 0f 1e fa          	endbr64 
+  404114:	55                   	push   %rbp
+  404115:	48 89 e5             	mov    %rsp,%rbp
+  404118:	48 83 ec 10          	sub    $0x10,%rsp
+  40411c:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+  404120:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  404124:	48 89 c6             	mov    %rax,%rsi
+  404127:	48 8d 05 e2 ff ff ff 	lea    -0x1e(%rip),%rax        # 404110 <_ZNSt11_Deque_baseIiSaIiEE16_Deque_impl_dataC1Ev>
+  40412e:	48 89 c7             	mov    %rax,%rdi
+  404131:	e8 8a f0 ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  404136:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+  40413a:	48 c7 00 00 00 00 00 	movq   $0x0,(%rax)
+  404141:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+  404145:	48 c7 40 08 00 00 00 	movq   $0x0,0x8(%rax)
+  40414c:	00 
+  40414d:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+  404151:	48 83 c0 10          	add    $0x10,%rax
+  404155:	48 89 c7             	mov    %rax,%rdi
+  404158:	e8 19 07 00 00       	call   404876 <_ZNSt15_Deque_iteratorIiRiPiEC1Ev>
+  40415d:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+  404161:	48 83 c0 30          	add    $0x30,%rax
+  404165:	48 89 c7             	mov    %rax,%rdi
+  404168:	e8 09 07 00 00       	call   404876 <_ZNSt15_Deque_iteratorIiRiPiEC1Ev>
+  40416d:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  404171:	48 89 c6             	mov    %rax,%rsi
+  404174:	48 8d 05 95 ff ff ff 	lea    -0x6b(%rip),%rax        # 404110 <_ZNSt11_Deque_baseIiSaIiEE16_Deque_impl_dataC1Ev>
+  40417b:	48 89 c7             	mov    %rax,%rdi
+  40417e:	e8 ad ef ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  404183:	90                   	nop
+  404184:	c9                   	leave  
+  404185:	c3                   	ret    
+
+0000000000404186 <_ZN9__gnu_cxx13new_allocatorIiED1Ev>:
+  404186:	f3 0f 1e fa          	endbr64 
+  40418a:	55                   	push   %rbp
+  40418b:	48 89 e5             	mov    %rsp,%rbp
+  40418e:	48 83 ec 10          	sub    $0x10,%rsp
+  404192:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+  404196:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  40419a:	48 89 c6             	mov    %rax,%rsi
+  40419d:	48 8d 05 e2 ff ff ff 	lea    -0x1e(%rip),%rax        # 404186 <_ZN9__gnu_cxx13new_allocatorIiED1Ev>
+  4041a4:	48 89 c7             	mov    %rax,%rdi
+  4041a7:	e8 14 f0 ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  4041ac:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  4041b0:	48 89 c6             	mov    %rax,%rsi
+  4041b3:	48 8d 05 cc ff ff ff 	lea    -0x34(%rip),%rax        # 404186 <_ZN9__gnu_cxx13new_allocatorIiED1Ev>
+  4041ba:	48 89 c7             	mov    %rax,%rdi
+  4041bd:	e8 6e ef ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  4041c2:	90                   	nop
+  4041c3:	c9                   	leave  
+  4041c4:	c3                   	ret    
+
+00000000004041c5 <_ZSt3maxImERKT_S2_S2_>:
+  4041c5:	f3 0f 1e fa          	endbr64 
+  4041c9:	55                   	push   %rbp
+  4041ca:	48 89 e5             	mov    %rsp,%rbp
+  4041cd:	53                   	push   %rbx
+  4041ce:	48 83 ec 18          	sub    $0x18,%rsp
+  4041d2:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+  4041d6:	48 89 75 e0          	mov    %rsi,-0x20(%rbp)
+  4041da:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  4041de:	48 89 c6             	mov    %rax,%rsi
+  4041e1:	48 8d 05 dd ff ff ff 	lea    -0x23(%rip),%rax        # 4041c5 <_ZSt3maxImERKT_S2_S2_>
+  4041e8:	48 89 c7             	mov    %rax,%rdi
+  4041eb:	e8 d0 ef ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  4041f0:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  4041f4:	48 8b 10             	mov    (%rax),%rdx
+  4041f7:	48 8b 45 e0          	mov    -0x20(%rbp),%rax
+  4041fb:	48 8b 00             	mov    (%rax),%rax
+  4041fe:	48 39 c2             	cmp    %rax,%rdx
+  404201:	73 06                	jae    404209 <_ZSt3maxImERKT_S2_S2_+0x44>
+  404203:	48 8b 5d e0          	mov    -0x20(%rbp),%rbx
+  404207:	eb 04                	jmp    40420d <_ZSt3maxImERKT_S2_S2_+0x48>
+  404209:	48 8b 5d e8          	mov    -0x18(%rbp),%rbx
+  40420d:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  404211:	48 89 c6             	mov    %rax,%rsi
+  404214:	48 8d 05 aa ff ff ff 	lea    -0x56(%rip),%rax        # 4041c5 <_ZSt3maxImERKT_S2_S2_>
+  40421b:	48 89 c7             	mov    %rax,%rdi
+  40421e:	e8 0d ef ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  404223:	48 89 d8             	mov    %rbx,%rax
+  404226:	48 8b 5d f8          	mov    -0x8(%rbp),%rbx
+  40422a:	c9                   	leave  
+  40422b:	c3                   	ret    
+
+000000000040422c <_ZNSt11_Deque_baseIiSaIiEE15_M_allocate_mapEm>:
+  40422c:	f3 0f 1e fa          	endbr64 
+  404230:	55                   	push   %rbp
+  404231:	48 89 e5             	mov    %rsp,%rbp
+  404234:	53                   	push   %rbx
+  404235:	48 83 ec 28          	sub    $0x28,%rsp
+  404239:	48 89 7d d8          	mov    %rdi,-0x28(%rbp)
+  40423d:	48 89 75 d0          	mov    %rsi,-0x30(%rbp)
+  404241:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax
+  404248:	00 00 
+  40424a:	48 89 45 e8          	mov    %rax,-0x18(%rbp)
+  40424e:	31 c0                	xor    %eax,%eax
+  404250:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  404254:	48 89 c6             	mov    %rax,%rsi
+  404257:	48 8d 05 ce ff ff ff 	lea    -0x32(%rip),%rax        # 40422c <_ZNSt11_Deque_baseIiSaIiEE15_M_allocate_mapEm>
+  40425e:	48 89 c7             	mov    %rax,%rdi
+  404261:	e8 5a ef ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  404266:	48 8d 45 e7          	lea    -0x19(%rbp),%rax
+  40426a:	48 8b 55 d8          	mov    -0x28(%rbp),%rdx
+  40426e:	48 89 d6             	mov    %rdx,%rsi
+  404271:	48 89 c7             	mov    %rax,%rdi
+  404274:	e8 3f 02 00 00       	call   4044b8 <_ZNKSt11_Deque_baseIiSaIiEE20_M_get_map_allocatorEv>
+  404279:	48 8b 55 d0          	mov    -0x30(%rbp),%rdx
+  40427d:	48 8d 45 e7          	lea    -0x19(%rbp),%rax
+  404281:	48 89 d6             	mov    %rdx,%rsi
+  404284:	48 89 c7             	mov    %rax,%rdi
+  404287:	e8 58 06 00 00       	call   4048e4 <_ZNSt16allocator_traitsISaIPiEE8allocateERS1_m>
+  40428c:	48 89 c3             	mov    %rax,%rbx
+  40428f:	90                   	nop
+  404290:	48 8d 45 e7          	lea    -0x19(%rbp),%rax
+  404294:	48 89 c7             	mov    %rax,%rdi
+  404297:	e8 80 02 00 00       	call   40451c <_ZNSaIPiED1Ev>
+  40429c:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  4042a0:	48 89 c6             	mov    %rax,%rsi
+  4042a3:	48 8d 05 82 ff ff ff 	lea    -0x7e(%rip),%rax        # 40422c <_ZNSt11_Deque_baseIiSaIiEE15_M_allocate_mapEm>
+  4042aa:	48 89 c7             	mov    %rax,%rdi
+  4042ad:	e8 7e ee ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  4042b2:	48 89 d8             	mov    %rbx,%rax
+  4042b5:	48 8b 55 e8          	mov    -0x18(%rbp),%rdx
+  4042b9:	64 48 2b 14 25 28 00 	sub    %fs:0x28,%rdx
+  4042c0:	00 00 
+  4042c2:	74 3b                	je     4042ff <_ZNSt11_Deque_baseIiSaIiEE15_M_allocate_mapEm+0xd3>
+  4042c4:	eb 34                	jmp    4042fa <_ZNSt11_Deque_baseIiSaIiEE15_M_allocate_mapEm+0xce>
+  4042c6:	f3 0f 1e fa          	endbr64 
+  4042ca:	48 89 c3             	mov    %rax,%rbx
+  4042cd:	48 8d 45 e7          	lea    -0x19(%rbp),%rax
+  4042d1:	48 89 c7             	mov    %rax,%rdi
+  4042d4:	e8 43 02 00 00       	call   40451c <_ZNSaIPiED1Ev>
+  4042d9:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  4042dd:	48 89 c6             	mov    %rax,%rsi
+  4042e0:	48 8d 05 45 ff ff ff 	lea    -0xbb(%rip),%rax        # 40422c <_ZNSt11_Deque_baseIiSaIiEE15_M_allocate_mapEm>
+  4042e7:	48 89 c7             	mov    %rax,%rdi
+  4042ea:	e8 41 ee ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  4042ef:	48 89 d8             	mov    %rbx,%rax
+  4042f2:	48 89 c7             	mov    %rax,%rdi
+  4042f5:	e8 b6 ee ff ff       	call   4031b0 <_Unwind_Resume@plt>
+  4042fa:	e8 71 ee ff ff       	call   403170 <__stack_chk_fail@plt>
+  4042ff:	48 8b 5d f8          	mov    -0x8(%rbp),%rbx
+  404303:	c9                   	leave  
+  404304:	c3                   	ret    
+  404305:	90                   	nop
+
+0000000000404306 <_ZNSt11_Deque_baseIiSaIiEE15_M_create_nodesEPPiS3_>:
+  404306:	f3 0f 1e fa          	endbr64 
+  40430a:	55                   	push   %rbp
+  40430b:	48 89 e5             	mov    %rsp,%rbp
+  40430e:	53                   	push   %rbx
+  40430f:	48 83 ec 38          	sub    $0x38,%rsp
+  404313:	48 89 7d d8          	mov    %rdi,-0x28(%rbp)
+  404317:	48 89 75 d0          	mov    %rsi,-0x30(%rbp)
+  40431b:	48 89 55 c8          	mov    %rdx,-0x38(%rbp)
+  40431f:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  404323:	48 89 c6             	mov    %rax,%rsi
+  404326:	48 8d 05 d9 ff ff ff 	lea    -0x27(%rip),%rax        # 404306 <_ZNSt11_Deque_baseIiSaIiEE15_M_create_nodesEPPiS3_>
+  40432d:	48 89 c7             	mov    %rax,%rdi
+  404330:	e8 8b ee ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  404335:	48 8b 45 d0          	mov    -0x30(%rbp),%rax
+  404339:	48 89 45 e8          	mov    %rax,-0x18(%rbp)
+  40433d:	eb 18                	jmp    404357 <_ZNSt11_Deque_baseIiSaIiEE15_M_create_nodesEPPiS3_+0x51>
+  40433f:	48 8b 45 d8          	mov    -0x28(%rbp),%rax
+  404343:	48 89 c7             	mov    %rax,%rdi
+  404346:	e8 29 06 00 00       	call   404974 <_ZNSt11_Deque_baseIiSaIiEE16_M_allocate_nodeEv>
+  40434b:	48 8b 55 e8          	mov    -0x18(%rbp),%rdx
+  40434f:	48 89 02             	mov    %rax,(%rdx)
+  404352:	48 83 45 e8 08       	addq   $0x8,-0x18(%rbp)
+  404357:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  40435b:	48 3b 45 c8          	cmp    -0x38(%rbp),%rax
+  40435f:	72 de                	jb     40433f <_ZNSt11_Deque_baseIiSaIiEE15_M_create_nodesEPPiS3_+0x39>
+  404361:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  404365:	48 89 c6             	mov    %rax,%rsi
+  404368:	48 8d 05 97 ff ff ff 	lea    -0x69(%rip),%rax        # 404306 <_ZNSt11_Deque_baseIiSaIiEE15_M_create_nodesEPPiS3_>
+  40436f:	48 89 c7             	mov    %rax,%rdi
+  404372:	e8 b9 ed ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  404377:	eb 55                	jmp    4043ce <_ZNSt11_Deque_baseIiSaIiEE15_M_create_nodesEPPiS3_+0xc8>
+  404379:	f3 0f 1e fa          	endbr64 
+  40437d:	48 89 c7             	mov    %rax,%rdi
+  404380:	e8 8b ed ff ff       	call   403110 <__cxa_begin_catch@plt>
+  404385:	48 8b 55 e8          	mov    -0x18(%rbp),%rdx
+  404389:	48 8b 4d d0          	mov    -0x30(%rbp),%rcx
+  40438d:	48 8b 45 d8          	mov    -0x28(%rbp),%rax
+  404391:	48 89 ce             	mov    %rcx,%rsi
+  404394:	48 89 c7             	mov    %rax,%rdi
+  404397:	e8 98 fa ff ff       	call   403e34 <_ZNSt11_Deque_baseIiSaIiEE16_M_destroy_nodesEPPiS3_>
+  40439c:	e8 df ed ff ff       	call   403180 <__cxa_rethrow@plt>
+  4043a1:	f3 0f 1e fa          	endbr64 
+  4043a5:	48 89 c3             	mov    %rax,%rbx
+  4043a8:	e8 f3 ed ff ff       	call   4031a0 <__cxa_end_catch@plt>
+  4043ad:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  4043b1:	48 89 c6             	mov    %rax,%rsi
+  4043b4:	48 8d 05 4b ff ff ff 	lea    -0xb5(%rip),%rax        # 404306 <_ZNSt11_Deque_baseIiSaIiEE15_M_create_nodesEPPiS3_>
+  4043bb:	48 89 c7             	mov    %rax,%rdi
+  4043be:	e8 6d ed ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  4043c3:	48 89 d8             	mov    %rbx,%rax
+  4043c6:	48 89 c7             	mov    %rax,%rdi
+  4043c9:	e8 e2 ed ff ff       	call   4031b0 <_Unwind_Resume@plt>
+  4043ce:	48 8b 5d f8          	mov    -0x8(%rbp),%rbx
+  4043d2:	c9                   	leave  
+  4043d3:	c3                   	ret    
+
+00000000004043d4 <_ZNSt15_Deque_iteratorIiRiPiE11_M_set_nodeEPS1_>:
+  4043d4:	f3 0f 1e fa          	endbr64 
+  4043d8:	55                   	push   %rbp
+  4043d9:	48 89 e5             	mov    %rsp,%rbp
+  4043dc:	53                   	push   %rbx
+  4043dd:	48 83 ec 18          	sub    $0x18,%rsp
+  4043e1:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+  4043e5:	48 89 75 e0          	mov    %rsi,-0x20(%rbp)
+  4043e9:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  4043ed:	48 89 c6             	mov    %rax,%rsi
+  4043f0:	48 8d 05 dd ff ff ff 	lea    -0x23(%rip),%rax        # 4043d4 <_ZNSt15_Deque_iteratorIiRiPiE11_M_set_nodeEPS1_>
+  4043f7:	48 89 c7             	mov    %rax,%rdi
+  4043fa:	e8 c1 ed ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  4043ff:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  404403:	48 8b 55 e0          	mov    -0x20(%rbp),%rdx
+  404407:	48 89 50 18          	mov    %rdx,0x18(%rax)
+  40440b:	48 8b 45 e0          	mov    -0x20(%rbp),%rax
+  40440f:	48 8b 10             	mov    (%rax),%rdx
+  404412:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  404416:	48 89 50 08          	mov    %rdx,0x8(%rax)
+  40441a:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  40441e:	48 8b 58 08          	mov    0x8(%rax),%rbx
+  404422:	e8 dd 05 00 00       	call   404a04 <_ZNSt15_Deque_iteratorIiRiPiE14_S_buffer_sizeEv>
+  404427:	48 c1 e0 02          	shl    $0x2,%rax
+  40442b:	48 8d 14 03          	lea    (%rbx,%rax,1),%rdx
+  40442f:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  404433:	48 89 50 10          	mov    %rdx,0x10(%rax)
+  404437:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  40443b:	48 89 c6             	mov    %rax,%rsi
+  40443e:	48 8d 05 8f ff ff ff 	lea    -0x71(%rip),%rax        # 4043d4 <_ZNSt15_Deque_iteratorIiRiPiE11_M_set_nodeEPS1_>
+  404445:	48 89 c7             	mov    %rax,%rdi
+  404448:	e8 e3 ec ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  40444d:	90                   	nop
+  40444e:	48 8b 5d f8          	mov    -0x8(%rbp),%rbx
+  404452:	c9                   	leave  
+  404453:	c3                   	ret    
+
+0000000000404454 <_ZNSt11_Deque_baseIiSaIiEE18_M_deallocate_nodeEPi>:
+  404454:	f3 0f 1e fa          	endbr64 
+  404458:	55                   	push   %rbp
+  404459:	48 89 e5             	mov    %rsp,%rbp
+  40445c:	48 83 ec 10          	sub    $0x10,%rsp
+  404460:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+  404464:	48 89 75 f0          	mov    %rsi,-0x10(%rbp)
+  404468:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  40446c:	48 89 c6             	mov    %rax,%rsi
+  40446f:	48 8d 05 de ff ff ff 	lea    -0x22(%rip),%rax        # 404454 <_ZNSt11_Deque_baseIiSaIiEE18_M_deallocate_nodeEPi>
+  404476:	48 89 c7             	mov    %rax,%rdi
+  404479:	e8 42 ed ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  40447e:	bf 04 00 00 00       	mov    $0x4,%edi
+  404483:	e8 d3 ef ff ff       	call   40345b <_ZSt16__deque_buf_sizem>
+  404488:	48 89 c2             	mov    %rax,%rdx
+  40448b:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+  40448f:	48 8b 4d f0          	mov    -0x10(%rbp),%rcx
+  404493:	48 89 ce             	mov    %rcx,%rsi
+  404496:	48 89 c7             	mov    %rax,%rdi
+  404499:	e8 b6 05 00 00       	call   404a54 <_ZNSt16allocator_traitsISaIiEE10deallocateERS0_Pim>
+  40449e:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  4044a2:	48 89 c6             	mov    %rax,%rsi
+  4044a5:	48 8d 05 a8 ff ff ff 	lea    -0x58(%rip),%rax        # 404454 <_ZNSt11_Deque_baseIiSaIiEE18_M_deallocate_nodeEPi>
+  4044ac:	48 89 c7             	mov    %rax,%rdi
+  4044af:	e8 7c ec ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  4044b4:	90                   	nop
+  4044b5:	c9                   	leave  
+  4044b6:	c3                   	ret    
+  4044b7:	90                   	nop
+
+00000000004044b8 <_ZNKSt11_Deque_baseIiSaIiEE20_M_get_map_allocatorEv>:
+  4044b8:	f3 0f 1e fa          	endbr64 
+  4044bc:	55                   	push   %rbp
+  4044bd:	48 89 e5             	mov    %rsp,%rbp
+  4044c0:	48 83 ec 10          	sub    $0x10,%rsp
+  4044c4:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+  4044c8:	48 89 75 f0          	mov    %rsi,-0x10(%rbp)
+  4044cc:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  4044d0:	48 89 c6             	mov    %rax,%rsi
+  4044d3:	48 8d 05 de ff ff ff 	lea    -0x22(%rip),%rax        # 4044b8 <_ZNKSt11_Deque_baseIiSaIiEE20_M_get_map_allocatorEv>
+  4044da:	48 89 c7             	mov    %rax,%rdi
+  4044dd:	e8 de ec ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  4044e2:	48 8b 45 f0          	mov    -0x10(%rbp),%rax
+  4044e6:	48 89 c7             	mov    %rax,%rdi
+  4044e9:	e8 c4 05 00 00       	call   404ab2 <_ZNKSt11_Deque_baseIiSaIiEE19_M_get_Tp_allocatorEv>
+  4044ee:	48 89 c2             	mov    %rax,%rdx
+  4044f1:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+  4044f5:	48 89 d6             	mov    %rdx,%rsi
+  4044f8:	48 89 c7             	mov    %rax,%rdi
+  4044fb:	e8 fc 05 00 00       	call   404afc <_ZNSaIPiEC1IiEERKSaIT_E>
+  404500:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  404504:	48 89 c6             	mov    %rax,%rsi
+  404507:	48 8d 05 aa ff ff ff 	lea    -0x56(%rip),%rax        # 4044b8 <_ZNKSt11_Deque_baseIiSaIiEE20_M_get_map_allocatorEv>
+  40450e:	48 89 c7             	mov    %rax,%rdi
+  404511:	e8 1a ec ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  404516:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+  40451a:	c9                   	leave  
+  40451b:	c3                   	ret    
+
+000000000040451c <_ZNSaIPiED1Ev>:
+  40451c:	f3 0f 1e fa          	endbr64 
+  404520:	55                   	push   %rbp
+  404521:	48 89 e5             	mov    %rsp,%rbp
+  404524:	48 83 ec 10          	sub    $0x10,%rsp
+  404528:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+  40452c:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  404530:	48 89 c6             	mov    %rax,%rsi
+  404533:	48 8d 05 e2 ff ff ff 	lea    -0x1e(%rip),%rax        # 40451c <_ZNSaIPiED1Ev>
+  40453a:	48 89 c7             	mov    %rax,%rdi
+  40453d:	e8 7e ec ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  404542:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+  404546:	48 89 c7             	mov    %rax,%rdi
+  404549:	e8 fe 05 00 00       	call   404b4c <_ZN9__gnu_cxx13new_allocatorIPiED1Ev>
+  40454e:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  404552:	48 89 c6             	mov    %rax,%rsi
+  404555:	48 8d 05 c0 ff ff ff 	lea    -0x40(%rip),%rax        # 40451c <_ZNSaIPiED1Ev>
+  40455c:	48 89 c7             	mov    %rax,%rdi
+  40455f:	e8 cc eb ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  404564:	90                   	nop
+  404565:	c9                   	leave  
+  404566:	c3                   	ret    
+
+0000000000404567 <_ZNSt16allocator_traitsISaIPiEE10deallocateERS1_PS0_m>:
+  404567:	f3 0f 1e fa          	endbr64 
+  40456b:	55                   	push   %rbp
+  40456c:	48 89 e5             	mov    %rsp,%rbp
+  40456f:	48 83 ec 20          	sub    $0x20,%rsp
+  404573:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+  404577:	48 89 75 f0          	mov    %rsi,-0x10(%rbp)
+  40457b:	48 89 55 e8          	mov    %rdx,-0x18(%rbp)
+  40457f:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  404583:	48 89 c6             	mov    %rax,%rsi
+  404586:	48 8d 05 da ff ff ff 	lea    -0x26(%rip),%rax        # 404567 <_ZNSt16allocator_traitsISaIPiEE10deallocateERS1_PS0_m>
+  40458d:	48 89 c7             	mov    %rax,%rdi
+  404590:	e8 2b ec ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  404595:	48 8b 55 e8          	mov    -0x18(%rbp),%rdx
+  404599:	48 8b 4d f0          	mov    -0x10(%rbp),%rcx
+  40459d:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+  4045a1:	48 89 ce             	mov    %rcx,%rsi
+  4045a4:	48 89 c7             	mov    %rax,%rdi
+  4045a7:	e8 e0 05 00 00       	call   404b8c <_ZN9__gnu_cxx13new_allocatorIPiE10deallocateEPS1_m>
+  4045ac:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  4045b0:	48 89 c6             	mov    %rax,%rsi
+  4045b3:	48 8d 05 ad ff ff ff 	lea    -0x53(%rip),%rax        # 404567 <_ZNSt16allocator_traitsISaIPiEE10deallocateERS1_PS0_m>
+  4045ba:	48 89 c7             	mov    %rax,%rdi
+  4045bd:	e8 6e eb ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  4045c2:	90                   	nop
+  4045c3:	c9                   	leave  
+  4045c4:	c3                   	ret    
+
+00000000004045c5 <_ZSt7forwardIiEOT_RNSt16remove_referenceIS0_E4typeE>:
+  4045c5:	f3 0f 1e fa          	endbr64 
+  4045c9:	55                   	push   %rbp
+  4045ca:	48 89 e5             	mov    %rsp,%rbp
+  4045cd:	53                   	push   %rbx
+  4045ce:	48 83 ec 18          	sub    $0x18,%rsp
+  4045d2:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+  4045d6:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  4045da:	48 89 c6             	mov    %rax,%rsi
+  4045dd:	48 8d 05 e1 ff ff ff 	lea    -0x1f(%rip),%rax        # 4045c5 <_ZSt7forwardIiEOT_RNSt16remove_referenceIS0_E4typeE>
+  4045e4:	48 89 c7             	mov    %rax,%rdi
+  4045e7:	e8 d4 eb ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  4045ec:	48 8b 5d e8          	mov    -0x18(%rbp),%rbx
+  4045f0:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  4045f4:	48 89 c6             	mov    %rax,%rsi
+  4045f7:	48 8d 05 c7 ff ff ff 	lea    -0x39(%rip),%rax        # 4045c5 <_ZSt7forwardIiEOT_RNSt16remove_referenceIS0_E4typeE>
+  4045fe:	48 89 c7             	mov    %rax,%rdi
+  404601:	e8 2a eb ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  404606:	48 89 d8             	mov    %rbx,%rax
+  404609:	48 8b 5d f8          	mov    -0x8(%rbp),%rbx
+  40460d:	c9                   	leave  
+  40460e:	c3                   	ret    
+
+000000000040460f <_ZNSt16allocator_traitsISaIiEE9constructIiJiEEEvRS0_PT_DpOT0_>:
+  40460f:	f3 0f 1e fa          	endbr64 
+  404613:	55                   	push   %rbp
+  404614:	48 89 e5             	mov    %rsp,%rbp
+  404617:	48 83 ec 20          	sub    $0x20,%rsp
+  40461b:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+  40461f:	48 89 75 f0          	mov    %rsi,-0x10(%rbp)
+  404623:	48 89 55 e8          	mov    %rdx,-0x18(%rbp)
+  404627:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  40462b:	48 89 c6             	mov    %rax,%rsi
+  40462e:	48 8d 05 da ff ff ff 	lea    -0x26(%rip),%rax        # 40460f <_ZNSt16allocator_traitsISaIiEE9constructIiJiEEEvRS0_PT_DpOT0_>
+  404635:	48 89 c7             	mov    %rax,%rdi
+  404638:	e8 83 eb ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  40463d:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  404641:	48 89 c7             	mov    %rax,%rdi
+  404644:	e8 7c ff ff ff       	call   4045c5 <_ZSt7forwardIiEOT_RNSt16remove_referenceIS0_E4typeE>
+  404649:	48 89 c2             	mov    %rax,%rdx
+  40464c:	48 8b 4d f0          	mov    -0x10(%rbp),%rcx
+  404650:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+  404654:	48 89 ce             	mov    %rcx,%rsi
+  404657:	48 89 c7             	mov    %rax,%rdi
+  40465a:	e8 8f 05 00 00       	call   404bee <_ZN9__gnu_cxx13new_allocatorIiE9constructIiJiEEEvPT_DpOT0_>
+  40465f:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  404663:	48 89 c6             	mov    %rax,%rsi
+  404666:	48 8d 05 a2 ff ff ff 	lea    -0x5e(%rip),%rax        # 40460f <_ZNSt16allocator_traitsISaIiEE9constructIiJiEEEvRS0_PT_DpOT0_>
+  40466d:	48 89 c7             	mov    %rax,%rdi
+  404670:	e8 bb ea ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  404675:	90                   	nop
+  404676:	c9                   	leave  
+  404677:	c3                   	ret    
+
+0000000000404678 <_ZNSt5dequeIiSaIiEE16_M_push_back_auxIJiEEEvDpOT_>:
+  404678:	f3 0f 1e fa          	endbr64 
+  40467c:	55                   	push   %rbp
+  40467d:	48 89 e5             	mov    %rsp,%rbp
+  404680:	53                   	push   %rbx
+  404681:	48 83 ec 18          	sub    $0x18,%rsp
+  404685:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+  404689:	48 89 75 e0          	mov    %rsi,-0x20(%rbp)
+  40468d:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  404691:	48 89 c6             	mov    %rax,%rsi
+  404694:	48 8d 05 dd ff ff ff 	lea    -0x23(%rip),%rax        # 404678 <_ZNSt5dequeIiSaIiEE16_M_push_back_auxIJiEEEvDpOT_>
+  40469b:	48 89 c7             	mov    %rax,%rdi
+  40469e:	e8 1d eb ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  4046a3:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  4046a7:	48 89 c7             	mov    %rax,%rdi
+  4046aa:	e8 ad 05 00 00       	call   404c5c <_ZNKSt5dequeIiSaIiEE4sizeEv>
+  4046af:	48 89 c3             	mov    %rax,%rbx
+  4046b2:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  4046b6:	48 89 c7             	mov    %rax,%rdi
+  4046b9:	e8 02 06 00 00       	call   404cc0 <_ZNKSt5dequeIiSaIiEE8max_sizeEv>
+  4046be:	48 39 c3             	cmp    %rax,%rbx
+  4046c1:	0f 94 c0             	sete   %al
+  4046c4:	84 c0                	test   %al,%al
+  4046c6:	74 0f                	je     4046d7 <_ZNSt5dequeIiSaIiEE16_M_push_back_auxIJiEEEvDpOT_+0x5f>
+  4046c8:	48 8d 05 39 19 00 00 	lea    0x1939(%rip),%rax        # 406008 <_IO_stdin_used+0x8>
+  4046cf:	48 89 c7             	mov    %rax,%rdi
+  4046d2:	e8 49 ea ff ff       	call   403120 <_ZSt20__throw_length_errorPKc@plt>
+  4046d7:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  4046db:	be 01 00 00 00       	mov    $0x1,%esi
+  4046e0:	48 89 c7             	mov    %rax,%rdi
+  4046e3:	e8 36 06 00 00       	call   404d1e <_ZNSt5dequeIiSaIiEE22_M_reserve_map_at_backEm>
+  4046e8:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  4046ec:	48 8b 55 e8          	mov    -0x18(%rbp),%rdx
+  4046f0:	48 8b 52 48          	mov    0x48(%rdx),%rdx
+  4046f4:	48 8d 5a 08          	lea    0x8(%rdx),%rbx
+  4046f8:	48 89 c7             	mov    %rax,%rdi
+  4046fb:	e8 74 02 00 00       	call   404974 <_ZNSt11_Deque_baseIiSaIiEE16_M_allocate_nodeEv>
+  404700:	48 89 03             	mov    %rax,(%rbx)
+  404703:	48 8b 45 e0          	mov    -0x20(%rbp),%rax
+  404707:	48 89 c7             	mov    %rax,%rdi
+  40470a:	e8 b6 fe ff ff       	call   4045c5 <_ZSt7forwardIiEOT_RNSt16remove_referenceIS0_E4typeE>
+  40470f:	48 89 c2             	mov    %rax,%rdx
+  404712:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  404716:	48 8b 48 30          	mov    0x30(%rax),%rcx
+  40471a:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  40471e:	48 89 ce             	mov    %rcx,%rsi
+  404721:	48 89 c7             	mov    %rax,%rdi
+  404724:	e8 e6 fe ff ff       	call   40460f <_ZNSt16allocator_traitsISaIiEE9constructIiJiEEEvRS0_PT_DpOT0_>
+  404729:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  40472d:	48 83 c0 30          	add    $0x30,%rax
+  404731:	48 8b 55 e8          	mov    -0x18(%rbp),%rdx
+  404735:	48 8b 52 48          	mov    0x48(%rdx),%rdx
+  404739:	48 83 c2 08          	add    $0x8,%rdx
+  40473d:	48 89 d6             	mov    %rdx,%rsi
+  404740:	48 89 c7             	mov    %rax,%rdi
+  404743:	e8 8c fc ff ff       	call   4043d4 <_ZNSt15_Deque_iteratorIiRiPiE11_M_set_nodeEPS1_>
+  404748:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  40474c:	48 8b 50 38          	mov    0x38(%rax),%rdx
+  404750:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  404754:	48 89 50 30          	mov    %rdx,0x30(%rax)
+  404758:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  40475c:	48 89 c6             	mov    %rax,%rsi
+  40475f:	48 8d 05 12 ff ff ff 	lea    -0xee(%rip),%rax        # 404678 <_ZNSt5dequeIiSaIiEE16_M_push_back_auxIJiEEEvDpOT_>
+  404766:	48 89 c7             	mov    %rax,%rdi
+  404769:	e8 c2 e9 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  40476e:	eb 28                	jmp    404798 <_ZNSt5dequeIiSaIiEE16_M_push_back_auxIJiEEEvDpOT_+0x120>
+  404770:	f3 0f 1e fa          	endbr64 
+  404774:	48 89 c3             	mov    %rax,%rbx
+  404777:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  40477b:	48 89 c6             	mov    %rax,%rsi
+  40477e:	48 8d 05 f3 fe ff ff 	lea    -0x10d(%rip),%rax        # 404678 <_ZNSt5dequeIiSaIiEE16_M_push_back_auxIJiEEEvDpOT_>
+  404785:	48 89 c7             	mov    %rax,%rdi
+  404788:	e8 a3 e9 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  40478d:	48 89 d8             	mov    %rbx,%rax
+  404790:	48 89 c7             	mov    %rax,%rdi
+  404793:	e8 18 ea ff ff       	call   4031b0 <_Unwind_Resume@plt>
+  404798:	48 8b 5d f8          	mov    -0x8(%rbp),%rbx
+  40479c:	c9                   	leave  
+  40479d:	c3                   	ret    
+
+000000000040479e <_ZNSt5dequeIiSaIiEE4backEv>:
+  40479e:	f3 0f 1e fa          	endbr64 
+  4047a2:	55                   	push   %rbp
+  4047a3:	48 89 e5             	mov    %rsp,%rbp
+  4047a6:	53                   	push   %rbx
+  4047a7:	48 83 ec 48          	sub    $0x48,%rsp
+  4047ab:	48 89 7d b8          	mov    %rdi,-0x48(%rbp)
+  4047af:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax
+  4047b6:	00 00 
+  4047b8:	48 89 45 e8          	mov    %rax,-0x18(%rbp)
+  4047bc:	31 c0                	xor    %eax,%eax
+  4047be:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  4047c2:	48 89 c6             	mov    %rax,%rsi
+  4047c5:	48 8d 05 d2 ff ff ff 	lea    -0x2e(%rip),%rax        # 40479e <_ZNSt5dequeIiSaIiEE4backEv>
+  4047cc:	48 89 c7             	mov    %rax,%rdi
+  4047cf:	e8 ec e9 ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  4047d4:	48 8d 45 c0          	lea    -0x40(%rbp),%rax
+  4047d8:	48 8b 55 b8          	mov    -0x48(%rbp),%rdx
+  4047dc:	48 89 d6             	mov    %rdx,%rsi
+  4047df:	48 89 c7             	mov    %rax,%rdi
+  4047e2:	e8 93 f1 ff ff       	call   40397a <_ZNSt5dequeIiSaIiEE3endEv>
+  4047e7:	48 8d 45 c0          	lea    -0x40(%rbp),%rax
+  4047eb:	48 89 c7             	mov    %rax,%rdi
+  4047ee:	e8 eb 05 00 00       	call   404dde <_ZNSt15_Deque_iteratorIiRiPiEmmEv>
+  4047f3:	48 8d 45 c0          	lea    -0x40(%rbp),%rax
+  4047f7:	48 89 c7             	mov    %rax,%rdi
+  4047fa:	e8 79 06 00 00       	call   404e78 <_ZNKSt15_Deque_iteratorIiRiPiEdeEv>
+  4047ff:	48 89 c3             	mov    %rax,%rbx
+  404802:	90                   	nop
+  404803:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  404807:	48 89 c6             	mov    %rax,%rsi
+  40480a:	48 8d 05 8d ff ff ff 	lea    -0x73(%rip),%rax        # 40479e <_ZNSt5dequeIiSaIiEE4backEv>
+  404811:	48 89 c7             	mov    %rax,%rdi
+  404814:	e8 17 e9 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  404819:	48 89 d8             	mov    %rbx,%rax
+  40481c:	48 8b 55 e8          	mov    -0x18(%rbp),%rdx
+  404820:	64 48 2b 14 25 28 00 	sub    %fs:0x28,%rdx
+  404827:	00 00 
+  404829:	74 05                	je     404830 <_ZNSt5dequeIiSaIiEE4backEv+0x92>
+  40482b:	e8 40 e9 ff ff       	call   403170 <__stack_chk_fail@plt>
+  404830:	48 8b 5d f8          	mov    -0x8(%rbp),%rbx
+  404834:	c9                   	leave  
+  404835:	c3                   	ret    
+
+0000000000404836 <_ZN9__gnu_cxx13new_allocatorIiEC1Ev>:
+  404836:	f3 0f 1e fa          	endbr64 
+  40483a:	55                   	push   %rbp
+  40483b:	48 89 e5             	mov    %rsp,%rbp
+  40483e:	48 83 ec 10          	sub    $0x10,%rsp
+  404842:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+  404846:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  40484a:	48 89 c6             	mov    %rax,%rsi
+  40484d:	48 8d 05 e2 ff ff ff 	lea    -0x1e(%rip),%rax        # 404836 <_ZN9__gnu_cxx13new_allocatorIiEC1Ev>
+  404854:	48 89 c7             	mov    %rax,%rdi
+  404857:	e8 64 e9 ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  40485c:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  404860:	48 89 c6             	mov    %rax,%rsi
+  404863:	48 8d 05 cc ff ff ff 	lea    -0x34(%rip),%rax        # 404836 <_ZN9__gnu_cxx13new_allocatorIiEC1Ev>
+  40486a:	48 89 c7             	mov    %rax,%rdi
+  40486d:	e8 be e8 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  404872:	90                   	nop
+  404873:	c9                   	leave  
+  404874:	c3                   	ret    
+  404875:	90                   	nop
+
+0000000000404876 <_ZNSt15_Deque_iteratorIiRiPiEC1Ev>:
+  404876:	f3 0f 1e fa          	endbr64 
+  40487a:	55                   	push   %rbp
+  40487b:	48 89 e5             	mov    %rsp,%rbp
+  40487e:	48 83 ec 10          	sub    $0x10,%rsp
+  404882:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+  404886:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  40488a:	48 89 c6             	mov    %rax,%rsi
+  40488d:	48 8d 05 e2 ff ff ff 	lea    -0x1e(%rip),%rax        # 404876 <_ZNSt15_Deque_iteratorIiRiPiEC1Ev>
+  404894:	48 89 c7             	mov    %rax,%rdi
+  404897:	e8 24 e9 ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  40489c:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+  4048a0:	48 c7 00 00 00 00 00 	movq   $0x0,(%rax)
+  4048a7:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+  4048ab:	48 c7 40 08 00 00 00 	movq   $0x0,0x8(%rax)
+  4048b2:	00 
+  4048b3:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+  4048b7:	48 c7 40 10 00 00 00 	movq   $0x0,0x10(%rax)
+  4048be:	00 
+  4048bf:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+  4048c3:	48 c7 40 18 00 00 00 	movq   $0x0,0x18(%rax)
+  4048ca:	00 
+  4048cb:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  4048cf:	48 89 c6             	mov    %rax,%rsi
+  4048d2:	48 8d 05 9d ff ff ff 	lea    -0x63(%rip),%rax        # 404876 <_ZNSt15_Deque_iteratorIiRiPiEC1Ev>
+  4048d9:	48 89 c7             	mov    %rax,%rdi
+  4048dc:	e8 4f e8 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  4048e1:	90                   	nop
+  4048e2:	c9                   	leave  
+  4048e3:	c3                   	ret    
+
+00000000004048e4 <_ZNSt16allocator_traitsISaIPiEE8allocateERS1_m>:
+  4048e4:	f3 0f 1e fa          	endbr64 
+  4048e8:	55                   	push   %rbp
+  4048e9:	48 89 e5             	mov    %rsp,%rbp
+  4048ec:	53                   	push   %rbx
+  4048ed:	48 83 ec 18          	sub    $0x18,%rsp
+  4048f1:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+  4048f5:	48 89 75 e0          	mov    %rsi,-0x20(%rbp)
+  4048f9:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  4048fd:	48 89 c6             	mov    %rax,%rsi
+  404900:	48 8d 05 dd ff ff ff 	lea    -0x23(%rip),%rax        # 4048e4 <_ZNSt16allocator_traitsISaIPiEE8allocateERS1_m>
+  404907:	48 89 c7             	mov    %rax,%rdi
+  40490a:	e8 b1 e8 ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  40490f:	48 8b 4d e0          	mov    -0x20(%rbp),%rcx
+  404913:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  404917:	ba 00 00 00 00       	mov    $0x0,%edx
+  40491c:	48 89 ce             	mov    %rcx,%rsi
+  40491f:	48 89 c7             	mov    %rax,%rdi
+  404922:	e8 ef 05 00 00       	call   404f16 <_ZN9__gnu_cxx13new_allocatorIPiE8allocateEmPKv>
+  404927:	48 89 c3             	mov    %rax,%rbx
+  40492a:	90                   	nop
+  40492b:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  40492f:	48 89 c6             	mov    %rax,%rsi
+  404932:	48 8d 05 ab ff ff ff 	lea    -0x55(%rip),%rax        # 4048e4 <_ZNSt16allocator_traitsISaIPiEE8allocateERS1_m>
+  404939:	48 89 c7             	mov    %rax,%rdi
+  40493c:	e8 ef e7 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  404941:	48 89 d8             	mov    %rbx,%rax
+  404944:	eb 28                	jmp    40496e <_ZNSt16allocator_traitsISaIPiEE8allocateERS1_m+0x8a>
+  404946:	f3 0f 1e fa          	endbr64 
+  40494a:	48 89 c3             	mov    %rax,%rbx
+  40494d:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  404951:	48 89 c6             	mov    %rax,%rsi
+  404954:	48 8d 05 89 ff ff ff 	lea    -0x77(%rip),%rax        # 4048e4 <_ZNSt16allocator_traitsISaIPiEE8allocateERS1_m>
+  40495b:	48 89 c7             	mov    %rax,%rdi
+  40495e:	e8 cd e7 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  404963:	48 89 d8             	mov    %rbx,%rax
+  404966:	48 89 c7             	mov    %rax,%rdi
+  404969:	e8 42 e8 ff ff       	call   4031b0 <_Unwind_Resume@plt>
+  40496e:	48 8b 5d f8          	mov    -0x8(%rbp),%rbx
+  404972:	c9                   	leave  
+  404973:	c3                   	ret    
+
+0000000000404974 <_ZNSt11_Deque_baseIiSaIiEE16_M_allocate_nodeEv>:
+  404974:	f3 0f 1e fa          	endbr64 
+  404978:	55                   	push   %rbp
+  404979:	48 89 e5             	mov    %rsp,%rbp
+  40497c:	53                   	push   %rbx
+  40497d:	48 83 ec 18          	sub    $0x18,%rsp
+  404981:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+  404985:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  404989:	48 89 c6             	mov    %rax,%rsi
+  40498c:	48 8d 05 e1 ff ff ff 	lea    -0x1f(%rip),%rax        # 404974 <_ZNSt11_Deque_baseIiSaIiEE16_M_allocate_nodeEv>
+  404993:	48 89 c7             	mov    %rax,%rdi
+  404996:	e8 25 e8 ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  40499b:	bf 04 00 00 00       	mov    $0x4,%edi
+  4049a0:	e8 b6 ea ff ff       	call   40345b <_ZSt16__deque_buf_sizem>
+  4049a5:	48 89 c2             	mov    %rax,%rdx
+  4049a8:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  4049ac:	48 89 d6             	mov    %rdx,%rsi
+  4049af:	48 89 c7             	mov    %rax,%rdi
+  4049b2:	e8 25 06 00 00       	call   404fdc <_ZNSt16allocator_traitsISaIiEE8allocateERS0_m>
+  4049b7:	48 89 c3             	mov    %rax,%rbx
+  4049ba:	90                   	nop
+  4049bb:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  4049bf:	48 89 c6             	mov    %rax,%rsi
+  4049c2:	48 8d 05 ab ff ff ff 	lea    -0x55(%rip),%rax        # 404974 <_ZNSt11_Deque_baseIiSaIiEE16_M_allocate_nodeEv>
+  4049c9:	48 89 c7             	mov    %rax,%rdi
+  4049cc:	e8 5f e7 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  4049d1:	48 89 d8             	mov    %rbx,%rax
+  4049d4:	eb 28                	jmp    4049fe <_ZNSt11_Deque_baseIiSaIiEE16_M_allocate_nodeEv+0x8a>
+  4049d6:	f3 0f 1e fa          	endbr64 
+  4049da:	48 89 c3             	mov    %rax,%rbx
+  4049dd:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  4049e1:	48 89 c6             	mov    %rax,%rsi
+  4049e4:	48 8d 05 89 ff ff ff 	lea    -0x77(%rip),%rax        # 404974 <_ZNSt11_Deque_baseIiSaIiEE16_M_allocate_nodeEv>
+  4049eb:	48 89 c7             	mov    %rax,%rdi
+  4049ee:	e8 3d e7 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  4049f3:	48 89 d8             	mov    %rbx,%rax
+  4049f6:	48 89 c7             	mov    %rax,%rdi
+  4049f9:	e8 b2 e7 ff ff       	call   4031b0 <_Unwind_Resume@plt>
+  4049fe:	48 8b 5d f8          	mov    -0x8(%rbp),%rbx
+  404a02:	c9                   	leave  
+  404a03:	c3                   	ret    
+
+0000000000404a04 <_ZNSt15_Deque_iteratorIiRiPiE14_S_buffer_sizeEv>:
+  404a04:	f3 0f 1e fa          	endbr64 
+  404a08:	55                   	push   %rbp
+  404a09:	48 89 e5             	mov    %rsp,%rbp
+  404a0c:	53                   	push   %rbx
+  404a0d:	48 83 ec 08          	sub    $0x8,%rsp
+  404a11:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  404a15:	48 89 c6             	mov    %rax,%rsi
+  404a18:	48 8d 05 e5 ff ff ff 	lea    -0x1b(%rip),%rax        # 404a04 <_ZNSt15_Deque_iteratorIiRiPiE14_S_buffer_sizeEv>
+  404a1f:	48 89 c7             	mov    %rax,%rdi
+  404a22:	e8 99 e7 ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  404a27:	bf 04 00 00 00       	mov    $0x4,%edi
+  404a2c:	e8 2a ea ff ff       	call   40345b <_ZSt16__deque_buf_sizem>
+  404a31:	48 89 c3             	mov    %rax,%rbx
+  404a34:	90                   	nop
+  404a35:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  404a39:	48 89 c6             	mov    %rax,%rsi
+  404a3c:	48 8d 05 c1 ff ff ff 	lea    -0x3f(%rip),%rax        # 404a04 <_ZNSt15_Deque_iteratorIiRiPiE14_S_buffer_sizeEv>
+  404a43:	48 89 c7             	mov    %rax,%rdi
+  404a46:	e8 e5 e6 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  404a4b:	48 89 d8             	mov    %rbx,%rax
+  404a4e:	48 8b 5d f8          	mov    -0x8(%rbp),%rbx
+  404a52:	c9                   	leave  
+  404a53:	c3                   	ret    
+
+0000000000404a54 <_ZNSt16allocator_traitsISaIiEE10deallocateERS0_Pim>:
+  404a54:	f3 0f 1e fa          	endbr64 
+  404a58:	55                   	push   %rbp
+  404a59:	48 89 e5             	mov    %rsp,%rbp
+  404a5c:	48 83 ec 20          	sub    $0x20,%rsp
+  404a60:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+  404a64:	48 89 75 f0          	mov    %rsi,-0x10(%rbp)
+  404a68:	48 89 55 e8          	mov    %rdx,-0x18(%rbp)
+  404a6c:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  404a70:	48 89 c6             	mov    %rax,%rsi
+  404a73:	48 8d 05 da ff ff ff 	lea    -0x26(%rip),%rax        # 404a54 <_ZNSt16allocator_traitsISaIiEE10deallocateERS0_Pim>
+  404a7a:	48 89 c7             	mov    %rax,%rdi
+  404a7d:	e8 3e e7 ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  404a82:	48 8b 55 e8          	mov    -0x18(%rbp),%rdx
+  404a86:	48 8b 4d f0          	mov    -0x10(%rbp),%rcx
+  404a8a:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+  404a8e:	48 89 ce             	mov    %rcx,%rsi
+  404a91:	48 89 c7             	mov    %rax,%rdi
+  404a94:	e8 d3 05 00 00       	call   40506c <_ZN9__gnu_cxx13new_allocatorIiE10deallocateEPim>
+  404a99:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  404a9d:	48 89 c6             	mov    %rax,%rsi
+  404aa0:	48 8d 05 ad ff ff ff 	lea    -0x53(%rip),%rax        # 404a54 <_ZNSt16allocator_traitsISaIiEE10deallocateERS0_Pim>
+  404aa7:	48 89 c7             	mov    %rax,%rdi
+  404aaa:	e8 81 e6 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  404aaf:	90                   	nop
+  404ab0:	c9                   	leave  
+  404ab1:	c3                   	ret    
+
+0000000000404ab2 <_ZNKSt11_Deque_baseIiSaIiEE19_M_get_Tp_allocatorEv>:
+  404ab2:	f3 0f 1e fa          	endbr64 
+  404ab6:	55                   	push   %rbp
+  404ab7:	48 89 e5             	mov    %rsp,%rbp
+  404aba:	53                   	push   %rbx
+  404abb:	48 83 ec 18          	sub    $0x18,%rsp
+  404abf:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+  404ac3:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  404ac7:	48 89 c6             	mov    %rax,%rsi
+  404aca:	48 8d 05 e1 ff ff ff 	lea    -0x1f(%rip),%rax        # 404ab2 <_ZNKSt11_Deque_baseIiSaIiEE19_M_get_Tp_allocatorEv>
+  404ad1:	48 89 c7             	mov    %rax,%rdi
+  404ad4:	e8 e7 e6 ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  404ad9:	48 8b 5d e8          	mov    -0x18(%rbp),%rbx
+  404add:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  404ae1:	48 89 c6             	mov    %rax,%rsi
+  404ae4:	48 8d 05 c7 ff ff ff 	lea    -0x39(%rip),%rax        # 404ab2 <_ZNKSt11_Deque_baseIiSaIiEE19_M_get_Tp_allocatorEv>
+  404aeb:	48 89 c7             	mov    %rax,%rdi
+  404aee:	e8 3d e6 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  404af3:	48 89 d8             	mov    %rbx,%rax
+  404af6:	48 8b 5d f8          	mov    -0x8(%rbp),%rbx
+  404afa:	c9                   	leave  
+  404afb:	c3                   	ret    
+
+0000000000404afc <_ZNSaIPiEC1IiEERKSaIT_E>:
+  404afc:	f3 0f 1e fa          	endbr64 
+  404b00:	55                   	push   %rbp
+  404b01:	48 89 e5             	mov    %rsp,%rbp
+  404b04:	48 83 ec 10          	sub    $0x10,%rsp
+  404b08:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+  404b0c:	48 89 75 f0          	mov    %rsi,-0x10(%rbp)
+  404b10:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  404b14:	48 89 c6             	mov    %rax,%rsi
+  404b17:	48 8d 05 de ff ff ff 	lea    -0x22(%rip),%rax        # 404afc <_ZNSaIPiEC1IiEERKSaIT_E>
+  404b1e:	48 89 c7             	mov    %rax,%rdi
+  404b21:	e8 9a e6 ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  404b26:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+  404b2a:	48 89 c7             	mov    %rax,%rdi
+  404b2d:	e8 9c 05 00 00       	call   4050ce <_ZN9__gnu_cxx13new_allocatorIPiEC1Ev>
+  404b32:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  404b36:	48 89 c6             	mov    %rax,%rsi
+  404b39:	48 8d 05 bc ff ff ff 	lea    -0x44(%rip),%rax        # 404afc <_ZNSaIPiEC1IiEERKSaIT_E>
+  404b40:	48 89 c7             	mov    %rax,%rdi
+  404b43:	e8 e8 e5 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  404b48:	90                   	nop
+  404b49:	c9                   	leave  
+  404b4a:	c3                   	ret    
+  404b4b:	90                   	nop
+
+0000000000404b4c <_ZN9__gnu_cxx13new_allocatorIPiED1Ev>:
+  404b4c:	f3 0f 1e fa          	endbr64 
+  404b50:	55                   	push   %rbp
+  404b51:	48 89 e5             	mov    %rsp,%rbp
+  404b54:	48 83 ec 10          	sub    $0x10,%rsp
+  404b58:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+  404b5c:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  404b60:	48 89 c6             	mov    %rax,%rsi
+  404b63:	48 8d 05 e2 ff ff ff 	lea    -0x1e(%rip),%rax        # 404b4c <_ZN9__gnu_cxx13new_allocatorIPiED1Ev>
+  404b6a:	48 89 c7             	mov    %rax,%rdi
+  404b6d:	e8 4e e6 ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  404b72:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  404b76:	48 89 c6             	mov    %rax,%rsi
+  404b79:	48 8d 05 cc ff ff ff 	lea    -0x34(%rip),%rax        # 404b4c <_ZN9__gnu_cxx13new_allocatorIPiED1Ev>
+  404b80:	48 89 c7             	mov    %rax,%rdi
+  404b83:	e8 a8 e5 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  404b88:	90                   	nop
+  404b89:	c9                   	leave  
+  404b8a:	c3                   	ret    
+  404b8b:	90                   	nop
+
+0000000000404b8c <_ZN9__gnu_cxx13new_allocatorIPiE10deallocateEPS1_m>:
+  404b8c:	f3 0f 1e fa          	endbr64 
+  404b90:	55                   	push   %rbp
+  404b91:	48 89 e5             	mov    %rsp,%rbp
+  404b94:	48 83 ec 20          	sub    $0x20,%rsp
+  404b98:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+  404b9c:	48 89 75 f0          	mov    %rsi,-0x10(%rbp)
+  404ba0:	48 89 55 e8          	mov    %rdx,-0x18(%rbp)
+  404ba4:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  404ba8:	48 89 c6             	mov    %rax,%rsi
+  404bab:	48 8d 05 da ff ff ff 	lea    -0x26(%rip),%rax        # 404b8c <_ZN9__gnu_cxx13new_allocatorIPiE10deallocateEPS1_m>
+  404bb2:	48 89 c7             	mov    %rax,%rdi
+  404bb5:	e8 06 e6 ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  404bba:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  404bbe:	48 8d 14 c5 00 00 00 	lea    0x0(,%rax,8),%rdx
+  404bc5:	00 
+  404bc6:	48 8b 45 f0          	mov    -0x10(%rbp),%rax
+  404bca:	48 89 d6             	mov    %rdx,%rsi
+  404bcd:	48 89 c7             	mov    %rax,%rdi
+  404bd0:	e8 8b e5 ff ff       	call   403160 <_ZdlPvm@plt>
+  404bd5:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  404bd9:	48 89 c6             	mov    %rax,%rsi
+  404bdc:	48 8d 05 a9 ff ff ff 	lea    -0x57(%rip),%rax        # 404b8c <_ZN9__gnu_cxx13new_allocatorIPiE10deallocateEPS1_m>
+  404be3:	48 89 c7             	mov    %rax,%rdi
+  404be6:	e8 45 e5 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  404beb:	c9                   	leave  
+  404bec:	c3                   	ret    
+  404bed:	90                   	nop
+
+0000000000404bee <_ZN9__gnu_cxx13new_allocatorIiE9constructIiJiEEEvPT_DpOT0_>:
+  404bee:	f3 0f 1e fa          	endbr64 
+  404bf2:	55                   	push   %rbp
+  404bf3:	48 89 e5             	mov    %rsp,%rbp
+  404bf6:	53                   	push   %rbx
+  404bf7:	48 83 ec 28          	sub    $0x28,%rsp
+  404bfb:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+  404bff:	48 89 75 e0          	mov    %rsi,-0x20(%rbp)
+  404c03:	48 89 55 d8          	mov    %rdx,-0x28(%rbp)
+  404c07:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  404c0b:	48 89 c6             	mov    %rax,%rsi
+  404c0e:	48 8d 05 d9 ff ff ff 	lea    -0x27(%rip),%rax        # 404bee <_ZN9__gnu_cxx13new_allocatorIiE9constructIiJiEEEvPT_DpOT0_>
+  404c15:	48 89 c7             	mov    %rax,%rdi
+  404c18:	e8 a3 e5 ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  404c1d:	48 8b 45 d8          	mov    -0x28(%rbp),%rax
+  404c21:	48 89 c7             	mov    %rax,%rdi
+  404c24:	e8 9c f9 ff ff       	call   4045c5 <_ZSt7forwardIiEOT_RNSt16remove_referenceIS0_E4typeE>
+  404c29:	8b 18                	mov    (%rax),%ebx
+  404c2b:	48 8b 45 e0          	mov    -0x20(%rbp),%rax
+  404c2f:	48 89 c6             	mov    %rax,%rsi
+  404c32:	bf 04 00 00 00       	mov    $0x4,%edi
+  404c37:	e8 d1 e7 ff ff       	call   40340d <_ZnwmPv>
+  404c3c:	89 18                	mov    %ebx,(%rax)
+  404c3e:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  404c42:	48 89 c6             	mov    %rax,%rsi
+  404c45:	48 8d 05 a2 ff ff ff 	lea    -0x5e(%rip),%rax        # 404bee <_ZN9__gnu_cxx13new_allocatorIiE9constructIiJiEEEvPT_DpOT0_>
+  404c4c:	48 89 c7             	mov    %rax,%rdi
+  404c4f:	e8 dc e4 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  404c54:	90                   	nop
+  404c55:	48 8b 5d f8          	mov    -0x8(%rbp),%rbx
+  404c59:	c9                   	leave  
+  404c5a:	c3                   	ret    
+  404c5b:	90                   	nop
+
+0000000000404c5c <_ZNKSt5dequeIiSaIiEE4sizeEv>:
+  404c5c:	f3 0f 1e fa          	endbr64 
+  404c60:	55                   	push   %rbp
+  404c61:	48 89 e5             	mov    %rsp,%rbp
+  404c64:	53                   	push   %rbx
+  404c65:	48 83 ec 18          	sub    $0x18,%rsp
+  404c69:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+  404c6d:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  404c71:	48 89 c6             	mov    %rax,%rsi
+  404c74:	48 8d 05 e1 ff ff ff 	lea    -0x1f(%rip),%rax        # 404c5c <_ZNKSt5dequeIiSaIiEE4sizeEv>
+  404c7b:	48 89 c7             	mov    %rax,%rdi
+  404c7e:	e8 3d e5 ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  404c83:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  404c87:	48 8d 50 10          	lea    0x10(%rax),%rdx
+  404c8b:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  404c8f:	48 83 c0 30          	add    $0x30,%rax
+  404c93:	48 89 d6             	mov    %rdx,%rsi
+  404c96:	48 89 c7             	mov    %rax,%rdi
+  404c99:	e8 6f 04 00 00       	call   40510d <_ZStmiRKSt15_Deque_iteratorIiRiPiES4_>
+  404c9e:	48 89 c3             	mov    %rax,%rbx
+  404ca1:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  404ca5:	48 89 c6             	mov    %rax,%rsi
+  404ca8:	48 8d 05 ad ff ff ff 	lea    -0x53(%rip),%rax        # 404c5c <_ZNKSt5dequeIiSaIiEE4sizeEv>
+  404caf:	48 89 c7             	mov    %rax,%rdi
+  404cb2:	e8 79 e4 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  404cb7:	48 89 d8             	mov    %rbx,%rax
+  404cba:	48 8b 5d f8          	mov    -0x8(%rbp),%rbx
+  404cbe:	c9                   	leave  
+  404cbf:	c3                   	ret    
+
+0000000000404cc0 <_ZNKSt5dequeIiSaIiEE8max_sizeEv>:
+  404cc0:	f3 0f 1e fa          	endbr64 
+  404cc4:	55                   	push   %rbp
+  404cc5:	48 89 e5             	mov    %rsp,%rbp
+  404cc8:	53                   	push   %rbx
+  404cc9:	48 83 ec 18          	sub    $0x18,%rsp
+  404ccd:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+  404cd1:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  404cd5:	48 89 c6             	mov    %rax,%rsi
+  404cd8:	48 8d 05 e1 ff ff ff 	lea    -0x1f(%rip),%rax        # 404cc0 <_ZNKSt5dequeIiSaIiEE8max_sizeEv>
+  404cdf:	48 89 c7             	mov    %rax,%rdi
+  404ce2:	e8 d9 e4 ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  404ce7:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  404ceb:	48 89 c7             	mov    %rax,%rdi
+  404cee:	e8 bf fd ff ff       	call   404ab2 <_ZNKSt11_Deque_baseIiSaIiEE19_M_get_Tp_allocatorEv>
+  404cf3:	48 89 c7             	mov    %rax,%rdi
+  404cf6:	e8 d9 04 00 00       	call   4051d4 <_ZNSt5dequeIiSaIiEE11_S_max_sizeERKS0_>
+  404cfb:	48 89 c3             	mov    %rax,%rbx
+  404cfe:	90                   	nop
+  404cff:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  404d03:	48 89 c6             	mov    %rax,%rsi
+  404d06:	48 8d 05 b3 ff ff ff 	lea    -0x4d(%rip),%rax        # 404cc0 <_ZNKSt5dequeIiSaIiEE8max_sizeEv>
+  404d0d:	48 89 c7             	mov    %rax,%rdi
+  404d10:	e8 1b e4 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  404d15:	48 89 d8             	mov    %rbx,%rax
+  404d18:	48 8b 5d f8          	mov    -0x8(%rbp),%rbx
+  404d1c:	c9                   	leave  
+  404d1d:	c3                   	ret    
+
+0000000000404d1e <_ZNSt5dequeIiSaIiEE22_M_reserve_map_at_backEm>:
+  404d1e:	f3 0f 1e fa          	endbr64 
+  404d22:	55                   	push   %rbp
+  404d23:	48 89 e5             	mov    %rsp,%rbp
+  404d26:	53                   	push   %rbx
+  404d27:	48 83 ec 18          	sub    $0x18,%rsp
+  404d2b:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+  404d2f:	48 89 75 e0          	mov    %rsi,-0x20(%rbp)
+  404d33:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  404d37:	48 89 c6             	mov    %rax,%rsi
+  404d3a:	48 8d 05 dd ff ff ff 	lea    -0x23(%rip),%rax        # 404d1e <_ZNSt5dequeIiSaIiEE22_M_reserve_map_at_backEm>
+  404d41:	48 89 c7             	mov    %rax,%rdi
+  404d44:	e8 77 e4 ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  404d49:	48 8b 45 e0          	mov    -0x20(%rbp),%rax
+  404d4d:	48 8d 70 01          	lea    0x1(%rax),%rsi
+  404d51:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  404d55:	48 8b 50 08          	mov    0x8(%rax),%rdx
+  404d59:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  404d5d:	48 8b 48 48          	mov    0x48(%rax),%rcx
+  404d61:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  404d65:	48 8b 38             	mov    (%rax),%rdi
+  404d68:	48 89 c8             	mov    %rcx,%rax
+  404d6b:	48 29 f8             	sub    %rdi,%rax
+  404d6e:	48 c1 f8 03          	sar    $0x3,%rax
+  404d72:	48 89 c1             	mov    %rax,%rcx
+  404d75:	48 89 d0             	mov    %rdx,%rax
+  404d78:	48 29 c8             	sub    %rcx,%rax
+  404d7b:	48 39 c6             	cmp    %rax,%rsi
+  404d7e:	76 18                	jbe    404d98 <_ZNSt5dequeIiSaIiEE22_M_reserve_map_at_backEm+0x7a>
+  404d80:	48 8b 4d e0          	mov    -0x20(%rbp),%rcx
+  404d84:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  404d88:	ba 00 00 00 00       	mov    $0x0,%edx
+  404d8d:	48 89 ce             	mov    %rcx,%rsi
+  404d90:	48 89 c7             	mov    %rax,%rdi
+  404d93:	e8 da 04 00 00       	call   405272 <_ZNSt5dequeIiSaIiEE17_M_reallocate_mapEmb>
+  404d98:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  404d9c:	48 89 c6             	mov    %rax,%rsi
+  404d9f:	48 8d 05 78 ff ff ff 	lea    -0x88(%rip),%rax        # 404d1e <_ZNSt5dequeIiSaIiEE22_M_reserve_map_at_backEm>
+  404da6:	48 89 c7             	mov    %rax,%rdi
+  404da9:	e8 82 e3 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  404dae:	eb 28                	jmp    404dd8 <_ZNSt5dequeIiSaIiEE22_M_reserve_map_at_backEm+0xba>
+  404db0:	f3 0f 1e fa          	endbr64 
+  404db4:	48 89 c3             	mov    %rax,%rbx
+  404db7:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  404dbb:	48 89 c6             	mov    %rax,%rsi
+  404dbe:	48 8d 05 59 ff ff ff 	lea    -0xa7(%rip),%rax        # 404d1e <_ZNSt5dequeIiSaIiEE22_M_reserve_map_at_backEm>
+  404dc5:	48 89 c7             	mov    %rax,%rdi
+  404dc8:	e8 63 e3 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  404dcd:	48 89 d8             	mov    %rbx,%rax
+  404dd0:	48 89 c7             	mov    %rax,%rdi
+  404dd3:	e8 d8 e3 ff ff       	call   4031b0 <_Unwind_Resume@plt>
+  404dd8:	48 8b 5d f8          	mov    -0x8(%rbp),%rbx
+  404ddc:	c9                   	leave  
+  404ddd:	c3                   	ret    
+
+0000000000404dde <_ZNSt15_Deque_iteratorIiRiPiEmmEv>:
+  404dde:	f3 0f 1e fa          	endbr64 
+  404de2:	55                   	push   %rbp
+  404de3:	48 89 e5             	mov    %rsp,%rbp
+  404de6:	53                   	push   %rbx
+  404de7:	48 83 ec 18          	sub    $0x18,%rsp
+  404deb:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+  404def:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  404df3:	48 89 c6             	mov    %rax,%rsi
+  404df6:	48 8d 05 e1 ff ff ff 	lea    -0x1f(%rip),%rax        # 404dde <_ZNSt15_Deque_iteratorIiRiPiEmmEv>
+  404dfd:	48 89 c7             	mov    %rax,%rdi
+  404e00:	e8 bb e3 ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  404e05:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  404e09:	48 8b 10             	mov    (%rax),%rdx
+  404e0c:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  404e10:	48 8b 40 08          	mov    0x8(%rax),%rax
+  404e14:	48 39 c2             	cmp    %rax,%rdx
+  404e17:	75 2a                	jne    404e43 <_ZNSt15_Deque_iteratorIiRiPiEmmEv+0x65>
+  404e19:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  404e1d:	48 8b 40 18          	mov    0x18(%rax),%rax
+  404e21:	48 8d 50 f8          	lea    -0x8(%rax),%rdx
+  404e25:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  404e29:	48 89 d6             	mov    %rdx,%rsi
+  404e2c:	48 89 c7             	mov    %rax,%rdi
+  404e2f:	e8 a0 f5 ff ff       	call   4043d4 <_ZNSt15_Deque_iteratorIiRiPiE11_M_set_nodeEPS1_>
+  404e34:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  404e38:	48 8b 50 10          	mov    0x10(%rax),%rdx
+  404e3c:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  404e40:	48 89 10             	mov    %rdx,(%rax)
+  404e43:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  404e47:	48 8b 00             	mov    (%rax),%rax
+  404e4a:	48 8d 50 fc          	lea    -0x4(%rax),%rdx
+  404e4e:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  404e52:	48 89 10             	mov    %rdx,(%rax)
+  404e55:	48 8b 5d e8          	mov    -0x18(%rbp),%rbx
+  404e59:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  404e5d:	48 89 c6             	mov    %rax,%rsi
+  404e60:	48 8d 05 77 ff ff ff 	lea    -0x89(%rip),%rax        # 404dde <_ZNSt15_Deque_iteratorIiRiPiEmmEv>
+  404e67:	48 89 c7             	mov    %rax,%rdi
+  404e6a:	e8 c1 e2 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  404e6f:	48 89 d8             	mov    %rbx,%rax
+  404e72:	48 8b 5d f8          	mov    -0x8(%rbp),%rbx
+  404e76:	c9                   	leave  
+  404e77:	c3                   	ret    
+
+0000000000404e78 <_ZNKSt15_Deque_iteratorIiRiPiEdeEv>:
+  404e78:	f3 0f 1e fa          	endbr64 
+  404e7c:	55                   	push   %rbp
+  404e7d:	48 89 e5             	mov    %rsp,%rbp
+  404e80:	53                   	push   %rbx
+  404e81:	48 83 ec 18          	sub    $0x18,%rsp
+  404e85:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+  404e89:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  404e8d:	48 89 c6             	mov    %rax,%rsi
+  404e90:	48 8d 05 e1 ff ff ff 	lea    -0x1f(%rip),%rax        # 404e78 <_ZNKSt15_Deque_iteratorIiRiPiEdeEv>
+  404e97:	48 89 c7             	mov    %rax,%rdi
+  404e9a:	e8 21 e3 ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  404e9f:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  404ea3:	48 8b 18             	mov    (%rax),%rbx
+  404ea6:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  404eaa:	48 89 c6             	mov    %rax,%rsi
+  404ead:	48 8d 05 c4 ff ff ff 	lea    -0x3c(%rip),%rax        # 404e78 <_ZNKSt15_Deque_iteratorIiRiPiEdeEv>
+  404eb4:	48 89 c7             	mov    %rax,%rdi
+  404eb7:	e8 74 e2 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  404ebc:	48 89 d8             	mov    %rbx,%rax
+  404ebf:	48 8b 5d f8          	mov    -0x8(%rbp),%rbx
+  404ec3:	c9                   	leave  
+  404ec4:	c3                   	ret    
+  404ec5:	90                   	nop
+
+0000000000404ec6 <_ZNK9__gnu_cxx13new_allocatorIPiE11_M_max_sizeEv>:
+  404ec6:	f3 0f 1e fa          	endbr64 
+  404eca:	55                   	push   %rbp
+  404ecb:	48 89 e5             	mov    %rsp,%rbp
+  404ece:	53                   	push   %rbx
+  404ecf:	48 83 ec 18          	sub    $0x18,%rsp
+  404ed3:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+  404ed7:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  404edb:	48 89 c6             	mov    %rax,%rsi
+  404ede:	48 8d 05 e1 ff ff ff 	lea    -0x1f(%rip),%rax        # 404ec6 <_ZNK9__gnu_cxx13new_allocatorIPiE11_M_max_sizeEv>
+  404ee5:	48 89 c7             	mov    %rax,%rdi
+  404ee8:	e8 d3 e2 ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  404eed:	48 bb ff ff ff ff ff 	movabs $0xfffffffffffffff,%rbx
+  404ef4:	ff ff 0f 
+  404ef7:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  404efb:	48 89 c6             	mov    %rax,%rsi
+  404efe:	48 8d 05 c1 ff ff ff 	lea    -0x3f(%rip),%rax        # 404ec6 <_ZNK9__gnu_cxx13new_allocatorIPiE11_M_max_sizeEv>
+  404f05:	48 89 c7             	mov    %rax,%rdi
+  404f08:	e8 23 e2 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  404f0d:	48 89 d8             	mov    %rbx,%rax
+  404f10:	48 8b 5d f8          	mov    -0x8(%rbp),%rbx
+  404f14:	c9                   	leave  
+  404f15:	c3                   	ret    
+
+0000000000404f16 <_ZN9__gnu_cxx13new_allocatorIPiE8allocateEmPKv>:
+  404f16:	f3 0f 1e fa          	endbr64 
+  404f1a:	55                   	push   %rbp
+  404f1b:	48 89 e5             	mov    %rsp,%rbp
+  404f1e:	53                   	push   %rbx
+  404f1f:	48 83 ec 28          	sub    $0x28,%rsp
+  404f23:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+  404f27:	48 89 75 e0          	mov    %rsi,-0x20(%rbp)
+  404f2b:	48 89 55 d8          	mov    %rdx,-0x28(%rbp)
+  404f2f:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  404f33:	48 89 c6             	mov    %rax,%rsi
+  404f36:	48 8d 05 d9 ff ff ff 	lea    -0x27(%rip),%rax        # 404f16 <_ZN9__gnu_cxx13new_allocatorIPiE8allocateEmPKv>
+  404f3d:	48 89 c7             	mov    %rax,%rdi
+  404f40:	e8 7b e2 ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  404f45:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  404f49:	48 89 c7             	mov    %rax,%rdi
+  404f4c:	e8 75 ff ff ff       	call   404ec6 <_ZNK9__gnu_cxx13new_allocatorIPiE11_M_max_sizeEv>
+  404f51:	48 39 45 e0          	cmp    %rax,-0x20(%rbp)
+  404f55:	0f 97 c0             	seta   %al
+  404f58:	0f b6 c0             	movzbl %al,%eax
+  404f5b:	48 85 c0             	test   %rax,%rax
+  404f5e:	0f 95 c0             	setne  %al
+  404f61:	84 c0                	test   %al,%al
+  404f63:	74 1a                	je     404f7f <_ZN9__gnu_cxx13new_allocatorIPiE8allocateEmPKv+0x69>
+  404f65:	48 b8 ff ff ff ff ff 	movabs $0x1fffffffffffffff,%rax
+  404f6c:	ff ff 1f 
+  404f6f:	48 39 45 e0          	cmp    %rax,-0x20(%rbp)
+  404f73:	76 05                	jbe    404f7a <_ZN9__gnu_cxx13new_allocatorIPiE8allocateEmPKv+0x64>
+  404f75:	e8 c6 e1 ff ff       	call   403140 <_ZSt28__throw_bad_array_new_lengthv@plt>
+  404f7a:	e8 81 e1 ff ff       	call   403100 <_ZSt17__throw_bad_allocv@plt>
+  404f7f:	48 8b 45 e0          	mov    -0x20(%rbp),%rax
+  404f83:	48 c1 e0 03          	shl    $0x3,%rax
+  404f87:	48 89 c7             	mov    %rax,%rdi
+  404f8a:	e8 c1 e1 ff ff       	call   403150 <_Znwm@plt>
+  404f8f:	48 89 c3             	mov    %rax,%rbx
+  404f92:	90                   	nop
+  404f93:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  404f97:	48 89 c6             	mov    %rax,%rsi
+  404f9a:	48 8d 05 75 ff ff ff 	lea    -0x8b(%rip),%rax        # 404f16 <_ZN9__gnu_cxx13new_allocatorIPiE8allocateEmPKv>
+  404fa1:	48 89 c7             	mov    %rax,%rdi
+  404fa4:	e8 87 e1 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  404fa9:	48 89 d8             	mov    %rbx,%rax
+  404fac:	eb 28                	jmp    404fd6 <_ZN9__gnu_cxx13new_allocatorIPiE8allocateEmPKv+0xc0>
+  404fae:	f3 0f 1e fa          	endbr64 
+  404fb2:	48 89 c3             	mov    %rax,%rbx
+  404fb5:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  404fb9:	48 89 c6             	mov    %rax,%rsi
+  404fbc:	48 8d 05 53 ff ff ff 	lea    -0xad(%rip),%rax        # 404f16 <_ZN9__gnu_cxx13new_allocatorIPiE8allocateEmPKv>
+  404fc3:	48 89 c7             	mov    %rax,%rdi
+  404fc6:	e8 65 e1 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  404fcb:	48 89 d8             	mov    %rbx,%rax
+  404fce:	48 89 c7             	mov    %rax,%rdi
+  404fd1:	e8 da e1 ff ff       	call   4031b0 <_Unwind_Resume@plt>
+  404fd6:	48 8b 5d f8          	mov    -0x8(%rbp),%rbx
+  404fda:	c9                   	leave  
+  404fdb:	c3                   	ret    
+
+0000000000404fdc <_ZNSt16allocator_traitsISaIiEE8allocateERS0_m>:
+  404fdc:	f3 0f 1e fa          	endbr64 
+  404fe0:	55                   	push   %rbp
+  404fe1:	48 89 e5             	mov    %rsp,%rbp
+  404fe4:	53                   	push   %rbx
+  404fe5:	48 83 ec 18          	sub    $0x18,%rsp
+  404fe9:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+  404fed:	48 89 75 e0          	mov    %rsi,-0x20(%rbp)
+  404ff1:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  404ff5:	48 89 c6             	mov    %rax,%rsi
+  404ff8:	48 8d 05 dd ff ff ff 	lea    -0x23(%rip),%rax        # 404fdc <_ZNSt16allocator_traitsISaIiEE8allocateERS0_m>
+  404fff:	48 89 c7             	mov    %rax,%rdi
+  405002:	e8 b9 e1 ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  405007:	48 8b 4d e0          	mov    -0x20(%rbp),%rcx
+  40500b:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  40500f:	ba 00 00 00 00       	mov    $0x0,%edx
+  405014:	48 89 ce             	mov    %rcx,%rsi
+  405017:	48 89 c7             	mov    %rax,%rdi
+  40501a:	e8 1b 05 00 00       	call   40553a <_ZN9__gnu_cxx13new_allocatorIiE8allocateEmPKv>
+  40501f:	48 89 c3             	mov    %rax,%rbx
+  405022:	90                   	nop
+  405023:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  405027:	48 89 c6             	mov    %rax,%rsi
+  40502a:	48 8d 05 ab ff ff ff 	lea    -0x55(%rip),%rax        # 404fdc <_ZNSt16allocator_traitsISaIiEE8allocateERS0_m>
+  405031:	48 89 c7             	mov    %rax,%rdi
+  405034:	e8 f7 e0 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  405039:	48 89 d8             	mov    %rbx,%rax
+  40503c:	eb 28                	jmp    405066 <_ZNSt16allocator_traitsISaIiEE8allocateERS0_m+0x8a>
+  40503e:	f3 0f 1e fa          	endbr64 
+  405042:	48 89 c3             	mov    %rax,%rbx
+  405045:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  405049:	48 89 c6             	mov    %rax,%rsi
+  40504c:	48 8d 05 89 ff ff ff 	lea    -0x77(%rip),%rax        # 404fdc <_ZNSt16allocator_traitsISaIiEE8allocateERS0_m>
+  405053:	48 89 c7             	mov    %rax,%rdi
+  405056:	e8 d5 e0 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  40505b:	48 89 d8             	mov    %rbx,%rax
+  40505e:	48 89 c7             	mov    %rax,%rdi
+  405061:	e8 4a e1 ff ff       	call   4031b0 <_Unwind_Resume@plt>
+  405066:	48 8b 5d f8          	mov    -0x8(%rbp),%rbx
+  40506a:	c9                   	leave  
+  40506b:	c3                   	ret    
+
+000000000040506c <_ZN9__gnu_cxx13new_allocatorIiE10deallocateEPim>:
+  40506c:	f3 0f 1e fa          	endbr64 
+  405070:	55                   	push   %rbp
+  405071:	48 89 e5             	mov    %rsp,%rbp
+  405074:	48 83 ec 20          	sub    $0x20,%rsp
+  405078:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+  40507c:	48 89 75 f0          	mov    %rsi,-0x10(%rbp)
+  405080:	48 89 55 e8          	mov    %rdx,-0x18(%rbp)
+  405084:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  405088:	48 89 c6             	mov    %rax,%rsi
+  40508b:	48 8d 05 da ff ff ff 	lea    -0x26(%rip),%rax        # 40506c <_ZN9__gnu_cxx13new_allocatorIiE10deallocateEPim>
+  405092:	48 89 c7             	mov    %rax,%rdi
+  405095:	e8 26 e1 ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  40509a:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  40509e:	48 8d 14 85 00 00 00 	lea    0x0(,%rax,4),%rdx
+  4050a5:	00 
+  4050a6:	48 8b 45 f0          	mov    -0x10(%rbp),%rax
+  4050aa:	48 89 d6             	mov    %rdx,%rsi
+  4050ad:	48 89 c7             	mov    %rax,%rdi
+  4050b0:	e8 ab e0 ff ff       	call   403160 <_ZdlPvm@plt>
+  4050b5:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  4050b9:	48 89 c6             	mov    %rax,%rsi
+  4050bc:	48 8d 05 a9 ff ff ff 	lea    -0x57(%rip),%rax        # 40506c <_ZN9__gnu_cxx13new_allocatorIiE10deallocateEPim>
+  4050c3:	48 89 c7             	mov    %rax,%rdi
+  4050c6:	e8 65 e0 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  4050cb:	c9                   	leave  
+  4050cc:	c3                   	ret    
+  4050cd:	90                   	nop
+
+00000000004050ce <_ZN9__gnu_cxx13new_allocatorIPiEC1Ev>:
+  4050ce:	f3 0f 1e fa          	endbr64 
+  4050d2:	55                   	push   %rbp
+  4050d3:	48 89 e5             	mov    %rsp,%rbp
+  4050d6:	48 83 ec 10          	sub    $0x10,%rsp
+  4050da:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+  4050de:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  4050e2:	48 89 c6             	mov    %rax,%rsi
+  4050e5:	48 8d 05 e2 ff ff ff 	lea    -0x1e(%rip),%rax        # 4050ce <_ZN9__gnu_cxx13new_allocatorIPiEC1Ev>
+  4050ec:	48 89 c7             	mov    %rax,%rdi
+  4050ef:	e8 cc e0 ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  4050f4:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  4050f8:	48 89 c6             	mov    %rax,%rsi
+  4050fb:	48 8d 05 cc ff ff ff 	lea    -0x34(%rip),%rax        # 4050ce <_ZN9__gnu_cxx13new_allocatorIPiEC1Ev>
+  405102:	48 89 c7             	mov    %rax,%rdi
+  405105:	e8 26 e0 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  40510a:	90                   	nop
+  40510b:	c9                   	leave  
+  40510c:	c3                   	ret    
+
+000000000040510d <_ZStmiRKSt15_Deque_iteratorIiRiPiES4_>:
+  40510d:	f3 0f 1e fa          	endbr64 
+  405111:	55                   	push   %rbp
+  405112:	48 89 e5             	mov    %rsp,%rbp
+  405115:	53                   	push   %rbx
+  405116:	48 83 ec 18          	sub    $0x18,%rsp
+  40511a:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+  40511e:	48 89 75 e0          	mov    %rsi,-0x20(%rbp)
+  405122:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  405126:	48 89 c6             	mov    %rax,%rsi
+  405129:	48 8d 05 dd ff ff ff 	lea    -0x23(%rip),%rax        # 40510d <_ZStmiRKSt15_Deque_iteratorIiRiPiES4_>
+  405130:	48 89 c7             	mov    %rax,%rdi
+  405133:	e8 88 e0 ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  405138:	e8 c7 f8 ff ff       	call   404a04 <_ZNSt15_Deque_iteratorIiRiPiE14_S_buffer_sizeEv>
+  40513d:	48 89 c6             	mov    %rax,%rsi
+  405140:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  405144:	48 8b 50 18          	mov    0x18(%rax),%rdx
+  405148:	48 8b 45 e0          	mov    -0x20(%rbp),%rax
+  40514c:	48 8b 48 18          	mov    0x18(%rax),%rcx
+  405150:	48 89 d0             	mov    %rdx,%rax
+  405153:	48 29 c8             	sub    %rcx,%rax
+  405156:	48 c1 f8 03          	sar    $0x3,%rax
+  40515a:	48 89 c1             	mov    %rax,%rcx
+  40515d:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  405161:	48 8b 40 18          	mov    0x18(%rax),%rax
+  405165:	48 85 c0             	test   %rax,%rax
+  405168:	0f 95 c0             	setne  %al
+  40516b:	0f b6 d0             	movzbl %al,%edx
+  40516e:	48 89 c8             	mov    %rcx,%rax
+  405171:	48 29 d0             	sub    %rdx,%rax
+  405174:	48 89 f1             	mov    %rsi,%rcx
+  405177:	48 0f af c8          	imul   %rax,%rcx
+  40517b:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  40517f:	48 8b 10             	mov    (%rax),%rdx
+  405182:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  405186:	48 8b 70 08          	mov    0x8(%rax),%rsi
+  40518a:	48 89 d0             	mov    %rdx,%rax
+  40518d:	48 29 f0             	sub    %rsi,%rax
+  405190:	48 c1 f8 02          	sar    $0x2,%rax
+  405194:	48 8d 34 01          	lea    (%rcx,%rax,1),%rsi
+  405198:	48 8b 45 e0          	mov    -0x20(%rbp),%rax
+  40519c:	48 8b 50 10          	mov    0x10(%rax),%rdx
+  4051a0:	48 8b 45 e0          	mov    -0x20(%rbp),%rax
+  4051a4:	48 8b 08             	mov    (%rax),%rcx
+  4051a7:	48 89 d0             	mov    %rdx,%rax
+  4051aa:	48 29 c8             	sub    %rcx,%rax
+  4051ad:	48 c1 f8 02          	sar    $0x2,%rax
+  4051b1:	48 8d 1c 06          	lea    (%rsi,%rax,1),%rbx
+  4051b5:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  4051b9:	48 89 c6             	mov    %rax,%rsi
+  4051bc:	48 8d 05 4a ff ff ff 	lea    -0xb6(%rip),%rax        # 40510d <_ZStmiRKSt15_Deque_iteratorIiRiPiES4_>
+  4051c3:	48 89 c7             	mov    %rax,%rdi
+  4051c6:	e8 65 df ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  4051cb:	48 89 d8             	mov    %rbx,%rax
+  4051ce:	48 8b 5d f8          	mov    -0x8(%rbp),%rbx
+  4051d2:	c9                   	leave  
+  4051d3:	c3                   	ret    
+
+00000000004051d4 <_ZNSt5dequeIiSaIiEE11_S_max_sizeERKS0_>:
+  4051d4:	f3 0f 1e fa          	endbr64 
+  4051d8:	55                   	push   %rbp
+  4051d9:	48 89 e5             	mov    %rsp,%rbp
+  4051dc:	53                   	push   %rbx
+  4051dd:	48 83 ec 38          	sub    $0x38,%rsp
+  4051e1:	48 89 7d c8          	mov    %rdi,-0x38(%rbp)
+  4051e5:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax
+  4051ec:	00 00 
+  4051ee:	48 89 45 e8          	mov    %rax,-0x18(%rbp)
+  4051f2:	31 c0                	xor    %eax,%eax
+  4051f4:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  4051f8:	48 89 c6             	mov    %rax,%rsi
+  4051fb:	48 8d 05 d2 ff ff ff 	lea    -0x2e(%rip),%rax        # 4051d4 <_ZNSt5dequeIiSaIiEE11_S_max_sizeERKS0_>
+  405202:	48 89 c7             	mov    %rax,%rdi
+  405205:	e8 b6 df ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  40520a:	48 b8 ff ff ff ff ff 	movabs $0x7fffffffffffffff,%rax
+  405211:	ff ff 7f 
+  405214:	48 89 45 d8          	mov    %rax,-0x28(%rbp)
+  405218:	48 8b 45 c8          	mov    -0x38(%rbp),%rax
+  40521c:	48 89 c7             	mov    %rax,%rdi
+  40521f:	e8 dc 03 00 00       	call   405600 <_ZNSt16allocator_traitsISaIiEE8max_sizeERKS0_>
+  405224:	48 89 45 e0          	mov    %rax,-0x20(%rbp)
+  405228:	48 8d 55 e0          	lea    -0x20(%rbp),%rdx
+  40522c:	48 8d 45 d8          	lea    -0x28(%rbp),%rax
+  405230:	48 89 d6             	mov    %rdx,%rsi
+  405233:	48 89 c7             	mov    %rax,%rdi
+  405236:	e8 1b 04 00 00       	call   405656 <_ZSt3minImERKT_S2_S2_>
+  40523b:	48 8b 18             	mov    (%rax),%rbx
+  40523e:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  405242:	48 89 c6             	mov    %rax,%rsi
+  405245:	48 8d 05 88 ff ff ff 	lea    -0x78(%rip),%rax        # 4051d4 <_ZNSt5dequeIiSaIiEE11_S_max_sizeERKS0_>
+  40524c:	48 89 c7             	mov    %rax,%rdi
+  40524f:	e8 dc de ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  405254:	48 89 d8             	mov    %rbx,%rax
+  405257:	48 8b 55 e8          	mov    -0x18(%rbp),%rdx
+  40525b:	64 48 2b 14 25 28 00 	sub    %fs:0x28,%rdx
+  405262:	00 00 
+  405264:	74 05                	je     40526b <_ZNSt5dequeIiSaIiEE11_S_max_sizeERKS0_+0x97>
+  405266:	e8 05 df ff ff       	call   403170 <__stack_chk_fail@plt>
+  40526b:	48 8b 5d f8          	mov    -0x8(%rbp),%rbx
+  40526f:	c9                   	leave  
+  405270:	c3                   	ret    
+  405271:	90                   	nop
+
+0000000000405272 <_ZNSt5dequeIiSaIiEE17_M_reallocate_mapEmb>:
+  405272:	f3 0f 1e fa          	endbr64 
+  405276:	55                   	push   %rbp
+  405277:	48 89 e5             	mov    %rsp,%rbp
+  40527a:	53                   	push   %rbx
+  40527b:	48 83 ec 58          	sub    $0x58,%rsp
+  40527f:	48 89 7d b8          	mov    %rdi,-0x48(%rbp)
+  405283:	48 89 75 b0          	mov    %rsi,-0x50(%rbp)
+  405287:	89 d0                	mov    %edx,%eax
+  405289:	88 45 ac             	mov    %al,-0x54(%rbp)
+  40528c:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  405290:	48 89 c6             	mov    %rax,%rsi
+  405293:	48 8d 05 d8 ff ff ff 	lea    -0x28(%rip),%rax        # 405272 <_ZNSt5dequeIiSaIiEE17_M_reallocate_mapEmb>
+  40529a:	48 89 c7             	mov    %rax,%rdi
+  40529d:	e8 1e df ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  4052a2:	48 8b 45 b8          	mov    -0x48(%rbp),%rax
+  4052a6:	48 8b 50 48          	mov    0x48(%rax),%rdx
+  4052aa:	48 8b 45 b8          	mov    -0x48(%rbp),%rax
+  4052ae:	48 8b 48 28          	mov    0x28(%rax),%rcx
+  4052b2:	48 89 d0             	mov    %rdx,%rax
+  4052b5:	48 29 c8             	sub    %rcx,%rax
+  4052b8:	48 c1 f8 03          	sar    $0x3,%rax
+  4052bc:	48 83 c0 01          	add    $0x1,%rax
+  4052c0:	48 89 45 d0          	mov    %rax,-0x30(%rbp)
+  4052c4:	48 8b 55 b0          	mov    -0x50(%rbp),%rdx
+  4052c8:	48 8b 45 d0          	mov    -0x30(%rbp),%rax
+  4052cc:	48 01 d0             	add    %rdx,%rax
+  4052cf:	48 89 45 d8          	mov    %rax,-0x28(%rbp)
+  4052d3:	48 8b 45 b8          	mov    -0x48(%rbp),%rax
+  4052d7:	48 8b 40 08          	mov    0x8(%rax),%rax
+  4052db:	48 8b 55 d8          	mov    -0x28(%rbp),%rdx
+  4052df:	48 01 d2             	add    %rdx,%rdx
+  4052e2:	48 39 d0             	cmp    %rdx,%rax
+  4052e5:	0f 86 aa 00 00 00    	jbe    405395 <_ZNSt5dequeIiSaIiEE17_M_reallocate_mapEmb+0x123>
+  4052eb:	48 8b 45 b8          	mov    -0x48(%rbp),%rax
+  4052ef:	48 8b 10             	mov    (%rax),%rdx
+  4052f2:	48 8b 45 b8          	mov    -0x48(%rbp),%rax
+  4052f6:	48 8b 40 08          	mov    0x8(%rax),%rax
+  4052fa:	48 2b 45 d8          	sub    -0x28(%rbp),%rax
+  4052fe:	48 d1 e8             	shr    %rax
+  405301:	48 8d 0c c5 00 00 00 	lea    0x0(,%rax,8),%rcx
+  405308:	00 
+  405309:	80 7d ac 00          	cmpb   $0x0,-0x54(%rbp)
+  40530d:	74 0a                	je     405319 <_ZNSt5dequeIiSaIiEE17_M_reallocate_mapEmb+0xa7>
+  40530f:	48 8b 45 b0          	mov    -0x50(%rbp),%rax
+  405313:	48 c1 e0 03          	shl    $0x3,%rax
+  405317:	eb 05                	jmp    40531e <_ZNSt5dequeIiSaIiEE17_M_reallocate_mapEmb+0xac>
+  405319:	b8 00 00 00 00       	mov    $0x0,%eax
+  40531e:	48 01 c8             	add    %rcx,%rax
+  405321:	48 01 d0             	add    %rdx,%rax
+  405324:	48 89 45 c8          	mov    %rax,-0x38(%rbp)
+  405328:	48 8b 45 b8          	mov    -0x48(%rbp),%rax
+  40532c:	48 8b 40 28          	mov    0x28(%rax),%rax
+  405330:	48 39 45 c8          	cmp    %rax,-0x38(%rbp)
+  405334:	73 28                	jae    40535e <_ZNSt5dequeIiSaIiEE17_M_reallocate_mapEmb+0xec>
+  405336:	48 8b 45 b8          	mov    -0x48(%rbp),%rax
+  40533a:	48 8b 40 48          	mov    0x48(%rax),%rax
+  40533e:	48 8d 48 08          	lea    0x8(%rax),%rcx
+  405342:	48 8b 45 b8          	mov    -0x48(%rbp),%rax
+  405346:	48 8b 40 28          	mov    0x28(%rax),%rax
+  40534a:	48 8b 55 c8          	mov    -0x38(%rbp),%rdx
+  40534e:	48 89 ce             	mov    %rcx,%rsi
+  405351:	48 89 c7             	mov    %rax,%rdi
+  405354:	e8 64 03 00 00       	call   4056bd <_ZSt4copyIPPiS1_ET0_T_S3_S2_>
+  405359:	e9 09 01 00 00       	jmp    405467 <_ZNSt5dequeIiSaIiEE17_M_reallocate_mapEmb+0x1f5>
+  40535e:	48 8b 45 d0          	mov    -0x30(%rbp),%rax
+  405362:	48 8d 14 c5 00 00 00 	lea    0x0(,%rax,8),%rdx
+  405369:	00 
+  40536a:	48 8b 45 c8          	mov    -0x38(%rbp),%rax
+  40536e:	48 01 c2             	add    %rax,%rdx
+  405371:	48 8b 45 b8          	mov    -0x48(%rbp),%rax
+  405375:	48 8b 40 48          	mov    0x48(%rax),%rax
+  405379:	48 8d 48 08          	lea    0x8(%rax),%rcx
+  40537d:	48 8b 45 b8          	mov    -0x48(%rbp),%rax
+  405381:	48 8b 40 28          	mov    0x28(%rax),%rax
+  405385:	48 89 ce             	mov    %rcx,%rsi
+  405388:	48 89 c7             	mov    %rax,%rdi
+  40538b:	e8 d9 03 00 00       	call   405769 <_ZSt13copy_backwardIPPiS1_ET0_T_S3_S2_>
+  405390:	e9 d2 00 00 00       	jmp    405467 <_ZNSt5dequeIiSaIiEE17_M_reallocate_mapEmb+0x1f5>
+  405395:	48 8b 45 b8          	mov    -0x48(%rbp),%rax
+  405399:	48 8b 58 08          	mov    0x8(%rax),%rbx
+  40539d:	48 8b 45 b8          	mov    -0x48(%rbp),%rax
+  4053a1:	48 8d 50 08          	lea    0x8(%rax),%rdx
+  4053a5:	48 8d 45 b0          	lea    -0x50(%rbp),%rax
+  4053a9:	48 89 c6             	mov    %rax,%rsi
+  4053ac:	48 89 d7             	mov    %rdx,%rdi
+  4053af:	e8 11 ee ff ff       	call   4041c5 <_ZSt3maxImERKT_S2_S2_>
+  4053b4:	48 8b 00             	mov    (%rax),%rax
+  4053b7:	48 01 d8             	add    %rbx,%rax
+  4053ba:	48 83 c0 02          	add    $0x2,%rax
+  4053be:	48 89 45 e0          	mov    %rax,-0x20(%rbp)
+  4053c2:	48 8b 45 b8          	mov    -0x48(%rbp),%rax
+  4053c6:	48 8b 55 e0          	mov    -0x20(%rbp),%rdx
+  4053ca:	48 89 d6             	mov    %rdx,%rsi
+  4053cd:	48 89 c7             	mov    %rax,%rdi
+  4053d0:	e8 57 ee ff ff       	call   40422c <_ZNSt11_Deque_baseIiSaIiEE15_M_allocate_mapEm>
+  4053d5:	48 89 45 e8          	mov    %rax,-0x18(%rbp)
+  4053d9:	48 8b 45 e0          	mov    -0x20(%rbp),%rax
+  4053dd:	48 2b 45 d8          	sub    -0x28(%rbp),%rax
+  4053e1:	48 d1 e8             	shr    %rax
+  4053e4:	48 8d 14 c5 00 00 00 	lea    0x0(,%rax,8),%rdx
+  4053eb:	00 
+  4053ec:	80 7d ac 00          	cmpb   $0x0,-0x54(%rbp)
+  4053f0:	74 0a                	je     4053fc <_ZNSt5dequeIiSaIiEE17_M_reallocate_mapEmb+0x18a>
+  4053f2:	48 8b 45 b0          	mov    -0x50(%rbp),%rax
+  4053f6:	48 c1 e0 03          	shl    $0x3,%rax
+  4053fa:	eb 05                	jmp    405401 <_ZNSt5dequeIiSaIiEE17_M_reallocate_mapEmb+0x18f>
+  4053fc:	b8 00 00 00 00       	mov    $0x0,%eax
+  405401:	48 01 c2             	add    %rax,%rdx
+  405404:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  405408:	48 01 d0             	add    %rdx,%rax
+  40540b:	48 89 45 c8          	mov    %rax,-0x38(%rbp)
+  40540f:	48 8b 45 b8          	mov    -0x48(%rbp),%rax
+  405413:	48 8b 40 48          	mov    0x48(%rax),%rax
+  405417:	48 8d 48 08          	lea    0x8(%rax),%rcx
+  40541b:	48 8b 45 b8          	mov    -0x48(%rbp),%rax
+  40541f:	48 8b 40 28          	mov    0x28(%rax),%rax
+  405423:	48 8b 55 c8          	mov    -0x38(%rbp),%rdx
+  405427:	48 89 ce             	mov    %rcx,%rsi
+  40542a:	48 89 c7             	mov    %rax,%rdi
+  40542d:	e8 8b 02 00 00       	call   4056bd <_ZSt4copyIPPiS1_ET0_T_S3_S2_>
+  405432:	48 8b 45 b8          	mov    -0x48(%rbp),%rax
+  405436:	48 8b 55 b8          	mov    -0x48(%rbp),%rdx
+  40543a:	48 8b 52 08          	mov    0x8(%rdx),%rdx
+  40543e:	48 8b 4d b8          	mov    -0x48(%rbp),%rcx
+  405442:	48 8b 09             	mov    (%rcx),%rcx
+  405445:	48 89 ce             	mov    %rcx,%rsi
+  405448:	48 89 c7             	mov    %rax,%rdi
+  40544b:	e8 5a ea ff ff       	call   403eaa <_ZNSt11_Deque_baseIiSaIiEE17_M_deallocate_mapEPPim>
+  405450:	48 8b 45 b8          	mov    -0x48(%rbp),%rax
+  405454:	48 8b 55 e8          	mov    -0x18(%rbp),%rdx
+  405458:	48 89 10             	mov    %rdx,(%rax)
+  40545b:	48 8b 45 b8          	mov    -0x48(%rbp),%rax
+  40545f:	48 8b 55 e0          	mov    -0x20(%rbp),%rdx
+  405463:	48 89 50 08          	mov    %rdx,0x8(%rax)
+  405467:	48 8b 45 b8          	mov    -0x48(%rbp),%rax
+  40546b:	48 8d 50 10          	lea    0x10(%rax),%rdx
+  40546f:	48 8b 45 c8          	mov    -0x38(%rbp),%rax
+  405473:	48 89 c6             	mov    %rax,%rsi
+  405476:	48 89 d7             	mov    %rdx,%rdi
+  405479:	e8 56 ef ff ff       	call   4043d4 <_ZNSt15_Deque_iteratorIiRiPiE11_M_set_nodeEPS1_>
+  40547e:	48 8b 45 b8          	mov    -0x48(%rbp),%rax
+  405482:	48 83 c0 30          	add    $0x30,%rax
+  405486:	48 8b 55 d0          	mov    -0x30(%rbp),%rdx
+  40548a:	48 c1 e2 03          	shl    $0x3,%rdx
+  40548e:	48 8d 4a f8          	lea    -0x8(%rdx),%rcx
+  405492:	48 8b 55 c8          	mov    -0x38(%rbp),%rdx
+  405496:	48 01 ca             	add    %rcx,%rdx
+  405499:	48 89 d6             	mov    %rdx,%rsi
+  40549c:	48 89 c7             	mov    %rax,%rdi
+  40549f:	e8 30 ef ff ff       	call   4043d4 <_ZNSt15_Deque_iteratorIiRiPiE11_M_set_nodeEPS1_>
+  4054a4:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  4054a8:	48 89 c6             	mov    %rax,%rsi
+  4054ab:	48 8d 05 c0 fd ff ff 	lea    -0x240(%rip),%rax        # 405272 <_ZNSt5dequeIiSaIiEE17_M_reallocate_mapEmb>
+  4054b2:	48 89 c7             	mov    %rax,%rdi
+  4054b5:	e8 76 dc ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  4054ba:	eb 28                	jmp    4054e4 <_ZNSt5dequeIiSaIiEE17_M_reallocate_mapEmb+0x272>
+  4054bc:	f3 0f 1e fa          	endbr64 
+  4054c0:	48 89 c3             	mov    %rax,%rbx
+  4054c3:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  4054c7:	48 89 c6             	mov    %rax,%rsi
+  4054ca:	48 8d 05 a1 fd ff ff 	lea    -0x25f(%rip),%rax        # 405272 <_ZNSt5dequeIiSaIiEE17_M_reallocate_mapEmb>
+  4054d1:	48 89 c7             	mov    %rax,%rdi
+  4054d4:	e8 57 dc ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  4054d9:	48 89 d8             	mov    %rbx,%rax
+  4054dc:	48 89 c7             	mov    %rax,%rdi
+  4054df:	e8 cc dc ff ff       	call   4031b0 <_Unwind_Resume@plt>
+  4054e4:	48 8b 5d f8          	mov    -0x8(%rbp),%rbx
+  4054e8:	c9                   	leave  
+  4054e9:	c3                   	ret    
+
+00000000004054ea <_ZNK9__gnu_cxx13new_allocatorIiE11_M_max_sizeEv>:
+  4054ea:	f3 0f 1e fa          	endbr64 
+  4054ee:	55                   	push   %rbp
+  4054ef:	48 89 e5             	mov    %rsp,%rbp
+  4054f2:	53                   	push   %rbx
+  4054f3:	48 83 ec 18          	sub    $0x18,%rsp
+  4054f7:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+  4054fb:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  4054ff:	48 89 c6             	mov    %rax,%rsi
+  405502:	48 8d 05 e1 ff ff ff 	lea    -0x1f(%rip),%rax        # 4054ea <_ZNK9__gnu_cxx13new_allocatorIiE11_M_max_sizeEv>
+  405509:	48 89 c7             	mov    %rax,%rdi
+  40550c:	e8 af dc ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  405511:	48 bb ff ff ff ff ff 	movabs $0x1fffffffffffffff,%rbx
+  405518:	ff ff 1f 
+  40551b:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  40551f:	48 89 c6             	mov    %rax,%rsi
+  405522:	48 8d 05 c1 ff ff ff 	lea    -0x3f(%rip),%rax        # 4054ea <_ZNK9__gnu_cxx13new_allocatorIiE11_M_max_sizeEv>
+  405529:	48 89 c7             	mov    %rax,%rdi
+  40552c:	e8 ff db ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  405531:	48 89 d8             	mov    %rbx,%rax
+  405534:	48 8b 5d f8          	mov    -0x8(%rbp),%rbx
+  405538:	c9                   	leave  
+  405539:	c3                   	ret    
+
+000000000040553a <_ZN9__gnu_cxx13new_allocatorIiE8allocateEmPKv>:
+  40553a:	f3 0f 1e fa          	endbr64 
+  40553e:	55                   	push   %rbp
+  40553f:	48 89 e5             	mov    %rsp,%rbp
+  405542:	53                   	push   %rbx
+  405543:	48 83 ec 28          	sub    $0x28,%rsp
+  405547:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+  40554b:	48 89 75 e0          	mov    %rsi,-0x20(%rbp)
+  40554f:	48 89 55 d8          	mov    %rdx,-0x28(%rbp)
+  405553:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  405557:	48 89 c6             	mov    %rax,%rsi
+  40555a:	48 8d 05 d9 ff ff ff 	lea    -0x27(%rip),%rax        # 40553a <_ZN9__gnu_cxx13new_allocatorIiE8allocateEmPKv>
+  405561:	48 89 c7             	mov    %rax,%rdi
+  405564:	e8 57 dc ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  405569:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  40556d:	48 89 c7             	mov    %rax,%rdi
+  405570:	e8 75 ff ff ff       	call   4054ea <_ZNK9__gnu_cxx13new_allocatorIiE11_M_max_sizeEv>
+  405575:	48 39 45 e0          	cmp    %rax,-0x20(%rbp)
+  405579:	0f 97 c0             	seta   %al
+  40557c:	0f b6 c0             	movzbl %al,%eax
+  40557f:	48 85 c0             	test   %rax,%rax
+  405582:	0f 95 c0             	setne  %al
+  405585:	84 c0                	test   %al,%al
+  405587:	74 1a                	je     4055a3 <_ZN9__gnu_cxx13new_allocatorIiE8allocateEmPKv+0x69>
+  405589:	48 b8 ff ff ff ff ff 	movabs $0x3fffffffffffffff,%rax
+  405590:	ff ff 3f 
+  405593:	48 39 45 e0          	cmp    %rax,-0x20(%rbp)
+  405597:	76 05                	jbe    40559e <_ZN9__gnu_cxx13new_allocatorIiE8allocateEmPKv+0x64>
+  405599:	e8 a2 db ff ff       	call   403140 <_ZSt28__throw_bad_array_new_lengthv@plt>
+  40559e:	e8 5d db ff ff       	call   403100 <_ZSt17__throw_bad_allocv@plt>
+  4055a3:	48 8b 45 e0          	mov    -0x20(%rbp),%rax
+  4055a7:	48 c1 e0 02          	shl    $0x2,%rax
+  4055ab:	48 89 c7             	mov    %rax,%rdi
+  4055ae:	e8 9d db ff ff       	call   403150 <_Znwm@plt>
+  4055b3:	48 89 c3             	mov    %rax,%rbx
+  4055b6:	90                   	nop
+  4055b7:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  4055bb:	48 89 c6             	mov    %rax,%rsi
+  4055be:	48 8d 05 75 ff ff ff 	lea    -0x8b(%rip),%rax        # 40553a <_ZN9__gnu_cxx13new_allocatorIiE8allocateEmPKv>
+  4055c5:	48 89 c7             	mov    %rax,%rdi
+  4055c8:	e8 63 db ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  4055cd:	48 89 d8             	mov    %rbx,%rax
+  4055d0:	eb 28                	jmp    4055fa <_ZN9__gnu_cxx13new_allocatorIiE8allocateEmPKv+0xc0>
+  4055d2:	f3 0f 1e fa          	endbr64 
+  4055d6:	48 89 c3             	mov    %rax,%rbx
+  4055d9:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  4055dd:	48 89 c6             	mov    %rax,%rsi
+  4055e0:	48 8d 05 53 ff ff ff 	lea    -0xad(%rip),%rax        # 40553a <_ZN9__gnu_cxx13new_allocatorIiE8allocateEmPKv>
+  4055e7:	48 89 c7             	mov    %rax,%rdi
+  4055ea:	e8 41 db ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  4055ef:	48 89 d8             	mov    %rbx,%rax
+  4055f2:	48 89 c7             	mov    %rax,%rdi
+  4055f5:	e8 b6 db ff ff       	call   4031b0 <_Unwind_Resume@plt>
+  4055fa:	48 8b 5d f8          	mov    -0x8(%rbp),%rbx
+  4055fe:	c9                   	leave  
+  4055ff:	c3                   	ret    
+
+0000000000405600 <_ZNSt16allocator_traitsISaIiEE8max_sizeERKS0_>:
+  405600:	f3 0f 1e fa          	endbr64 
+  405604:	55                   	push   %rbp
+  405605:	48 89 e5             	mov    %rsp,%rbp
+  405608:	53                   	push   %rbx
+  405609:	48 83 ec 18          	sub    $0x18,%rsp
+  40560d:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+  405611:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  405615:	48 89 c6             	mov    %rax,%rsi
+  405618:	48 8d 05 e1 ff ff ff 	lea    -0x1f(%rip),%rax        # 405600 <_ZNSt16allocator_traitsISaIiEE8max_sizeERKS0_>
+  40561f:	48 89 c7             	mov    %rax,%rdi
+  405622:	e8 99 db ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  405627:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  40562b:	48 89 c7             	mov    %rax,%rdi
+  40562e:	e8 e3 01 00 00       	call   405816 <_ZNK9__gnu_cxx13new_allocatorIiE8max_sizeEv>
+  405633:	48 89 c3             	mov    %rax,%rbx
+  405636:	90                   	nop
+  405637:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  40563b:	48 89 c6             	mov    %rax,%rsi
+  40563e:	48 8d 05 bb ff ff ff 	lea    -0x45(%rip),%rax        # 405600 <_ZNSt16allocator_traitsISaIiEE8max_sizeERKS0_>
+  405645:	48 89 c7             	mov    %rax,%rdi
+  405648:	e8 e3 da ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  40564d:	48 89 d8             	mov    %rbx,%rax
+  405650:	48 8b 5d f8          	mov    -0x8(%rbp),%rbx
+  405654:	c9                   	leave  
+  405655:	c3                   	ret    
+
+0000000000405656 <_ZSt3minImERKT_S2_S2_>:
+  405656:	f3 0f 1e fa          	endbr64 
+  40565a:	55                   	push   %rbp
+  40565b:	48 89 e5             	mov    %rsp,%rbp
+  40565e:	53                   	push   %rbx
+  40565f:	48 83 ec 18          	sub    $0x18,%rsp
+  405663:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+  405667:	48 89 75 e0          	mov    %rsi,-0x20(%rbp)
+  40566b:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  40566f:	48 89 c6             	mov    %rax,%rsi
+  405672:	48 8d 05 dd ff ff ff 	lea    -0x23(%rip),%rax        # 405656 <_ZSt3minImERKT_S2_S2_>
+  405679:	48 89 c7             	mov    %rax,%rdi
+  40567c:	e8 3f db ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  405681:	48 8b 45 e0          	mov    -0x20(%rbp),%rax
+  405685:	48 8b 10             	mov    (%rax),%rdx
+  405688:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  40568c:	48 8b 00             	mov    (%rax),%rax
+  40568f:	48 39 c2             	cmp    %rax,%rdx
+  405692:	73 06                	jae    40569a <_ZSt3minImERKT_S2_S2_+0x44>
+  405694:	48 8b 5d e0          	mov    -0x20(%rbp),%rbx
+  405698:	eb 04                	jmp    40569e <_ZSt3minImERKT_S2_S2_+0x48>
+  40569a:	48 8b 5d e8          	mov    -0x18(%rbp),%rbx
+  40569e:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  4056a2:	48 89 c6             	mov    %rax,%rsi
+  4056a5:	48 8d 05 aa ff ff ff 	lea    -0x56(%rip),%rax        # 405656 <_ZSt3minImERKT_S2_S2_>
+  4056ac:	48 89 c7             	mov    %rax,%rdi
+  4056af:	e8 7c da ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  4056b4:	48 89 d8             	mov    %rbx,%rax
+  4056b7:	48 8b 5d f8          	mov    -0x8(%rbp),%rbx
+  4056bb:	c9                   	leave  
+  4056bc:	c3                   	ret    
+
+00000000004056bd <_ZSt4copyIPPiS1_ET0_T_S3_S2_>:
+  4056bd:	f3 0f 1e fa          	endbr64 
+  4056c1:	55                   	push   %rbp
+  4056c2:	48 89 e5             	mov    %rsp,%rbp
+  4056c5:	53                   	push   %rbx
+  4056c6:	48 83 ec 28          	sub    $0x28,%rsp
+  4056ca:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+  4056ce:	48 89 75 e0          	mov    %rsi,-0x20(%rbp)
+  4056d2:	48 89 55 d8          	mov    %rdx,-0x28(%rbp)
+  4056d6:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  4056da:	48 89 c6             	mov    %rax,%rsi
+  4056dd:	48 8d 05 d9 ff ff ff 	lea    -0x27(%rip),%rax        # 4056bd <_ZSt4copyIPPiS1_ET0_T_S3_S2_>
+  4056e4:	48 89 c7             	mov    %rax,%rdi
+  4056e7:	e8 d4 da ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  4056ec:	48 8b 45 e0          	mov    -0x20(%rbp),%rax
+  4056f0:	48 89 c7             	mov    %rax,%rdi
+  4056f3:	e8 74 01 00 00       	call   40586c <_ZSt12__miter_baseIPPiET_S2_>
+  4056f8:	48 89 c3             	mov    %rax,%rbx
+  4056fb:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  4056ff:	48 89 c7             	mov    %rax,%rdi
+  405702:	e8 65 01 00 00       	call   40586c <_ZSt12__miter_baseIPPiET_S2_>
+  405707:	48 89 c1             	mov    %rax,%rcx
+  40570a:	48 8b 45 d8          	mov    -0x28(%rbp),%rax
+  40570e:	48 89 c2             	mov    %rax,%rdx
+  405711:	48 89 de             	mov    %rbx,%rsi
+  405714:	48 89 cf             	mov    %rcx,%rdi
+  405717:	e8 9a 01 00 00       	call   4058b6 <_ZSt13__copy_move_aILb0EPPiS1_ET1_T0_S3_S2_>
+  40571c:	48 89 c3             	mov    %rax,%rbx
+  40571f:	90                   	nop
+  405720:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  405724:	48 89 c6             	mov    %rax,%rsi
+  405727:	48 8d 05 8f ff ff ff 	lea    -0x71(%rip),%rax        # 4056bd <_ZSt4copyIPPiS1_ET0_T_S3_S2_>
+  40572e:	48 89 c7             	mov    %rax,%rdi
+  405731:	e8 fa d9 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  405736:	48 89 d8             	mov    %rbx,%rax
+  405739:	eb 28                	jmp    405763 <_ZSt4copyIPPiS1_ET0_T_S3_S2_+0xa6>
+  40573b:	f3 0f 1e fa          	endbr64 
+  40573f:	48 89 c3             	mov    %rax,%rbx
+  405742:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  405746:	48 89 c6             	mov    %rax,%rsi
+  405749:	48 8d 05 6d ff ff ff 	lea    -0x93(%rip),%rax        # 4056bd <_ZSt4copyIPPiS1_ET0_T_S3_S2_>
+  405750:	48 89 c7             	mov    %rax,%rdi
+  405753:	e8 d8 d9 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  405758:	48 89 d8             	mov    %rbx,%rax
+  40575b:	48 89 c7             	mov    %rax,%rdi
+  40575e:	e8 4d da ff ff       	call   4031b0 <_Unwind_Resume@plt>
+  405763:	48 8b 5d f8          	mov    -0x8(%rbp),%rbx
+  405767:	c9                   	leave  
+  405768:	c3                   	ret    
+
+0000000000405769 <_ZSt13copy_backwardIPPiS1_ET0_T_S3_S2_>:
+  405769:	f3 0f 1e fa          	endbr64 
+  40576d:	55                   	push   %rbp
+  40576e:	48 89 e5             	mov    %rsp,%rbp
+  405771:	53                   	push   %rbx
+  405772:	48 83 ec 28          	sub    $0x28,%rsp
+  405776:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+  40577a:	48 89 75 e0          	mov    %rsi,-0x20(%rbp)
+  40577e:	48 89 55 d8          	mov    %rdx,-0x28(%rbp)
+  405782:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  405786:	48 89 c6             	mov    %rax,%rsi
+  405789:	48 8d 05 d9 ff ff ff 	lea    -0x27(%rip),%rax        # 405769 <_ZSt13copy_backwardIPPiS1_ET0_T_S3_S2_>
+  405790:	48 89 c7             	mov    %rax,%rdi
+  405793:	e8 28 da ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  405798:	48 8b 45 e0          	mov    -0x20(%rbp),%rax
+  40579c:	48 89 c7             	mov    %rax,%rdi
+  40579f:	e8 c8 00 00 00       	call   40586c <_ZSt12__miter_baseIPPiET_S2_>
+  4057a4:	48 89 c3             	mov    %rax,%rbx
+  4057a7:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  4057ab:	48 89 c7             	mov    %rax,%rdi
+  4057ae:	e8 b9 00 00 00       	call   40586c <_ZSt12__miter_baseIPPiET_S2_>
+  4057b3:	48 89 c1             	mov    %rax,%rcx
+  4057b6:	48 8b 45 d8          	mov    -0x28(%rbp),%rax
+  4057ba:	48 89 c2             	mov    %rax,%rdx
+  4057bd:	48 89 de             	mov    %rbx,%rsi
+  4057c0:	48 89 cf             	mov    %rcx,%rdi
+  4057c3:	e8 b9 01 00 00       	call   405981 <_ZSt22__copy_move_backward_aILb0EPPiS1_ET1_T0_S3_S2_>
+  4057c8:	48 89 c3             	mov    %rax,%rbx
+  4057cb:	90                   	nop
+  4057cc:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  4057d0:	48 89 c6             	mov    %rax,%rsi
+  4057d3:	48 8d 05 8f ff ff ff 	lea    -0x71(%rip),%rax        # 405769 <_ZSt13copy_backwardIPPiS1_ET0_T_S3_S2_>
+  4057da:	48 89 c7             	mov    %rax,%rdi
+  4057dd:	e8 4e d9 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  4057e2:	48 89 d8             	mov    %rbx,%rax
+  4057e5:	eb 28                	jmp    40580f <_ZSt13copy_backwardIPPiS1_ET0_T_S3_S2_+0xa6>
+  4057e7:	f3 0f 1e fa          	endbr64 
+  4057eb:	48 89 c3             	mov    %rax,%rbx
+  4057ee:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  4057f2:	48 89 c6             	mov    %rax,%rsi
+  4057f5:	48 8d 05 6d ff ff ff 	lea    -0x93(%rip),%rax        # 405769 <_ZSt13copy_backwardIPPiS1_ET0_T_S3_S2_>
+  4057fc:	48 89 c7             	mov    %rax,%rdi
+  4057ff:	e8 2c d9 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  405804:	48 89 d8             	mov    %rbx,%rax
+  405807:	48 89 c7             	mov    %rax,%rdi
+  40580a:	e8 a1 d9 ff ff       	call   4031b0 <_Unwind_Resume@plt>
+  40580f:	48 8b 5d f8          	mov    -0x8(%rbp),%rbx
+  405813:	c9                   	leave  
+  405814:	c3                   	ret    
+  405815:	90                   	nop
+
+0000000000405816 <_ZNK9__gnu_cxx13new_allocatorIiE8max_sizeEv>:
+  405816:	f3 0f 1e fa          	endbr64 
+  40581a:	55                   	push   %rbp
+  40581b:	48 89 e5             	mov    %rsp,%rbp
+  40581e:	53                   	push   %rbx
+  40581f:	48 83 ec 18          	sub    $0x18,%rsp
+  405823:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+  405827:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  40582b:	48 89 c6             	mov    %rax,%rsi
+  40582e:	48 8d 05 e1 ff ff ff 	lea    -0x1f(%rip),%rax        # 405816 <_ZNK9__gnu_cxx13new_allocatorIiE8max_sizeEv>
+  405835:	48 89 c7             	mov    %rax,%rdi
+  405838:	e8 83 d9 ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  40583d:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  405841:	48 89 c7             	mov    %rax,%rdi
+  405844:	e8 a1 fc ff ff       	call   4054ea <_ZNK9__gnu_cxx13new_allocatorIiE11_M_max_sizeEv>
+  405849:	48 89 c3             	mov    %rax,%rbx
+  40584c:	90                   	nop
+  40584d:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  405851:	48 89 c6             	mov    %rax,%rsi
+  405854:	48 8d 05 bb ff ff ff 	lea    -0x45(%rip),%rax        # 405816 <_ZNK9__gnu_cxx13new_allocatorIiE8max_sizeEv>
+  40585b:	48 89 c7             	mov    %rax,%rdi
+  40585e:	e8 cd d8 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  405863:	48 89 d8             	mov    %rbx,%rax
+  405866:	48 8b 5d f8          	mov    -0x8(%rbp),%rbx
+  40586a:	c9                   	leave  
+  40586b:	c3                   	ret    
+
+000000000040586c <_ZSt12__miter_baseIPPiET_S2_>:
+  40586c:	f3 0f 1e fa          	endbr64 
+  405870:	55                   	push   %rbp
+  405871:	48 89 e5             	mov    %rsp,%rbp
+  405874:	53                   	push   %rbx
+  405875:	48 83 ec 18          	sub    $0x18,%rsp
+  405879:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+  40587d:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  405881:	48 89 c6             	mov    %rax,%rsi
+  405884:	48 8d 05 e1 ff ff ff 	lea    -0x1f(%rip),%rax        # 40586c <_ZSt12__miter_baseIPPiET_S2_>
+  40588b:	48 89 c7             	mov    %rax,%rdi
+  40588e:	e8 2d d9 ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  405893:	48 8b 5d e8          	mov    -0x18(%rbp),%rbx
+  405897:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  40589b:	48 89 c6             	mov    %rax,%rsi
+  40589e:	48 8d 05 c7 ff ff ff 	lea    -0x39(%rip),%rax        # 40586c <_ZSt12__miter_baseIPPiET_S2_>
+  4058a5:	48 89 c7             	mov    %rax,%rdi
+  4058a8:	e8 83 d8 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  4058ad:	48 89 d8             	mov    %rbx,%rax
+  4058b0:	48 8b 5d f8          	mov    -0x8(%rbp),%rbx
+  4058b4:	c9                   	leave  
+  4058b5:	c3                   	ret    
+
+00000000004058b6 <_ZSt13__copy_move_aILb0EPPiS1_ET1_T0_S3_S2_>:
+  4058b6:	f3 0f 1e fa          	endbr64 
+  4058ba:	55                   	push   %rbp
+  4058bb:	48 89 e5             	mov    %rsp,%rbp
+  4058be:	41 54                	push   %r12
+  4058c0:	53                   	push   %rbx
+  4058c1:	48 83 ec 20          	sub    $0x20,%rsp
+  4058c5:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+  4058c9:	48 89 75 e0          	mov    %rsi,-0x20(%rbp)
+  4058cd:	48 89 55 d8          	mov    %rdx,-0x28(%rbp)
+  4058d1:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  4058d5:	48 89 c6             	mov    %rax,%rsi
+  4058d8:	48 8d 05 d7 ff ff ff 	lea    -0x29(%rip),%rax        # 4058b6 <_ZSt13__copy_move_aILb0EPPiS1_ET1_T0_S3_S2_>
+  4058df:	48 89 c7             	mov    %rax,%rdi
+  4058e2:	e8 d9 d8 ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  4058e7:	48 8b 45 d8          	mov    -0x28(%rbp),%rax
+  4058eb:	48 89 c7             	mov    %rax,%rdi
+  4058ee:	e8 59 01 00 00       	call   405a4c <_ZSt12__niter_baseIPPiET_S2_>
+  4058f3:	49 89 c4             	mov    %rax,%r12
+  4058f6:	48 8b 45 e0          	mov    -0x20(%rbp),%rax
+  4058fa:	48 89 c7             	mov    %rax,%rdi
+  4058fd:	e8 4a 01 00 00       	call   405a4c <_ZSt12__niter_baseIPPiET_S2_>
+  405902:	48 89 c3             	mov    %rax,%rbx
+  405905:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  405909:	48 89 c7             	mov    %rax,%rdi
+  40590c:	e8 3b 01 00 00       	call   405a4c <_ZSt12__niter_baseIPPiET_S2_>
+  405911:	4c 89 e2             	mov    %r12,%rdx
+  405914:	48 89 de             	mov    %rbx,%rsi
+  405917:	48 89 c7             	mov    %rax,%rdi
+  40591a:	e8 77 01 00 00       	call   405a96 <_ZSt14__copy_move_a1ILb0EPPiS1_ET1_T0_S3_S2_>
+  40591f:	48 89 c2             	mov    %rax,%rdx
+  405922:	48 8d 45 d8          	lea    -0x28(%rbp),%rax
+  405926:	48 89 d6             	mov    %rdx,%rsi
+  405929:	48 89 c7             	mov    %rax,%rdi
+  40592c:	e8 f8 01 00 00       	call   405b29 <_ZSt12__niter_wrapIPPiET_RKS2_S2_>
+  405931:	48 89 c3             	mov    %rax,%rbx
+  405934:	90                   	nop
+  405935:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  405939:	48 89 c6             	mov    %rax,%rsi
+  40593c:	48 8d 05 73 ff ff ff 	lea    -0x8d(%rip),%rax        # 4058b6 <_ZSt13__copy_move_aILb0EPPiS1_ET1_T0_S3_S2_>
+  405943:	48 89 c7             	mov    %rax,%rdi
+  405946:	e8 e5 d7 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  40594b:	48 89 d8             	mov    %rbx,%rax
+  40594e:	eb 28                	jmp    405978 <_ZSt13__copy_move_aILb0EPPiS1_ET1_T0_S3_S2_+0xc2>
+  405950:	f3 0f 1e fa          	endbr64 
+  405954:	48 89 c3             	mov    %rax,%rbx
+  405957:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  40595b:	48 89 c6             	mov    %rax,%rsi
+  40595e:	48 8d 05 51 ff ff ff 	lea    -0xaf(%rip),%rax        # 4058b6 <_ZSt13__copy_move_aILb0EPPiS1_ET1_T0_S3_S2_>
+  405965:	48 89 c7             	mov    %rax,%rdi
+  405968:	e8 c3 d7 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  40596d:	48 89 d8             	mov    %rbx,%rax
+  405970:	48 89 c7             	mov    %rax,%rdi
+  405973:	e8 38 d8 ff ff       	call   4031b0 <_Unwind_Resume@plt>
+  405978:	48 83 c4 20          	add    $0x20,%rsp
+  40597c:	5b                   	pop    %rbx
+  40597d:	41 5c                	pop    %r12
+  40597f:	5d                   	pop    %rbp
+  405980:	c3                   	ret    
+
+0000000000405981 <_ZSt22__copy_move_backward_aILb0EPPiS1_ET1_T0_S3_S2_>:
+  405981:	f3 0f 1e fa          	endbr64 
+  405985:	55                   	push   %rbp
+  405986:	48 89 e5             	mov    %rsp,%rbp
+  405989:	41 54                	push   %r12
+  40598b:	53                   	push   %rbx
+  40598c:	48 83 ec 20          	sub    $0x20,%rsp
+  405990:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+  405994:	48 89 75 e0          	mov    %rsi,-0x20(%rbp)
+  405998:	48 89 55 d8          	mov    %rdx,-0x28(%rbp)
+  40599c:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  4059a0:	48 89 c6             	mov    %rax,%rsi
+  4059a3:	48 8d 05 d7 ff ff ff 	lea    -0x29(%rip),%rax        # 405981 <_ZSt22__copy_move_backward_aILb0EPPiS1_ET1_T0_S3_S2_>
+  4059aa:	48 89 c7             	mov    %rax,%rdi
+  4059ad:	e8 0e d8 ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  4059b2:	48 8b 45 d8          	mov    -0x28(%rbp),%rax
+  4059b6:	48 89 c7             	mov    %rax,%rdi
+  4059b9:	e8 8e 00 00 00       	call   405a4c <_ZSt12__niter_baseIPPiET_S2_>
+  4059be:	49 89 c4             	mov    %rax,%r12
+  4059c1:	48 8b 45 e0          	mov    -0x20(%rbp),%rax
+  4059c5:	48 89 c7             	mov    %rax,%rdi
+  4059c8:	e8 7f 00 00 00       	call   405a4c <_ZSt12__niter_baseIPPiET_S2_>
+  4059cd:	48 89 c3             	mov    %rax,%rbx
+  4059d0:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  4059d4:	48 89 c7             	mov    %rax,%rdi
+  4059d7:	e8 70 00 00 00       	call   405a4c <_ZSt12__niter_baseIPPiET_S2_>
+  4059dc:	4c 89 e2             	mov    %r12,%rdx
+  4059df:	48 89 de             	mov    %rbx,%rsi
+  4059e2:	48 89 c7             	mov    %rax,%rdi
+  4059e5:	e8 8d 01 00 00       	call   405b77 <_ZSt23__copy_move_backward_a1ILb0EPPiS1_ET1_T0_S3_S2_>
+  4059ea:	48 89 c2             	mov    %rax,%rdx
+  4059ed:	48 8d 45 d8          	lea    -0x28(%rbp),%rax
+  4059f1:	48 89 d6             	mov    %rdx,%rsi
+  4059f4:	48 89 c7             	mov    %rax,%rdi
+  4059f7:	e8 2d 01 00 00       	call   405b29 <_ZSt12__niter_wrapIPPiET_RKS2_S2_>
+  4059fc:	48 89 c3             	mov    %rax,%rbx
+  4059ff:	90                   	nop
+  405a00:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  405a04:	48 89 c6             	mov    %rax,%rsi
+  405a07:	48 8d 05 73 ff ff ff 	lea    -0x8d(%rip),%rax        # 405981 <_ZSt22__copy_move_backward_aILb0EPPiS1_ET1_T0_S3_S2_>
+  405a0e:	48 89 c7             	mov    %rax,%rdi
+  405a11:	e8 1a d7 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  405a16:	48 89 d8             	mov    %rbx,%rax
+  405a19:	eb 28                	jmp    405a43 <_ZSt22__copy_move_backward_aILb0EPPiS1_ET1_T0_S3_S2_+0xc2>
+  405a1b:	f3 0f 1e fa          	endbr64 
+  405a1f:	48 89 c3             	mov    %rax,%rbx
+  405a22:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  405a26:	48 89 c6             	mov    %rax,%rsi
+  405a29:	48 8d 05 51 ff ff ff 	lea    -0xaf(%rip),%rax        # 405981 <_ZSt22__copy_move_backward_aILb0EPPiS1_ET1_T0_S3_S2_>
+  405a30:	48 89 c7             	mov    %rax,%rdi
+  405a33:	e8 f8 d6 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  405a38:	48 89 d8             	mov    %rbx,%rax
+  405a3b:	48 89 c7             	mov    %rax,%rdi
+  405a3e:	e8 6d d7 ff ff       	call   4031b0 <_Unwind_Resume@plt>
+  405a43:	48 83 c4 20          	add    $0x20,%rsp
+  405a47:	5b                   	pop    %rbx
+  405a48:	41 5c                	pop    %r12
+  405a4a:	5d                   	pop    %rbp
+  405a4b:	c3                   	ret    
+
+0000000000405a4c <_ZSt12__niter_baseIPPiET_S2_>:
+  405a4c:	f3 0f 1e fa          	endbr64 
+  405a50:	55                   	push   %rbp
+  405a51:	48 89 e5             	mov    %rsp,%rbp
+  405a54:	53                   	push   %rbx
+  405a55:	48 83 ec 18          	sub    $0x18,%rsp
+  405a59:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+  405a5d:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  405a61:	48 89 c6             	mov    %rax,%rsi
+  405a64:	48 8d 05 e1 ff ff ff 	lea    -0x1f(%rip),%rax        # 405a4c <_ZSt12__niter_baseIPPiET_S2_>
+  405a6b:	48 89 c7             	mov    %rax,%rdi
+  405a6e:	e8 4d d7 ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  405a73:	48 8b 5d e8          	mov    -0x18(%rbp),%rbx
+  405a77:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  405a7b:	48 89 c6             	mov    %rax,%rsi
+  405a7e:	48 8d 05 c7 ff ff ff 	lea    -0x39(%rip),%rax        # 405a4c <_ZSt12__niter_baseIPPiET_S2_>
+  405a85:	48 89 c7             	mov    %rax,%rdi
+  405a88:	e8 a3 d6 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  405a8d:	48 89 d8             	mov    %rbx,%rax
+  405a90:	48 8b 5d f8          	mov    -0x8(%rbp),%rbx
+  405a94:	c9                   	leave  
+  405a95:	c3                   	ret    
+
+0000000000405a96 <_ZSt14__copy_move_a1ILb0EPPiS1_ET1_T0_S3_S2_>:
+  405a96:	f3 0f 1e fa          	endbr64 
+  405a9a:	55                   	push   %rbp
+  405a9b:	48 89 e5             	mov    %rsp,%rbp
+  405a9e:	53                   	push   %rbx
+  405a9f:	48 83 ec 28          	sub    $0x28,%rsp
+  405aa3:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+  405aa7:	48 89 75 e0          	mov    %rsi,-0x20(%rbp)
+  405aab:	48 89 55 d8          	mov    %rdx,-0x28(%rbp)
+  405aaf:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  405ab3:	48 89 c6             	mov    %rax,%rsi
+  405ab6:	48 8d 05 d9 ff ff ff 	lea    -0x27(%rip),%rax        # 405a96 <_ZSt14__copy_move_a1ILb0EPPiS1_ET1_T0_S3_S2_>
+  405abd:	48 89 c7             	mov    %rax,%rdi
+  405ac0:	e8 fb d6 ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  405ac5:	48 8b 55 d8          	mov    -0x28(%rbp),%rdx
+  405ac9:	48 8b 4d e0          	mov    -0x20(%rbp),%rcx
+  405acd:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  405ad1:	48 89 ce             	mov    %rcx,%rsi
+  405ad4:	48 89 c7             	mov    %rax,%rdi
+  405ad7:	e8 2e 01 00 00       	call   405c0a <_ZSt14__copy_move_a2ILb0EPPiS1_ET1_T0_S3_S2_>
+  405adc:	48 89 c3             	mov    %rax,%rbx
+  405adf:	90                   	nop
+  405ae0:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  405ae4:	48 89 c6             	mov    %rax,%rsi
+  405ae7:	48 8d 05 a8 ff ff ff 	lea    -0x58(%rip),%rax        # 405a96 <_ZSt14__copy_move_a1ILb0EPPiS1_ET1_T0_S3_S2_>
+  405aee:	48 89 c7             	mov    %rax,%rdi
+  405af1:	e8 3a d6 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  405af6:	48 89 d8             	mov    %rbx,%rax
+  405af9:	eb 28                	jmp    405b23 <_ZSt14__copy_move_a1ILb0EPPiS1_ET1_T0_S3_S2_+0x8d>
+  405afb:	f3 0f 1e fa          	endbr64 
+  405aff:	48 89 c3             	mov    %rax,%rbx
+  405b02:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  405b06:	48 89 c6             	mov    %rax,%rsi
+  405b09:	48 8d 05 86 ff ff ff 	lea    -0x7a(%rip),%rax        # 405a96 <_ZSt14__copy_move_a1ILb0EPPiS1_ET1_T0_S3_S2_>
+  405b10:	48 89 c7             	mov    %rax,%rdi
+  405b13:	e8 18 d6 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  405b18:	48 89 d8             	mov    %rbx,%rax
+  405b1b:	48 89 c7             	mov    %rax,%rdi
+  405b1e:	e8 8d d6 ff ff       	call   4031b0 <_Unwind_Resume@plt>
+  405b23:	48 8b 5d f8          	mov    -0x8(%rbp),%rbx
+  405b27:	c9                   	leave  
+  405b28:	c3                   	ret    
+
+0000000000405b29 <_ZSt12__niter_wrapIPPiET_RKS2_S2_>:
+  405b29:	f3 0f 1e fa          	endbr64 
+  405b2d:	55                   	push   %rbp
+  405b2e:	48 89 e5             	mov    %rsp,%rbp
+  405b31:	53                   	push   %rbx
+  405b32:	48 83 ec 18          	sub    $0x18,%rsp
+  405b36:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+  405b3a:	48 89 75 e0          	mov    %rsi,-0x20(%rbp)
+  405b3e:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  405b42:	48 89 c6             	mov    %rax,%rsi
+  405b45:	48 8d 05 dd ff ff ff 	lea    -0x23(%rip),%rax        # 405b29 <_ZSt12__niter_wrapIPPiET_RKS2_S2_>
+  405b4c:	48 89 c7             	mov    %rax,%rdi
+  405b4f:	e8 6c d6 ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  405b54:	48 8b 5d e0          	mov    -0x20(%rbp),%rbx
+  405b58:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  405b5c:	48 89 c6             	mov    %rax,%rsi
+  405b5f:	48 8d 05 c3 ff ff ff 	lea    -0x3d(%rip),%rax        # 405b29 <_ZSt12__niter_wrapIPPiET_RKS2_S2_>
+  405b66:	48 89 c7             	mov    %rax,%rdi
+  405b69:	e8 c2 d5 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  405b6e:	48 89 d8             	mov    %rbx,%rax
+  405b71:	48 8b 5d f8          	mov    -0x8(%rbp),%rbx
+  405b75:	c9                   	leave  
+  405b76:	c3                   	ret    
+
+0000000000405b77 <_ZSt23__copy_move_backward_a1ILb0EPPiS1_ET1_T0_S3_S2_>:
+  405b77:	f3 0f 1e fa          	endbr64 
+  405b7b:	55                   	push   %rbp
+  405b7c:	48 89 e5             	mov    %rsp,%rbp
+  405b7f:	53                   	push   %rbx
+  405b80:	48 83 ec 28          	sub    $0x28,%rsp
+  405b84:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+  405b88:	48 89 75 e0          	mov    %rsi,-0x20(%rbp)
+  405b8c:	48 89 55 d8          	mov    %rdx,-0x28(%rbp)
+  405b90:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  405b94:	48 89 c6             	mov    %rax,%rsi
+  405b97:	48 8d 05 d9 ff ff ff 	lea    -0x27(%rip),%rax        # 405b77 <_ZSt23__copy_move_backward_a1ILb0EPPiS1_ET1_T0_S3_S2_>
+  405b9e:	48 89 c7             	mov    %rax,%rdi
+  405ba1:	e8 1a d6 ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  405ba6:	48 8b 55 d8          	mov    -0x28(%rbp),%rdx
+  405baa:	48 8b 4d e0          	mov    -0x20(%rbp),%rcx
+  405bae:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  405bb2:	48 89 ce             	mov    %rcx,%rsi
+  405bb5:	48 89 c7             	mov    %rax,%rdi
+  405bb8:	e8 b6 00 00 00       	call   405c73 <_ZSt23__copy_move_backward_a2ILb0EPPiS1_ET1_T0_S3_S2_>
+  405bbd:	48 89 c3             	mov    %rax,%rbx
+  405bc0:	90                   	nop
+  405bc1:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  405bc5:	48 89 c6             	mov    %rax,%rsi
+  405bc8:	48 8d 05 a8 ff ff ff 	lea    -0x58(%rip),%rax        # 405b77 <_ZSt23__copy_move_backward_a1ILb0EPPiS1_ET1_T0_S3_S2_>
+  405bcf:	48 89 c7             	mov    %rax,%rdi
+  405bd2:	e8 59 d5 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  405bd7:	48 89 d8             	mov    %rbx,%rax
+  405bda:	eb 28                	jmp    405c04 <_ZSt23__copy_move_backward_a1ILb0EPPiS1_ET1_T0_S3_S2_+0x8d>
+  405bdc:	f3 0f 1e fa          	endbr64 
+  405be0:	48 89 c3             	mov    %rax,%rbx
+  405be3:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  405be7:	48 89 c6             	mov    %rax,%rsi
+  405bea:	48 8d 05 86 ff ff ff 	lea    -0x7a(%rip),%rax        # 405b77 <_ZSt23__copy_move_backward_a1ILb0EPPiS1_ET1_T0_S3_S2_>
+  405bf1:	48 89 c7             	mov    %rax,%rdi
+  405bf4:	e8 37 d5 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  405bf9:	48 89 d8             	mov    %rbx,%rax
+  405bfc:	48 89 c7             	mov    %rax,%rdi
+  405bff:	e8 ac d5 ff ff       	call   4031b0 <_Unwind_Resume@plt>
+  405c04:	48 8b 5d f8          	mov    -0x8(%rbp),%rbx
+  405c08:	c9                   	leave  
+  405c09:	c3                   	ret    
+
+0000000000405c0a <_ZSt14__copy_move_a2ILb0EPPiS1_ET1_T0_S3_S2_>:
+  405c0a:	f3 0f 1e fa          	endbr64 
+  405c0e:	55                   	push   %rbp
+  405c0f:	48 89 e5             	mov    %rsp,%rbp
+  405c12:	53                   	push   %rbx
+  405c13:	48 83 ec 28          	sub    $0x28,%rsp
+  405c17:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+  405c1b:	48 89 75 e0          	mov    %rsi,-0x20(%rbp)
+  405c1f:	48 89 55 d8          	mov    %rdx,-0x28(%rbp)
+  405c23:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  405c27:	48 89 c6             	mov    %rax,%rsi
+  405c2a:	48 8d 05 d9 ff ff ff 	lea    -0x27(%rip),%rax        # 405c0a <_ZSt14__copy_move_a2ILb0EPPiS1_ET1_T0_S3_S2_>
+  405c31:	48 89 c7             	mov    %rax,%rdi
+  405c34:	e8 87 d5 ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  405c39:	48 8b 55 d8          	mov    -0x28(%rbp),%rdx
+  405c3d:	48 8b 4d e0          	mov    -0x20(%rbp),%rcx
+  405c41:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  405c45:	48 89 ce             	mov    %rcx,%rsi
+  405c48:	48 89 c7             	mov    %rax,%rdi
+  405c4b:	e8 8c 00 00 00       	call   405cdc <_ZNSt11__copy_moveILb0ELb1ESt26random_access_iterator_tagE8__copy_mIPiEEPT_PKS4_S7_S5_>
+  405c50:	48 89 c3             	mov    %rax,%rbx
+  405c53:	90                   	nop
+  405c54:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  405c58:	48 89 c6             	mov    %rax,%rsi
+  405c5b:	48 8d 05 a8 ff ff ff 	lea    -0x58(%rip),%rax        # 405c0a <_ZSt14__copy_move_a2ILb0EPPiS1_ET1_T0_S3_S2_>
+  405c62:	48 89 c7             	mov    %rax,%rdi
+  405c65:	e8 c6 d4 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  405c6a:	48 89 d8             	mov    %rbx,%rax
+  405c6d:	48 8b 5d f8          	mov    -0x8(%rbp),%rbx
+  405c71:	c9                   	leave  
+  405c72:	c3                   	ret    
+
+0000000000405c73 <_ZSt23__copy_move_backward_a2ILb0EPPiS1_ET1_T0_S3_S2_>:
+  405c73:	f3 0f 1e fa          	endbr64 
+  405c77:	55                   	push   %rbp
+  405c78:	48 89 e5             	mov    %rsp,%rbp
+  405c7b:	53                   	push   %rbx
+  405c7c:	48 83 ec 28          	sub    $0x28,%rsp
+  405c80:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+  405c84:	48 89 75 e0          	mov    %rsi,-0x20(%rbp)
+  405c88:	48 89 55 d8          	mov    %rdx,-0x28(%rbp)
+  405c8c:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  405c90:	48 89 c6             	mov    %rax,%rsi
+  405c93:	48 8d 05 d9 ff ff ff 	lea    -0x27(%rip),%rax        # 405c73 <_ZSt23__copy_move_backward_a2ILb0EPPiS1_ET1_T0_S3_S2_>
+  405c9a:	48 89 c7             	mov    %rax,%rdi
+  405c9d:	e8 1e d5 ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  405ca2:	48 8b 55 d8          	mov    -0x28(%rbp),%rdx
+  405ca6:	48 8b 4d e0          	mov    -0x20(%rbp),%rcx
+  405caa:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  405cae:	48 89 ce             	mov    %rcx,%rsi
+  405cb1:	48 89 c7             	mov    %rax,%rdi
+  405cb4:	e8 bb 00 00 00       	call   405d74 <_ZNSt20__copy_move_backwardILb0ELb1ESt26random_access_iterator_tagE13__copy_move_bIPiEEPT_PKS4_S7_S5_>
+  405cb9:	48 89 c3             	mov    %rax,%rbx
+  405cbc:	90                   	nop
+  405cbd:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  405cc1:	48 89 c6             	mov    %rax,%rsi
+  405cc4:	48 8d 05 a8 ff ff ff 	lea    -0x58(%rip),%rax        # 405c73 <_ZSt23__copy_move_backward_a2ILb0EPPiS1_ET1_T0_S3_S2_>
+  405ccb:	48 89 c7             	mov    %rax,%rdi
+  405cce:	e8 5d d4 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  405cd3:	48 89 d8             	mov    %rbx,%rax
+  405cd6:	48 8b 5d f8          	mov    -0x8(%rbp),%rbx
+  405cda:	c9                   	leave  
+  405cdb:	c3                   	ret    
+
+0000000000405cdc <_ZNSt11__copy_moveILb0ELb1ESt26random_access_iterator_tagE8__copy_mIPiEEPT_PKS4_S7_S5_>:
+  405cdc:	f3 0f 1e fa          	endbr64 
+  405ce0:	55                   	push   %rbp
+  405ce1:	48 89 e5             	mov    %rsp,%rbp
+  405ce4:	53                   	push   %rbx
+  405ce5:	48 83 ec 38          	sub    $0x38,%rsp
+  405ce9:	48 89 7d d8          	mov    %rdi,-0x28(%rbp)
+  405ced:	48 89 75 d0          	mov    %rsi,-0x30(%rbp)
+  405cf1:	48 89 55 c8          	mov    %rdx,-0x38(%rbp)
+  405cf5:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  405cf9:	48 89 c6             	mov    %rax,%rsi
+  405cfc:	48 8d 05 d9 ff ff ff 	lea    -0x27(%rip),%rax        # 405cdc <_ZNSt11__copy_moveILb0ELb1ESt26random_access_iterator_tagE8__copy_mIPiEEPT_PKS4_S7_S5_>
+  405d03:	48 89 c7             	mov    %rax,%rdi
+  405d06:	e8 b5 d4 ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  405d0b:	48 8b 45 d0          	mov    -0x30(%rbp),%rax
+  405d0f:	48 2b 45 d8          	sub    -0x28(%rbp),%rax
+  405d13:	48 c1 f8 03          	sar    $0x3,%rax
+  405d17:	48 89 45 e8          	mov    %rax,-0x18(%rbp)
+  405d1b:	48 83 7d e8 00       	cmpq   $0x0,-0x18(%rbp)
+  405d20:	74 1f                	je     405d41 <_ZNSt11__copy_moveILb0ELb1ESt26random_access_iterator_tagE8__copy_mIPiEEPT_PKS4_S7_S5_+0x65>
+  405d22:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  405d26:	48 8d 14 c5 00 00 00 	lea    0x0(,%rax,8),%rdx
+  405d2d:	00 
+  405d2e:	48 8b 4d d8          	mov    -0x28(%rbp),%rcx
+  405d32:	48 8b 45 c8          	mov    -0x38(%rbp),%rax
+  405d36:	48 89 ce             	mov    %rcx,%rsi
+  405d39:	48 89 c7             	mov    %rax,%rdi
+  405d3c:	e8 4f d4 ff ff       	call   403190 <memmove@plt>
+  405d41:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  405d45:	48 8d 14 c5 00 00 00 	lea    0x0(,%rax,8),%rdx
+  405d4c:	00 
+  405d4d:	48 8b 45 c8          	mov    -0x38(%rbp),%rax
+  405d51:	48 8d 1c 02          	lea    (%rdx,%rax,1),%rbx
+  405d55:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  405d59:	48 89 c6             	mov    %rax,%rsi
+  405d5c:	48 8d 05 79 ff ff ff 	lea    -0x87(%rip),%rax        # 405cdc <_ZNSt11__copy_moveILb0ELb1ESt26random_access_iterator_tagE8__copy_mIPiEEPT_PKS4_S7_S5_>
+  405d63:	48 89 c7             	mov    %rax,%rdi
+  405d66:	e8 c5 d3 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  405d6b:	48 89 d8             	mov    %rbx,%rax
+  405d6e:	48 8b 5d f8          	mov    -0x8(%rbp),%rbx
+  405d72:	c9                   	leave  
+  405d73:	c3                   	ret    
+
+0000000000405d74 <_ZNSt20__copy_move_backwardILb0ELb1ESt26random_access_iterator_tagE13__copy_move_bIPiEEPT_PKS4_S7_S5_>:
+  405d74:	f3 0f 1e fa          	endbr64 
+  405d78:	55                   	push   %rbp
+  405d79:	48 89 e5             	mov    %rsp,%rbp
+  405d7c:	53                   	push   %rbx
+  405d7d:	48 83 ec 38          	sub    $0x38,%rsp
+  405d81:	48 89 7d d8          	mov    %rdi,-0x28(%rbp)
+  405d85:	48 89 75 d0          	mov    %rsi,-0x30(%rbp)
+  405d89:	48 89 55 c8          	mov    %rdx,-0x38(%rbp)
+  405d8d:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  405d91:	48 89 c6             	mov    %rax,%rsi
+  405d94:	48 8d 05 d9 ff ff ff 	lea    -0x27(%rip),%rax        # 405d74 <_ZNSt20__copy_move_backwardILb0ELb1ESt26random_access_iterator_tagE13__copy_move_bIPiEEPT_PKS4_S7_S5_>
+  405d9b:	48 89 c7             	mov    %rax,%rdi
+  405d9e:	e8 1d d4 ff ff       	call   4031c0 <__cyg_profile_func_enter@plt>
+  405da3:	48 8b 45 d0          	mov    -0x30(%rbp),%rax
+  405da7:	48 2b 45 d8          	sub    -0x28(%rbp),%rax
+  405dab:	48 c1 f8 03          	sar    $0x3,%rax
+  405daf:	48 89 45 e8          	mov    %rax,-0x18(%rbp)
+  405db3:	48 83 7d e8 00       	cmpq   $0x0,-0x18(%rbp)
+  405db8:	74 30                	je     405dea <_ZNSt20__copy_move_backwardILb0ELb1ESt26random_access_iterator_tagE13__copy_move_bIPiEEPT_PKS4_S7_S5_+0x76>
+  405dba:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  405dbe:	48 8d 14 c5 00 00 00 	lea    0x0(,%rax,8),%rdx
+  405dc5:	00 
+  405dc6:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  405dca:	48 c1 e0 03          	shl    $0x3,%rax
+  405dce:	48 f7 d8             	neg    %rax
+  405dd1:	48 89 c1             	mov    %rax,%rcx
+  405dd4:	48 8b 45 c8          	mov    -0x38(%rbp),%rax
+  405dd8:	48 01 c1             	add    %rax,%rcx
+  405ddb:	48 8b 45 d8          	mov    -0x28(%rbp),%rax
+  405ddf:	48 89 c6             	mov    %rax,%rsi
+  405de2:	48 89 cf             	mov    %rcx,%rdi
+  405de5:	e8 a6 d3 ff ff       	call   403190 <memmove@plt>
+  405dea:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  405dee:	48 c1 e0 03          	shl    $0x3,%rax
+  405df2:	48 f7 d8             	neg    %rax
+  405df5:	48 89 c2             	mov    %rax,%rdx
+  405df8:	48 8b 45 c8          	mov    -0x38(%rbp),%rax
+  405dfc:	48 8d 1c 02          	lea    (%rdx,%rax,1),%rbx
+  405e00:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  405e04:	48 89 c6             	mov    %rax,%rsi
+  405e07:	48 8d 05 66 ff ff ff 	lea    -0x9a(%rip),%rax        # 405d74 <_ZNSt20__copy_move_backwardILb0ELb1ESt26random_access_iterator_tagE13__copy_move_bIPiEEPT_PKS4_S7_S5_>
+  405e0e:	48 89 c7             	mov    %rax,%rdi
+  405e11:	e8 1a d3 ff ff       	call   403130 <__cyg_profile_func_exit@plt>
+  405e16:	48 89 d8             	mov    %rbx,%rax
+  405e19:	48 8b 5d f8          	mov    -0x8(%rbp),%rbx
+  405e1d:	c9                   	leave  
+  405e1e:	c3                   	ret    
+
+Disassembly of section .fini:
+
+0000000000405e20 <_fini>:
+  405e20:	f3 0f 1e fa          	endbr64 
+  405e24:	48 83 ec 08          	sub    $0x8,%rsp
+  405e28:	48 83 c4 08          	add    $0x8,%rsp
+  405e2c:	c3                   	ret    
