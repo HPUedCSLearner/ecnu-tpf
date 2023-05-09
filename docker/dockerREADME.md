@@ -138,7 +138,7 @@ docker load -i ubuntu-llvm.tar #将tar文件导入为ubuntu-llvm15:1.4的镜像
 * git config --global alias.st status
 
 
-* git clone -depth 1 git@github.com:llvm/llvm-project.git
+* git clone --depth 1 git@github.com:llvm/llvm-project.git
 * 发现使用ssh比hppts带宽大，并且push的时候，也不会出问题
 
 #### docker cmd
