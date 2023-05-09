@@ -47,7 +47,7 @@ cmake -G Ninja  -DCMAKE_BUILD_TYPE=Release \
                 -DCMAKE_INSTALL_PREFIX=/usr/local \
                 ../llvm
 
-
+cmake --build build --parallel 8
 
 CMake Error at CMakeLists.txt:96 (MESSAGE):
   clang, flang isn't a known project:
