@@ -2,4 +2,3 @@
 test docker update info
 oo
 oooo
-000000
