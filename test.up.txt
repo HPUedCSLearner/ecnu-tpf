@@ -1,5 +1,3 @@
 []
 test docker update info
 oo
-oooo
-oooo
