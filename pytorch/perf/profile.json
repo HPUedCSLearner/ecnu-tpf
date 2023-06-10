@@ -1,0 +1,102 @@
+
+{
+  "schemaVersion": 1,
+  "deviceProperties": [
+  ],
+  "traceEvents": [
+  {
+    "ph": "X", "cat": "cpu_op", "name": "aten::rand", "pid": 11920, "tid": 11920,
+    "ts": 1686397562126383, "dur": 321,
+    "args": {
+      "External id": 1,"Ev Idx": 0
+    }
+  },
+  {
+    "ph": "X", "cat": "cpu_op", "name": "aten::empty", "pid": 11920, "tid": 11920,
+    "ts": 1686397562126421, "dur": 23,
+    "args": {
+      "External id": 2,"Ev Idx": 1
+    }
+  },
+  {
+    "ph": "X", "cat": "cpu_op", "name": "aten::uniform_", "pid": 11920, "tid": 11920,
+    "ts": 1686397562126459, "dur": 244,
+    "args": {
+      "External id": 3,"Ev Idx": 2
+    }
+  },
+  {
+    "ph": "X", "cat": "cpu_op", "name": "aten::fill_", "pid": 11920, "tid": 11920,
+    "ts": 1686397562126787, "dur": 34,
+    "args": {
+      "External id": 4,"Ev Idx": 3, "Fwd thread id": 0, "Sequence number": 0
+    }
+  },
+  {
+    "name": "process_name", "ph": "M", "ts": 1686397562126224, "pid": 11920, "tid": 0,
+    "args": {
+      "name": "python3"
+    }
+  },
+  {
+    "name": "process_labels", "ph": "M", "ts": 1686397562126224, "pid": 11920, "tid": 0,
+    "args": {
+      "labels": "CPU"
+    }
+  },
+  {
+    "name": "process_sort_index", "ph": "M", "ts": 1686397562126224, "pid": 11920, "tid": 0,
+    "args": {
+      "sort_index": 11920
+    }
+  },
+  {
+    "name": "thread_name", "ph": "M", "ts": 1686397562126224, "pid": 11920, "tid": 11920,
+    "args": {
+      "name": "thread 11920 (python3)"
+    }
+  },
+  {
+    "name": "thread_sort_index", "ph": "M", "ts": 1686397562126224, "pid": 11920, "tid": 11920,
+    "args": {
+      "sort_index": 11920
+    }
+  },
+  {
+    "name": "thread_name", "ph": "M", "ts": 1686397562126224, "pid": 11920, "tid": 11920,
+    "args": {
+      "name": "thread 11920 (python3)"
+    }
+  },
+  {
+    "name": "thread_sort_index", "ph": "M", "ts": 1686397562126224, "pid": 11920, "tid": 11920,
+    "args": {
+      "sort_index": 11920
+    }
+  },
+  {
+    "ph": "X", "cat": "Trace", "ts": 1686397562126101, "dur": 732,
+    "pid": "Spans", "tid": "PyTorch Profiler",
+    "name": "PyTorch Profiler (0)",
+    "args": {
+      "Op count": 0
+    }
+  },
+  {
+    "name": "process_sort_index", "ph": "M", "ts": 1686397562126101,
+    "pid": "Spans", "tid": 0,
+    "args": {
+      "sort_index": 536870912
+    }
+  },
+  {
+    "name": "Iteration Start: PyTorch Profiler", "ph": "i", "s": "g",
+    "pid": "Traces", "tid": "Trace PyTorch Profiler", "ts": 1686397562126101
+  },
+  {
+    "name": "Record Window End", "ph": "i", "s": "g",
+    "pid": "", "tid": "", "ts": 1686397562127029
+  }
+  ],
+  "traceName": "./profile.json"
+}
