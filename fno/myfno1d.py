@@ -13,7 +13,7 @@ import os
 
 # plt.rcParams['font.sans-serif'] = ['SimHei']
 # plt.rcParams['axes.unicode_minus'] = False
-plt.rc("font",family="AR PL UKai CN") ###修改了这一行
+# plt.rc("font",family="AR PL UKai CN") ###修改了这一行
 
 torch.manual_seed(0)
 np.random.seed(0)
@@ -140,7 +140,7 @@ def plot(model, x_train, y_train, x_test, y_test, multiple, multiple_x):
     ax1 = fig1.add_subplot(111)
     y_test *= multiple
     x_test *= multiple_x
-    ax1.plot(x_test[:, 0, 0], y_test, color='b', linestyle='-.', marker='.', label='测试数据')
+    ax1.plot(x_test[:, 0, 0], y_test, color='b', linestyle='-.', marker='.', label='TestData')
 
     l = min(x_train).numpy()[0][0] * multiple_x
     r = max(x_test).numpy()[0][0]
@@ -171,11 +171,11 @@ def plot(model, x_train, y_train, x_test, y_test, multiple, multiple_x):
 
     X *= multiple_x
     pred *= multiple
-    ax1.plot(X, pred[idx], "-r", marker='', label="实际拟合")
+    ax1.plot(X, pred[idx], "-r", marker='', label="ActualFitting")
 
     x_train *= multiple_x
     y_train *= multiple
-    ax1.plot(x_train[:, 0], y_train[:, 0], color='k', linestyle='-.', marker='.', label='训练数据')
+    ax1.plot(x_train[:, 0], y_train[:, 0], color='k', linestyle='-.', marker='.', label='TrainData')
     # plt.title(f'FNO拟合 %.3f s' % alltime)
 
     plt.xlabel("num of procs")

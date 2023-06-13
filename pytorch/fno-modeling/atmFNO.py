@@ -11,8 +11,8 @@ import matplotlib as mpl
 # import netron
 import os
 
-plt.rcParams['font.sans-serif'] = ['SimHei']
-plt.rcParams['axes.unicode_minus'] = False
+# plt.rcParams['font.sans-serif'] = ['SimHei']
+# plt.rcParams['axes.unicode_minus'] = False
 
 torch.manual_seed(0)
 np.random.seed(0)
@@ -305,6 +305,9 @@ def run_train(epochs, model, optimizer, scheduler, ntrain, ntest, s):
     x_test = x_test.reshape(ntest, s, 1)
     # numpy->tensor
     x_train = torch.from_numpy(x_train).float()
+    print('x_train: ', x_train)
+    print('x_train.shape: ', x_train.shape)
+    print('x_train.type: ', x_train.type)
     y_train = torch.from_numpy(y_train).float()
     x_test = torch.from_numpy(x_test).float()
     y_test = torch.from_numpy(y_test).float()
@@ -409,6 +412,14 @@ def run_train(epochs, model, optimizer, scheduler, ntrain, ntest, s):
     # onnx_path="onnx_model_name.onnx"
     # torch.onnx.export(model, x_train, onnx_path)  # 导出神经网络模型为onnx格式
     # netron.start(onnx_path) # 启动netro
+    
+    # save model
+    torch.save(model.state_dict(), './modle.dict')
+    # load_model = torch.load('./modle.dict')
+    load_model = torch.load('./modle.dict')
+    test = torch.Tensor([200]).float()
+    print(load_model(test.reshape(1,1,1)))
+    
 
 
 def main():
@@ -430,7 +441,12 @@ def main():
 
     print("model params:", count_params(model))
     run_train(epochs, model, optimizer, scheduler, ntrain, ntest, s)
+    
+    # # save model
+    # torch.save(model.state_dict(), './modle.dict')
 
 
 if __name__ == '__main__':
     main()
+    
+    

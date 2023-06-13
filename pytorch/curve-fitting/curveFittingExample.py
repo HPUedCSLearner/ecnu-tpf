@@ -5,13 +5,14 @@ import torch
 from torch import nn
 from IPython import embed
 
-batch_size = 10000
+batch_size = 10
 input_size = 1
 output_size = 1
-num_epochs = 2000
-learning_rate = 0.1
+num_epochs = 20000
+learning_rate = 0.001
 
-x = torch.linspace(0, 1, batch_size).reshape(-1, 1)
+x = torch.linspace(1, 0, batch_size).reshape(-1, 1)
+print('x: ' ,x)
 y = x ** 2 + 1
 
 print('x.shape:', x.shape)
@@ -40,7 +41,7 @@ for i in range(num_epochs):
     loss.backward()
     optimizer.step()
     if i % 100 == 0:
-        print(f"epoch: {i}, loss: {loss}")
+        print(f"###epoch: {i}, loss: {loss}")
 
 plt.plot(x.data, y.data, "g*")
 plt.plot(x.data, model.forward(x).data, "r-")

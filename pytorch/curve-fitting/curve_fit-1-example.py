@@ -9,7 +9,7 @@ def get_data(x,w,b,d):
     y = (w * x * x + b*x + d)+ (0.1*(2*np.random.rand(c,r)-1))
     return(y)
 
-xs = np.arange(0, 1, 0.1).reshape(-1,1)
+xs = np.arange(0, 1, 0.01).reshape(-1,1)
 ys = get_data(xs,1,-2,3)
 ys = xs
 
