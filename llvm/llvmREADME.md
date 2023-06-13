@@ -41,10 +41,10 @@ Ninja -j12
 Ninja install
 
 
-cmake -G Ninja  -DCMAKE_BUILD_TYPE=Release \
+cmake -B build -G Ninja  -DCMAKE_BUILD_TYPE=Release \
                 -DLLVM_ENABLE_PROJECTS="clang;flang" \
                 -DLLVM_ENABLE_RUNTIMES="libcxx;libcxxabi" \
-                -DCMAKE_INSTALL_PREFIX=/usr/local \
+                -DCMAKE_INSTALL_PREFIX=/usr/local/llvm-15.0.6 \
                 ../llvm
 
 cmake --build build --parallel 8
