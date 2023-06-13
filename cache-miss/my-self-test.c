@@ -10,7 +10,7 @@ int main(int argc, char **argv)
     int    m, n, k, br; 
 
     if ( argc != 5 ) {
-        printf( "Error: require 3 arguments, but only %d provided.\n", argc - 1 );
+        printf( "Error: require 4 arguments, but only %d provided.\n", argc - 1 );
         exit( 0 );
     }
 
