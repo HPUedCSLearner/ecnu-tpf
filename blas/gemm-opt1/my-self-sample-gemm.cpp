@@ -66,11 +66,6 @@ void test_dgemm(int m, int n, int k)
         }
     }
 
-    // // test for clock_timer()
-    // printf("clock tiemr %lf\n", clock_timer());
-    // printf("clock tiemr %lf\n", clock_timer());
-    // printf("clock tiemr %lf\n", clock_timer());
-
     dgemm_beg = clock_timer();
     my_dgemm(m, n, k, A, lda, B, ldb, C, ldc);
     dgemm_time = clock_timer() - dgemm_beg;
@@ -82,21 +77,10 @@ void test_dgemm(int m, int n, int k)
     // Compute overall floating point operations.
     flops = ( m * n / ( 1000.0 * 1000.0 * 1000.0 ) ) * ( 2 * k );
 
-    // printf("flops %lf\n", flops);
-    // printf("dgemm_time %lf\n", dgemm_time);
-    // printf("ref_time %lf\n", ref_time);
     printf( "%5d\t %5d\t %5d\t %5.2lf\t %5.2lf\n", 
             m, n, k, flops / dgemm_time, flops / ref_time );
 
-    // dgemm_beg = clock_timer();
-    // std::this_thread::sleep_for(std::chrono::seconds(1));
-    // ref_time = clock_timer() - dgemm_beg;
-    // printf("time check : 1 second is %lf\n", ref_time);
-
     computeError(ldc, ldc_ref, m, n, C, C_ref );
-
-    // printMatrix(C, m, n, ldc);
-    // printMatrix(C_ref, m, n, ldc_ref);
 
     free( A     );
     free( B     );
