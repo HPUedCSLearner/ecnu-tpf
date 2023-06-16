@@ -44,7 +44,8 @@ void computeError(
     for ( i = 0; i < m; i ++ ) {
         for ( j = 0; j < n; j ++ ) {
             if ( fabs( C[i*ldc + j] - C_ref[i*ldc + j] ) > TOLERANCE ) {
-                printf( "C[ %d ][ %d ] != C_ref, %E, %E\n", i, j, C[i*ldc + j] , C_ref[i*ldc + j]);
+                // printf( "C[ %d ][ %d ] != C_ref, %E, %E\n", i, j, C[i*ldc + j] , C_ref[i*ldc + j]);
+                printf( "C[ %d ][ %d ] != C_ref, %.20lf, %.20lf\n", i, j, C[i*ldc + j] , C_ref[i*ldc + j]);
                 break;
             }
         }

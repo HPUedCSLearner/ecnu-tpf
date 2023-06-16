@@ -77,8 +77,8 @@ void test_dgemm(int m, int n, int k)
     // Compute overall floating point operations.
     flops = ( m * n / ( 1000.0 * 1000.0 * 1000.0 ) ) * ( 2 * k );
 
-    printf( "%5d\t %5d\t %5d\t %5.2lf\t %5.2lf\n", 
-            m, n, k, flops / dgemm_time, flops / ref_time );
+    printf( "%5d\t %5d\t %5d\t %5.2lf\t %5.2lf\t speedup: %5.2lf\n", 
+            m, n, k, flops / dgemm_time, flops / ref_time, ref_time / dgemm_time);
 
     computeError(ldc, ldc_ref, m, n, C, C_ref );
 
