@@ -273,7 +273,7 @@ def run_train(epochs, model, optimizer, scheduler, ntrain, ntest, s):
     in_x = np.double([8, 16, 24, 32, 48,  64, 96, 128, 192, 256, 384, 512, 768, 1024])
     in_y = np.double([21574682170053, 10871091037222, 7229198685780, 5532881759770, 3760004748574, 2862789605369, 2014817236926, 
                         1631597316073, 1083329794043, 848300420078,  612215782404, 628790336252,  405035379070, 383372109773])
-    
+    # in_y = in_x
     # normalize
     mean = np.mean(in_y)
     multiple = 1
@@ -423,8 +423,8 @@ def run_train(epochs, model, optimizer, scheduler, ntrain, ntest, s):
 
 
 def main():
-    ntrain = 10
-    ntest = 4
+    ntrain = 7
+    ntest = 7
     s = 1
 
     batch_size = 7
