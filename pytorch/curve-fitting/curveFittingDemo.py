@@ -96,4 +96,9 @@ plt.show()
 
 plt.plot(x.data, y.data, "g*")
 plt.plot(x.data, model.forward(x).data, "r-")
+plt.plot(x.data, abs(model.forward(x).data - y.data), "y-")
 plt.show()
+
+x = torch.tensor([300])
+x = x.reshape(-1, 1)
+print(model.forward(x).data)
