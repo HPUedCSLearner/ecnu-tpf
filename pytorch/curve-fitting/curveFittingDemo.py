@@ -99,6 +99,11 @@ plt.plot(x.data, model.forward(x).data, "r-")
 plt.plot(x.data, abs(model.forward(x).data - y.data), "y-")
 plt.show()
 
-x = torch.tensor([300])
-x = x.reshape(-1, 1)
-print(model.forward(x).data)
+
+# 测试一个数据
+# x = torch.tensor([300])
+# x = x.reshape(-1, 1)
+# print(model.forward(x).data)
+# 保存模型
+# 加载模型
+# 使用模型
