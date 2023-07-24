@@ -33,7 +33,12 @@ cons = con(args1)
 # 设置初始猜测值  
 x0 = np.asarray((0.5,0.5,0.5))
 
+# 非线性规划结果：最值->fun、x的位置->x
+# fun: -0.773684210526435
+# x: [ 9.000e-01  9.000e-01  1.000e-01]
 res = minimize(fun(args), x0, method='SLSQP',constraints=cons)
+
+print(res)
 print(res.fun)
 print(res.success)
 print(res.x)
