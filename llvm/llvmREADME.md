@@ -71,3 +71,11 @@ cmake --build build
 <!-- [![Star History Chart](https://api.star-history.com/svg?repos=guodongxiaren/README&type=Date)](https://star-history.com/#guodongxiaren/README&Date) -->
 
  ![alt:当照片加载失败，显示此内容](./images/llvm-toolchain.png "llvm 工具链")
+
+
+ #### llvm 使用
+ #### llmv-config
+注意llvm-config这个东西，`llvm-config`不是单引号
+```bash
+clang++  -o HelloModule `llvm-config --cxxflags --libs core` example-01-modules.cpp
+```
