@@ -1,0 +1,171 @@
+
+class ${CLASSNAME}(optimize_model.OptimizeModel):
+    
+    def get_required_components(self):
+        return ['${MODEL1}'.upper(),'${MODEL2}'.upper(), '${MODEL3}'.upper(),'${MODEL4}'.upper()]
+            
+    def optimize(self):
+
+        print('WYS Debug:\t come to templte optimize')
+
+        """
+        Run the optimization.
+        set solution in self.X
+        set state STATE_SOLVED_OK if solved,
+        otherwise STATE_SOLVED_BAD
+        """
+        assert self.state != self.STATE_UNDEFINED,\
+               "set_data() must be called before optimize()!"
+        
+        pattern = ${PATTERN}
+        
+        strlist = []
+        tmp_pattern=pattern.copy()
+        print('WYS Debug: optimize::len(tmp_pattern)\t ', len(tmp_pattern))
+        print('WYS Debug: optimize::tmp_pattern\t ', tmp_pattern)
+        for i in range(len(tmp_pattern)):
+            tmp_pattern[i] = list(tmp_pattern[i])
+        
+        print('WYS Debug: optimize::tmp_pattern\t ', tmp_pattern)
+
+        tmp_strlist = []
+        #atm
+        tmp_strlist.append(module_fit("x[0]",self.models['${MODEL1}'.upper()].fitparameter))
+        print('WYS Debug: optimize::tmp_strlist::times1\t ', tmp_strlist)
+        print()
+
+        #ocn
+        tmp_strlist.append(module_fit("x[1]",self.models['${MODEL2}'.upper()].fitparameter))
+        print('WYS Debug: optimize::tmp_strlist::times2\t ', tmp_strlist)
+        print()
+
+
+        #判断是否存在ice与lnd
+        #yeeland
+        flag1 = 0
+        if  '${MODEL3}'.upper() == 'LND' and  '${MODEL4}'.upper() == "ICE":
+            flag1 = 1
+        flag2 = 0
+        for tmp_list in tmp_pattern:
+            #若存在ice与lnd，判断 lnd ice是否并行
+            if 3 in tmp_list and 4 in tmp_list and flag1 == 1:
+                flag2 = 1
+        # WYS: 根据Flag判断，ice与lnd 的模块是否使用max()
+        if flag2 == 1:
+            print('WYS Debug:\t come to flag2 == 1')
+            print()
+            tmp_str = "max("  +module_fit("x[2]",self.models['${MODEL3}'.upper()].fitparameter) + ' , ' + module_fit("x[3]",self.models['${MODEL4}'.upper()].fitparameter) + ")"
+            tmp_strlist.append(tmp_str)
+        else:
+            print('WYS Debug:\t come to flag2 == 2')
+            print()
+            tmp_strlist.append(module_fit("x[2]",self.models['${MODEL3}'.upper()].fitparameter))
+            tmp_strlist.append(module_fit("x[3]",self.models['${MODEL4}'.upper()].fitparameter))
+            #yeeland
+        
+        print('WYS Debug: optimize::tmp_strlist::times3\t ', tmp_strlist)
+        print()
+
+        # 也就是说，eval_str是所有模式加起来; 
+        # 进程用x[0]\x[1]\x[2]...代替; 
+        # 每个模式的不同段也是加起来，通过符号sig(x[0],1,30)筛选进程
+        eval_str = '+'.join(tmp_strlist)#规划主函数
+
+        print('WYS Debug:\t tmp_strlist::after "+".join():->eval_str\t', eval_str, '\n')
+        
+        tmp_models = ['${MODEL1}'.upper(),'${MODEL2}'.upper(), '${MODEL3}'.upper(),'${MODEL4}'.upper()]
+        print('WYS Debug:\t tmp_models\t', tmp_models, '\n')
+
+        # 设置不同模块的进程边界（mintasks, maxtasks）
+        bnds = []
+        for tmp_model in tmp_models:
+            # WYS: 如果是LDN模块，并且最大进程数>128
+            if tmp_model== 'LND' and self.maxtasks > 128:
+                print('WYS Debug:\t tmp_model== LND\t''\n')
+                bnd =  (self.mintasks, 128) # WYS：也就是说，这里LDN的最大进程数最大可以设置为128
+            else:
+                print('WYS Debug:\t else: tmp_model == LND\t''\n')
+                bnd = (self.mintasks, self.maxtasks)
+            bnds.append(bnd)
+            print('WYS Debug:\t bnds\t', bnds, '\n')
+        bnds = tuple(bnds)
+        print('WYS Debug:\t tuple(bnds)\t', bnds, '\n')
+
+
+
+        constraints = []
+${CONSTRAINT}
+        print('WYS Debug:\tconstraints\t', constraints, '\n')
+        
+        time_func = lambda x: eval(eval_str)
+        print('WYS Debug:\t time_func\t', time_func, '\n')
+        
+        x0 = [self.mintasks]*4 # WYS：[4] * 4 ->  [4, 4, 4, 4]
+        print('WYS Debug:\t x0\t', x0, '\n')
+        
+        #运行时间最少方案
+        # WYS：SLSQP非线性求解 （非线性规划是指目标函数或约束条件中包含非线性函数的规划问题，实际就是非线性最优化问题）
+        solution = minimize(time_func, x0, method = 'SLSQP', bounds = bnds, constraints = constraints)
+        print('WYS Debug:\t solution\t', solution, '\n')
+        
+        if not solution.success:
+            for constraint in constraints:
+                constraint['type'] = 'eq'
+            solution = minimize(time_func, x0, method = 'SLSQP', bounds = bnds, constraints = constraints)
+        self.X = {}
+        ntasks = solution.x
+        print('WYS Debug:\t ntasks\t', ntasks, '\n')
+
+        for i in range(len(ntasks)):
+            ntasks[i] = int(ntasks[i])
+        self.X['mintime'] = time_func(ntasks)
+        n${MODEL1} = int(ntasks[0])
+        n${MODEL2} = int(ntasks[1])
+        n${MODEL3} = int(ntasks[2])
+        n${MODEL4} = int(ntasks[3])
+        self.X['submoduletime'] = {}
+        self.X['submoduletime']['${MODEL1}']  = eval(module_fit(str(n${MODEL1}),self.models['${MODEL1}'.upper()].fitparameter))
+        self.X['submoduletime']['${MODEL2}']  = eval(module_fit(str(n${MODEL2}),self.models['${MODEL2}'.upper()].fitparameter))
+        self.X['submoduletime']['${MODEL3}']  = eval(module_fit(str(n${MODEL3}),self.models['${MODEL3}'.upper()].fitparameter))
+        self.X['submoduletime']['${MODEL4}']  = eval(module_fit(str(n${MODEL4}),self.models['${MODEL4}'.upper()].fitparameter))
+        self.X['maxtasks'] = self.maxtasks
+        self.X['pattern'] = str(pattern)
+        ntasks = {'${MODEL1}':n${MODEL1},'${MODEL2}':n${MODEL2},'${MODEL3}':n${MODEL3},'${MODEL4}':n${MODEL4}}
+        ice_procs = self.ice_procs
+        if 'ice' in ntasks:
+        #检查ice进程是否合乎规范
+            ice_proc_pre = ntasks['ice']
+            if ice_proc_pre not in ice_procs:
+                ice_proc_result = -1
+                if ice_procs[0] > ice_proc_pre:
+                    ice_proc_result = ice_procs[0]
+                elif ice_procs[-1] < ice_proc_pre:
+                    ice_proc_result = ice_procs[-1]
+                else:
+                    for i in range(1, len(ice_procs)):
+                        if ice_procs[i-1] <= ice_proc_pre and ice_procs[i] > ice_proc_pre:
+                            ice_proc_result = ice_procs[i-1]
+                            break
+                ntasks['ice'] = int(ice_proc_result)
+                nice = ntasks['ice']
+        # print(solution.success)
+        roots = ${ROOTS}
+        self.X['ntasks']  = ntasks
+        self.X['roots'] = roots
+        
+        self.solution = {}
+        if solution.success:
+            self.solution['mintime'] = self.X
+        
+        self.set_state(solution.success)
+        return  self.state
+    
+    def get_solution(self):
+        # assert self.state == self.STATE_SOLVED_OK,\
+               # "solver failed, no solution available"
+        # return self.X
+        if self.state == self.STATE_SOLVED_OK:
+            return self.solution
+        else:
+            return False
+
