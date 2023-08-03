@@ -86,6 +86,7 @@ def solver_factory(data):
     for c in solver.get_required_components():
         assert c in data, "ERROR: component %s not found in data" % c
 
+    # WYS: set data 就是设置模型数据放到 self.models[key] = parameters:
     solver.set_data(data)
     return solver
 
@@ -138,6 +139,8 @@ class OptimizeModel(object):
         # 这部分代码的作用就是 赋值模型（dict） self.models[key]
         # 通过if isinstance(data_dict[key], dict) and 'fitparameter' in data_dict[key]: 取出模型数据
         # 模型的数据就是 一串 字符串
+        # 其实一个模型就是一个 ModelData对象
+        # self.models 就是所有模块 模型的 MAP
         for key in data_dict:
             # isinstance() 函数来判断一个对象是否是一个已知的类型
             if isinstance(data_dict[key], dict) and 'fitparameter' in data_dict[key]:
