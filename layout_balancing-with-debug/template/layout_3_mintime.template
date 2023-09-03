@@ -1,0 +1,108 @@
+
+class ${CLASSNAME}(optimize_model.OptimizeModel):
+    
+    def get_required_components(self):
+        return ['${MODEL1}'.upper(),'${MODEL2}'.upper(), '${MODEL3}'.upper()]
+            
+    def optimize(self):
+        """
+        Run the optimization.
+        set solution in self.X
+        set state STATE_SOLVED_OK if solved,
+        otherwise STATE_SOLVED_BAD
+        """
+        assert self.state != self.STATE_UNDEFINED,\
+               "set_data() must be called before optimize()!"
+        
+        pattern = ${PATTERN}
+        
+        strlist = []
+        tmp_pattern=pattern.copy()
+        for i in range(len(tmp_pattern)):
+            tmp_pattern[i] = list(tmp_pattern[i])
+            
+        tmp_strlist = []
+        #atm
+        tmp_strlist.append(module_fit("x[0]",self.models['${MODEL1}'.upper()].fitparameter))
+        #ocn
+        tmp_strlist.append(module_fit("x[1]",self.models['${MODEL2}'.upper()].fitparameter))
+        #other
+        tmp_strlist.append(module_fit("x[2]",self.models['${MODEL3}'.upper()].fitparameter))
+        
+        eval_str = '+'.join(tmp_strlist)#规划主函数
+        tmp_models = ['${MODEL1}'.upper(),'${MODEL2}'.upper(), '${MODEL3}'.upper()]
+        bnds = []
+        for tmp_model in tmp_models:
+            if tmp_model== 'LND' and self.maxtasks > 128:
+                bnd =  (self.mintasks, 128)
+            else:
+                bnd = (self.mintasks, self.maxtasks)
+            bnds.append(bnd)
+        bnds = tuple(bnds)
+        constraints = []
+${CONSTRAINT}
+        
+        time_func = lambda x: eval(eval_str)
+        
+        x0 = [self.mintasks]*3
+
+        #运行时间最少方案
+        solution1 = minimize(time_func, x0, method = 'SLSQP', bounds = bnds, constraints = constraints)
+        if not solution.success:
+            for constraint in constraints:
+                constraint['type'] = 'eq'
+            solution1 = minimize(time_func, x0, method = 'SLSQP', bounds = bnds, constraints = constraints)
+            
+        self.X = {}
+        ntasks1 = solution1.x
+        for i in range(len(ntasks1)):
+            ntasks1[i] = round(ntasks1[i])
+        self.X['Totaltime'] = time_func(ntasks)
+        n${MODEL1} = int(ntasks1[0])
+        n${MODEL2} = int(ntasks1[1])
+        n${MODEL3} = int(ntasks1[2])
+        self.X['submoduletime'] = {}
+        self.X['submoduletime']['${MODEL1}']  = eval(module_fit(str(n${MODEL1}),self.models['${MODEL1}'.upper()].fitparameter))
+        self.X['submoduletime']['${MODEL2}']  = eval(module_fit(str(n${MODEL2}),self.models['${MODEL2}'.upper()].fitparameter))
+        self.X['submoduletime']['${MODEL3}']  = eval(module_fit(str(n${MODEL3}),self.models['${MODEL3}'.upper()].fitparameter))
+        self.X['maxtasks'] = self.maxtasks
+        self.X['pattern'] = str(pattern)
+        ntasks1 = {'${MODEL1}':n${MODEL1},'${MODEL2}':n${MODEL2},'${MODEL3}':n${MODEL3}}
+        ice_procs = self.ice_procs
+        if 'ice' in ntasks:
+        #检查ice进程是否合乎规范
+            ice_proc_pre = ntasks['ice']
+            if ice_proc_pre not in ice_procs:
+                ice_proc_result = -1
+                if ice_procs[0] > ice_proc_pre:
+                    ice_proc_result = ice_procs[0]
+                elif ice_procs[-1] < ice_proc_pre:
+                    ice_proc_result = ice_procs[-1]
+                else:
+                    for i in range(1, len(ice_procs)):
+                        if ice_procs[i-1] <= ice_proc_pre and ice_procs[i] > ice_proc_pre:
+                            ice_proc_result = ice_procs[i-1]
+                            break
+                ntasks['ice'] = int(ice_proc_result)
+                nice = ntasks['ice']
+        # print(solution1.success)
+        roots = ${ROOTS}
+        self.X['ntasks']  = ntasks
+        self.X['roots'] = roots1
+        
+        
+        self.solution = {}
+        if solution1.success:
+            self.solution['mintime'] = self.X
+        
+        self.set_state(solution1.success)
+        # self.set_state(solution.success)
+        # print(self.state)
+        return  self.state
+    
+    def get_solution(self):
+        if self.state == self.STATE_SOLVED_OK:
+            return  self.solution
+        else:
+            return False
+

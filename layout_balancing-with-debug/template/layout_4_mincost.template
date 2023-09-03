@@ -1,0 +1,127 @@
+
+
+class ${CLASSNAME}(optimize_model.OptimizeModel):
+    
+    def get_required_components(self):
+        return ['${MODEL1}'.upper(),'${MODEL2}'.upper(), '${MODEL3}'.upper(),'${MODEL4}'.upper()]
+            
+    def optimize(self):
+        """
+        Run the optimization.
+        set solution1 in self.X
+        set state STATE_SOLVED_OK if solved,
+        otherwise STATE_SOLVED_BAD
+        """
+        assert self.state != self.STATE_UNDEFINED,\
+               "set_data() must be called before optimize()!"
+        
+        pattern = ${PATTERN}
+        
+        mintime = ${MINTIME}
+        
+        strlist = []
+        tmp_pattern=pattern.copy()
+        for i in range(len(tmp_pattern)):
+            tmp_pattern[i] = list(tmp_pattern[i])
+        
+        tmp_strlist = []
+        #atm
+        tmp_strlist.append(module_fit("x[0]",self.models['${MODEL1}'.upper()].fitparameter))
+        #ocn
+        tmp_strlist.append(module_fit("x[1]",self.models['${MODEL2}'.upper()].fitparameter))
+        #判断是否存在ice与lnd
+        #yeeland
+        flag1 = 0
+        if  '${MODEL3}'.upper() == 'LND' and  '${MODEL4}'.upper() == "ICE":
+            flag1 = 1
+        flag2 = 0
+        for tmp_list in tmp_pattern:
+            #若存在ice与lnd，判断 lnd ice是否并行
+            if 3 in tmp_list and 4 in tmp_list and flag1 == 1:
+                flag2 = 1
+        if flag2 == 1:
+            tmp_str = "max("  +module_fit("x[2]",self.models['${MODEL3}'.upper()].fitparameter) + ' , ' + module_fit("x[3]",self.models['${MODEL4}'.upper()].fitparameter) + ")"
+            tmp_strlist.append(tmp_str)
+        else:
+            tmp_strlist.append(module_fit("x[2]",self.models['${MODEL3}'.upper()].fitparameter))
+            tmp_strlist.append(module_fit("x[3]",self.models['${MODEL4}'.upper()].fitparameter))
+            #yeeland
+        eval_str = '+'.join(tmp_strlist)#规划主函数
+        
+        tmp_models = ['${MODEL1}'.upper(),'${MODEL2}'.upper(), '${MODEL3}'.upper(),'${MODEL4}'.upper()]
+        bnds = []
+        for tmp_model in tmp_models:
+            if tmp_model== 'LND' and self.maxtasks > 128:
+                bnd =  (self.mintasks, 128)
+            else:
+                bnd = (self.mintasks, self.maxtasks)
+            bnds.append(bnd)
+        bnds = tuple(bnds)
+        constraints = []
+${CONSTRAINT}
+        
+        constraints.append({'type': 'ineq', 'fun' : lambda x : mintime* (1+allowance) -  (eval(eval_str)) })
+        
+        X_range = ${X_RANGE}
+        if len(X_range) > 1 :
+            max_x = 'max(' + ','.join(X_range) + ')'
+        else:
+            max_x = X_range[0]
+        cost_func = lambda x : (eval(eval_str)) * eval(max_x)
+        
+        x0 = [self.mintasks]*4
+        
+        #机时最少方案
+        solution = minimize(cost_func, x0, method = 'SLSQP', bounds = bnds, constraints = constraints)
+        if solution.success:
+            self.X = {}
+            ntasks = solution.x
+            for i in range(len(ntasks)):
+                ntasks[i] = int(ntasks[i])
+            self.X['mincost'] = cost_func(ntasks)
+            n${MODEL1} = int(ntasks[0])
+            n${MODEL2} = int(ntasks[1])
+            n${MODEL3} = int(ntasks[2])
+            n${MODEL4} = int(ntasks[3])
+            self.X['maxtasks'] = self.maxtasks
+            self.X['pattern'] = str(pattern)
+            ntasks = {'${MODEL1}':n${MODEL1},'${MODEL2}':n${MODEL2},'${MODEL3}':n${MODEL3},'${MODEL4}':n${MODEL4}}
+            ice_procs = self.ice_procs
+            if 'ice' in ntasks:
+            #检查ice进程是否合乎规范
+                ice_proc_pre = ntasks['ice']
+                if ice_proc_pre not in ice_procs:
+                    ice_proc_result = -1
+                    if ice_procs[0] > ice_proc_pre:
+                        ice_proc_result = ice_procs[0]
+                    elif ice_procs[-1] < ice_proc_pre:
+                        ice_proc_result = ice_procs[-1]
+                    else:
+                        for i in range(1, len(ice_procs)):
+                            if ice_procs[i-1] <= ice_proc_pre and ice_procs[i] > ice_proc_pre:
+                                ice_proc_result = ice_procs[i-1]
+                                break
+                    ntasks['ice'] = int(ice_proc_result)
+                    nice = ntasks['ice']
+            # print(solution1.success)
+            roots = ${ROOTS}
+            self.X['ntasks']  = ntasks
+            self.X['roots'] = roots
+        
+        
+        self.solution = {}
+        if solution.success:
+            self.solution['mincost'] = self.X
+        
+        self.set_state(solution.success)
+        return  self.state
+    
+    def get_solution(self):
+        # assert self.state == self.STATE_SOLVED_OK,\
+               # "solver failed, no solution available"
+        # return self.X
+        if self.state == self.STATE_SOLVED_OK:
+            return self.solution
+        else:
+            return False
+
