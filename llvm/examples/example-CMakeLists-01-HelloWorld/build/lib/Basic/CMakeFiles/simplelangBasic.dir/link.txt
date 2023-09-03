@@ -1,0 +1,2 @@
+/usr/bin/ar Dqc libsimplelangBasic.a CMakeFiles/simplelangBasic.dir/Version.cpp.o
+/usr/bin/ranlib -D libsimplelangBasic.a
