@@ -90,6 +90,49 @@ def solver_factory(data):
     solver.set_data(data)
     return solver
 
+def wys_solver_factory(data):
+    """
+    load data either from a json file or dictionary
+    """
+    expect('totaltasks' in data,"totaltasks not found in data")
+
+    layout = data['layout']
+    # print('WYS Debug:\t', layout)
+    sp = layout.rsplit('.', 1) # rsplit 通过字符串分隔，返回一个列表
+    # print('WYS Debug:sp\t', sp)
+    # print()
+    try:
+        if len(sp) > 1:
+            # print('WYS Debug:sp0,1\t', sp[0], sp[1])
+            layout_module = importlib.import_module(sp[0])
+            layout = sp[1]
+        else:
+            import layouts
+            layout_module = layouts
+    except ImportError:
+        expect(False,"cannot import %s\n")
+
+    try:
+        solverclass = getattr(layout_module, layout) # getattr(object, name[, default]) 获取object属性为name的值
+        # print('WYS Debug:solverclass\t', solverclass)
+    except KeyError:
+        expect(False, "layout class %s not found in %s\n",
+               layout, layout_module)
+
+    solver = solverclass()
+    
+    # print('WYS Debug:\tsolver\t', solver)
+    # print('WYS Debug:\tsolver.get_required_components()\t', solver.get_required_components())
+    # print()
+
+    for c in solver.get_required_components():
+        assert c in data, "ERROR: component %s not found in data" % c
+
+    # WYS: set data 就是设置模型数据放到 self.models[key] = parameters:
+    # solver.set_data(data)
+    solver.wys_set_data(data)
+    return solver
+
 class   ModelData:
     """
     Convert dictionary data entry into usable object
@@ -107,6 +150,7 @@ class OptimizeModel(object):
 
     def __init__(self):
         self.models = {}
+        self.wys_models = {}
         self.state = self.STATE_UNDEFINED
         self.X = {}
         self.constraints = []
@@ -149,8 +193,50 @@ class OptimizeModel(object):
                 print()
                 self.models[key] = ModelData(key, data_dict[key]) # 设置模型数据
 
-        print('WYS Debug:self.models\t', self.models)
+        # print('WYS Debug:self.models\t', self.models)
         print()
+        
+        self.check_requirements()
+        self.state = self.STATE_UNSOLVED
+        
+    def wys_set_data(self, data_dict):
+        """
+        Add data to the model.
+        data_dict is dictionary of components with their data
+        example: {'totaltasks':64
+                  'ICE': {'ntasks': [2,4,8],
+                          'costs':  [10.0,6.0,4.0],
+                          'nthrds': [1,1,1],
+                          'blocksize': 8}
+                  'LND': {...}
+                 }
+
+        data is extrapolated as needed for n=1 and n=totaltasks
+        sets state to STATE_UNSOLVED
+        """
+        # get deep copy
+        self.maxtasks = data_dict['totaltasks']
+        self.mintasks = data_dict['mintasks']
+        self.ice_procs = data_dict['ice_procs']
+        
+        # print('WYS Debug:set_data\t', self.maxtasks, '\t', self.mintasks, '\t', self.ice_procs)
+        # print('WYS Debug:data_dict\t', data_dict)
+        # print()
+    
+        # 这部分代码的作用就是 赋值模型（dict） self.models[key]
+        # 通过if isinstance(data_dict[key], dict) and 'fitparameter' in data_dict[key]: 取出模型数据
+        # 模型的数据就是 一串 字符串
+        # 其实一个模型就是一个 ModelData对象
+        # self.models 就是所有模块 模型的 MAP
+        # for key in data_dict:
+        #     # isinstance() 函数来判断一个对象是否是一个已知的类型
+        #     if isinstance(data_dict[key], dict) and 'fitparameter' in data_dict[key]:
+        #         self.models[key] = ModelData(key, data_dict[key]) # 设置模型数据
+
+        # # print('WYS Debug:self.models\t', self.models)
+        # print()
+        
+        self.wys_models = data_dict
         
         self.check_requirements()
         self.state = self.STATE_UNSOLVED

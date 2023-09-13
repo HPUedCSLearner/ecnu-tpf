@@ -5,7 +5,7 @@ import json
 
 module_frmwrk = {}
 module_num = ['cpl', 'atm', 'lnd', 'ice', 'ocn']
-max_process_num = 8
+max_process_num = 1024
 start_process_num = 1
 module_process_val = 666
 module_frmwrk_file = 'trans_fit_parameters.json'
@@ -13,7 +13,8 @@ module_frmwrk_file = 'trans_fit_parameters.json'
 for module in module_num:
     module_frmwrk[module] = {}
     while start_process_num <= max_process_num:
-        module_frmwrk[module][start_process_num] = module_process_val
+        # module_frmwrk[module][start_process_num] = max_process_num - start_process_num + 2
+        module_frmwrk[module][start_process_num] = 1 / start_process_num
         start_process_num += 1
     start_process_num = 1
 

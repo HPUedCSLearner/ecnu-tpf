@@ -29,7 +29,9 @@ class ${CLASSNAME}(optimize_model.OptimizeModel):
         print('WYS Debug: optimize::tmp_pattern\t ', tmp_pattern)
 
         tmp_strlist = []
+        wys_strlist = []
         #atm
+        #wys_strlist.append(wys_module_fit("x[0]", self.wys_models['${MODEL1}'.upper()]))
         tmp_strlist.append(module_fit("x[0]",self.models['${MODEL1}'.upper()].fitparameter))
         print('WYS Debug: optimize::tmp_strlist::times1\t ', tmp_strlist)
         print()

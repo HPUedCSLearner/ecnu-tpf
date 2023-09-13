@@ -24,7 +24,8 @@ def sig(x,down,up):
         return 0
 
 def module_fit(xi, fitparameter):
-    print('WYS Debug:\t come to module_fit')
+    # print('WYS Debug:\t come to module_fit')
+    print('wyswys Debug:\t come to module_fit .....')
     result = []
     for i in fitparameter:
         tmp_str = "sig({x},{down},{up})*({0}/({x}**2) + {1} / {x} +{2}*{x}**0.5 +  {3}*{x} + {4}*{x}**2 + {5}*{x}**3 + {6}*{x}**0.5*np.log({x}) + {7}*{x}*np.log({x}) + {8}*{x}**2*np.log({x}) + {9}*np.log({x}) + {10})".format(fitparameter[i]['parameter'][0], fitparameter[i]['parameter'][1],fitparameter[i]['parameter'][2], fitparameter[i]['parameter'][3], fitparameter[i]['parameter'][4], fitparameter[i]['parameter'][5], fitparameter[i]['parameter'][6], fitparameter[i]['parameter'][7], fitparameter[i]['parameter'][8], fitparameter[i]['parameter'][9], fitparameter[i]['parameter'][10], x = xi, down = fitparameter[i]['down'], up = fitparameter[i]['up'])
@@ -162,6 +163,11 @@ def get_fitfitparameter():#调试用
         # data[models[int(line_split[0])]] = [float(line_split[1]), float(line_split[2]), float(line_split[3]), float(line_split[4]), float(line_split[5]), float(line_split[6]), float(line_split[7]), float(line_split[8]), float(line_split[9]), float(line_split[10]), float(line_split[11])]
     return data
 
+def wys_get_fitfitparameter(file_name):
+    fitparameter_file = open(file_name, "r")
+    data = json.load(fitparameter_file)
+    return data
+
 def get_data(fitparameters, models, totaltasks,mintasks,  layout, ice_procs):
     data = {}
     data['description'] = 'Optimize using data available from original load balancing tool.'
@@ -175,6 +181,19 @@ def get_data(fitparameters, models, totaltasks,mintasks,  layout, ice_procs):
         tmp_data['fitparameter'] = fitparameters[model]
         data[model.upper()] = tmp_data
         
+    return data
+
+def wys_get_data(wys_fitparameters, models, totaltasks,mintasks,  layout, ice_procs):
+    data = {}
+    data['description'] = 'Optimize using data available from original load balancing tool.'
+    data['layout'] = layout
+    data['totaltasks'] = totaltasks
+    data['mintasks'] = mintasks
+    data['ice_procs'] = ice_procs
+    # print('wys model data', wys_fitparameters['ice']['3'])
+    #计算拟合数据
+    for model in models:
+        data[model.upper()] = wys_fitparameters[model]
     return data
     
 def write_pe_template(pefilename, ntasks, roots, totaltasks):
@@ -201,7 +220,7 @@ def write_pe_template(pefilename, ntasks, roots, totaltasks):
     pefile = open(pefilename, 'w')
     domTree.writexml(pefile, addindent='  ', encoding='utf-8')
 
-def model_layout(totaltasks, models, mintasks,  fitparameters, ice_procs):
+def model_layout(totaltasks, models, mintasks,  fitparameters, wys_fitparameters, ice_procs):
     #针对所有布局的进程排布，例如ATMLNDICEOCN
     # fitfitparameter = get_fitfitparameter()
     
@@ -215,10 +234,14 @@ def model_layout(totaltasks, models, mintasks,  fitparameters, ice_procs):
         # print('WYS Debug:\t layout:', layout)
         # print('WYS Debug:\t layouts_mintime[layout]: ', layouts_mintime[layout])
         # print()
-        data = get_data(fitparameters,models, totaltasks, mintasks, layout,ice_procs)
+        data = get_data(fitparameters, models, totaltasks, mintasks, layout,ice_procs)
+        wys_data = wys_get_data(wys_fitparameters, models, totaltasks, mintasks, layout,ice_procs)
         # print('WYS Debug:\t data\t', data)
+        print('wys:\t get_data\t', data)
+        print('wys:\t wys_get_data\t', wys_data)
         # print()
         opt = optimize_model.solver_factory(data)
+        wys_opt = optimize_model.wys_solver_factory(wys_data)
         print('WYS Debug:\t opt\t', opt) # <layout_4_mintime.atmocnlndice0 object at 0x2b8649108f50>
         print()
         
@@ -282,9 +305,12 @@ if __name__ == "__main__" :
     
     pefilename = './env_mach/env_mach_pes.xml'
     fitfitparameter = get_fitfitparameter()  # wys: json load fit_parameters.json
+    wys_fitfitparameter = wys_get_fitfitparameter('./trans_fit_parameters.json')
     # print('WYS Debug:\t', fitfitparameter)
     # best_solution = model_layout(totaltasks, blocksize, models, mintask, pefilename,fitfitparameter)
-    model_layout(1024, models, 4,  fitparameters = fitfitparameter, ice_procs = [4, 16, 32, 64, 128])
+    # model_layout(totaltasks, models, mintasks,  fitparameters, ice_procs):
+    # model_layout(totaltasks, models, mintasks,  fitparameters, wys_fitparameters, ice_procs):
+    model_layout(1024, models, 4,  fitparameters = fitfitparameter, wys_fitparameters = wys_fitfitparameter, ice_procs = [4, 16, 32, 64, 128])
     # print(best_solution)
     
     

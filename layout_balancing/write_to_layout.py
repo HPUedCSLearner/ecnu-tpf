@@ -12,6 +12,7 @@ def sig(x,down,up):
 # WYS:相当于把模型加起来
 def module_fit(xi, fitparameter):
     print('WYS Debug:\t come to module_fit')
+    print('wyswys fitparameter:', fitparameter)
     result = []
     for i in fitparameter:
         tmp_str = "sig({x},{down},{up})*({0}/({x}**2) + {1} / {x} +{2}*{x}**0.5 +  {3}*{x} + {4}*{x}**2 + {5}*{x}**3 + {6}*{x}**0.5*np.log({x}) + {7}*{x}*np.log({x}) + {8}*{x}**2*np.log({x}) + {9}*np.log({x}) + {10})".format(fitparameter[i]['parameter'][0], fitparameter[i]['parameter'][1],fitparameter[i]['parameter'][2], fitparameter[i]['parameter'][3], fitparameter[i]['parameter'][4], fitparameter[i]['parameter'][5], fitparameter[i]['parameter'][6], fitparameter[i]['parameter'][7], fitparameter[i]['parameter'][8], fitparameter[i]['parameter'][9], fitparameter[i]['parameter'][10], x = xi, down = fitparameter[i]['down'], up = fitparameter[i]['up'])
@@ -20,7 +21,19 @@ def module_fit(xi, fitparameter):
         print()
         result.append(tmp_str)
         print('WYS Debug:\t result->', result)
+        # print('WYS Debug:\t result->', result)
+        # print('WYS Debug:\t result->', result)
+        # print('WYS Debug:\t result->', result)
         print()
+    return '+'.join(result) # Python join() 方法用于将序列中的元素以指定的字符连接生成一个新的字符串
+
+# WYS:相当于把模型加起来
+def wys_module_fit(xi,  moduledata):
+    result = []
+    for i in fitparameter:
+        # tmp_str = "sig({x},{down},{up})*({0}/({x}**2) + {1} / {x} +{2}*{x}**0.5 +  {3}*{x} + {4}*{x}**2 + {5}*{x}**3 + {6}*{x}**0.5*np.log({x}) + {7}*{x}*np.log({x}) + {8}*{x}**2*np.log({x}) + {9}*np.log({x}) + {10})".format(fitparameter[i]['parameter'][0], fitparameter[i]['parameter'][1],fitparameter[i]['parameter'][2], fitparameter[i]['parameter'][3], fitparameter[i]['parameter'][4], fitparameter[i]['parameter'][5], fitparameter[i]['parameter'][6], fitparameter[i]['parameter'][7], fitparameter[i]['parameter'][8], fitparameter[i]['parameter'][9], fitparameter[i]['parameter'][10], x = xi, down = fitparameter[i]['down'], up = fitparameter[i]['up'])
+        tmp_str = "moduledata[{x}]".format(x = xi)
+        result.append(tmp_str)
     return '+'.join(result) # Python join() 方法用于将序列中的元素以指定的字符连接生成一个新的字符串
 
 def conduct_pattern(pattern):

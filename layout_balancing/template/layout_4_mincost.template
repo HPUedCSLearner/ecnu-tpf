@@ -27,6 +27,8 @@ class ${CLASSNAME}(optimize_model.OptimizeModel):
         tmp_strlist = []
         #atm
         tmp_strlist.append(module_fit("x[0]",self.models['${MODEL1}'.upper()].fitparameter))
+        #wys
+        print('wys tmp_strlist:', tmp_strlist)
         #ocn
         tmp_strlist.append(module_fit("x[1]",self.models['${MODEL2}'.upper()].fitparameter))
         #判断是否存在ice与lnd
