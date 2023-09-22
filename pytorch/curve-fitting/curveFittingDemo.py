@@ -102,8 +102,10 @@ plt.show()
 
 # 测试一个数据
 # x = torch.tensor([300])
-# x = x.reshape(-1, 1)
-# print(model.forward(x).data)
+x = torch.tensor([300.])
+x = x.reshape(-1, 1)
+print(model.forward(x).data)
+print('===============================================')
 # 保存模型
 # 加载模型
 # 使用模型
