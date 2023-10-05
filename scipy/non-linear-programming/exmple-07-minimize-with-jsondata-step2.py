@@ -54,10 +54,25 @@ print(len(list_data))
 
 # 求模型区间最值[200， 300]
 
+# def func(args): # 接受 模型list
+#     model_list = args
+#     # return lambda x : model_list[math.ceil(x)]
+#     return lambda x : model_list[math.floor(x)]
+
+def discretizing(x, model_list):
+    if math.floor(x) == math.ceil(x) :
+        return model_list[math.floor(x)]
+    else :
+        x1 = math.floor(x)
+        y1 = model_list[x1]
+        x2 = math.ceil(x)
+        y2 = model_list[x2]
+        # (x2 - x) / (x2 - x1) = target / (y1 - y2)
+        return (x2 - x) / (x2 - x1) * (y1 - y2) + y2
+
 def func(args): # 接受 模型list
     model_list = args
-    # return lambda x : model_list[math.ceil(x)]
-    return lambda x : model_list[math.floor(x)]
+    return lambda x : discretizing(x, model_list)
 
 #   File "/home/tmpDevDir/ecnu-tpf/scipy/non-linear-programming/exmple-06-jsondata-step1.py", line 55, in <lambda>
 #     return lambda x : model_list[x]
@@ -82,7 +97,7 @@ def cons(args):
 # 结果 和 这个初始值有关 （200， 300）
 # x = np.asarray(150)
 # x = np.asarray(250)
-x = np.asarray(250)
+x = np.asarray(250.5)
 
 # #设置限制条件
 # cons_arg1 = (1, 0.5)
@@ -101,11 +116,13 @@ cons_arg2 = (-1, 300)
 # ineq >=, eq ==
 my_cons = ( #{'type': 'ineq', 'fun': cons(cons_arg1)},
             #{'type': 'ineq', 'fun': cons(cons_arg2)},
-            {'type': 'ineq', 'fun': lambda x : x[0] - 200},
-            {'type': 'ineq', 'fun': lambda x : -x[0] + 300},
+            # {'type': 'ineq', 'fun': lambda x : x[0] - 200},
+            # {'type': 'ineq', 'fun': lambda x : -x[0] + 300},
+            {'type': 'ineq', 'fun': lambda x : x - 200},
+            {'type': 'ineq', 'fun': lambda x : -x + 300},
             # {'type':'eq','fun': lambda x : max([x[i]-int(x[i]) for i in range(len(x))])} 
-            {'type': 'eq', 'fun': lambda x : math.ceil(x) - x},
-            {'type': 'eq', 'fun': lambda x : math.floor(x) - x}
+            # {'type': 'eq', 'fun': lambda x : math.ceil(x) - x},
+            # {'type': 'eq', 'fun': lambda x : math.floor(x) - x}
         )
 
 # res = minimize(func(2), x, constraints=my_cons)
@@ -116,12 +133,22 @@ aim_model = get_list_form_josn(modle_data['atm'])
 res = minimize(func(aim_model), x, method='SLSQP', constraints=my_cons)
 
 
+
 print('================================')
 print(res.fun)
 print(res.success)
 print(res.x)
 print(math.floor(res.x)) # 前面运算向上取整，后面去结果向下取整
 print('================================')
+
+
+# print('==============Test For Map==================')
+# print(discretizing(30, aim_model))
+# print(discretizing(30.4, aim_model))
+# print(discretizing(30.5, aim_model))
+# print(discretizing(30.6, aim_model))
+# print(discretizing(31, aim_model))
+# print('================================')
 
 # print(aim_model[res.x])
 #     print(aim_model[res.x])

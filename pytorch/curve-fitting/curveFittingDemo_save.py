@@ -102,11 +102,23 @@ plt.show()
 
 # 测试一个数据
 # x = torch.tensor([300])
-x = torch.tensor([1024.])
+x = torch.tensor([300.])
 x = x.reshape(-1, 1)
 print(model.forward(x).data)
 print(de_normalization(model.forward(x).data, min_y, max_y))
 print('===============================================')
+
 # 保存模型
-# 加载模型
-# 使用模型
+print('======================Test Save Model=========================')
+# print(model.state_dict())
+torch.save(model.state_dict(), 'model.pt')
+
+# # 加载模型
+# # new_net = model.load_state_dict(torch.load('model.pt'))
+# # new_net = torch.load('model.pt')
+# # new_net.eval()
+
+# new_net = model.load_state_dict(torch.load('model.pt'))
+# # 使用模型
+# # print(new_net.forward(x).data)
+# print(new_net(x))
