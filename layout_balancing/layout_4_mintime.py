@@ -169,6 +169,7 @@ class atmocnlndice0(optimize_model.OptimizeModel):
             print('WYS Debug:\t bnds\t', bnds, '\n')
         bnds = tuple(bnds)
         print('WYS Debug:\t tuple(bnds)\t', bnds, '\n')
+        # tuple(bnds)	 ((4, 1024), (4, 1024), (4, 128), (4, 1024)) 
 
 
 

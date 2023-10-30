@@ -12,8 +12,8 @@ import numpy as np
 
 def func(args):
     a = args
-    # return lambda x : a / x
-    return lambda x : 1 / (a / x) # (最小值 转 换成 求 最大值)
+    return lambda x : a / x
+    # return lambda x : 1 / (a / x) # (最小值 转 换成 求 最大值)
 
 
 # (cons: x >= 0.5, x <= 2) == > (x - 0.5 >= 0, 2 - x >= 0)
@@ -24,17 +24,21 @@ def cons(args):
 
 
 # 设置初始猜测值
-x0 = np.asarray(1.5)
+# x0 = np.asarray(1.5)
+# x0 = np.asarray(0.2)
+x0 = np.asarray(100)
 
 #设置限制条件
-cons_arg1 = (1, 0.5)
-cons_arg2 = (-1, 2)
+# cons_arg1 = (1, 0.5)
+# cons_arg2 = (-1, 2)
+cons_arg1 = (1, 200)
+cons_arg2 = (-1, 300)
 
 my_cons = ( {'type': 'ineq', 'fun': cons(cons_arg1)},
             {'type': 'ineq', 'fun': cons(cons_arg2)},
         )
 
-res = minimize(func(2), x0, constraints=my_cons)
+res = minimize(func(2), x0, method='SLSQP', constraints=my_cons)
 
 print(res.fun)
 print(res.success)

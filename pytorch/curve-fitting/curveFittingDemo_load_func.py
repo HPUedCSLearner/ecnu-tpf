@@ -43,10 +43,9 @@ net = nn.Sequential(
 
 # 测试一个数据
 # x = torch.tensor([300])
-x = torch.tensor([300.01])
+x = torch.tensor([300.])
 x = x.reshape(-1, 1)
 print(net.forward(x).data)
-# print(de_normalization(net.forward(x).data, min_y, max_y))
 print('===============================================')
 
 # 保存模型
@@ -63,3 +62,82 @@ net.load_state_dict(torch.load('model.pt'))
 print('======================Test Use Model=========================')
 print(net.forward(x).data) # tensor([[0.0259]])
 # print(new_net.forward(x).data) # error: -> '_IncompatibleKeys' object has no attribute 'forward'
+
+def getNetVal(x, net):
+    ten = torch.as_tensor(x, dtype=torch.float)
+    ten = ten.reshape(-1, 1)
+    res = net.forward(ten).data
+    res = res.reshape(-1)
+    return res.numpy()[0]
+
+def func(net):
+    # return lambda x : getNetVal(x, net)
+    return lambda x : x ** (-2)
+    # return lambda x : -np.log(getNetVal(x, net))
+
+
+
+print('======================Test Use func=========================')
+print(getNetVal(200, net))
+print(getNetVal(200.0001, net))
+print(getNetVal(200.001, net))
+print(getNetVal(200.01, net))
+print(getNetVal(200.1, net))
+print(getNetVal(201, net))
+print(getNetVal(250, net))
+print(getNetVal(400, net))
+print(getNetVal(500, net))
+print(getNetVal(600, net))
+print(getNetVal(700, net))
+print(getNetVal(800, net))
+
+print('======================Test Use myfunc=========================')
+myfunc = func(net)
+print(myfunc(200))
+print(myfunc(250))
+print(myfunc(300))
+print()
+print(myfunc(250.1))
+print(myfunc(250.01))
+print(myfunc(250.001))
+
+print('======================Test Use minimize with Net=========================')
+from scipy.optimize import minimize
+import numpy as np
+
+
+
+
+
+# (cons: x >= 0.5, x <= 2) == > (x - 0.5 >= 0, 2 - x >= 0)
+
+def cons(args):
+    sign, val = args
+    return lambda x : sign * x - sign * val
+
+
+# 设置初始猜测值
+# x0 = np.asarray(1.5)
+# x0 = np.asarray(0.2)
+# x0 = np.asarray(100)
+x0 = np.asarray(400)
+# x0 = np.asarray(250)
+
+#设置限制条件
+cons_arg1 = (1, 200)
+cons_arg2 = (-1, 300)
+
+
+
+my_bnds = [[200, 300]]
+
+my_cons = ( {'type': 'ineq', 'fun': cons(cons_arg1)},
+            {'type': 'ineq', 'fun': cons(cons_arg2)},
+        )
+
+# res = minimize(func(net), x0, method='SLSQP', constraints=my_cons)
+res = minimize(func(net), x0, method='SLSQP', bounds=my_bnds)
+
+print(res.fun)
+print(res.success)
+print(res.x)

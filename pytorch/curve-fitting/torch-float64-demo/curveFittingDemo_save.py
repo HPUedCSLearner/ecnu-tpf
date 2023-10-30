@@ -5,6 +5,10 @@ import torch
 from torch import nn
 from IPython import embed
 
+
+torch.set_default_dtype(torch.float64)
+
+
 def normalization(y):
     min_y = torch.min(y)
     max_y = torch.max(y)
