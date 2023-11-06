@@ -1,2 +1,0 @@
-add_subdirectory(staticLibs)
-add_subdirectory(sharedLibs)

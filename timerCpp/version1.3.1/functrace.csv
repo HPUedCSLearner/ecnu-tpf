@@ -1,3 +1,0 @@
-AA() <- main[father] 1 137766 235662
-BB() <- AA()[father] 1 362 112724
-B() <- AA()[father] 1 362 112724
