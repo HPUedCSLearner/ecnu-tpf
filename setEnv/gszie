@@ -1,0 +1,5 @@
+#!/bin/bash
+
+deep=$1
+
+du -h --max-depth=${deep}
