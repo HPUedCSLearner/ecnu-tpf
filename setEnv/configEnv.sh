@@ -25,3 +25,6 @@ git config --global user.name "wangfeng"
 # 卸载磁盘
 # sudo umount /dev/sdb1
 # sudo umount /home/feng/disk/disk1
+sudo mount /dev/sdb1 /home/feng/sdb1
+sudo mount /dev/sdb2 /home/feng/sdb2
+sudo mount /dev/sdb3 /home/feng/sdb3
