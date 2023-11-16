@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/wangfeng/github/ecnu-tpf/cmake/cmake-test/build",
+  "command": "/usr/bin/cc -g -o CMakeFiles/camke-test.dir/main.c.o -c /home/wangfeng/github/ecnu-tpf/cmake/cmake-test/main.c",
+  "file": "/home/wangfeng/github/ecnu-tpf/cmake/cmake-test/main.c"
+}
+]

@@ -1,0 +1,3 @@
+/home/wangfeng/github/ecnu-tpf/cmake/cmake-test/cmake-llvm-projectDemo/build-test/CMakeFiles/a.out.dir
+/home/wangfeng/github/ecnu-tpf/cmake/cmake-test/cmake-llvm-projectDemo/build-test/CMakeFiles/edit_cache.dir
+/home/wangfeng/github/ecnu-tpf/cmake/cmake-test/cmake-llvm-projectDemo/build-test/CMakeFiles/rebuild_cache.dir

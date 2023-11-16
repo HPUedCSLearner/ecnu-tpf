@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/wangfeng/github/ecnu-tpf/cmake/cmake-test/cmake-llvm-projectDemo/build",
+  "command": "/usr/bin/c++ -I/usr/local/llvm-15.0.0/include -g -o CMakeFiles/a.out.dir/main.cpp.o -c /home/wangfeng/github/ecnu-tpf/cmake/cmake-test/cmake-llvm-projectDemo/main.cpp",
+  "file": "/home/wangfeng/github/ecnu-tpf/cmake/cmake-test/cmake-llvm-projectDemo/main.cpp"
+}
+]

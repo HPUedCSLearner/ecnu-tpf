@@ -1,0 +1,6 @@
+/home/wangfeng/github/ecnu-tpf/cmake/cmake-test/cmake-llvm-projectDemo/build/CMakeFiles/intrinsics_gen.dir
+/home/wangfeng/github/ecnu-tpf/cmake/cmake-test/cmake-llvm-projectDemo/build/CMakeFiles/omp_gen.dir
+/home/wangfeng/github/ecnu-tpf/cmake/cmake-test/cmake-llvm-projectDemo/build/CMakeFiles/acc_gen.dir
+/home/wangfeng/github/ecnu-tpf/cmake/cmake-test/cmake-llvm-projectDemo/build/CMakeFiles/a.out.dir
+/home/wangfeng/github/ecnu-tpf/cmake/cmake-test/cmake-llvm-projectDemo/build/CMakeFiles/edit_cache.dir
+/home/wangfeng/github/ecnu-tpf/cmake/cmake-test/cmake-llvm-projectDemo/build/CMakeFiles/rebuild_cache.dir
