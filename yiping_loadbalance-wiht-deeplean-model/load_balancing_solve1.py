@@ -245,7 +245,9 @@ if __name__ == "__main__" :
     #### fitparameter = get_fitparameter()
 
     # 加载深度学习模型
-    deeplearn_models = load_deeplearn_model(models, '/home/feng/wys/github/ecnu-tpf/yiping_loadbalance-wiht-deeplean-model/deeplearn-models/')
+    # deeplearn_models = load_deeplearn_model(models, '/home/feng/wys/github/ecnu-tpf/yiping_loadbalance-wiht-deeplean-model/deeplearn-models/')
+    cur_path = os.getcwd()
+    deeplearn_models = load_deeplearn_model(models, cur_path + '/deeplearn-models/')
     
     best_solution = model_layout(totaltasks, models, mintasks, ice_procs, deeplearn_models)
     print(best_solution)
